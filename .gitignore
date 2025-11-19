@@ -6,3 +6,10 @@ dist/
 coverage/
 .vscode/
 .idea/
+
+# pnpm
+pnpm-lock.yaml
+.pnpm-store/
+
+# npm (legacy)
+package-lock.json

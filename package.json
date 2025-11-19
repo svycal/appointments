@@ -1,13 +1,15 @@
 {
   "name": "@savvycal/appointments-js",
   "private": true,
-  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "openapi-ts": "openapi-ts"
+    "build": "pnpm -r build",
+    "dev": "pnpm -r --parallel dev",
+    "lint": "eslint packages",
+    "format": "prettier --write \"packages/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"packages/**/*.{ts,tsx,js,jsx,json,md}\""
   },
   "devDependencies": {
-    "@hey-api/openapi-ts": "^0.87.5",
     "@typescript-eslint/eslint-plugin": "^8.47.0",
     "@typescript-eslint/parser": "^8.47.0",
     "eslint": "^9.39.1",

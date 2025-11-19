@@ -1,0 +1,42 @@
+{
+  "name": "@savvycal/appointments-core",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "JavaScript/TypeScript client library for the SavvyCal Appointments API",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "openapi-ts": "openapi-ts",
+    "build": "tsup src/client/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/client/index.ts --format esm,cjs --dts --watch"
+  },
+  "keywords": [
+    "savvycal",
+    "appointments",
+    "api",
+    "client"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/savvycal/appointments-js.git",
+    "directory": "packages/core"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@hey-api/client-fetch": "^0.4.4"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.87.5"
+  }
+}
