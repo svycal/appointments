@@ -8,7 +8,6 @@ coverage/
 .idea/
 
 # pnpm
-pnpm-lock.yaml
 .pnpm-store/
 
 # npm (legacy)
