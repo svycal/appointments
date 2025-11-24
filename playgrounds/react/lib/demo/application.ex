@@ -14,6 +14,11 @@ defmodule Demo.Application do
       {Phoenix.PubSub, name: Demo.PubSub},
       # Start a worker by calling: Demo.Worker.start_link(arg)
       # {Demo.Worker, arg},
+
+      # Start the SSR process pool
+      # You must specify a `path` option to locate the directory where the `ssr.js` file lives.
+      {Inertia.SSR, path: Path.join([Application.app_dir(:demo), "priv"]), module: "ssr.cjs"},
+
       # Start to serve requests, typically the last entry
       DemoWeb.Endpoint
     ]

@@ -26,6 +26,7 @@ config :demo, DemoWeb.Endpoint,
   secret_key_base: "of1MC/iSC8PyDBCDMWvZZhXqnspVu4e0Yp7i5gT/CtE9lMGlg1Zym+pCjfd727fH",
   watchers: [
     {:esbuild, {Esbuild, :install_and_run, [:demo, ~w(--sourcemap=inline --watch)]}},
+    {:ssr, {Esbuild, :install_and_run, [:ssr, ~w(--sourcemap=inline --watch)]}},
     {:pnpm, ["run", "css:watch", cd: Path.expand("../assets", __DIR__)]}
   ]
 

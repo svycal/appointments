@@ -40,6 +40,8 @@ defmodule Demo.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:inertia, "~> 2.5"},
+      {:igniter, "~> 0.6", only: [:dev, :test]},
       {:phoenix, "~> 1.8.1"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.13"},
@@ -64,7 +66,8 @@ defmodule Demo.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -84,10 +87,16 @@ defmodule Demo.MixProject do
         "esbuild.install --if-missing",
         "cmd --cd assets pnpm install"
       ],
-      "assets.build": ["compile", "cmd --cd assets pnpm run css:build", "esbuild demo"],
+      "assets.build": [
+        "compile",
+        "cmd --cd assets pnpm run css:build",
+        "esbuild demo",
+        "esbuild ssr"
+      ],
       "assets.deploy": [
         "cmd --cd assets pnpm run css:deploy",
         "esbuild demo --minify",
+        "esbuild ssr",
         "phx.digest"
       ],
       precommit: ["compile --warning-as-errors", "deps.unlock --unused", "format", "test"]
