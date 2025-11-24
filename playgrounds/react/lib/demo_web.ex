@@ -44,6 +44,7 @@ defmodule DemoWeb do
 
       import Plug.Conn
       import Inertia.Controller
+      import DemoWeb.RootLayout
 
       unquote(verified_routes())
     end

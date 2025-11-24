@@ -3,7 +3,7 @@ defmodule DemoWeb.PageController do
 
   def home(conn, _params) do
     conn
-    |> assign(:page_title, "Home")
+    |> assign_page_title("Home")
     |> render_inertia("Home")
   end
 end
