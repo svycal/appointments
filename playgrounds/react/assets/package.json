@@ -1,0 +1,13 @@
+{
+  "name": "assets",
+  "private": true,
+  "scripts": {
+    "css:watch": "tailwindcss -i ./css/app.css -o ../priv/static/assets/css/app.css --watch",
+    "css:build": "tailwindcss -i ./css/app.css -o ../priv/static/assets/css/app.css",
+    "css:deploy": "tailwindcss -i ./css/app.css -o ../priv/static/assets/css/app.css --minify"
+  },
+  "dependencies": {
+    "tailwindcss": "^4.1.17",
+    "@tailwindcss/cli": "^4.1.17"
+  }
+}
