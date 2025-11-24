@@ -13,7 +13,8 @@
     "axios": "^1.13.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.17",
+    "@savvycal/appointments-core": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.2.7",
