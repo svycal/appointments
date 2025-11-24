@@ -1,8 +1,8 @@
 {
-  "name": "@savvycal/appointments-core",
+  "name": "@savvycal/appointments-react-query",
   "version": "1.0.0",
   "type": "module",
-  "description": "JavaScript/TypeScript client library for the SavvyCal Appointments API",
+  "description": "A tiny wrapper around @tanstack/react-query for the SavvyCal Appointments API",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -17,7 +17,6 @@
     "dist"
   ],
   "scripts": {
-    "generate-schema": "openapi-typescript https://api.savvycal.app/v1/spec --output ./src/schema.d.ts",
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
   },
@@ -30,7 +29,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/savvycal/appointments-js.git",
-    "directory": "packages/core"
+    "directory": "packages/react-query"
   },
   "license": "MIT",
   "devDependencies": {
@@ -38,6 +37,8 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "openapi-fetch": "^0.15.0"
+    "@savvycal/appointments-core": "workspace:*",
+    "openapi-fetch": "^0.15.0",
+    "openapi-react-query": "^0.5.1"
   }
 }
