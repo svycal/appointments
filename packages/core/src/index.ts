@@ -8,7 +8,7 @@ export type { paths };
  */
 export const createClient = (options: ClientOptions) => {
   return createFetchClient<paths>({
-    baseUrl: 'https://api.savvycal.app/v1',
+    baseUrl: 'https://api.savvycal.app',
     ...options,
   });
 };
