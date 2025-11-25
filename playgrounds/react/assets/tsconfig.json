@@ -14,12 +14,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@/*": [
-        "./js/*"
-      ]
-    }
+    "skipLibCheck": true
   },
   "exclude": [
     "node_modules"

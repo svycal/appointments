@@ -11,9 +11,19 @@ const queryClient = new QueryClient();
 export const RootLayout = ({ children }: { children: ReactNode }) => {
   const page = usePage<{
     pageTitle: string;
+    savvycalToken: string;
   }>();
 
-  const client = useMemo(() => createClient({}), []);
+  const client = useMemo(
+    () =>
+      createClient({
+        baseUrl: 'http://localhost:4002',
+        headers: {
+          Authorization: `Bearer ${page.props.savvycalToken}`,
+        },
+      }),
+    [],
+  );
 
   return (
     <>

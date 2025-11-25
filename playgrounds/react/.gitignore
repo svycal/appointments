@@ -34,6 +34,9 @@ demo-*.tar
 # Ignore SSR build
 /priv/ssr.cjs
 
+# Ignore secrets
+dev.secret.exs
+
 # In case you use Node.js/npm, you want to ignore these.
 npm-debug.log
 /assets/node_modules/
