@@ -128,9 +128,10 @@ function generateHookFile(op: OperationInfo): string {
   const paramsTypeName = `${op.hookName.charAt(3).toUpperCase()}${op.hookName.slice(4)}Params`;
 
   const lines: string[] = [
-    `import type { Client } from '../client';`,
     `import type { UseQueryResult } from '@tanstack/react-query';`,
     `import { paths } from '@savvycal/appointments-core';`,
+    `import { useSavvyCalClient } from '../provider';`,
+    `import { Client } from '../client';`,
     ``,
   ];
 
@@ -147,8 +148,14 @@ function generateHookFile(op: OperationInfo): string {
   );
   lines.push(``);
 
-  // Build function signature
-  const params: string[] = ['client: Client'];
+  // Build Options interface (always just has client)
+  lines.push(`interface Options {`);
+  lines.push(`  client?: Client;`);
+  lines.push(`}`);
+  lines.push(``);
+
+  // Build function signature - path params first, then query params, then options
+  const params: string[] = [];
 
   // Add path parameters as individual arguments
   if (op.pathParams.length > 0) {
@@ -157,15 +164,20 @@ function generateHookFile(op: OperationInfo): string {
     }
   }
 
-  // Add query parameters
+  // Add query parameters as a separate argument (second to last)
   if (op.hasQueryParams) {
     const optional = op.queryParamsRequired ? '' : '?';
     params.push(`params${optional}: ${paramsTypeName}['query']`);
   }
 
+  // Add options parameter (always optional, always last)
+  params.push(`options?: Options`);
+
   lines.push(`export const ${op.hookName} = (`);
   lines.push(`  ${params.join(',\n  ')},`);
   lines.push(`): UseQueryResult<${dataTypeName}, unknown> => {`);
+  lines.push(`  const client = useSavvyCalClient(options?.client);`);
+  lines.push(``);
 
   // Build the params object for the query
   const queryCallParts: string[] = [];
@@ -215,7 +227,7 @@ function generateBarrelExport(operations: OperationInfo[]): string {
 // Main function
 async function main() {
   console.log('🔍 Extracting GET operations from schema...');
-  const operations = await extractGetOperations();
+  const operations = extractGetOperations();
 
   console.log(`📝 Found ${operations.length} GET operations`);
 

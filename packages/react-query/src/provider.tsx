@@ -29,15 +29,16 @@ SavvyCalProvider.displayName = 'SavvyCalProvider';
 
 /**
  * Hook to access the SavvyCal client instance.
+ * @param overrideClient - Optional client to use instead of the one from context.
  * @returns The SavvyCal client instance.
- * @throws Error if used outside of a `SavvyCalProvider`.
+ * @throws Error if used outside of a `SavvyCalProvider` and no override client is provided.
  */
-export const useSavvyCalClient = () => {
+export const useSavvyCalClient = (overrideClient?: Client) => {
   const context = useContext(SavvyCalContext);
 
-  if (context === undefined) {
+  if (context === undefined && !overrideClient) {
     throw new Error('useSavvyCalClient must be used within a SavvyCalProvider');
   }
 
-  return context;
+  return overrideClient || context!;
 };
