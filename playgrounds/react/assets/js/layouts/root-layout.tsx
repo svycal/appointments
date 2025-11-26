@@ -16,7 +16,8 @@ export const RootLayout = ({ children }: { children: ReactNode }) => {
   const client = useMemo(
     () =>
       createClient({
-        baseUrl: 'http://localhost:4002',
+        // baseUrl: 'http://localhost:4002',
+        baseUrl: 'https://api.savvycal.app',
         // headers: {
         //   Authorization: `Bearer ${page.props.savvycalToken}`,
         // },
