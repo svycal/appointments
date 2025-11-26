@@ -34,11 +34,14 @@
   "license": "MIT",
   "devDependencies": {
     "openapi-typescript": "^7.10.1",
-    "typescript": "^5.9.3"
-  },
-  "dependencies": {
-    "@savvycal/appointments-core": "workspace:*",
+    "typescript": "^5.9.3",
     "openapi-fetch": "^0.15.0",
     "openapi-react-query": "^0.5.1"
+  },
+  "dependencies": {
+    "@savvycal/appointments-core": "workspace:*"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.0.0"
   }
 }

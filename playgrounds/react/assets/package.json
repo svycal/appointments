@@ -9,14 +9,14 @@
   "dependencies": {
     "@inertiajs/core": "^2.2.18",
     "@inertiajs/react": "^2.2.18",
+    "@savvycal/appointments-react-query": "workspace:*",
     "@tailwindcss/cli": "^4.1.17",
-    "@tanstack/react-query": "^5.90.10",
-    "@tanstack/react-query-devtools": "^5.91.0",
+    "@tanstack/react-query": "^5.90.11",
+    "@tanstack/react-query-devtools": "^5.91.1",
     "axios": "^1.13.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwindcss": "^4.1.17",
-    "@savvycal/appointments-react-query": "workspace:*"
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "@types/react": "^19.2.7",

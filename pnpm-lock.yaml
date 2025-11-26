@@ -45,13 +45,16 @@ importers:
       '@savvycal/appointments-core':
         specifier: workspace:*
         version: link:../core
+      '@tanstack/react-query':
+        specifier: ^5.0.0
+        version: 5.90.11(react@19.2.0)
+    devDependencies:
       openapi-fetch:
         specifier: ^0.15.0
         version: 0.15.0
       openapi-react-query:
         specifier: ^0.5.1
-        version: 0.5.1(@tanstack/react-query@5.90.10(react@19.2.0))(openapi-fetch@0.15.0)
-    devDependencies:
+        version: 0.5.1(@tanstack/react-query@5.90.11(react@19.2.0))(openapi-fetch@0.15.0)
       openapi-typescript:
         specifier: ^7.10.1
         version: 7.10.1(typescript@5.9.3)
@@ -74,11 +77,11 @@ importers:
         specifier: ^4.1.17
         version: 4.1.17
       '@tanstack/react-query':
-        specifier: ^5.90.10
-        version: 5.90.10(react@19.2.0)
+        specifier: ^5.90.11
+        version: 5.90.11(react@19.2.0)
       '@tanstack/react-query-devtools':
-        specifier: ^5.91.0
-        version: 5.91.0(@tanstack/react-query@5.90.10(react@19.2.0))(react@19.2.0)
+        specifier: ^5.91.1
+        version: 5.91.1(@tanstack/react-query@5.90.11(react@19.2.0))(react@19.2.0)
       axios:
         specifier: ^1.13.2
         version: 1.13.2
@@ -646,20 +649,20 @@ packages:
     resolution: {integrity: sha512-F0F7d01fmkQhsTjXezGBLdrl1KresJTcI3DB8EkScCldyKp3Msz4hub4uyYaVnk88BAS1g5DQjjF6F5qczheLA==}
     engines: {node: '>= 10'}
 
-  '@tanstack/query-core@5.90.10':
-    resolution: {integrity: sha512-EhZVFu9rl7GfRNuJLJ3Y7wtbTnENsvzp+YpcAV7kCYiXni1v8qZh++lpw4ch4rrwC0u/EZRnBHIehzCGzwXDSQ==}
+  '@tanstack/query-core@5.90.11':
+    resolution: {integrity: sha512-f9z/nXhCgWDF4lHqgIE30jxLe4sYv15QodfdPDKYAk7nAEjNcndy4dHz3ezhdUaR23BpWa4I2EH4/DZ0//Uf8A==}
 
-  '@tanstack/query-devtools@5.91.0':
-    resolution: {integrity: sha512-uNWkqWTiIKCv8Iaahb7bftmDaZVkBetB+l+OQhQeCEZAedyqxw2eyaRUc8sAQ2LzD843tVdYL6bzOtRWJHJSbQ==}
+  '@tanstack/query-devtools@5.91.1':
+    resolution: {integrity: sha512-l8bxjk6BMsCaVQH6NzQEE/bEgFy1hAs5qbgXl0xhzezlaQbPk6Mgz9BqEg2vTLPOHD8N4k+w/gdgCbEzecGyNg==}
 
-  '@tanstack/react-query-devtools@5.91.0':
-    resolution: {integrity: sha512-s7g8Zn8HN05HNe22n/KdNm8wXaRbkcsVkqpkdYIQuCfjVmEUoTQqtJsN2iZtgd9CU36xNS38trWIofxzyW5vbQ==}
+  '@tanstack/react-query-devtools@5.91.1':
+    resolution: {integrity: sha512-tRnJYwEbH0kAOuToy8Ew7bJw1lX3AjkkgSlf/vzb+NpnqmHPdWM+lA2DSdGQSLi1SU0PDRrrCI1vnZnci96CsQ==}
     peerDependencies:
       '@tanstack/react-query': ^5.90.10
       react: ^18 || ^19
 
-  '@tanstack/react-query@5.90.10':
-    resolution: {integrity: sha512-BKLss9Y8PQ9IUjPYQiv3/Zmlx92uxffUOX8ZZNoQlCIZBJPT5M+GOMQj7xislvVQ6l1BstBjcX0XB/aHfFYVNw==}
+  '@tanstack/react-query@5.90.11':
+    resolution: {integrity: sha512-3uyzz01D1fkTLXuxF3JfoJoHQMU2fxsfJwE+6N5hHy0dVNoZOvwKP8Z2k7k1KDeD54N20apcJnG75TBAStIrBA==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -2022,19 +2025,19 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.1.17
       '@tailwindcss/oxide-win32-x64-msvc': 4.1.17
 
-  '@tanstack/query-core@5.90.10': {}
+  '@tanstack/query-core@5.90.11': {}
 
-  '@tanstack/query-devtools@5.91.0': {}
+  '@tanstack/query-devtools@5.91.1': {}
 
-  '@tanstack/react-query-devtools@5.91.0(@tanstack/react-query@5.90.10(react@19.2.0))(react@19.2.0)':
+  '@tanstack/react-query-devtools@5.91.1(@tanstack/react-query@5.90.11(react@19.2.0))(react@19.2.0)':
     dependencies:
-      '@tanstack/query-devtools': 5.91.0
-      '@tanstack/react-query': 5.90.10(react@19.2.0)
+      '@tanstack/query-devtools': 5.91.1
+      '@tanstack/react-query': 5.90.11(react@19.2.0)
       react: 19.2.0
 
-  '@tanstack/react-query@5.90.10(react@19.2.0)':
+  '@tanstack/react-query@5.90.11(react@19.2.0)':
     dependencies:
-      '@tanstack/query-core': 5.90.10
+      '@tanstack/query-core': 5.90.11
       react: 19.2.0
 
   '@types/estree@1.0.8': {}
@@ -2688,9 +2691,9 @@ snapshots:
     dependencies:
       openapi-typescript-helpers: 0.0.15
 
-  openapi-react-query@0.5.1(@tanstack/react-query@5.90.10(react@19.2.0))(openapi-fetch@0.15.0):
+  openapi-react-query@0.5.1(@tanstack/react-query@5.90.11(react@19.2.0))(openapi-fetch@0.15.0):
     dependencies:
-      '@tanstack/react-query': 5.90.10(react@19.2.0)
+      '@tanstack/react-query': 5.90.11(react@19.2.0)
       openapi-fetch: 0.15.0
       openapi-typescript-helpers: 0.0.15
 

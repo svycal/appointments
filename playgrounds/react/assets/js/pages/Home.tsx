@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, ReactNode } from 'react';
 import { SavvyCalContext } from '../contexts';
+import { RootLayout } from '../layouts/root-layout';
 
 const Home = () => {
-  const client = useContext(SavvyCalContext);
+  const savvyCalClient = useContext(SavvyCalContext);
 
-  client.useQuery('get', '/v1/account');
+  savvyCalClient.useQuery('get', '/v1/account');
 
   return (
     <div>
@@ -12,5 +13,7 @@ const Home = () => {
     </div>
   );
 };
+
+Home.layout = (page: ReactNode) => <RootLayout>{page}</RootLayout>;
 
 export default Home;
