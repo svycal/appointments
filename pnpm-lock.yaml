@@ -45,10 +45,10 @@ importers:
       '@savvycal/appointments-core':
         specifier: workspace:*
         version: link:../core
-      '@tanstack/react-query':
-        specifier: ^5.0.0
-        version: 5.90.11(react@19.2.0)
     devDependencies:
+      '@tanstack/react-query':
+        specifier: ^5.90.11
+        version: 5.90.11(react@19.2.0)
       '@types/node':
         specifier: ^22.10.2
         version: 22.19.1
