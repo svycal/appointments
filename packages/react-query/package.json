@@ -19,7 +19,8 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
-    "generate:hooks": "tsx scripts/generate-hooks.ts"
+    "generate:hooks": "tsx scripts/generate-hooks.ts",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "savvycal",

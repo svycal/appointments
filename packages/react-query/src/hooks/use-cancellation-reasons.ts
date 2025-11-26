@@ -1,7 +1,7 @@
 import type { Client } from '../client';
 import { paths } from '@savvycal/appointments-core';
 
-type CancellationReasonsParams =
+export type CancellationReasonsParams =
   paths['/v1/cancellation_reasons']['get']['parameters'];
 
 export const useCancellationReasons = (client: Client) => {

@@ -1,7 +1,7 @@
 import type { Client } from '../client';
 import { paths } from '@savvycal/appointments-core';
 
-type BlockParams = paths['/v1/blocks/{block_id}']['get']['parameters'];
+export type BlockParams = paths['/v1/blocks/{block_id}']['get']['parameters'];
 
 export const useBlock = (
   client: Client,

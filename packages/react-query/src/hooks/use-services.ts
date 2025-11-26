@@ -1,7 +1,7 @@
 import type { Client } from '../client';
 import { paths } from '@savvycal/appointments-core';
 
-type ServicesParams = paths['/v1/services']['get']['parameters'];
+export type ServicesParams = paths['/v1/services']['get']['parameters'];
 
 export const useServices = (
   client: Client,

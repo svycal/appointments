@@ -1,7 +1,7 @@
 import type { Client } from '../client';
 import { paths } from '@savvycal/appointments-core';
 
-type ProviderScheduleParams =
+export type ProviderScheduleParams =
   paths['/v1/provider_schedules/{provider_schedule_id}']['get']['parameters'];
 
 export const useProviderSchedule = (

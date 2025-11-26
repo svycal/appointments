@@ -133,8 +133,8 @@ function generateHookFile(op: OperationInfo): string {
     ``,
   ];
 
-  // Generate the params type
-  lines.push(`type ${paramsTypeName} =`);
+  // Generate the params type (export it for consumer use)
+  lines.push(`export type ${paramsTypeName} =`);
   lines.push(`  paths['${op.path}']['${op.method}']['parameters'];`);
   lines.push(``);
 
