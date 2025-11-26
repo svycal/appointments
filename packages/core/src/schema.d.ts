@@ -519,6 +519,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/public/services/{service_id}/slots": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List available time slots
+         * @description List all available time slots for a service in a specific time range, for use on public booking interfaces.
+         */
+        get: operations["listPublicServiceSlots"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/roles": {
         parameters: {
             query?: never;
@@ -643,10 +663,33 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * List slots for a service
-         * @description List all available slots for a service in a specific time range
+         * List available time slots
+         * @description List all available time slots for a service in a specific time range
          */
         get: operations["listServiceSlots"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/user": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get current account user
+         * @description Get information about the current user in the context of the current account.
+         *
+         *     This endpoint requires use of a JSON Web Token (JWT) scoped to a specific user.
+         *     If no user is specified, this will return an error.
+         */
+        get: operations["getCurrentAccountUser"];
         put?: never;
         post?: never;
         delete?: never;
@@ -747,6 +790,7 @@ export interface components {
          *         "local": "2023-01-01T01:00:00",
          *         "object": "zoned_date_time",
          *         "time_zone": "America/New_York",
+         *         "unix_ts": 1736464800,
          *         "utc": "2023-01-01T04:00:00Z"
          *       },
          *       "initiated_by": "client",
@@ -757,6 +801,7 @@ export interface components {
          *         "local": "2023-01-01T00:00:00",
          *         "object": "zoned_date_time",
          *         "time_zone": "America/New_York",
+         *         "unix_ts": 1736461200,
          *         "utc": "2023-01-01T03:00:00Z"
          *       }
          *     }
@@ -771,6 +816,7 @@ export interface components {
              *       "local": "2025-03-01T10:00:00",
              *       "object": "zoned_date_time",
              *       "time_zone": "America/New_York",
+             *       "unix_ts": 1736461200,
              *       "utc": "2025-03-01T03:00:00Z"
              *     }
              */
@@ -790,6 +836,11 @@ export interface components {
                  * @example America/New_York
                  */
                 time_zone: string;
+                /**
+                 * @description The UTC date/time in Unix timestamp format (seconds).
+                 * @example 1736461200
+                 */
+                unix_ts: number;
                 /**
                  * Format: date-time
                  * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -821,6 +872,7 @@ export interface components {
              *       "local": "2025-03-01T10:00:00",
              *       "object": "zoned_date_time",
              *       "time_zone": "America/New_York",
+             *       "unix_ts": 1736461200,
              *       "utc": "2025-03-01T03:00:00Z"
              *     }
              */
@@ -840,6 +892,11 @@ export interface components {
                  * @example America/New_York
                  */
                 time_zone: string;
+                /**
+                 * @description The UTC date/time in Unix timestamp format (seconds).
+                 * @example 1736461200
+                 */
+                unix_ts: number;
                 /**
                  * Format: date-time
                  * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -1020,6 +1077,7 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "initiated_by": "client",
@@ -1030,6 +1088,7 @@ export interface components {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             }
          *           }
@@ -1040,6 +1099,7 @@ export interface components {
          *           "local": "2025-03-01T11:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736464800,
          *           "utc": "2025-03-01T04:00:00Z"
          *         },
          *         "fields": {
@@ -1067,12 +1127,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "new_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "object": "reschedule_event",
@@ -1081,12 +1143,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "previous_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "source": "client_ui"
@@ -1149,6 +1213,7 @@ export interface components {
          *           "local": "2025-03-01T10:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736461200,
          *           "utc": "2025-03-01T03:00:00Z"
          *         },
          *         "status": "scheduled",
@@ -1176,12 +1241,14 @@ export interface components {
          *           "local": "2025-03-01T11:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736464800,
          *           "utc": "2025-03-01T04:00:00Z"
          *         },
          *         "start_at": {
          *           "local": "2025-03-01T10:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736461200,
          *           "utc": "2025-03-01T03:00:00Z"
          *         }
          *       },
@@ -1242,6 +1309,7 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "initiated_by": "client",
@@ -1252,6 +1320,7 @@ export interface components {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           }
              *         }
@@ -1262,6 +1331,7 @@ export interface components {
              *         "local": "2025-03-01T11:00:00",
              *         "object": "zoned_date_time",
              *         "time_zone": "America/New_York",
+             *         "unix_ts": 1736464800,
              *         "utc": "2025-03-01T04:00:00Z"
              *       },
              *       "fields": {
@@ -1289,12 +1359,14 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "new_start_at": {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           },
              *           "object": "reschedule_event",
@@ -1303,12 +1375,14 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "previous_start_at": {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           },
              *           "source": "client_ui"
@@ -1371,6 +1445,7 @@ export interface components {
              *         "local": "2025-03-01T10:00:00",
              *         "object": "zoned_date_time",
              *         "time_zone": "America/New_York",
+             *         "unix_ts": 1736461200,
              *         "utc": "2025-03-01T03:00:00Z"
              *       },
              *       "status": "scheduled",
@@ -1558,6 +1633,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -1577,6 +1653,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -1608,6 +1689,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -1627,6 +1709,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -1652,6 +1739,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -1671,6 +1759,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -1752,6 +1845,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -1772,6 +1866,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -1785,6 +1884,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -1804,6 +1904,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -1825,6 +1930,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -1845,6 +1951,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -1858,6 +1969,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -1877,6 +1989,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -2145,6 +2262,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -2164,6 +2282,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -2205,6 +2328,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -2225,6 +2349,11 @@ export interface components {
                      */
                     time_zone: string;
                     /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
+                    /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
                      * @example 2025-03-01T03:00:00Z
@@ -2238,6 +2367,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -2257,6 +2387,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -2335,6 +2470,8 @@ export interface components {
                     count: number;
                     /** Format: date-time */
                     end_at: string;
+                    /** @description Unix timestamp in seconds */
+                    end_at_ts?: number;
                     /**
                      * @description String representing the object's type.
                      * @enum {string}
@@ -2342,6 +2479,8 @@ export interface components {
                     object: "aggregated_slot";
                     /** Format: date-time */
                     start_at: string;
+                    /** @description Unix timestamp in seconds */
+                    start_at_ts?: number;
                     /** @description IANA time zone name */
                     time_zone: string;
                 }[];
@@ -2349,6 +2488,8 @@ export interface components {
                     open?: {
                         /** Format: date-time */
                         end_at: string;
+                        /** @description Unix timestamp in seconds */
+                        end_at_ts?: number;
                         /**
                          * @description String representing the object's type.
                          * @enum {string}
@@ -2356,6 +2497,8 @@ export interface components {
                         object: "slot";
                         /** Format: date-time */
                         start_at: string;
+                        /** @description Unix timestamp in seconds */
+                        start_at_ts?: number;
                         /** @description IANA time zone name */
                         time_zone: string;
                     }[];
@@ -2536,17 +2679,24 @@ export interface components {
          * GenericErrorResponse
          * @description Response schema for generic error messages
          * @example {
-         *       "errors": {
-         *         "detail": "You must use an account-scoped token to access this endpoint."
-         *       }
+         *       "errors": [
+         *         {
+         *           "detail": "You must use an account-scoped token to access this endpoint.",
+         *           "status": "400",
+         *           "title": "Invalid value"
+         *         }
+         *       ]
          *     }
          */
         GenericErrorResponse: {
-            /** @description Error details */
             errors: {
                 /** @description Error message */
                 detail: string;
-            };
+                /** @description HTTP status code */
+                status?: string;
+                /** @description Error title */
+                title?: string;
+            }[];
         };
         /**
          * DashboardSessionResponse
@@ -2774,12 +2924,14 @@ export interface components {
          *         "local": "2023-01-01T01:00:00",
          *         "object": "zoned_date_time",
          *         "time_zone": "America/New_York",
+         *         "unix_ts": 1736464800,
          *         "utc": "2023-01-01T04:00:00Z"
          *       },
          *       "new_start_at": {
          *         "local": "2023-01-01T00:00:00",
          *         "object": "zoned_date_time",
          *         "time_zone": "America/New_York",
+         *         "unix_ts": 1736461200,
          *         "utc": "2023-01-01T03:00:00Z"
          *       },
          *       "object": "reschedule_event",
@@ -2788,12 +2940,14 @@ export interface components {
          *         "local": "2023-01-01T01:00:00",
          *         "object": "zoned_date_time",
          *         "time_zone": "America/New_York",
+         *         "unix_ts": 1736464800,
          *         "utc": "2023-01-01T04:00:00Z"
          *       },
          *       "previous_start_at": {
          *         "local": "2023-01-01T00:00:00",
          *         "object": "zoned_date_time",
          *         "time_zone": "America/New_York",
+         *         "unix_ts": 1736461200,
          *         "utc": "2023-01-01T03:00:00Z"
          *       },
          *       "source": "client_ui"
@@ -2810,6 +2964,7 @@ export interface components {
              *       "local": "2025-03-01T10:00:00",
              *       "object": "zoned_date_time",
              *       "time_zone": "America/New_York",
+             *       "unix_ts": 1736461200,
              *       "utc": "2025-03-01T03:00:00Z"
              *     }
              */
@@ -2830,6 +2985,11 @@ export interface components {
                  */
                 time_zone: string;
                 /**
+                 * @description The UTC date/time in Unix timestamp format (seconds).
+                 * @example 1736461200
+                 */
+                unix_ts: number;
+                /**
                  * Format: date-time
                  * @description The UTC date/time in ISO-8601 format (with time zone information).
                  * @example 2025-03-01T03:00:00Z
@@ -2843,6 +3003,7 @@ export interface components {
              *       "local": "2025-03-01T10:00:00",
              *       "object": "zoned_date_time",
              *       "time_zone": "America/New_York",
+             *       "unix_ts": 1736461200,
              *       "utc": "2025-03-01T03:00:00Z"
              *     }
              */
@@ -2862,6 +3023,11 @@ export interface components {
                  * @example America/New_York
                  */
                 time_zone: string;
+                /**
+                 * @description The UTC date/time in Unix timestamp format (seconds).
+                 * @example 1736461200
+                 */
+                unix_ts: number;
                 /**
                  * Format: date-time
                  * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -2883,6 +3049,7 @@ export interface components {
              *       "local": "2025-03-01T10:00:00",
              *       "object": "zoned_date_time",
              *       "time_zone": "America/New_York",
+             *       "unix_ts": 1736461200,
              *       "utc": "2025-03-01T03:00:00Z"
              *     }
              */
@@ -2903,6 +3070,11 @@ export interface components {
                  */
                 time_zone: string;
                 /**
+                 * @description The UTC date/time in Unix timestamp format (seconds).
+                 * @example 1736461200
+                 */
+                unix_ts: number;
+                /**
                  * Format: date-time
                  * @description The UTC date/time in ISO-8601 format (with time zone information).
                  * @example 2025-03-01T03:00:00Z
@@ -2916,6 +3088,7 @@ export interface components {
              *       "local": "2025-03-01T10:00:00",
              *       "object": "zoned_date_time",
              *       "time_zone": "America/New_York",
+             *       "unix_ts": 1736461200,
              *       "utc": "2025-03-01T03:00:00Z"
              *     }
              */
@@ -2935,6 +3108,11 @@ export interface components {
                  * @example America/New_York
                  */
                 time_zone: string;
+                /**
+                 * @description The UTC date/time in Unix timestamp format (seconds).
+                 * @example 1736461200
+                 */
+                unix_ts: number;
                 /**
                  * Format: date-time
                  * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -3269,6 +3447,45 @@ export interface components {
             updated_at: string;
         };
         /**
+         * PublicServiceSlotsResponse
+         * @description Response schema for service slots via the public API
+         * @example {
+         *       "data": [
+         *         {
+         *           "end_at": "2025-03-10T10:00:00Z",
+         *           "object": "slot",
+         *           "start_at": "2025-03-10T09:00:00Z",
+         *           "time_zone": "Etc/UTC"
+         *         },
+         *         {
+         *           "end_at": "2025-03-10T12:00:00Z",
+         *           "object": "slot",
+         *           "start_at": "2025-03-10T11:00:00Z",
+         *           "time_zone": "Etc/UTC"
+         *         }
+         *       ]
+         *     }
+         */
+        PublicServiceSlotsResponse: {
+            data: {
+                /** Format: date-time */
+                end_at: string;
+                /** @description Unix timestamp in seconds */
+                end_at_ts?: number;
+                /**
+                 * @description String representing the object's type.
+                 * @enum {string}
+                 */
+                object: "slot";
+                /** Format: date-time */
+                start_at: string;
+                /** @description Unix timestamp in seconds */
+                start_at_ts?: number;
+                /** @description IANA time zone name */
+                time_zone: string;
+            }[];
+        };
+        /**
          * PlatformResponse
          * @description Response schema for a single platform
          * @example {
@@ -3372,6 +3589,7 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "initiated_by": "client",
@@ -3382,6 +3600,7 @@ export interface components {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             }
          *           }
@@ -3392,6 +3611,7 @@ export interface components {
          *           "local": "2025-03-01T11:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736464800,
          *           "utc": "2025-03-01T04:00:00Z"
          *         },
          *         "fields": {
@@ -3419,12 +3639,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "new_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "object": "reschedule_event",
@@ -3433,12 +3655,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "previous_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "source": "client_ui"
@@ -3501,6 +3725,7 @@ export interface components {
          *           "local": "2025-03-01T10:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736461200,
          *           "utc": "2025-03-01T03:00:00Z"
          *         },
          *         "status": "scheduled",
@@ -3580,6 +3805,7 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "initiated_by": "client",
@@ -3590,6 +3816,7 @@ export interface components {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           }
              *         }
@@ -3600,6 +3827,7 @@ export interface components {
              *         "local": "2025-03-01T11:00:00",
              *         "object": "zoned_date_time",
              *         "time_zone": "America/New_York",
+             *         "unix_ts": 1736464800,
              *         "utc": "2025-03-01T04:00:00Z"
              *       },
              *       "fields": {
@@ -3627,12 +3855,14 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "new_start_at": {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           },
              *           "object": "reschedule_event",
@@ -3641,12 +3871,14 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "previous_start_at": {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           },
              *           "source": "client_ui"
@@ -3709,6 +3941,7 @@ export interface components {
              *         "local": "2025-03-01T10:00:00",
              *         "object": "zoned_date_time",
              *         "time_zone": "America/New_York",
+             *         "unix_ts": 1736461200,
              *         "utc": "2025-03-01T03:00:00Z"
              *       },
              *       "status": "scheduled",
@@ -3896,6 +4129,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -3915,6 +4149,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -3946,6 +4185,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -3965,6 +4205,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -3990,6 +4235,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -4009,6 +4255,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -4090,6 +4341,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -4110,6 +4362,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -4123,6 +4380,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -4142,6 +4400,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -4163,6 +4426,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -4183,6 +4447,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -4196,6 +4465,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -4215,6 +4485,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -4483,6 +4758,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -4502,6 +4778,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -4594,14 +4875,18 @@ export interface components {
          * @description A time slot with start and end times
          * @example {
          *       "end_at": "2025-03-10T10:00:00-04:00",
+         *       "end_at_ts": 1736464800,
          *       "object": "slot",
          *       "start_at": "2025-03-10T09:00:00-04:00",
+         *       "start_at_ts": 1736461200,
          *       "time_zone": "America/New_York"
          *     }
          */
         Slot: {
             /** Format: date-time */
             end_at: string;
+            /** @description Unix timestamp in seconds */
+            end_at_ts?: number;
             /**
              * @description String representing the object's type.
              * @enum {string}
@@ -4609,6 +4894,8 @@ export interface components {
             object: "slot";
             /** Format: date-time */
             start_at: string;
+            /** @description Unix timestamp in seconds */
+            start_at_ts?: number;
             /** @description IANA time zone name */
             time_zone: string;
         };
@@ -4668,6 +4955,7 @@ export interface components {
          *                 "local": "2023-01-01T01:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736464800,
          *                 "utc": "2023-01-01T04:00:00Z"
          *               },
          *               "initiated_by": "client",
@@ -4678,6 +4966,7 @@ export interface components {
          *                 "local": "2023-01-01T00:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736461200,
          *                 "utc": "2023-01-01T03:00:00Z"
          *               }
          *             }
@@ -4688,6 +4977,7 @@ export interface components {
          *             "local": "2025-03-01T11:00:00",
          *             "object": "zoned_date_time",
          *             "time_zone": "America/New_York",
+         *             "unix_ts": 1736464800,
          *             "utc": "2025-03-01T04:00:00Z"
          *           },
          *           "fields": {
@@ -4715,12 +5005,14 @@ export interface components {
          *                 "local": "2023-01-01T01:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736464800,
          *                 "utc": "2023-01-01T04:00:00Z"
          *               },
          *               "new_start_at": {
          *                 "local": "2023-01-01T00:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736461200,
          *                 "utc": "2023-01-01T03:00:00Z"
          *               },
          *               "object": "reschedule_event",
@@ -4729,12 +5021,14 @@ export interface components {
          *                 "local": "2023-01-01T01:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736464800,
          *                 "utc": "2023-01-01T04:00:00Z"
          *               },
          *               "previous_start_at": {
          *                 "local": "2023-01-01T00:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736461200,
          *                 "utc": "2023-01-01T03:00:00Z"
          *               },
          *               "source": "client_ui"
@@ -4797,6 +5091,7 @@ export interface components {
          *             "local": "2025-03-01T10:00:00",
          *             "object": "zoned_date_time",
          *             "time_zone": "America/New_York",
+         *             "unix_ts": 1736461200,
          *             "utc": "2025-03-01T03:00:00Z"
          *           },
          *           "status": "scheduled",
@@ -4887,6 +5182,7 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "initiated_by": "client",
@@ -4897,6 +5193,7 @@ export interface components {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           }
                  *         }
@@ -4907,6 +5204,7 @@ export interface components {
                  *         "local": "2025-03-01T11:00:00",
                  *         "object": "zoned_date_time",
                  *         "time_zone": "America/New_York",
+                 *         "unix_ts": 1736464800,
                  *         "utc": "2025-03-01T04:00:00Z"
                  *       },
                  *       "fields": {
@@ -4934,12 +5232,14 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "new_start_at": {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           },
                  *           "object": "reschedule_event",
@@ -4948,12 +5248,14 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "previous_start_at": {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           },
                  *           "source": "client_ui"
@@ -5016,6 +5318,7 @@ export interface components {
                  *         "local": "2025-03-01T10:00:00",
                  *         "object": "zoned_date_time",
                  *         "time_zone": "America/New_York",
+                 *         "unix_ts": 1736461200,
                  *         "utc": "2025-03-01T03:00:00Z"
                  *       },
                  *       "status": "scheduled",
@@ -5203,6 +5506,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -5222,6 +5526,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -5253,6 +5562,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -5272,6 +5582,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -5297,6 +5612,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -5316,6 +5632,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -5397,6 +5718,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -5417,6 +5739,11 @@ export interface components {
                              */
                             time_zone: string;
                             /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
+                            /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
                              * @example 2025-03-01T03:00:00Z
@@ -5430,6 +5757,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -5449,6 +5777,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -5470,6 +5803,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -5490,6 +5824,11 @@ export interface components {
                              */
                             time_zone: string;
                             /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
+                            /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
                              * @example 2025-03-01T03:00:00Z
@@ -5503,6 +5842,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -5522,6 +5862,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -5790,6 +6135,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -5809,6 +6155,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -5901,6 +6252,7 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "initiated_by": "client",
@@ -5911,6 +6263,7 @@ export interface components {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           }
                  *         }
@@ -5921,6 +6274,7 @@ export interface components {
                  *         "local": "2025-03-01T11:00:00",
                  *         "object": "zoned_date_time",
                  *         "time_zone": "America/New_York",
+                 *         "unix_ts": 1736464800,
                  *         "utc": "2025-03-01T04:00:00Z"
                  *       },
                  *       "fields": {
@@ -5948,12 +6302,14 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "new_start_at": {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           },
                  *           "object": "reschedule_event",
@@ -5962,12 +6318,14 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "previous_start_at": {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           },
                  *           "source": "client_ui"
@@ -6030,6 +6388,7 @@ export interface components {
                  *         "local": "2025-03-01T10:00:00",
                  *         "object": "zoned_date_time",
                  *         "time_zone": "America/New_York",
+                 *         "unix_ts": 1736461200,
                  *         "utc": "2025-03-01T03:00:00Z"
                  *       },
                  *       "status": "scheduled",
@@ -6217,6 +6576,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -6236,6 +6596,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -6267,6 +6632,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -6286,6 +6652,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -6311,6 +6682,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -6330,6 +6702,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -6411,6 +6788,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -6431,6 +6809,11 @@ export interface components {
                              */
                             time_zone: string;
                             /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
+                            /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
                              * @example 2025-03-01T03:00:00Z
@@ -6444,6 +6827,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -6463,6 +6847,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -6484,6 +6873,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -6504,6 +6894,11 @@ export interface components {
                              */
                             time_zone: string;
                             /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
+                            /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
                              * @example 2025-03-01T03:00:00Z
@@ -6517,6 +6912,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -6536,6 +6932,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -6804,6 +7205,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -6823,6 +7225,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -6864,6 +7271,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -6884,6 +7292,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -6897,6 +7310,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -6916,6 +7330,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -6983,6 +7402,7 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "initiated_by": "client",
@@ -6993,6 +7413,7 @@ export interface components {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           }
                  *         }
@@ -7003,6 +7424,7 @@ export interface components {
                  *         "local": "2025-03-01T11:00:00",
                  *         "object": "zoned_date_time",
                  *         "time_zone": "America/New_York",
+                 *         "unix_ts": 1736464800,
                  *         "utc": "2025-03-01T04:00:00Z"
                  *       },
                  *       "fields": {
@@ -7030,12 +7452,14 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "new_start_at": {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           },
                  *           "object": "reschedule_event",
@@ -7044,12 +7468,14 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "previous_start_at": {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           },
                  *           "source": "client_ui"
@@ -7112,6 +7538,7 @@ export interface components {
                  *         "local": "2025-03-01T10:00:00",
                  *         "object": "zoned_date_time",
                  *         "time_zone": "America/New_York",
+                 *         "unix_ts": 1736461200,
                  *         "utc": "2025-03-01T03:00:00Z"
                  *       },
                  *       "status": "scheduled",
@@ -7299,6 +7726,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -7318,6 +7746,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -7349,6 +7782,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -7368,6 +7802,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -7393,6 +7832,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -7412,6 +7852,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -7493,6 +7938,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -7513,6 +7959,11 @@ export interface components {
                              */
                             time_zone: string;
                             /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
+                            /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
                              * @example 2025-03-01T03:00:00Z
@@ -7526,6 +7977,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -7545,6 +7997,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -7566,6 +8023,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -7586,6 +8044,11 @@ export interface components {
                              */
                             time_zone: string;
                             /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
+                            /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
                              * @example 2025-03-01T03:00:00Z
@@ -7599,6 +8062,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -7618,6 +8082,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -7886,6 +8355,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -7905,6 +8375,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -7997,6 +8472,7 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "initiated_by": "client",
@@ -8007,6 +8483,7 @@ export interface components {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           }
                  *         }
@@ -8017,6 +8494,7 @@ export interface components {
                  *         "local": "2025-03-01T11:00:00",
                  *         "object": "zoned_date_time",
                  *         "time_zone": "America/New_York",
+                 *         "unix_ts": 1736464800,
                  *         "utc": "2025-03-01T04:00:00Z"
                  *       },
                  *       "fields": {
@@ -8044,12 +8522,14 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "new_start_at": {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           },
                  *           "object": "reschedule_event",
@@ -8058,12 +8538,14 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "previous_start_at": {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           },
                  *           "source": "client_ui"
@@ -8126,6 +8608,7 @@ export interface components {
                  *         "local": "2025-03-01T10:00:00",
                  *         "object": "zoned_date_time",
                  *         "time_zone": "America/New_York",
+                 *         "unix_ts": 1736461200,
                  *         "utc": "2025-03-01T03:00:00Z"
                  *       },
                  *       "status": "scheduled",
@@ -8313,6 +8796,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -8332,6 +8816,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -8363,6 +8852,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -8382,6 +8872,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -8407,6 +8902,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -8426,6 +8922,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -8507,6 +9008,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -8527,6 +9029,11 @@ export interface components {
                              */
                             time_zone: string;
                             /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
+                            /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
                              * @example 2025-03-01T03:00:00Z
@@ -8540,6 +9047,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -8559,6 +9067,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -8580,6 +9093,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -8600,6 +9114,11 @@ export interface components {
                              */
                             time_zone: string;
                             /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
+                            /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
                              * @example 2025-03-01T03:00:00Z
@@ -8613,6 +9132,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -8632,6 +9152,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -8900,6 +9425,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -8919,6 +9445,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -9011,6 +9542,7 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "initiated_by": "client",
@@ -9021,6 +9553,7 @@ export interface components {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           }
                  *         }
@@ -9031,6 +9564,7 @@ export interface components {
                  *         "local": "2025-03-01T11:00:00",
                  *         "object": "zoned_date_time",
                  *         "time_zone": "America/New_York",
+                 *         "unix_ts": 1736464800,
                  *         "utc": "2025-03-01T04:00:00Z"
                  *       },
                  *       "fields": {
@@ -9058,12 +9592,14 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "new_start_at": {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           },
                  *           "object": "reschedule_event",
@@ -9072,12 +9608,14 @@ export interface components {
                  *             "local": "2023-01-01T01:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736464800,
                  *             "utc": "2023-01-01T04:00:00Z"
                  *           },
                  *           "previous_start_at": {
                  *             "local": "2023-01-01T00:00:00",
                  *             "object": "zoned_date_time",
                  *             "time_zone": "America/New_York",
+                 *             "unix_ts": 1736461200,
                  *             "utc": "2023-01-01T03:00:00Z"
                  *           },
                  *           "source": "client_ui"
@@ -9140,6 +9678,7 @@ export interface components {
                  *         "local": "2025-03-01T10:00:00",
                  *         "object": "zoned_date_time",
                  *         "time_zone": "America/New_York",
+                 *         "unix_ts": 1736461200,
                  *         "utc": "2025-03-01T03:00:00Z"
                  *       },
                  *       "status": "scheduled",
@@ -9327,6 +9866,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -9346,6 +9886,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -9377,6 +9922,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -9396,6 +9942,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -9421,6 +9972,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -9440,6 +9992,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -9521,6 +10078,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -9541,6 +10099,11 @@ export interface components {
                              */
                             time_zone: string;
                             /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
+                            /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
                              * @example 2025-03-01T03:00:00Z
@@ -9554,6 +10117,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -9573,6 +10137,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -9594,6 +10163,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -9614,6 +10184,11 @@ export interface components {
                              */
                             time_zone: string;
                             /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
+                            /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
                              * @example 2025-03-01T03:00:00Z
@@ -9627,6 +10202,7 @@ export interface components {
                          *       "local": "2025-03-01T10:00:00",
                          *       "object": "zoned_date_time",
                          *       "time_zone": "America/New_York",
+                         *       "unix_ts": 1736461200,
                          *       "utc": "2025-03-01T03:00:00Z"
                          *     }
                          */
@@ -9646,6 +10222,11 @@ export interface components {
                              * @example America/New_York
                              */
                             time_zone: string;
+                            /**
+                             * @description The UTC date/time in Unix timestamp format (seconds).
+                             * @example 1736461200
+                             */
+                            unix_ts: number;
                             /**
                              * Format: date-time
                              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -9914,6 +10495,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -9933,6 +10515,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -10037,6 +10624,7 @@ export interface components {
          *                 "local": "2023-01-01T01:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736464800,
          *                 "utc": "2023-01-01T04:00:00Z"
          *               },
          *               "initiated_by": "client",
@@ -10047,6 +10635,7 @@ export interface components {
          *                 "local": "2023-01-01T00:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736461200,
          *                 "utc": "2023-01-01T03:00:00Z"
          *               }
          *             }
@@ -10057,6 +10646,7 @@ export interface components {
          *             "local": "2025-03-01T11:00:00",
          *             "object": "zoned_date_time",
          *             "time_zone": "America/New_York",
+         *             "unix_ts": 1736464800,
          *             "utc": "2025-03-01T04:00:00Z"
          *           },
          *           "fields": {
@@ -10084,12 +10674,14 @@ export interface components {
          *                 "local": "2023-01-01T01:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736464800,
          *                 "utc": "2023-01-01T04:00:00Z"
          *               },
          *               "new_start_at": {
          *                 "local": "2023-01-01T00:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736461200,
          *                 "utc": "2023-01-01T03:00:00Z"
          *               },
          *               "object": "reschedule_event",
@@ -10098,12 +10690,14 @@ export interface components {
          *                 "local": "2023-01-01T01:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736464800,
          *                 "utc": "2023-01-01T04:00:00Z"
          *               },
          *               "previous_start_at": {
          *                 "local": "2023-01-01T00:00:00",
          *                 "object": "zoned_date_time",
          *                 "time_zone": "America/New_York",
+         *                 "unix_ts": 1736461200,
          *                 "utc": "2023-01-01T03:00:00Z"
          *               },
          *               "source": "client_ui"
@@ -10166,6 +10760,7 @@ export interface components {
          *             "local": "2025-03-01T10:00:00",
          *             "object": "zoned_date_time",
          *             "time_zone": "America/New_York",
+         *             "unix_ts": 1736461200,
          *             "utc": "2025-03-01T03:00:00Z"
          *           },
          *           "status": "scheduled",
@@ -10615,6 +11210,7 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "initiated_by": "client",
@@ -10625,6 +11221,7 @@ export interface components {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             }
          *           }
@@ -10635,6 +11232,7 @@ export interface components {
          *           "local": "2025-03-01T11:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736464800,
          *           "utc": "2025-03-01T04:00:00Z"
          *         },
          *         "fields": {
@@ -10662,12 +11260,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "new_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "object": "reschedule_event",
@@ -10676,12 +11276,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "previous_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "source": "client_ui"
@@ -10744,6 +11346,7 @@ export interface components {
          *           "local": "2025-03-01T10:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736461200,
          *           "utc": "2025-03-01T03:00:00Z"
          *         },
          *         "status": "scheduled",
@@ -11238,20 +11841,27 @@ export interface components {
          * NotFoundResponse
          * @description Response schema for not found requests
          * @example {
-         *       "errors": {
-         *         "detail": "Not Found"
-         *       }
+         *       "errors": [
+         *         {
+         *           "detail": "Not Found",
+         *           "status": "404"
+         *         }
+         *       ]
          *     }
          */
         NotFoundResponse: {
-            /** @description Error details */
             errors: {
                 /**
                  * @description Error message
                  * @enum {string}
                  */
                 detail: "Not Found";
-            };
+                /**
+                 * @description HTTP status code
+                 * @enum {string}
+                 */
+                status: "404";
+            }[];
         };
         /**
          * CancelAppointmentRequest
@@ -11614,6 +12224,7 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "initiated_by": "client",
@@ -11624,6 +12235,7 @@ export interface components {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             }
          *           }
@@ -11634,6 +12246,7 @@ export interface components {
          *           "local": "2025-03-01T11:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736464800,
          *           "utc": "2025-03-01T04:00:00Z"
          *         },
          *         "fields": {
@@ -11661,12 +12274,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "new_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "object": "reschedule_event",
@@ -11675,12 +12290,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "previous_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "source": "client_ui"
@@ -11743,6 +12360,7 @@ export interface components {
          *           "local": "2025-03-01T10:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736461200,
          *           "utc": "2025-03-01T03:00:00Z"
          *         },
          *         "status": "scheduled",
@@ -11822,6 +12440,7 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "initiated_by": "client",
@@ -11832,6 +12451,7 @@ export interface components {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           }
              *         }
@@ -11842,6 +12462,7 @@ export interface components {
              *         "local": "2025-03-01T11:00:00",
              *         "object": "zoned_date_time",
              *         "time_zone": "America/New_York",
+             *         "unix_ts": 1736464800,
              *         "utc": "2025-03-01T04:00:00Z"
              *       },
              *       "fields": {
@@ -11869,12 +12490,14 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "new_start_at": {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           },
              *           "object": "reschedule_event",
@@ -11883,12 +12506,14 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "previous_start_at": {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           },
              *           "source": "client_ui"
@@ -11951,6 +12576,7 @@ export interface components {
              *         "local": "2025-03-01T10:00:00",
              *         "object": "zoned_date_time",
              *         "time_zone": "America/New_York",
+             *         "unix_ts": 1736461200,
              *         "utc": "2025-03-01T03:00:00Z"
              *       },
              *       "status": "scheduled",
@@ -12138,6 +12764,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -12157,6 +12784,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -12188,6 +12820,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -12207,6 +12840,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -12232,6 +12870,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -12251,6 +12890,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -12332,6 +12976,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -12352,6 +12997,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -12365,6 +13015,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -12384,6 +13035,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -12405,6 +13061,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -12425,6 +13082,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -12438,6 +13100,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -12457,6 +13120,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -12725,6 +13393,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -12744,6 +13413,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -13370,6 +14044,7 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "initiated_by": "client",
@@ -13380,6 +14055,7 @@ export interface components {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             }
          *           }
@@ -13390,6 +14066,7 @@ export interface components {
          *           "local": "2025-03-01T11:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736464800,
          *           "utc": "2025-03-01T04:00:00Z"
          *         },
          *         "fields": {
@@ -13417,12 +14094,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "new_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "object": "reschedule_event",
@@ -13431,12 +14110,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "previous_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "source": "client_ui"
@@ -13499,6 +14180,7 @@ export interface components {
          *           "local": "2025-03-01T10:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736461200,
          *           "utc": "2025-03-01T03:00:00Z"
          *         },
          *         "status": "scheduled",
@@ -13578,6 +14260,7 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "initiated_by": "client",
@@ -13588,6 +14271,7 @@ export interface components {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           }
              *         }
@@ -13598,6 +14282,7 @@ export interface components {
              *         "local": "2025-03-01T11:00:00",
              *         "object": "zoned_date_time",
              *         "time_zone": "America/New_York",
+             *         "unix_ts": 1736464800,
              *         "utc": "2025-03-01T04:00:00Z"
              *       },
              *       "fields": {
@@ -13625,12 +14310,14 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "new_start_at": {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           },
              *           "object": "reschedule_event",
@@ -13639,12 +14326,14 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "previous_start_at": {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           },
              *           "source": "client_ui"
@@ -13707,6 +14396,7 @@ export interface components {
              *         "local": "2025-03-01T10:00:00",
              *         "object": "zoned_date_time",
              *         "time_zone": "America/New_York",
+             *         "unix_ts": 1736461200,
              *         "utc": "2025-03-01T03:00:00Z"
              *       },
              *       "status": "scheduled",
@@ -13894,6 +14584,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -13913,6 +14604,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -13944,6 +14640,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -13963,6 +14660,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -13988,6 +14690,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -14007,6 +14710,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -14088,6 +14796,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -14108,6 +14817,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -14121,6 +14835,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -14140,6 +14855,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -14161,6 +14881,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -14181,6 +14902,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -14194,6 +14920,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -14213,6 +14940,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -14481,6 +15213,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -14500,6 +15233,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -14543,20 +15281,23 @@ export interface components {
          * UnauthorizedResponse
          * @description Response schema for unauthorized requests
          * @example {
-         *       "errors": {
-         *         "detail": "Unauthorized"
-         *       }
+         *       "errors": [
+         *         {
+         *           "detail": "Unauthorized",
+         *           "status": "401"
+         *         }
+         *       ]
          *     }
          */
         UnauthorizedResponse: {
-            /** @description Error details */
             errors: {
-                /**
-                 * @description Error message
-                 * @enum {string}
-                 */
-                detail: "Unauthorized";
-            };
+                /** @description Error message */
+                detail: string;
+                /** @description HTTP status code */
+                status?: string;
+                /** @description Error title */
+                title?: string;
+            }[];
         };
         /**
          * UpdateCancellationReasonRequest
@@ -14673,6 +15414,7 @@ export interface components {
          *             "local": "2023-01-01T01:00:00",
          *             "object": "zoned_date_time",
          *             "time_zone": "America/New_York",
+         *             "unix_ts": 1736464800,
          *             "utc": "2023-01-01T04:00:00Z"
          *           },
          *           "initiated_by": "client",
@@ -14683,6 +15425,7 @@ export interface components {
          *             "local": "2023-01-01T00:00:00",
          *             "object": "zoned_date_time",
          *             "time_zone": "America/New_York",
+         *             "unix_ts": 1736461200,
          *             "utc": "2023-01-01T03:00:00Z"
          *           }
          *         }
@@ -14693,6 +15436,7 @@ export interface components {
          *         "local": "2025-03-01T11:00:00",
          *         "object": "zoned_date_time",
          *         "time_zone": "America/New_York",
+         *         "unix_ts": 1736464800,
          *         "utc": "2025-03-01T04:00:00Z"
          *       },
          *       "fields": {
@@ -14720,12 +15464,14 @@ export interface components {
          *             "local": "2023-01-01T01:00:00",
          *             "object": "zoned_date_time",
          *             "time_zone": "America/New_York",
+         *             "unix_ts": 1736464800,
          *             "utc": "2023-01-01T04:00:00Z"
          *           },
          *           "new_start_at": {
          *             "local": "2023-01-01T00:00:00",
          *             "object": "zoned_date_time",
          *             "time_zone": "America/New_York",
+         *             "unix_ts": 1736461200,
          *             "utc": "2023-01-01T03:00:00Z"
          *           },
          *           "object": "reschedule_event",
@@ -14734,12 +15480,14 @@ export interface components {
          *             "local": "2023-01-01T01:00:00",
          *             "object": "zoned_date_time",
          *             "time_zone": "America/New_York",
+         *             "unix_ts": 1736464800,
          *             "utc": "2023-01-01T04:00:00Z"
          *           },
          *           "previous_start_at": {
          *             "local": "2023-01-01T00:00:00",
          *             "object": "zoned_date_time",
          *             "time_zone": "America/New_York",
+         *             "unix_ts": 1736461200,
          *             "utc": "2023-01-01T03:00:00Z"
          *           },
          *           "source": "client_ui"
@@ -14802,6 +15550,7 @@ export interface components {
          *         "local": "2025-03-01T10:00:00",
          *         "object": "zoned_date_time",
          *         "time_zone": "America/New_York",
+         *         "unix_ts": 1736461200,
          *         "utc": "2025-03-01T03:00:00Z"
          *       },
          *       "status": "scheduled",
@@ -14989,6 +15738,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -15008,6 +15758,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -15039,6 +15794,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -15058,6 +15814,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -15083,6 +15844,7 @@ export interface components {
              *       "local": "2025-03-01T10:00:00",
              *       "object": "zoned_date_time",
              *       "time_zone": "America/New_York",
+             *       "unix_ts": 1736461200,
              *       "utc": "2025-03-01T03:00:00Z"
              *     }
              */
@@ -15102,6 +15864,11 @@ export interface components {
                  * @example America/New_York
                  */
                 time_zone: string;
+                /**
+                 * @description The UTC date/time in Unix timestamp format (seconds).
+                 * @example 1736461200
+                 */
+                unix_ts: number;
                 /**
                  * Format: date-time
                  * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -15183,6 +15950,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -15203,6 +15971,11 @@ export interface components {
                      */
                     time_zone: string;
                     /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
+                    /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
                      * @example 2025-03-01T03:00:00Z
@@ -15216,6 +15989,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -15235,6 +16009,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -15256,6 +16035,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -15276,6 +16056,11 @@ export interface components {
                      */
                     time_zone: string;
                     /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
+                    /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
                      * @example 2025-03-01T03:00:00Z
@@ -15289,6 +16074,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -15308,6 +16094,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -15576,6 +16367,7 @@ export interface components {
              *       "local": "2025-03-01T10:00:00",
              *       "object": "zoned_date_time",
              *       "time_zone": "America/New_York",
+             *       "unix_ts": 1736461200,
              *       "utc": "2025-03-01T03:00:00Z"
              *     }
              */
@@ -15595,6 +16387,11 @@ export interface components {
                  * @example America/New_York
                  */
                 time_zone: string;
+                /**
+                 * @description The UTC date/time in Unix timestamp format (seconds).
+                 * @example 1736461200
+                 */
+                unix_ts: number;
                 /**
                  * Format: date-time
                  * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -15634,8 +16431,10 @@ export interface components {
          * @example {
          *       "count": 3,
          *       "end_at": "2025-03-10T10:00:00-04:00",
+         *       "end_at_ts": 1736464800,
          *       "object": "aggregated_slot",
          *       "start_at": "2025-03-10T09:00:00-04:00",
+         *       "start_at_ts": 1736461200,
          *       "time_zone": "America/New_York"
          *     }
          */
@@ -15643,6 +16442,8 @@ export interface components {
             count: number;
             /** Format: date-time */
             end_at: string;
+            /** @description Unix timestamp in seconds */
+            end_at_ts?: number;
             /**
              * @description String representing the object's type.
              * @enum {string}
@@ -15650,6 +16451,8 @@ export interface components {
             object: "aggregated_slot";
             /** Format: date-time */
             start_at: string;
+            /** @description Unix timestamp in seconds */
+            start_at_ts?: number;
             /** @description IANA time zone name */
             time_zone: string;
         };
@@ -15968,6 +16771,7 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "initiated_by": "client",
@@ -15978,6 +16782,7 @@ export interface components {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             }
          *           }
@@ -15988,6 +16793,7 @@ export interface components {
          *           "local": "2025-03-01T11:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736464800,
          *           "utc": "2025-03-01T04:00:00Z"
          *         },
          *         "fields": {
@@ -16015,12 +16821,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "new_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "object": "reschedule_event",
@@ -16029,12 +16837,14 @@ export interface components {
          *               "local": "2023-01-01T01:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736464800,
          *               "utc": "2023-01-01T04:00:00Z"
          *             },
          *             "previous_start_at": {
          *               "local": "2023-01-01T00:00:00",
          *               "object": "zoned_date_time",
          *               "time_zone": "America/New_York",
+         *               "unix_ts": 1736461200,
          *               "utc": "2023-01-01T03:00:00Z"
          *             },
          *             "source": "client_ui"
@@ -16097,6 +16907,7 @@ export interface components {
          *           "local": "2025-03-01T10:00:00",
          *           "object": "zoned_date_time",
          *           "time_zone": "America/New_York",
+         *           "unix_ts": 1736461200,
          *           "utc": "2025-03-01T03:00:00Z"
          *         },
          *         "status": "scheduled",
@@ -16176,6 +16987,7 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "initiated_by": "client",
@@ -16186,6 +16998,7 @@ export interface components {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           }
              *         }
@@ -16196,6 +17009,7 @@ export interface components {
              *         "local": "2025-03-01T11:00:00",
              *         "object": "zoned_date_time",
              *         "time_zone": "America/New_York",
+             *         "unix_ts": 1736464800,
              *         "utc": "2025-03-01T04:00:00Z"
              *       },
              *       "fields": {
@@ -16223,12 +17037,14 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "new_start_at": {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           },
              *           "object": "reschedule_event",
@@ -16237,12 +17053,14 @@ export interface components {
              *             "local": "2023-01-01T01:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736464800,
              *             "utc": "2023-01-01T04:00:00Z"
              *           },
              *           "previous_start_at": {
              *             "local": "2023-01-01T00:00:00",
              *             "object": "zoned_date_time",
              *             "time_zone": "America/New_York",
+             *             "unix_ts": 1736461200,
              *             "utc": "2023-01-01T03:00:00Z"
              *           },
              *           "source": "client_ui"
@@ -16305,6 +17123,7 @@ export interface components {
              *         "local": "2025-03-01T10:00:00",
              *         "object": "zoned_date_time",
              *         "time_zone": "America/New_York",
+             *         "unix_ts": 1736461200,
              *         "utc": "2025-03-01T03:00:00Z"
              *       },
              *       "status": "scheduled",
@@ -16492,6 +17311,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -16511,6 +17331,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -16542,6 +17367,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -16561,6 +17387,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -16586,6 +17417,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -16605,6 +17437,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -16686,6 +17523,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -16706,6 +17544,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -16719,6 +17562,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -16738,6 +17582,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -16759,6 +17608,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -16779,6 +17629,11 @@ export interface components {
                          */
                         time_zone: string;
                         /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
+                        /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
                          * @example 2025-03-01T03:00:00Z
@@ -16792,6 +17647,7 @@ export interface components {
                      *       "local": "2025-03-01T10:00:00",
                      *       "object": "zoned_date_time",
                      *       "time_zone": "America/New_York",
+                     *       "unix_ts": 1736461200,
                      *       "utc": "2025-03-01T03:00:00Z"
                      *     }
                      */
@@ -16811,6 +17667,11 @@ export interface components {
                          * @example America/New_York
                          */
                         time_zone: string;
+                        /**
+                         * @description The UTC date/time in Unix timestamp format (seconds).
+                         * @example 1736461200
+                         */
+                        unix_ts: number;
                         /**
                          * Format: date-time
                          * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -17079,6 +17940,7 @@ export interface components {
                  *       "local": "2025-03-01T10:00:00",
                  *       "object": "zoned_date_time",
                  *       "time_zone": "America/New_York",
+                 *       "unix_ts": 1736461200,
                  *       "utc": "2025-03-01T03:00:00Z"
                  *     }
                  */
@@ -17098,6 +17960,11 @@ export interface components {
                      * @example America/New_York
                      */
                     time_zone: string;
+                    /**
+                     * @description The UTC date/time in Unix timestamp format (seconds).
+                     * @example 1736461200
+                     */
+                    unix_ts: number;
                     /**
                      * Format: date-time
                      * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -17209,6 +18076,7 @@ export interface components {
          *       "local": "2025-03-01T10:00:00",
          *       "object": "zoned_date_time",
          *       "time_zone": "America/New_York",
+         *       "unix_ts": 1736461200,
          *       "utc": "2025-03-01T03:00:00Z"
          *     }
          */
@@ -17228,6 +18096,11 @@ export interface components {
              * @example America/New_York
              */
             time_zone: string;
+            /**
+             * @description The UTC date/time in Unix timestamp format (seconds).
+             * @example 1736461200
+             */
+            unix_ts: number;
             /**
              * Format: date-time
              * @description The UTC date/time in ISO-8601 format (with time zone information).
@@ -19160,6 +20033,81 @@ export interface operations {
             };
         };
     };
+    listPublicServiceSlots: {
+        parameters: {
+            query: {
+                /**
+                 * @description Start of time range (ISO date format)
+                 * @example "2025-04-01"
+                 */
+                from: string;
+                /**
+                 * @description End of time range (ISO date format)
+                 * @example "2025-04-07"
+                 */
+                until: string;
+                /**
+                 * @description Time zone for the slots (IANA format)
+                 * @example "America/New_York"
+                 */
+                time_zone?: string;
+            };
+            header?: {
+                /**
+                 * @description When authenticating with a platform token, specifies the account ID for the request
+                 * @example acct_1234567890
+                 */
+                "X-SavvyCal-Account"?: string;
+            };
+            path: {
+                /**
+                 * @description Service ID
+                 * @example srv_123456789012
+                 */
+                service_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicServiceSlotsResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UnauthorizedResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NotFoundResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JsonErrorResponse"];
+                };
+            };
+        };
+    };
     listRoles: {
         parameters: {
             query?: never;
@@ -19683,6 +20631,44 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["JsonErrorResponse"];
+                };
+            };
+        };
+    };
+    getCurrentAccountUser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountUserResponse"];
+                };
+            };
+            /** @description GenericError */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GenericErrorResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UnauthorizedResponse"];
                 };
             };
         };
