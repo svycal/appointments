@@ -9,9 +9,14 @@ export const useProviderSchedule = (
   provider_schedule_id: ProviderScheduleParams['path']['provider_schedule_id'],
   options?: any,
 ) => {
-  return client.useQuery('get', '/v1/provider_schedules/{provider_schedule_id}', {
-    params: {
-      path: { provider_schedule_id },
+  return client.useQuery(
+    'get',
+    '/v1/provider_schedules/{provider_schedule_id}',
+    {
+      params: {
+        path: { provider_schedule_id },
+      },
     },
-  }, options);
+    options,
+  );
 };

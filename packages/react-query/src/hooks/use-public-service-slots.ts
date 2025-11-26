@@ -10,10 +10,15 @@ export const usePublicServiceSlots = (
   params: PublicServiceSlotsParams['query'],
   options?: any,
 ) => {
-  return client.useQuery('get', '/v1/public/services/{service_id}/slots', {
-    params: {
-      path: { service_id },
-      query: params,
+  return client.useQuery(
+    'get',
+    '/v1/public/services/{service_id}/slots',
+    {
+      params: {
+        path: { service_id },
+        query: params,
+      },
     },
-  }, options);
+    options,
+  );
 };

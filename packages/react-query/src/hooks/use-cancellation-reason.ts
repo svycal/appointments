@@ -9,9 +9,14 @@ export const useCancellationReason = (
   cancellation_reason_id: CancellationReasonParams['path']['cancellation_reason_id'],
   options?: any,
 ) => {
-  return client.useQuery('get', '/v1/cancellation_reasons/{cancellation_reason_id}', {
-    params: {
-      path: { cancellation_reason_id },
+  return client.useQuery(
+    'get',
+    '/v1/cancellation_reasons/{cancellation_reason_id}',
+    {
+      params: {
+        path: { cancellation_reason_id },
+      },
     },
-  }, options);
+    options,
+  );
 };

@@ -10,10 +10,15 @@ export const useAppointment = (
   params?: AppointmentParams['query'],
   options?: any,
 ) => {
-  return client.useQuery('get', '/v1/appointments/{appointment_id}', {
-    params: {
-      path: { appointment_id },
-      query: params,
+  return client.useQuery(
+    'get',
+    '/v1/appointments/{appointment_id}',
+    {
+      params: {
+        path: { appointment_id },
+        query: params,
+      },
     },
-  }, options);
+    options,
+  );
 };

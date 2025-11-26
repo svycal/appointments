@@ -1,12 +1,11 @@
 import { writeFileSync, mkdirSync, readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { paths } from '@savvycal/appointments-core';
+import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-type PathsType = typeof paths;
 type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
 // Helper to convert operation name to hook name
@@ -33,17 +32,7 @@ function camelToKebab(str: string): string {
 function extractPathParams(path: string): string[] {
   const matches = path.match(/\{([^}]+)\}/g);
   if (!matches) return [];
-  return matches.map(match => match.slice(1, -1));
-}
-
-// Helper to check if a type has required properties
-function hasRequiredProperties(obj: any): boolean {
-  if (!obj || typeof obj !== 'object') return false;
-
-  // Check if any properties are required (not optional)
-  // In TypeScript types, optional properties end with '?'
-  // We'll need to check the actual schema at runtime
-  return true; // Conservative: assume required unless proven optional
+  return matches.map((match) => match.slice(1, -1));
 }
 
 interface OperationInfo {
@@ -87,7 +76,7 @@ function extractGetOperations(): OperationInfo[] {
     // Look for the operation definition in the operations interface
     const operationRegex = new RegExp(
       `${operationName}:\\s*\\{[\\s\\S]*?parameters:\\s*\\{[\\s\\S]*?query(\\?)?:\\s*([^;]+);`,
-      'm'
+      'm',
     );
     const opMatch = schemaContent.match(operationRegex);
 
@@ -103,7 +92,10 @@ function extractGetOperations(): OperationInfo[] {
         // Check if the query params object has any required fields
         // Look for properties without '?' in the query type definition
         const queryDefMatch = schemaContent.match(
-          new RegExp(`query${isOptional ? '\\?' : ''}:\\s*\\{([\\s\\S]*?)\\}`, 'm')
+          new RegExp(
+            `query${isOptional ? '\\?' : ''}:\\s*\\{([\\s\\S]*?)\\}`,
+            'm',
+          ),
         );
 
         if (queryDefMatch) {
@@ -174,7 +166,7 @@ function generateHookFile(op: OperationInfo): string {
   const queryCallParts: string[] = [];
 
   if (op.pathParams.length > 0) {
-    const pathObj = op.pathParams.map(p => `${p}`).join(', ');
+    const pathObj = op.pathParams.map((p) => `${p}`).join(', ');
     queryCallParts.push(`      path: { ${pathObj} },`);
   }
 
@@ -203,7 +195,7 @@ function generateBarrelExport(operations: OperationInfo[]): string {
 
   // Sort operations alphabetically by hook name
   const sorted = [...operations].sort((a, b) =>
-    a.hookName.localeCompare(b.hookName)
+    a.hookName.localeCompare(b.hookName),
   );
 
   for (const op of sorted) {
@@ -241,6 +233,13 @@ async function main() {
   const barrelPath = join(__dirname, '../src/hooks.ts');
   writeFileSync(barrelPath, barrelContent, 'utf-8');
   console.log(`  ✓ hooks.ts`);
+
+  // Format generated files with prettier
+  console.log('\n🎨 Formatting generated files with prettier...');
+  execSync('pnpm prettier --write "src/hooks/**/*.ts" "src/hooks.ts"', {
+    cwd: join(__dirname, '..'),
+    stdio: 'inherit',
+  });
 
   console.log(`\n✅ Successfully generated ${operations.length} hooks!`);
 }
