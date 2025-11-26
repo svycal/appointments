@@ -129,6 +129,7 @@ function generateHookFile(op: OperationInfo): string {
 
   const lines: string[] = [
     `import type { Client } from '../client';`,
+    `import type { UseQueryResult } from '@tanstack/react-query';`,
     `import { paths } from '@savvycal/appointments-core';`,
     ``,
   ];
@@ -136,6 +137,14 @@ function generateHookFile(op: OperationInfo): string {
   // Generate the params type (export it for consumer use)
   lines.push(`export type ${paramsTypeName} =`);
   lines.push(`  paths['${op.path}']['${op.method}']['parameters'];`);
+  lines.push(``);
+
+  // Generate the response data type
+  const dataTypeName = `${op.hookName.charAt(3).toUpperCase()}${op.hookName.slice(4)}Data`;
+  lines.push(`type ${dataTypeName} =`);
+  lines.push(
+    `  paths['${op.path}']['${op.method}']['responses'][200]['content']['application/json'];`,
+  );
   lines.push(``);
 
   // Build function signature
@@ -156,7 +165,7 @@ function generateHookFile(op: OperationInfo): string {
 
   lines.push(`export const ${op.hookName} = (`);
   lines.push(`  ${params.join(',\n  ')},`);
-  lines.push(`) => {`);
+  lines.push(`): UseQueryResult<${dataTypeName}, unknown> => {`);
 
   // Build the params object for the query
   const queryCallParts: string[] = [];
