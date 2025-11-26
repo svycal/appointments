@@ -52,6 +52,12 @@ importers:
       '@types/node':
         specifier: ^22.10.2
         version: 22.19.1
+      '@types/react':
+        specifier: ^19.2.7
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.7)
       openapi-fetch:
         specifier: ^0.15.0
         version: 0.15.0
@@ -61,6 +67,9 @@ importers:
       openapi-typescript:
         specifier: ^7.10.1
         version: 7.10.1(typescript@5.9.3)
+      react:
+        specifier: ^19.2.0
+        version: 19.2.0
       tsx:
         specifier: ^4.19.2
         version: 4.20.6
