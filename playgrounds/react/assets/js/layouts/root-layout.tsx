@@ -2,8 +2,10 @@ import { Head, usePage } from '@inertiajs/react';
 import React, { ReactNode, useMemo, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { createClient } from '@savvycal/appointments-react-query';
-import { SavvyCalContext } from '../contexts';
+import {
+  createClient,
+  SavvyCalProvider,
+} from '@savvycal/appointments-react-query';
 
 export const RootLayout = ({ children }: { children: ReactNode }) => {
   const page = usePage<{
@@ -31,10 +33,10 @@ export const RootLayout = ({ children }: { children: ReactNode }) => {
         <title>{page.props.pageTitle}</title>
       </Head>
       <QueryClientProvider client={queryClient}>
-        <SavvyCalContext value={client}>
+        <SavvyCalProvider client={client}>
           {children}
           <ReactQueryDevtools />
-        </SavvyCalContext>
+        </SavvyCalProvider>
       </QueryClientProvider>
     </>
   );

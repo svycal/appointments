@@ -1,19 +1,12 @@
-import React, { useContext, ReactNode } from 'react';
-import { SavvyCalContext } from '../contexts';
+import React, { ReactNode } from 'react';
 import { RootLayout } from '../layouts/root-layout';
 import { usePublicServiceSlots } from '@savvycal/appointments-react-query';
 
 const Home = () => {
-  const client = useContext(SavvyCalContext);
-
-  const { data, isLoading, error } = usePublicServiceSlots(
-    client,
-    'srv_2cd153f28244',
-    {
-      from: '2025-11-26',
-      until: '2025-12-26',
-    },
-  );
+  const { data, isLoading } = usePublicServiceSlots('srv_2cd153f28244', {
+    from: '2025-11-26',
+    until: '2025-12-26',
+  });
 
   return (
     <div>
