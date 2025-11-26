@@ -14,14 +14,14 @@ interface Options {
 }
 
 export const useProviderSchedules = (
-  params?: ProviderSchedulesParams['query'],
+  queryParams?: ProviderSchedulesParams['query'],
   options?: Options,
 ): UseQueryResult<ProviderSchedulesData, unknown> => {
   const client = useSavvyCalClient(options?.client);
 
   return client.useQuery('get', '/v1/provider_schedules', {
     params: {
-      query: params,
+      query: queryParams,
     },
   });
 };

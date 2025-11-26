@@ -13,14 +13,14 @@ interface Options {
 }
 
 export const useBlocks = (
-  params?: BlocksParams['query'],
+  queryParams?: BlocksParams['query'],
   options?: Options,
 ): UseQueryResult<BlocksData, unknown> => {
   const client = useSavvyCalClient(options?.client);
 
   return client.useQuery('get', '/v1/blocks', {
     params: {
-      query: params,
+      query: queryParams,
     },
   });
 };

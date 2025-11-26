@@ -15,7 +15,7 @@ interface Options {
 
 export const useAppointment = (
   appointment_id: AppointmentParams['path']['appointment_id'],
-  params?: AppointmentParams['query'],
+  queryParams?: AppointmentParams['query'],
   options?: Options,
 ): UseQueryResult<AppointmentData, unknown> => {
   const client = useSavvyCalClient(options?.client);
@@ -23,7 +23,7 @@ export const useAppointment = (
   return client.useQuery('get', '/v1/appointments/{appointment_id}', {
     params: {
       path: { appointment_id },
-      query: params,
+      query: queryParams,
     },
   });
 };

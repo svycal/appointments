@@ -13,14 +13,14 @@ interface Options {
 }
 
 export const useAppointments = (
-  params?: AppointmentsParams['query'],
+  queryParams?: AppointmentsParams['query'],
   options?: Options,
 ): UseQueryResult<AppointmentsData, unknown> => {
   const client = useSavvyCalClient(options?.client);
 
   return client.useQuery('get', '/v1/appointments', {
     params: {
-      query: params,
+      query: queryParams,
     },
   });
 };

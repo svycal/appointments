@@ -167,7 +167,7 @@ function generateHookFile(op: OperationInfo): string {
   // Add query parameters as a separate argument (second to last)
   if (op.hasQueryParams) {
     const optional = op.queryParamsRequired ? '' : '?';
-    params.push(`params${optional}: ${paramsTypeName}['query']`);
+    params.push(`queryParams${optional}: ${paramsTypeName}['query']`);
   }
 
   // Add options parameter (always optional, always last)
@@ -188,7 +188,7 @@ function generateHookFile(op: OperationInfo): string {
   }
 
   if (op.hasQueryParams) {
-    queryCallParts.push(`      query: params,`);
+    queryCallParts.push(`      query: queryParams,`);
   }
 
   lines.push(`  return client.useQuery('${op.method}', '${op.path}', {`);

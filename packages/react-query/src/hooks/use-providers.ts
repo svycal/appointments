@@ -13,14 +13,14 @@ interface Options {
 }
 
 export const useProviders = (
-  params?: ProvidersParams['query'],
+  queryParams?: ProvidersParams['query'],
   options?: Options,
 ): UseQueryResult<ProvidersData, unknown> => {
   const client = useSavvyCalClient(options?.client);
 
   return client.useQuery('get', '/v1/providers', {
     params: {
-      query: params,
+      query: queryParams,
     },
   });
 };

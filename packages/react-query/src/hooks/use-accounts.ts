@@ -13,14 +13,14 @@ interface Options {
 }
 
 export const useAccounts = (
-  params?: AccountsParams['query'],
+  queryParams?: AccountsParams['query'],
   options?: Options,
 ): UseQueryResult<AccountsData, unknown> => {
   const client = useSavvyCalClient(options?.client);
 
   return client.useQuery('get', '/v1/accounts', {
     params: {
-      query: params,
+      query: queryParams,
     },
   });
 };

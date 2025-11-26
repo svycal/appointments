@@ -15,7 +15,7 @@ interface Options {
 
 export const usePublicServiceSlots = (
   service_id: PublicServiceSlotsParams['path']['service_id'],
-  params: PublicServiceSlotsParams['query'],
+  queryParams: PublicServiceSlotsParams['query'],
   options?: Options,
 ): UseQueryResult<PublicServiceSlotsData, unknown> => {
   const client = useSavvyCalClient(options?.client);
@@ -23,7 +23,7 @@ export const usePublicServiceSlots = (
   return client.useQuery('get', '/v1/public/services/{service_id}/slots', {
     params: {
       path: { service_id },
-      query: params,
+      query: queryParams,
     },
   });
 };
