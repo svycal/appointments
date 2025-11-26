@@ -17,9 +17,9 @@ export const RootLayout = ({ children }: { children: ReactNode }) => {
     () =>
       createClient({
         baseUrl: 'http://localhost:4002',
-        headers: {
-          Authorization: `Bearer ${page.props.savvycalToken}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${page.props.savvycalToken}`,
+        // },
       }),
     [],
   );
