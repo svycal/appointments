@@ -8,17 +8,11 @@ export const useServiceSlots = (
   client: Client,
   service_id: ServiceSlotsParams['path']['service_id'],
   params: ServiceSlotsParams['query'],
-  options?: any,
 ) => {
-  return client.useQuery(
-    'get',
-    '/v1/services/{service_id}/slots',
-    {
-      params: {
-        path: { service_id },
-        query: params,
-      },
+  return client.useQuery('get', '/v1/services/{service_id}/slots', {
+    params: {
+      path: { service_id },
+      query: params,
     },
-    options,
-  );
+  });
 };

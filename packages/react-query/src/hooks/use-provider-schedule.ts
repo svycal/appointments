@@ -7,7 +7,6 @@ type ProviderScheduleParams =
 export const useProviderSchedule = (
   client: Client,
   provider_schedule_id: ProviderScheduleParams['path']['provider_schedule_id'],
-  options?: any,
 ) => {
   return client.useQuery(
     'get',
@@ -17,6 +16,5 @@ export const useProviderSchedule = (
         path: { provider_schedule_id },
       },
     },
-    options,
   );
 };

@@ -7,16 +7,10 @@ type AccountByIdParams =
 export const useAccountById = (
   client: Client,
   account_id: AccountByIdParams['path']['account_id'],
-  options?: any,
 ) => {
-  return client.useQuery(
-    'get',
-    '/v1/accounts/{account_id}',
-    {
-      params: {
-        path: { account_id },
-      },
+  return client.useQuery('get', '/v1/accounts/{account_id}', {
+    params: {
+      path: { account_id },
     },
-    options,
-  );
+  });
 };

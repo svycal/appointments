@@ -7,16 +7,10 @@ type ServiceProvidersParams =
 export const useServiceProviders = (
   client: Client,
   service_id: ServiceProvidersParams['path']['service_id'],
-  options?: any,
 ) => {
-  return client.useQuery(
-    'get',
-    '/v1/services/{service_id}/providers',
-    {
-      params: {
-        path: { service_id },
-      },
+  return client.useQuery('get', '/v1/services/{service_id}/providers', {
+    params: {
+      path: { service_id },
     },
-    options,
-  );
+  });
 };

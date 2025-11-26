@@ -7,7 +7,6 @@ type CancellationReasonParams =
 export const useCancellationReason = (
   client: Client,
   cancellation_reason_id: CancellationReasonParams['path']['cancellation_reason_id'],
-  options?: any,
 ) => {
   return client.useQuery(
     'get',
@@ -17,6 +16,5 @@ export const useCancellationReason = (
         path: { cancellation_reason_id },
       },
     },
-    options,
   );
 };

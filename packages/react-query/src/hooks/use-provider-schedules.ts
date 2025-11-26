@@ -7,16 +7,10 @@ type ProviderSchedulesParams =
 export const useProviderSchedules = (
   client: Client,
   params?: ProviderSchedulesParams['query'],
-  options?: any,
 ) => {
-  return client.useQuery(
-    'get',
-    '/v1/provider_schedules',
-    {
-      params: {
-        query: params,
-      },
+  return client.useQuery('get', '/v1/provider_schedules', {
+    params: {
+      query: params,
     },
-    options,
-  );
+  });
 };

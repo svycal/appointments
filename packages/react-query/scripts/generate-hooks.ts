@@ -154,10 +154,6 @@ function generateHookFile(op: OperationInfo): string {
     params.push(`params${optional}: ${paramsTypeName}['query']`);
   }
 
-  // Add options parameter - use any to avoid type conflicts between different versions
-  // TypeScript will still provide proper autocomplete from the client.useQuery signature
-  params.push(`options?: any`);
-
   lines.push(`export const ${op.hookName} = (`);
   lines.push(`  ${params.join(',\n  ')},`);
   lines.push(`) => {`);
@@ -182,7 +178,7 @@ function generateHookFile(op: OperationInfo): string {
     lines.push(`    },`);
   }
 
-  lines.push(`  }, options);`);
+  lines.push(`  });`);
   lines.push(`};`);
   lines.push(``);
 
