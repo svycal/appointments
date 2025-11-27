@@ -16,15 +16,8 @@ export const RootLayout = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(() => new QueryClient());
 
   const client = useMemo(
-    () =>
-      createClient({
-        // baseUrl: 'http://localhost:4002',
-        baseUrl: 'https://api.savvycal.app',
-        // headers: {
-        //   Authorization: `Bearer ${page.props.savvycalToken}`,
-        // },
-      }),
-    [],
+    () => createClient({ apiKey: page.props.savvycalToken }),
+    [page.props.savvycalToken],
   );
 
   return (
