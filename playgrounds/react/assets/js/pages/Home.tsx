@@ -1,14 +1,14 @@
-import React, { ReactNode, useState } from 'react';
-import { DateTime } from 'luxon';
-import { RootLayout } from '../layouts/root-layout';
-import { usePublicServiceSlots } from '@savvycal/appointments-react-query';
+import React, { ReactNode, useState } from "react";
+import { DateTime } from "luxon";
+import { RootLayout } from "../layouts/root-layout";
+import { usePublicServiceSlots } from "@savvycal/appointments-react-query";
 
 const Home = () => {
-  const [from, setFrom] = useState(DateTime.now().startOf('month'));
+  const [from, setFrom] = useState(DateTime.now().startOf("month"));
 
-  const { data, isLoading } = usePublicServiceSlots('srv_2cd153f28244', {
+  const { data, isLoading } = usePublicServiceSlots("srv_2cd153f28244", {
     from: from.toISODate(),
-    until: from.endOf('month').toISODate(),
+    until: from.endOf("month").toISODate(),
   });
 
   return (

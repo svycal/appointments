@@ -6,8 +6,8 @@
     "build": "pnpm -r build",
     "dev": "pnpm -r --parallel dev",
     "lint": "eslint packages",
-    "format": "prettier --write \"packages/**/*.{ts,tsx,js,jsx,json,md}\"",
-    "format:check": "prettier --check \"packages/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format": "prettier --write \"packages/**/*.{ts,tsx,js,jsx,json,md}\" \"playgrounds/*/assets/js/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"packages/**/*.{ts,tsx,js,jsx,json,md}\" \"playgrounds/*/assets/js/**/*.{ts,tsx,js,jsx,json,md}\"",
     "playground:react": "cd playgrounds/react && mix setup && mix phx.server"
   },
   "devDependencies": {

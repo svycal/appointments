@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { Page, PageProps } from '@inertiajs/core';
-import { createInertiaApp } from '@inertiajs/react';
-import { RootLayout } from './layouts/root-layout';
+import React, { ReactNode } from "react";
+import ReactDOMServer from "react-dom/server";
+import { Page, PageProps } from "@inertiajs/core";
+import { createInertiaApp } from "@inertiajs/react";
+import { RootLayout } from "./layouts/root-layout";
 
 export function render(page: Page<PageProps>) {
   return createInertiaApp({
