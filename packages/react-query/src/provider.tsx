@@ -1,8 +1,8 @@
-import React, { ReactNode, createContext, useContext } from 'react';
-import { Client } from './client';
+import React, { ReactNode, createContext, useContext } from "react";
+import { Client } from "./client";
 
 const SavvyCalContext = createContext<Client | undefined>(undefined);
-SavvyCalContext.displayName = 'SavvyCalContext';
+SavvyCalContext.displayName = "SavvyCalContext";
 
 export interface SavvyCalProviderProps {
   children: ReactNode;
@@ -25,7 +25,7 @@ export const SavvyCalProvider = ({
   );
 };
 
-SavvyCalProvider.displayName = 'SavvyCalProvider';
+SavvyCalProvider.displayName = "SavvyCalProvider";
 
 /**
  * Hook to access the SavvyCal client instance.
@@ -37,7 +37,7 @@ export const useSavvyCalClient = (overrideClient?: Client) => {
   const context = useContext(SavvyCalContext);
 
   if (context === undefined && !overrideClient) {
-    throw new Error('useSavvyCalClient must be used within a SavvyCalProvider');
+    throw new Error("useSavvyCalClient must be used within a SavvyCalProvider");
   }
 
   return overrideClient || context!;

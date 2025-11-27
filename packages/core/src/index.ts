@@ -1,13 +1,13 @@
 import createFetchClient, {
   ClientOptions as OpenApiClientOptions,
-} from 'openapi-fetch';
-import type { paths } from './schema';
+} from "openapi-fetch";
+import type { paths } from "./schema";
 
 export type { paths };
 
-const DEFAULT_BASE_URL = 'https://api.savvycal.app';
+const DEFAULT_BASE_URL = "https://api.savvycal.app";
 
-export interface ClientOptions extends Omit<OpenApiClientOptions, 'baseUrl'> {
+export interface ClientOptions extends Omit<OpenApiClientOptions, "baseUrl"> {
   /**
    * Base URL for the SavvyCal API.
    * Defaults to 'https://api.savvycal.app'
@@ -50,7 +50,7 @@ export const createClient = (options: ClientOptions = {}) => {
   if (options.account) {
     clientOptions.headers = {
       ...clientOptions.headers,
-      'X-SavvyCal-Account': options.account,
+      "X-SavvyCal-Account": options.account,
     };
   }
 

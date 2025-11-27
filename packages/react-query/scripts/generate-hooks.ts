@@ -1,21 +1,21 @@
-import { writeFileSync, mkdirSync, readFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
+import { writeFileSync, mkdirSync, readFileSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+import { execSync } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
+type HttpMethod = "get" | "post" | "put" | "patch" | "delete";
 
 // Helper to convert operation name to hook name
 function operationToHookName(operationName: string): string {
   // Remove common prefixes: get, list, fetch, retrieve
   const withoutPrefix = operationName
-    .replace(/^get/, '')
-    .replace(/^list/, '')
-    .replace(/^fetch/, '')
-    .replace(/^retrieve/, '');
+    .replace(/^get/, "")
+    .replace(/^list/, "")
+    .replace(/^fetch/, "")
+    .replace(/^retrieve/, "");
 
   // If nothing left after removing prefix, use the original
   const baseName = withoutPrefix || operationName;
@@ -25,7 +25,7 @@ function operationToHookName(operationName: string): string {
 
 // Helper to convert camelCase to kebab-case
 function camelToKebab(str: string): string {
-  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+  return str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 }
 
 // Helper to extract path parameters from a path string
@@ -52,8 +52,8 @@ function extractGetOperations(): OperationInfo[] {
 
   // We need to parse the schema type at runtime
   // Since we can't introspect types at runtime, we'll read the schema.d.ts file
-  const schemaPath = join(__dirname, '../../core/src/schema.d.ts');
-  const schemaContent = readFileSync(schemaPath, 'utf-8');
+  const schemaPath = join(__dirname, "../../core/src/schema.d.ts");
+  const schemaContent = readFileSync(schemaPath, "utf-8");
 
   // Extract each path block and its GET operation
   // Split by path definitions and process each one
@@ -76,7 +76,7 @@ function extractGetOperations(): OperationInfo[] {
     // Look for the operation definition in the operations interface
     const operationRegex = new RegExp(
       `${operationName}:\\s*\\{[\\s\\S]*?parameters:\\s*\\{[\\s\\S]*?query(\\?)?:\\s*([^;]+);`,
-      'm',
+      "m",
     );
     const opMatch = schemaContent.match(operationRegex);
 
@@ -84,17 +84,17 @@ function extractGetOperations(): OperationInfo[] {
     let queryParamsRequired = false;
 
     if (opMatch) {
-      const isOptional = opMatch[1] === '?';
+      const isOptional = opMatch[1] === "?";
       const queryType = opMatch[2].trim();
-      hasQueryParams = queryType !== 'never';
+      hasQueryParams = queryType !== "never";
 
       if (hasQueryParams) {
         // Check if the query params object has any required fields
         // Look for properties without '?' in the query type definition
         const queryDefMatch = schemaContent.match(
           new RegExp(
-            `query${isOptional ? '\\?' : ''}:\\s*\\{([\\s\\S]*?)\\}`,
-            'm',
+            `query${isOptional ? "\\?" : ""}:\\s*\\{([\\s\\S]*?)\\}`,
+            "m",
           ),
         );
 
@@ -111,7 +111,7 @@ function extractGetOperations(): OperationInfo[] {
     operations.push({
       operationName,
       path,
-      method: 'get',
+      method: "get",
       hookName,
       fileName,
       pathParams,
@@ -166,7 +166,7 @@ function generateHookFile(op: OperationInfo): string {
 
   // Add query parameters as a separate argument (second to last)
   if (op.hasQueryParams) {
-    const optional = op.queryParamsRequired ? '' : '?';
+    const optional = op.queryParamsRequired ? "" : "?";
     params.push(`queryParams${optional}: ${paramsTypeName}['query']`);
   }
 
@@ -174,7 +174,7 @@ function generateHookFile(op: OperationInfo): string {
   params.push(`options?: Options`);
 
   lines.push(`export const ${op.hookName} = (`);
-  lines.push(`  ${params.join(',\n  ')},`);
+  lines.push(`  ${params.join(",\n  ")},`);
   lines.push(`): UseQueryResult<${dataTypeName}, unknown> => {`);
   lines.push(`  const client = useSavvyCalClient(options?.client);`);
   lines.push(``);
@@ -183,7 +183,7 @@ function generateHookFile(op: OperationInfo): string {
   const queryCallParts: string[] = [];
 
   if (op.pathParams.length > 0) {
-    const pathObj = op.pathParams.map((p) => `${p}`).join(', ');
+    const pathObj = op.pathParams.map((p) => `${p}`).join(", ");
     queryCallParts.push(`      path: { ${pathObj} },`);
   }
 
@@ -203,7 +203,7 @@ function generateHookFile(op: OperationInfo): string {
   lines.push(`};`);
   lines.push(``);
 
-  return lines.join('\n');
+  return lines.join("\n");
 }
 
 // Generate barrel export file
@@ -219,43 +219,43 @@ function generateBarrelExport(operations: OperationInfo[]): string {
     lines.push(`export { ${op.hookName} } from './hooks/${op.fileName}';`);
   }
 
-  lines.push('');
+  lines.push("");
 
-  return lines.join('\n');
+  return lines.join("\n");
 }
 
 // Main function
 async function main() {
-  console.log('🔍 Extracting GET operations from schema...');
+  console.log("🔍 Extracting GET operations from schema...");
   const operations = extractGetOperations();
 
   console.log(`📝 Found ${operations.length} GET operations`);
 
   // Create hooks directory if it doesn't exist
-  const hooksDir = join(__dirname, '../src/hooks');
+  const hooksDir = join(__dirname, "../src/hooks");
   mkdirSync(hooksDir, { recursive: true });
 
   // Generate each hook file
-  console.log('✨ Generating hook files...');
+  console.log("✨ Generating hook files...");
   for (const op of operations) {
     const content = generateHookFile(op);
     const filePath = join(hooksDir, `${op.fileName}.ts`);
-    writeFileSync(filePath, content, 'utf-8');
+    writeFileSync(filePath, content, "utf-8");
     console.log(`  ✓ ${op.fileName}.ts`);
   }
 
   // Generate barrel export
-  console.log('📦 Generating barrel export...');
+  console.log("📦 Generating barrel export...");
   const barrelContent = generateBarrelExport(operations);
-  const barrelPath = join(__dirname, '../src/hooks.ts');
-  writeFileSync(barrelPath, barrelContent, 'utf-8');
+  const barrelPath = join(__dirname, "../src/hooks.ts");
+  writeFileSync(barrelPath, barrelContent, "utf-8");
   console.log(`  ✓ hooks.ts`);
 
   // Format generated files with prettier
-  console.log('\n🎨 Formatting generated files with prettier...');
+  console.log("\n🎨 Formatting generated files with prettier...");
   execSync('pnpm prettier --write "src/hooks/**/*.ts" "src/hooks.ts"', {
-    cwd: join(__dirname, '..'),
-    stdio: 'inherit',
+    cwd: join(__dirname, ".."),
+    stdio: "inherit",
   });
 
   console.log(`\n✅ Successfully generated ${operations.length} hooks!`);

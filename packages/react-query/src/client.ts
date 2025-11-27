@@ -1,8 +1,8 @@
 import {
   createClient as createFetchClient,
   ClientOptions,
-} from '@savvycal/appointments-core';
-import createQueryClient from 'openapi-react-query';
+} from "@savvycal/appointments-core";
+import createQueryClient from "openapi-react-query";
 
 /**
  * Creates a client with TanStack Query helpers for the SavvyCal Appointments API.
