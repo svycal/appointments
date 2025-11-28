@@ -1,7 +1,7 @@
 import type { UseQueryResult } from "@tanstack/react-query";
 import { paths } from "@savvycal/appointments-core";
 import { useSavvyCalClient } from "../provider";
-import { Client } from "../client";
+import type { Client } from "../client";
 
 export type ClientsParams = paths["/v1/clients"]["get"]["parameters"];
 
@@ -10,6 +10,7 @@ type ClientsData =
 
 interface Options {
   client?: Client;
+  enabled?: boolean;
 }
 
 export const useClients = (
@@ -18,9 +19,14 @@ export const useClients = (
 ): UseQueryResult<ClientsData, unknown> => {
   const client = useSavvyCalClient(options?.client);
 
-  return client.useQuery("get", "/v1/clients", {
-    params: {
-      query: queryParams,
+  return client.useQuery(
+    "get",
+    "/v1/clients",
+    {
+      params: {
+        query: queryParams,
+      },
     },
-  });
+    { enabled: options?.enabled },
+  );
 };

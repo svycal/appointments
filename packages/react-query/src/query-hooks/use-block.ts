@@ -1,7 +1,7 @@
 import type { UseQueryResult } from "@tanstack/react-query";
 import { paths } from "@savvycal/appointments-core";
 import { useSavvyCalClient } from "../provider";
-import { Client } from "../client";
+import type { Client } from "../client";
 
 export type BlockParams = paths["/v1/blocks/{block_id}"]["get"]["parameters"];
 
@@ -10,6 +10,7 @@ type BlockData =
 
 interface Options {
   client?: Client;
+  enabled?: boolean;
 }
 
 export const useBlock = (
@@ -18,9 +19,14 @@ export const useBlock = (
 ): UseQueryResult<BlockData, unknown> => {
   const client = useSavvyCalClient(options?.client);
 
-  return client.useQuery("get", "/v1/blocks/{block_id}", {
-    params: {
-      path: { block_id },
+  return client.useQuery(
+    "get",
+    "/v1/blocks/{block_id}",
+    {
+      params: {
+        path: { block_id },
+      },
     },
-  });
+    { enabled: options?.enabled },
+  );
 };

@@ -1,7 +1,7 @@
 import type { UseQueryResult } from "@tanstack/react-query";
 import { paths } from "@savvycal/appointments-core";
 import { useSavvyCalClient } from "../provider";
-import { Client } from "../client";
+import type { Client } from "../client";
 
 export type PublicServiceSlotsParams =
   paths["/v1/public/services/{service_id}/slots"]["get"]["parameters"];
@@ -11,6 +11,7 @@ type PublicServiceSlotsData =
 
 interface Options {
   client?: Client;
+  enabled?: boolean;
 }
 
 export const usePublicServiceSlots = (
@@ -20,10 +21,15 @@ export const usePublicServiceSlots = (
 ): UseQueryResult<PublicServiceSlotsData, unknown> => {
   const client = useSavvyCalClient(options?.client);
 
-  return client.useQuery("get", "/v1/public/services/{service_id}/slots", {
-    params: {
-      path: { service_id },
-      query: queryParams,
+  return client.useQuery(
+    "get",
+    "/v1/public/services/{service_id}/slots",
+    {
+      params: {
+        path: { service_id },
+        query: queryParams,
+      },
     },
-  });
+    { enabled: options?.enabled },
+  );
 };

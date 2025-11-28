@@ -6,7 +6,7 @@ import { usePublicServiceSlots } from "@savvycal/appointments-react-query";
 const Home = () => {
   const [from, setFrom] = useState(DateTime.now().startOf("month"));
 
-  const { data, isLoading } = usePublicServiceSlots("srv_2cd153f28244", {
+  const { data, isLoading } = usePublicServiceSlots("srv_28f3a4bd5986", {
     from: from.toISODate(),
     until: from.endOf("month").toISODate(),
   });

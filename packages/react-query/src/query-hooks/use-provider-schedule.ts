@@ -1,7 +1,7 @@
 import type { UseQueryResult } from "@tanstack/react-query";
 import { paths } from "@savvycal/appointments-core";
 import { useSavvyCalClient } from "../provider";
-import { Client } from "../client";
+import type { Client } from "../client";
 
 export type ProviderScheduleParams =
   paths["/v1/provider_schedules/{provider_schedule_id}"]["get"]["parameters"];
@@ -11,6 +11,7 @@ type ProviderScheduleData =
 
 interface Options {
   client?: Client;
+  enabled?: boolean;
 }
 
 export const useProviderSchedule = (
@@ -27,5 +28,6 @@ export const useProviderSchedule = (
         path: { provider_schedule_id },
       },
     },
+    { enabled: options?.enabled },
   );
 };

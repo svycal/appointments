@@ -16,7 +16,11 @@ export const RootLayout = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(() => new QueryClient());
 
   const client = useMemo(
-    () => createClient({ apiKey: page.props.savvycalToken }),
+    () =>
+      createClient({
+        apiKey: page.props.savvycalToken,
+        baseUrl: "http://localhost:4002",
+      }),
     [page.props.savvycalToken],
   );
 

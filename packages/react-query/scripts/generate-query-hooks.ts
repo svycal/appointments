@@ -57,7 +57,7 @@ function extractGetOperations(): OperationInfo[] {
 
   // Extract each path block and its GET operation
   // Split by path definitions and process each one
-  const pathBlockRegex = /"([^"]+\/[^"]*)":\s*\{([\s\S]*?)(?=\n    "\/|$)/g;
+  const pathBlockRegex = /"([^"]+\/[^"]*)":\s*\{([\s\S]*?)(?=\n  "\/|$)/g;
   let pathMatch;
 
   while ((pathMatch = pathBlockRegex.exec(schemaContent)) !== null) {
@@ -131,7 +131,7 @@ function generateHookFile(op: OperationInfo): string {
     `import type { UseQueryResult } from '@tanstack/react-query';`,
     `import { paths } from '@savvycal/appointments-core';`,
     `import { useSavvyCalClient } from '../provider';`,
-    `import { Client } from '../client';`,
+    `import type { Client } from '../client';`,
     ``,
   ];
 
@@ -148,9 +148,10 @@ function generateHookFile(op: OperationInfo): string {
   );
   lines.push(``);
 
-  // Build Options interface (always just has client)
+  // Build Options interface
   lines.push(`interface Options {`);
   lines.push(`  client?: Client;`);
+  lines.push(`  enabled?: boolean;`);
   lines.push(`}`);
   lines.push(``);
 
@@ -199,7 +200,7 @@ function generateHookFile(op: OperationInfo): string {
     lines.push(`    },`);
   }
 
-  lines.push(`  });`);
+  lines.push(`  }, { enabled: options?.enabled });`);
   lines.push(`};`);
   lines.push(``);
 
@@ -216,7 +217,9 @@ function generateBarrelExport(operations: OperationInfo[]): string {
   );
 
   for (const op of sorted) {
-    lines.push(`export { ${op.hookName} } from './hooks/${op.fileName}';`);
+    lines.push(
+      `export { ${op.hookName} } from './query-hooks/${op.fileName}';`,
+    );
   }
 
   lines.push("");
@@ -231,12 +234,12 @@ async function main() {
 
   console.log(`📝 Found ${operations.length} GET operations`);
 
-  // Create hooks directory if it doesn't exist
-  const hooksDir = join(__dirname, "../src/hooks");
+  // Create query hooks directory if it doesn't exist
+  const hooksDir = join(__dirname, "../src/query-hooks");
   mkdirSync(hooksDir, { recursive: true });
 
   // Generate each hook file
-  console.log("✨ Generating hook files...");
+  console.log("✨ Generating query hook files...");
   for (const op of operations) {
     const content = generateHookFile(op);
     const filePath = join(hooksDir, `${op.fileName}.ts`);
@@ -247,16 +250,19 @@ async function main() {
   // Generate barrel export
   console.log("📦 Generating barrel export...");
   const barrelContent = generateBarrelExport(operations);
-  const barrelPath = join(__dirname, "../src/hooks.ts");
+  const barrelPath = join(__dirname, "../src/query-hooks.ts");
   writeFileSync(barrelPath, barrelContent, "utf-8");
-  console.log(`  ✓ hooks.ts`);
+  console.log(`  ✓ query-hooks.ts`);
 
   // Format generated files with prettier
   console.log("\n🎨 Formatting generated files with prettier...");
-  execSync('pnpm prettier --write "src/hooks/**/*.ts" "src/hooks.ts"', {
-    cwd: join(__dirname, ".."),
-    stdio: "inherit",
-  });
+  execSync(
+    'pnpm prettier --write "src/query-hooks/**/*.ts" "src/query-hooks.ts"',
+    {
+      cwd: join(__dirname, ".."),
+      stdio: "inherit",
+    },
+  );
 
   console.log(`\n✅ Successfully generated ${operations.length} hooks!`);
 }

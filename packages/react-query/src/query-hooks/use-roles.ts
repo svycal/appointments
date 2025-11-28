@@ -1,7 +1,7 @@
 import type { UseQueryResult } from "@tanstack/react-query";
 import { paths } from "@savvycal/appointments-core";
 import { useSavvyCalClient } from "../provider";
-import { Client } from "../client";
+import type { Client } from "../client";
 
 export type RolesParams = paths["/v1/roles"]["get"]["parameters"];
 
@@ -10,6 +10,7 @@ type RolesData =
 
 interface Options {
   client?: Client;
+  enabled?: boolean;
 }
 
 export const useRoles = (
@@ -17,5 +18,5 @@ export const useRoles = (
 ): UseQueryResult<RolesData, unknown> => {
   const client = useSavvyCalClient(options?.client);
 
-  return client.useQuery("get", "/v1/roles", {});
+  return client.useQuery("get", "/v1/roles", {}, { enabled: options?.enabled });
 };
