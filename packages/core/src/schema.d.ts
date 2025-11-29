@@ -4,104 +4,6 @@
  */
 
 export interface paths {
-  "/v1/account": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get current account
-     * @description Get the account that owns the current token.
-     *
-     *     This endpoint requires:
-     *
-     *     - An account token, or
-     *     - A platform token with an account ID set via the `X-SavvyCal-Account` header.
-     */
-    get: operations["getCurrentAccount"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/accounts": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * List accounts
-     * @description List all accounts associated with the current platform (requires a platform token).
-     */
-    get: operations["listAccounts"];
-    put?: never;
-    /**
-     * Create account
-     * @description Create a new account (requires a platform token).
-     */
-    post: operations["createAccount"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/accounts/{account_id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get account by ID
-     * @description Get the account by ID.
-     */
-    get: operations["getAccountById"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    /**
-     * Update account
-     * @description Update an existing account.
-     */
-    patch: operations["updateAccount"];
-    trace?: never;
-  };
-  "/v1/appointments": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * List appointments
-     * @description List all appointments that belong to the account.
-     */
-    get: operations["listAppointments"];
-    put?: never;
-    /**
-     * Create appointment
-     * @description Create a new appointment. The time slot for the appointment must be available unless you explicitly disable validation (by setting `validate_slot` to `false` in the request body).
-     *     You can find available time slots using the [List slots for a service](/api/list-service-slots) endpoint.
-     */
-    post: operations["createAppointment"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   "/v1/appointments/{appointment_id}": {
     parameters: {
       query?: never;
@@ -120,223 +22,6 @@ export interface paths {
     options?: never;
     head?: never;
     patch?: never;
-    trace?: never;
-  };
-  "/v1/appointments/{appointment_id}/cancel": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /**
-     * Cancel appointment
-     * @description Cancel an existing appointment.
-     */
-    post: operations["cancelAppointment"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/appointments/{appointment_id}/confirm": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /**
-     * Confirm appointment
-     * @description Confirm an existing appointment.
-     */
-    post: operations["confirmAppointment"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/appointments/{appointment_id}/reschedule": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /**
-     * Reschedule appointment
-     * @description Reschedule an existing appointment. The new time slot for the appointment must be available.
-     *     You can find available time slots using the [List slots for a service](/api/list-service-slots) endpoint.
-     */
-    post: operations["rescheduleAppointment"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/blocks": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * List blocks
-     * @description List all blocks account-wide or attached to a specific resource type. Blocks are sorted by `start_date` in ascending order (oldest first).
-     */
-    get: operations["listBlocks"];
-    put?: never;
-    /**
-     * Create block
-     * @description Create a new block.
-     */
-    post: operations["createBlock"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/blocks/{block_id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get block
-     * @description Get a block by ID.
-     */
-    get: operations["getBlock"];
-    put?: never;
-    post?: never;
-    /**
-     * Delete block
-     * @description Delete an existing block.
-     */
-    delete: operations["deleteBlock"];
-    options?: never;
-    head?: never;
-    /**
-     * Update block
-     * @description Update an existing block.
-     */
-    patch: operations["updateBlock"];
-    trace?: never;
-  };
-  "/v1/cancellation_reasons": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * List cancellation reasons
-     * @description List all cancellation reasons for an account
-     */
-    get: operations["listCancellationReasons"];
-    put?: never;
-    /**
-     * Create cancellation reason
-     * @description Create a new cancellation reason in the account.
-     */
-    post: operations["createCancellationReason"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/cancellation_reasons/{cancellation_reason_id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get cancellation reason
-     * @description Get a single cancellation reason by ID.
-     */
-    get: operations["getCancellationReason"];
-    put?: never;
-    post?: never;
-    /**
-     * Delete cancellation reason
-     * @description Delete an existing cancellation reason.
-     */
-    delete: operations["deleteCancellationReason"];
-    options?: never;
-    head?: never;
-    /**
-     * Update cancellation reason
-     * @description Update an existing cancellation reason.
-     */
-    patch: operations["updateCancellationReason"];
-    trace?: never;
-  };
-  "/v1/clients": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * List clients
-     * @description List all clients that belong to the account.
-     */
-    get: operations["listClients"];
-    put?: never;
-    /**
-     * Create client
-     * @description Create a new client in the account.
-     */
-    post: operations["createClient"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/clients/{client_id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get client
-     * @description Get a single client by ID.
-     */
-    get: operations["getClient"];
-    put?: never;
-    post?: never;
-    /**
-     * Delete client
-     * @description Deletes an existing client.
-     */
-    delete: operations["deleteClient"];
-    options?: never;
-    head?: never;
-    /**
-     * Update client
-     * @description Update an existing client.
-     */
-    patch: operations["updateClient"];
     trace?: never;
   };
   "/v1/dashboard_sessions": {
@@ -379,7 +64,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/v1/platform": {
+  "/v1/accounts": {
     parameters: {
       query?: never;
       header?: never;
@@ -387,32 +72,16 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Get current platform
-     * @description Get the platform that owns the current token (requires a platform token).
+     * List accounts
+     * @description List all accounts associated with the current platform (requires a platform token).
      */
-    get: operations["getCurrentPlatform"];
+    get: operations["listAccounts"];
     put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/provider_schedules": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
     /**
-     * List provider schedules
-     * @description List all provider schedules account-wide or for a specific provider.
+     * Create account
+     * @description Create a new account (requires a platform token).
      */
-    get: operations["listProviderSchedules"];
-    put?: never;
-    post?: never;
+    post: operations["createAccount"];
     delete?: never;
     options?: never;
     head?: never;
@@ -447,59 +116,7 @@ export interface paths {
     patch: operations["updateProviderSchedule"];
     trace?: never;
   };
-  "/v1/providers": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * List providers
-     * @description List all providers that belong to the account.
-     */
-    get: operations["listProviders"];
-    put?: never;
-    /**
-     * Create provider
-     * @description Create a new provider in the account.
-     */
-    post: operations["createProvider"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/providers/{provider_id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get provider
-     * @description Get a single provider by ID.
-     */
-    get: operations["getProvider"];
-    put?: never;
-    post?: never;
-    /**
-     * Deactivate provider
-     * @description Deactivates an existing provider.
-     */
-    delete: operations["deactivateProvider"];
-    options?: never;
-    head?: never;
-    /**
-     * Update provider
-     * @description Update an existing provider.
-     */
-    patch: operations["updateProvider"];
-    trace?: never;
-  };
-  "/v1/providers/{provider_id}/schedules": {
+  "/v1/public/appointments": {
     parameters: {
       query?: never;
       header?: never;
@@ -509,17 +126,19 @@ export interface paths {
     get?: never;
     put?: never;
     /**
-     * Create provider schedule
-     * @description Create a new provider schedule.
+     * Create appointment
+     * @description Create a new appointment via a public interface (no authentication required).
+     *
+     *     You can find available time slots using the [List available time slots](/api/list-public-service-slots) endpoint.
      */
-    post: operations["createProviderSchedule"];
+    post: operations["createPublicAppointment"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  "/v1/public/services/{service_id}/slots": {
+  "/v1/clients/{client_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -527,59 +146,27 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * List available time slots
-     * @description List all available time slots for a service in a specific time range, for use on public booking interfaces.
+     * Get client
+     * @description Get a single client by ID.
      */
-    get: operations["listPublicServiceSlots"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/roles": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * List roles
-     * @description List all roles that belong to the specified account.
-     */
-    get: operations["listRoles"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/v1/service_providers/{service_provider_id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
+    get: operations["getClient"];
     put?: never;
     post?: never;
     /**
-     * Remove service provider
-     * @description Remove a provider from a service
+     * Delete client
+     * @description Deletes an existing client.
      */
-    delete: operations["deleteServiceProvider"];
+    delete: operations["deleteClient"];
     options?: never;
     head?: never;
-    patch?: never;
+    /**
+     * Update client
+     * @description Update an existing client.
+     */
+    patch: operations["updateClient"];
     trace?: never;
   };
-  "/v1/services": {
+  "/v1/public/appointments/{appointment_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -587,16 +174,12 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * List services
-     * @description List all services for an account
+     * Get appointment
+     * @description Get an existing appointment via a public interface (no authentication required).
      */
-    get: operations["listServices"];
+    get: operations["getPublicAppointment"];
     put?: never;
-    /**
-     * Create service
-     * @description Create a new service in the account.
-     */
-    post: operations["createService"];
+    post?: never;
     delete?: never;
     options?: never;
     head?: never;
@@ -631,6 +214,72 @@ export interface paths {
     patch: operations["updateService"];
     trace?: never;
   };
+  "/v1/public/appointments/{appointment_id}/cancel": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Cancel appointment
+     * @description Cancel an existing appointment via a public interface (no authentication required).
+     *
+     *     This action will fail with a 403 Forbidden response if cancellation is not allowed for the appointment based on the service's cancellation policy.
+     */
+    post: operations["cancelPublicAppointment"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/public/appointments/{appointment_id}/cancellation_reasons": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List cancellation reasons
+     * @description List all active cancellation reasons that can be used when canceling the specified appointment.
+     */
+    get: operations["listPublicCancellationReasons"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/accounts/{account_id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get account by ID
+     * @description Get the account by ID.
+     */
+    get: operations["getAccountById"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /**
+     * Update account
+     * @description Update an existing account.
+     */
+    patch: operations["updateAccount"];
+    trace?: never;
+  };
   "/v1/services/{service_id}/providers": {
     parameters: {
       query?: never;
@@ -655,7 +304,235 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/v1/services/{service_id}/slots": {
+  "/v1/services": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List services
+     * @description List all services for an account
+     */
+    get: operations["listServices"];
+    put?: never;
+    /**
+     * Create service
+     * @description Create a new service in the account.
+     */
+    post: operations["createService"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/service_providers/{service_provider_id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    /**
+     * Remove service provider
+     * @description Remove a provider from a service
+     */
+    delete: operations["deleteServiceProvider"];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/cancellation_reasons/{cancellation_reason_id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get cancellation reason
+     * @description Get a single cancellation reason by ID.
+     */
+    get: operations["getCancellationReason"];
+    put?: never;
+    post?: never;
+    /**
+     * Delete cancellation reason
+     * @description Delete an existing cancellation reason.
+     */
+    delete: operations["deleteCancellationReason"];
+    options?: never;
+    head?: never;
+    /**
+     * Update cancellation reason
+     * @description Update an existing cancellation reason.
+     */
+    patch: operations["updateCancellationReason"];
+    trace?: never;
+  };
+  "/v1/appointments/{appointment_id}/confirm": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Confirm appointment
+     * @description Confirm an existing appointment.
+     */
+    post: operations["confirmAppointment"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/providers/{provider_id}/schedules": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Create provider schedule
+     * @description Create a new provider schedule.
+     */
+    post: operations["createProviderSchedule"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/cancellation_reasons": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List cancellation reasons
+     * @description List all cancellation reasons for an account
+     */
+    get: operations["listCancellationReasons"];
+    put?: never;
+    /**
+     * Create cancellation reason
+     * @description Create a new cancellation reason in the account.
+     */
+    post: operations["createCancellationReason"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/roles": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List roles
+     * @description List all roles that belong to the specified account.
+     */
+    get: operations["listRoles"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/clients": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List clients
+     * @description List all clients that belong to the account.
+     */
+    get: operations["listClients"];
+    put?: never;
+    /**
+     * Create client
+     * @description Create a new client in the account.
+     */
+    post: operations["createClient"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/public/appointments/{appointment_id}/reschedule": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Reschedule appointment
+     * @description Reschedule an existing appointment via a public interface (no authentication required).
+     *
+     *     The new time slot for the appointment must be available. You can find available time slots using the [List available time slots](/api/list-public-service-slots) endpoint.
+     *
+     *     This action will fail with a 403 Forbidden response if rescheduling is not allowed for the appointment based on the service's rescheduling policy.
+     */
+    post: operations["reschedulePublicAppointment"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/providers": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List providers
+     * @description List all providers that belong to the account.
+     */
+    get: operations["listProviders"];
+    put?: never;
+    /**
+     * Create provider
+     * @description Create a new provider in the account.
+     */
+    post: operations["createProvider"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/public/services/{service_id}/slots": {
     parameters: {
       query?: never;
       header?: never;
@@ -664,15 +541,88 @@ export interface paths {
     };
     /**
      * List available time slots
-     * @description List all available time slots for a service in a specific time range
+     * @description List all available time slots for a service in a specific time range, for use on public booking interfaces.
      */
-    get: operations["listServiceSlots"];
+    get: operations["listPublicServiceSlots"];
     put?: never;
     post?: never;
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
+    trace?: never;
+  };
+  "/v1/provider_schedules": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List provider schedules
+     * @description List all provider schedules account-wide or for a specific provider.
+     */
+    get: operations["listProviderSchedules"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/account": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get current account
+     * @description Get the account that owns the current token.
+     *
+     *     This endpoint requires:
+     *
+     *     - An account token, or
+     *     - A platform token with an account ID set via the `X-SavvyCal-Account` header.
+     */
+    get: operations["getCurrentAccount"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/providers/{provider_id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get provider
+     * @description Get a single provider by ID.
+     */
+    get: operations["getProvider"];
+    put?: never;
+    post?: never;
+    /**
+     * Deactivate provider
+     * @description Deactivates an existing provider.
+     */
+    delete: operations["deactivateProvider"];
+    options?: never;
+    head?: never;
+    /**
+     * Update provider
+     * @description Update an existing provider.
+     */
+    patch: operations["updateProvider"];
     trace?: never;
   };
   "/v1/user": {
@@ -698,6 +648,31 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/v1/appointments": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List appointments
+     * @description List all appointments that belong to the account.
+     */
+    get: operations["listAppointments"];
+    put?: never;
+    /**
+     * Create appointment
+     * @description Create a new appointment. The time slot for the appointment must be available unless you explicitly disable validation (by setting `validate_slot` to `false` in the request body).
+     *     You can find available time slots using the [List slots for a service](/api/list-service-slots) endpoint.
+     */
+    post: operations["createAppointment"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/v1/users": {
     parameters: {
       query?: never;
@@ -716,6 +691,140 @@ export interface paths {
      * @description Create a new user in the specified account.
      */
     post: operations["createAccountUser"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/platform": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get current platform
+     * @description Get the platform that owns the current token (requires a platform token).
+     */
+    get: operations["getCurrentPlatform"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/blocks/{block_id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get block
+     * @description Get a block by ID.
+     */
+    get: operations["getBlock"];
+    put?: never;
+    post?: never;
+    /**
+     * Delete block
+     * @description Delete an existing block.
+     */
+    delete: operations["deleteBlock"];
+    options?: never;
+    head?: never;
+    /**
+     * Update block
+     * @description Update an existing block.
+     */
+    patch: operations["updateBlock"];
+    trace?: never;
+  };
+  "/v1/services/{service_id}/slots": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List available time slots
+     * @description List all available time slots for a service in a specific time range
+     */
+    get: operations["listServiceSlots"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/appointments/{appointment_id}/reschedule": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Reschedule appointment
+     * @description Reschedule an existing appointment. The new time slot for the appointment must be available.
+     *
+     *     You can find available time slots using the [List slots for a service](/api/list-service-slots) endpoint.
+     */
+    post: operations["rescheduleAppointment"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/appointments/{appointment_id}/cancel": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Cancel appointment
+     * @description Cancel an existing appointment.
+     */
+    post: operations["cancelAppointment"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/blocks": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List blocks
+     * @description List all blocks account-wide or attached to a specific resource type. Blocks are sorted by `start_date` in ascending order (oldest first).
+     */
+    get: operations["listBlocks"];
+    put?: never;
+    /**
+     * Create block
+     * @description Create a new block.
+     */
+    post: operations["createBlock"];
     delete?: never;
     options?: never;
     head?: never;
@@ -904,6 +1013,149 @@ export interface components {
          */
         utc: string;
       };
+    };
+    /**
+     * PublicAppointment
+     * @description A public appointment represents a booking that a client has made with a provider for a service.
+     * @example {
+     *       "cancellation": {
+     *         "allowed": true,
+     *         "disabled_message": null
+     *       },
+     *       "confirmed_at": "2025-03-10T15:30:00Z",
+     *       "end_at": {
+     *         "local": "2025-03-01T11:00:00",
+     *         "object": "zoned_date_time",
+     *         "time_zone": "America/New_York",
+     *         "unix_ts": 1736464800,
+     *         "utc": "2025-03-01T04:00:00Z"
+     *       },
+     *       "id": "appt_a1b2c3d4e5f6",
+     *       "object": "public_appointment",
+     *       "rescheduling": {
+     *         "allowed": false,
+     *         "disabled_message": "Rescheduling is not available within 24 hours of your appointment"
+     *       },
+     *       "start_at": {
+     *         "local": "2025-03-01T10:00:00",
+     *         "object": "zoned_date_time",
+     *         "time_zone": "America/New_York",
+     *         "unix_ts": 1736461200,
+     *         "utc": "2025-03-01T03:00:00Z"
+     *       },
+     *       "status": "scheduled"
+     *     }
+     */
+    PublicAppointment: {
+      /** @description Information about whether the appointment can be canceled by the client. */
+      cancellation: {
+        /** @description Whether the appointment can be canceled by the client. */
+        allowed: boolean;
+        /** @description A message explaining why cancellation is disabled, if applicable. Only present when allowed is false. */
+        disabled_message: string | null;
+      };
+      /**
+       * Format: date-time
+       * @description Time at which the object was confirmed.
+       */
+      confirmed_at: string | null;
+      /**
+       * ZonedDateTime
+       * @description An object describing a date/time in local time (naive) and in UTC.
+       * @example {
+       *       "local": "2025-03-01T10:00:00",
+       *       "object": "zoned_date_time",
+       *       "time_zone": "America/New_York",
+       *       "unix_ts": 1736461200,
+       *       "utc": "2025-03-01T03:00:00Z"
+       *     }
+       */
+      end_at: {
+        /**
+         * @description The local date/time in ISO-8601 format (without time zone information).
+         * @example 2025-03-01T10:00:00
+         */
+        local: string;
+        /**
+         * @description String representing the object's type.
+         * @enum {string}
+         */
+        object: "zoned_date_time";
+        /**
+         * @description The time zone of the local time (IANA format).
+         * @example America/New_York
+         */
+        time_zone: string;
+        /**
+         * @description The UTC date/time in Unix timestamp format (seconds).
+         * @example 1736461200
+         */
+        unix_ts: number;
+        /**
+         * Format: date-time
+         * @description The UTC date/time in ISO-8601 format (with time zone information).
+         * @example 2025-03-01T03:00:00Z
+         */
+        utc: string;
+      };
+      /** @description Unique identifier for the object. */
+      id: string;
+      /**
+       * @description String representing the object's type.
+       * @enum {string}
+       */
+      object: "public_appointment";
+      /** @description Information about whether the appointment can be rescheduled by the client. */
+      rescheduling: {
+        /** @description Whether the appointment can be rescheduled by the client. */
+        allowed: boolean;
+        /** @description A message explaining why rescheduling is disabled, if applicable. Only present when allowed is false. */
+        disabled_message: string | null;
+      };
+      /**
+       * ZonedDateTime
+       * @description An object describing a date/time in local time (naive) and in UTC.
+       * @example {
+       *       "local": "2025-03-01T10:00:00",
+       *       "object": "zoned_date_time",
+       *       "time_zone": "America/New_York",
+       *       "unix_ts": 1736461200,
+       *       "utc": "2025-03-01T03:00:00Z"
+       *     }
+       */
+      start_at: {
+        /**
+         * @description The local date/time in ISO-8601 format (without time zone information).
+         * @example 2025-03-01T10:00:00
+         */
+        local: string;
+        /**
+         * @description String representing the object's type.
+         * @enum {string}
+         */
+        object: "zoned_date_time";
+        /**
+         * @description The time zone of the local time (IANA format).
+         * @example America/New_York
+         */
+        time_zone: string;
+        /**
+         * @description The UTC date/time in Unix timestamp format (seconds).
+         * @example 1736461200
+         */
+        unix_ts: number;
+        /**
+         * Format: date-time
+         * @description The UTC date/time in ISO-8601 format (with time zone information).
+         * @example 2025-03-01T03:00:00Z
+         */
+        utc: string;
+      };
+      /**
+       * @description The status of the appointment.
+       * @enum {string}
+       */
+      status: "scheduled" | "canceled";
     };
     /**
      * BlocksResponse
@@ -2707,6 +2959,20 @@ export interface components {
       }[];
     };
     /**
+     * CancelPublicAppointmentRequest
+     * @description Request schema for canceling a public appointment
+     * @example {
+     *       "cancellation_reason_id": "cr_d025a96ac0c6",
+     *       "custom_reason_text": "I'm sick"
+     *     }
+     */
+    CancelPublicAppointmentRequest: {
+      /** @description ID of the cancellation reason. */
+      cancellation_reason_id?: string;
+      /** @description Custom reason text for the cancellation. */
+      custom_reason_text?: string;
+    };
+    /**
      * DashboardSessionResponse
      * @description Response schema for a dashboard session
      * @example {
@@ -3274,6 +3540,58 @@ export interface components {
       first_name?: string;
       /** @description Provider's last name */
       last_name?: string;
+    };
+    /**
+     * PublicCancellationReason
+     * @description A cancellation reason that can be used when canceling an appointment.
+     * @example {
+     *       "id": "cr_d025a96ac0c6",
+     *       "name": "Schedule conflict",
+     *       "object": "public_cancellation_reason",
+     *       "sort_order": 0
+     *     }
+     */
+    PublicCancellationReason: {
+      /** @description Unique identifier for the object. */
+      id: string;
+      /** @description The name of the cancellation reason. */
+      name: string;
+      /**
+       * @description String representing the object's type.
+       * @enum {string}
+       */
+      object: "public_cancellation_reason";
+      /** @description The sort order of the cancellation reason. */
+      sort_order: number;
+    };
+    /**
+     * ReschedulePublicAppointmentRequest
+     * @description Request schema for rescheduling a public appointment
+     * @example {
+     *       "end_at": "2025-03-01T11:00:00",
+     *       "provider_id": "prv_1234567890",
+     *       "start_at": "2025-03-01T10:00:00",
+     *       "time_zone": "America/New_York"
+     *     }
+     */
+    ReschedulePublicAppointmentRequest: {
+      /**
+       * @description The new end time of the appointment in local time (in naive ISO-8601 format, without time zone information). The time zone for the appointment is specified in the `time_zone` field.
+       * @example 2025-03-01T11:00:00
+       */
+      end_at: string;
+      /** @description The ID of the provider to assign to the appointment. If not provided, the provider assigned to the original appointment will be used. */
+      provider_id?: string | null;
+      /**
+       * @description The new start time of the appointment in local time (in naive ISO-8601 format, without time zone information). The time zone for the appointment is specified in the `time_zone` field.
+       * @example 2025-03-01T10:00:00
+       */
+      start_at: string;
+      /**
+       * @description The local time zone for the appointment (IANA format).
+       * @example America/New_York
+       */
+      time_zone: string;
     };
     /**
      * CancellationReason
@@ -11877,6 +12195,41 @@ export interface components {
       }[];
     };
     /**
+     * PublicCancellationReasonsResponse
+     * @description Response schema for listing public cancellation reasons
+     * @example {
+     *       "data": [
+     *         {
+     *           "id": "cr_d025a96ac0c6",
+     *           "name": "Schedule conflict",
+     *           "object": "public_cancellation_reason",
+     *           "sort_order": 0
+     *         },
+     *         {
+     *           "id": "cr_e136b07bd1d7",
+     *           "name": "Found another provider",
+     *           "object": "public_cancellation_reason",
+     *           "sort_order": 1
+     *         }
+     *       ]
+     *     }
+     */
+    PublicCancellationReasonsResponse: {
+      data: {
+        /** @description Unique identifier for the object. */
+        id: string;
+        /** @description The name of the cancellation reason. */
+        name: string;
+        /**
+         * @description String representing the object's type.
+         * @enum {string}
+         */
+        object: "public_cancellation_reason";
+        /** @description The sort order of the cancellation reason. */
+        sort_order: number;
+      }[];
+    };
+    /**
      * CancelAppointmentRequest
      * @description Request schema for canceling an appointment
      * @example {
@@ -15313,6 +15666,86 @@ export interface components {
       }[];
     };
     /**
+     * CreatePublicAppointmentRequest
+     * @description Request schema for creating an appointment via a public interface.
+     * @example {
+     *       "client_data": {
+     *         "email": "john.doe@example.com",
+     *         "first_name": "John",
+     *         "last_name": "Doe",
+     *         "locale": "en-US",
+     *         "phone": "+15551234567",
+     *         "reference_id": "1234567890",
+     *         "time_zone": "America/New_York"
+     *       },
+     *       "end_at": "2025-03-01T11:00:00",
+     *       "service_id": "srv_1234567890",
+     *       "start_at": "2025-03-01T10:00:00",
+     *       "time_zone": "America/New_York"
+     *     }
+     */
+    CreatePublicAppointmentRequest: {
+      /**
+       * @description Information about the client booking the appointment. You can either provide an `id` or `reference_id` for an existing client,
+       *     or provide a new client's details.
+       */
+      client_data: {
+        /**
+         * Format: email
+         * @description The client's email address. Required if no existing client is provided.
+         */
+        email?: string | null;
+        /** @description The client's first name. Required if no existing client is provided. */
+        first_name?: string | null;
+        /**
+         * @description The ID of an existing client to attach to the appointment. If not provided, a new client will be created
+         *     if the `reference_id` does not correspond to an existing client. If there does exist a client with
+         *     the `reference_id` provided, the existing client will be attached to the appointment.
+         */
+        id?: string | null;
+        /** @description The client's last name. Required if no existing client is provided. */
+        last_name?: string | null;
+        /**
+         * @description The locale of the client booking the appointment.
+         * @default en-US
+         * @example en-US
+         */
+        locale: string | null;
+        /**
+         * @description The client's phone number (E.164 format).
+         * @default
+         * @example +1234567890
+         */
+        phone: string | null;
+        /** @description External reference identifier for the client. */
+        reference_id?: string | null;
+        /**
+         * @description The client's time zone (IANA format). This field will be used to represent the appointment time slot in the client's local time zone (in the event that it differs from the appointment's local time zone).
+         * @example America/New_York
+         */
+        time_zone: string;
+      };
+      /**
+       * @description The end time of the appointment in local time (in naive ISO-8601 format, without time zone information). The time zone for the appointment is specified in the `time_zone` field.
+       * @example 2025-03-01T11:00:00
+       */
+      end_at: string;
+      /** @description The ID of the provider to assign to the appointment. If not provided, an available provider will be randomly assigned. */
+      provider_id?: string | null;
+      /** @description The ID of the service for this appointment. */
+      service_id: string;
+      /**
+       * @description The start time of the appointment in local time (in naive ISO-8601 format, without time zone information). The time zone for the appointment is specified in the `time_zone` field.
+       * @example 2025-03-01T10:00:00
+       */
+      start_at: string;
+      /**
+       * @description The local time zone for the appointment (IANA format).
+       * @example America/New_York
+       */
+      time_zone?: string;
+    };
+    /**
      * UpdateCancellationReasonRequest
      * @description Request schema for updating a cancellation reason
      * @example {
@@ -16437,6 +16870,43 @@ export interface components {
         /** @description URLs for the client to use to reschedule this appointment. */
         reschedule: string[];
       };
+    };
+    /**
+     * PublicAppointmentResponse
+     * @description Response schema for a single appointment created via a public interface.
+     * @example {
+     *       "data": {
+     *         "cancellation": {
+     *           "allowed": true,
+     *           "disabled_message": null
+     *         },
+     *         "confirmed_at": "2025-03-10T15:30:00Z",
+     *         "end_at": {
+     *           "local": "2025-03-01T11:00:00",
+     *           "object": "zoned_date_time",
+     *           "time_zone": "America/New_York",
+     *           "unix_ts": 1736464800,
+     *           "utc": "2025-03-01T04:00:00Z"
+     *         },
+     *         "id": "appt_a1b2c3d4e5f6",
+     *         "object": "public_appointment",
+     *         "rescheduling": {
+     *           "allowed": false,
+     *           "disabled_message": "Rescheduling is not available within 24 hours of your appointment"
+     *         },
+     *         "start_at": {
+     *           "local": "2025-03-01T10:00:00",
+     *           "object": "zoned_date_time",
+     *           "time_zone": "America/New_York",
+     *           "unix_ts": 1736461200,
+     *           "utc": "2025-03-01T03:00:00Z"
+     *         },
+     *         "status": "scheduled"
+     *       }
+     *     }
+     */
+    PublicAppointmentResponse: {
+      data: components["schemas"]["PublicAppointment"];
     };
     /**
      * AggregatedSlot
@@ -18040,7 +18510,7 @@ export interface components {
        * @enum {string}
        */
       initiated_by: "user" | "client";
-      /** @description The ID of the provider to assign to the appointment. If not provided, an available provider will be randomly assigned. */
+      /** @description The ID of the provider to assign to the appointment. If not provided, the provider assigned to the original appointment will be used. */
       provider_id?: string | null;
       /**
        * @description The new start time of the appointment in local time (in naive ISO-8601 format, without time zone information). The time zone for the appointment is specified in the `time_zone` field.
@@ -18130,7 +18600,57 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  getCurrentAccount: {
+  getAppointment: {
+    parameters: {
+      query?: {
+        /** @description Whether to include sensitive fields (such as client name, email, and phone) */
+        include_sensitive?: boolean;
+      };
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Appointment ID */
+        appointment_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AppointmentResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  createDashboardSession: {
     parameters: {
       query?: never;
       header?: {
@@ -18143,24 +18663,20 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody?: never;
+    /** @description Dashboard session params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateDashboardSessionRequest"];
+      };
+    };
     responses: {
       /** @description Success */
-      200: {
+      201: {
         headers: {
           [name: string]: unknown;
         };
         content: {
-          "application/json": components["schemas"]["AccountResponse"];
-        };
-      };
-      /** @description GenericError */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["GenericErrorResponse"];
+          "application/json": components["schemas"]["DashboardSessionResponse"];
         };
       };
       /** @description Unauthorized */
@@ -18170,6 +18686,15 @@ export interface operations {
         };
         content: {
           "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
         };
       };
     };
@@ -18278,13 +18803,19 @@ export interface operations {
       };
     };
   };
-  getAccountById: {
+  getProviderSchedule: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
       path: {
-        /** @description Account ID */
-        account_id: string;
+        /** @description Provider schedule ID */
+        provider_schedule_id: string;
       };
       cookie?: never;
     };
@@ -18296,7 +18827,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "application/json": components["schemas"]["AccountResponse"];
+          "application/json": components["schemas"]["ProviderScheduleResponse"];
         };
       };
       /** @description Unauthorized */
@@ -18319,227 +18850,7 @@ export interface operations {
       };
     };
   };
-  updateAccount: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description Account ID */
-        account_id: string;
-      };
-      cookie?: never;
-    };
-    /** @description Account params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["UpdateAccountRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["AccountResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  listAppointments: {
-    parameters: {
-      query?: {
-        /** @description Page number */
-        page?: number;
-        /** @description Number of items per page */
-        page_size?: number;
-        /** @description Whether to include sensitive fields (such as client name, email, and phone) */
-        include_sensitive?: boolean;
-        /**
-         * @description A JSON-encoded list of filters
-         * @example [{"field":"period","op":"==","value":"upcoming"}]
-         */
-        filters?: string[];
-        /**
-         * @description A field to order by
-         * @example ?order_by[]=start_at_utc
-         */
-        order_by?: string[];
-        /**
-         * @description The order direction for the order_by field
-         * @example ?order_directions[]=asc
-         */
-        order_directions?: ("asc" | "desc")[];
-      };
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["AppointmentsResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  createAppointment: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    /** @description Create appointment params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["CreateAppointmentRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["AppointmentResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  getAppointment: {
-    parameters: {
-      query?: {
-        /** @description Whether to include sensitive fields (such as client name, email, and phone) */
-        include_sensitive?: boolean;
-      };
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Appointment ID */
-        appointment_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["AppointmentResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  cancelAppointment: {
+  deleteProviderSchedule: {
     parameters: {
       query?: never;
       header?: {
@@ -18550,333 +18861,8 @@ export interface operations {
         "X-SavvyCal-Account"?: string;
       };
       path: {
-        /** @description Appointment ID */
-        appointment_id: string;
-      };
-      cookie?: never;
-    };
-    /** @description Cancel appointment params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["CancelAppointmentRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["AppointmentResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  confirmAppointment: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Appointment ID */
-        appointment_id: string;
-      };
-      cookie?: never;
-    };
-    /** @description Confirm appointment params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["ConfirmAppointmentRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["AppointmentResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  rescheduleAppointment: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Appointment ID */
-        appointment_id: string;
-      };
-      cookie?: never;
-    };
-    /** @description Reschedule appointment params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["RescheduleAppointmentRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["AppointmentResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  listBlocks: {
-    parameters: {
-      query?: {
-        /** @description Page number */
-        page?: number;
-        /** @description Number of items per page */
-        page_size?: number;
-        /** @description Only return blocks with the specified attachment type. */
-        attachment_type?:
-          | "provider"
-          | "service"
-          | "location"
-          | "service_provider";
-        /** @description Only return blocks for the provider specified by this provider ID. */
-        provider?: string;
-        /** @description Only return blocks for the service specified by this service ID. */
-        service?: string;
-        /** @description Only return blocks for the service provider specified by this service provider ID. */
-        service_provider?: string;
-        /** @description Only return blocks for the location specified by this location ID. */
-        location?: string;
-        /** @description Only return blocks that start on the specified date. */
-        start_date?: string;
-        /** @description Only return blocks that end on the specified date. */
-        end_date?: string;
-        /** @description Only return blocks that start on or after the specified date. */
-        start_date_min?: string;
-        /** @description Only return blocks that start on or before the specified date. */
-        start_date_max?: string;
-        /** @description Only return blocks that end on or after the specified date. */
-        end_date_min?: string;
-        /** @description Only return blocks that end on or before the specified date. */
-        end_date_max?: string;
-        /** @description If true, only return blocks that are recurring. */
-        recurring?: boolean;
-        /** @description If true, only return blocks that are all day. */
-        all_day?: boolean;
-      };
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["BlocksResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  createBlock: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    /** @description Block params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["CreateBlockRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["BlockResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  getBlock: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description Block ID */
-        block_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["BlockResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-    };
-  };
-  deleteBlock: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Block ID */
-        block_id: string;
+        /** @description Provider schedule ID */
+        provider_schedule_id: string;
       };
       cookie?: never;
     };
@@ -18911,7 +18897,7 @@ export interface operations {
       };
     };
   };
-  updateBlock: {
+  updateProviderSchedule: {
     parameters: {
       query?: never;
       header?: {
@@ -18924,10 +18910,10 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    /** @description Block params */
+    /** @description Provider schedule params */
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["UpdateBlockRequest"];
+        "application/json": components["schemas"]["UpdateProviderScheduleRequest"];
       };
     };
     responses: {
@@ -18937,7 +18923,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "application/json": components["schemas"]["BlockResponse"];
+          "application/json": components["schemas"]["ProviderScheduleResponse"];
         };
       };
       /** @description Unauthorized */
@@ -18960,67 +18946,17 @@ export interface operations {
       };
     };
   };
-  listCancellationReasons: {
+  createPublicAppointment: {
     parameters: {
       query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
+      header?: never;
       path?: never;
       cookie?: never;
     };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["CancellationReasonsResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  createCancellationReason: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    /** @description Cancellation reason params */
+    /** @description Create public appointment params */
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["CreateCancellationReasonRequest"];
+        "application/json": components["schemas"]["CreatePublicAppointmentRequest"];
       };
     };
     responses: {
@@ -19030,271 +18966,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "application/json": components["schemas"]["CancellationReasonResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  getCancellationReason: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Cancellation reason ID */
-        cancellation_reason_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["CancellationReasonResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-    };
-  };
-  deleteCancellationReason: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Cancellation reason ID */
-        cancellation_reason_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description No Content */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "text/plain": string;
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-    };
-  };
-  updateCancellationReason: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Cancellation reason ID */
-        cancellation_reason_id: string;
-      };
-      cookie?: never;
-    };
-    /** @description Cancellation reason params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["UpdateCancellationReasonRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["CancellationReasonResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  listClients: {
-    parameters: {
-      query?: {
-        /** @description Page number */
-        page?: number;
-        /** @description Number of items per page */
-        page_size?: number;
-        /** @description Only return clients that match the search query (name or email). */
-        search?: string;
-      };
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ClientsResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  createClient: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    /** @description Client params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["CreateClientRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ClientResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
+          "application/json": components["schemas"]["PublicAppointmentResponse"];
         };
       };
       /** @description Unprocessable Entity */
@@ -19463,159 +19135,13 @@ export interface operations {
       };
     };
   };
-  createDashboardSession: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    /** @description Dashboard session params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["CreateDashboardSessionRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["DashboardSessionResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  getCurrentPlatform: {
+  getPublicAppointment: {
     parameters: {
       query?: never;
       header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["PlatformResponse"];
-        };
-      };
-      /** @description GenericError */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["GenericErrorResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-    };
-  };
-  listProviderSchedules: {
-    parameters: {
-      query?: {
-        /** @description Page number */
-        page?: number;
-        /** @description Number of items per page */
-        page_size?: number;
-        /** @description Only return provider schedules for the provider specified by this provider ID. */
-        provider?: string;
-        /** @description Only return provider schedules for the location specified by this location ID. */
-        location?: string;
-      };
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ProviderSchedulesResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  getProviderSchedule: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
       path: {
-        /** @description Provider schedule ID */
-        provider_schedule_id: string;
+        /** @description Appointment ID */
+        appointment_id: string;
       };
       cookie?: never;
     };
@@ -19627,684 +19153,11 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "application/json": components["schemas"]["ProviderScheduleResponse"];
+          "application/json": components["schemas"]["PublicAppointmentResponse"];
         };
       };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
+      /** @description Unprocessable Entity */
       404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-    };
-  };
-  deleteProviderSchedule: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Provider schedule ID */
-        provider_schedule_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description No Content */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "text/plain": string;
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-    };
-  };
-  updateProviderSchedule: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    /** @description Provider schedule params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["UpdateProviderScheduleRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ProviderScheduleResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  listProviders: {
-    parameters: {
-      query?: {
-        /** @description Page number */
-        page?: number;
-        /** @description Number of items per page */
-        page_size?: number;
-        /** @description Only return providers that match the search query (name or email). */
-        search?: string;
-      };
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ProvidersResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  createProvider: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    /** @description Provider params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["CreateProviderRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ProviderResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  getProvider: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Provider ID */
-        provider_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ProviderResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-    };
-  };
-  deactivateProvider: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Provider ID */
-        provider_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description No Content */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "text/plain": string;
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-    };
-  };
-  updateProvider: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Provider ID */
-        provider_id: string;
-      };
-      cookie?: never;
-    };
-    /** @description Provider params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["UpdateProviderRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ProviderResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  createProviderSchedule: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    /** @description Provider schedule params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["CreateProviderScheduleRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ProviderScheduleResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  listPublicServiceSlots: {
-    parameters: {
-      query: {
-        /**
-         * @description Start of time range (ISO date format)
-         * @example "2025-04-01"
-         */
-        from: string;
-        /**
-         * @description End of time range (ISO date format)
-         * @example "2025-04-07"
-         */
-        until: string;
-        /**
-         * @description Time zone for the slots (IANA format)
-         * @example "America/New_York"
-         */
-        time_zone?: string;
-      };
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /**
-         * @description Service ID
-         * @example srv_123456789012
-         */
-        service_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["PublicServiceSlotsResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  listRoles: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["RolesResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  deleteServiceProvider: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path: {
-        /** @description Service Provider ID */
-        service_provider_id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description No Content */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "text/plain": string;
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["NotFoundResponse"];
-        };
-      };
-    };
-  };
-  listServices: {
-    parameters: {
-      query?: {
-        /** @description Page number */
-        page?: number;
-        /** @description Number of items per page */
-        page_size?: number;
-      };
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Success */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ServicesResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["JsonErrorResponse"];
-        };
-      };
-    };
-  };
-  createService: {
-    parameters: {
-      query?: never;
-      header?: {
-        /**
-         * @description When authenticating with a platform token, specifies the account ID for the request
-         * @example acct_1234567890
-         */
-        "X-SavvyCal-Account"?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    /** @description Service params */
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["CreateServiceRequest"];
-      };
-    };
-    responses: {
-      /** @description Success */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ServiceResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UnauthorizedResponse"];
-        };
-      };
-      /** @description Unprocessable Entity */
-      422: {
         headers: {
           [name: string]: unknown;
         };
@@ -20469,6 +19322,189 @@ export interface operations {
       };
     };
   };
+  cancelPublicAppointment: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        /** @description Appointment ID */
+        appointment_id: string;
+      };
+      cookie?: never;
+    };
+    /** @description Cancel appointment params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CancelPublicAppointmentRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["PublicAppointmentResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  listPublicCancellationReasons: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        /** @description Appointment ID */
+        appointment_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["PublicCancellationReasonsResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  getAccountById: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        /** @description Account ID */
+        account_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AccountResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+    };
+  };
+  updateAccount: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        /** @description Account ID */
+        account_id: string;
+      };
+      cookie?: never;
+    };
+    /** @description Account params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UpdateAccountRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AccountResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
   listServiceProviders: {
     parameters: {
       query?: never;
@@ -20577,7 +19613,800 @@ export interface operations {
       };
     };
   };
-  listServiceSlots: {
+  listServices: {
+    parameters: {
+      query?: {
+        /** @description Page number */
+        page?: number;
+        /** @description Number of items per page */
+        page_size?: number;
+      };
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ServicesResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  createService: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    /** @description Service params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateServiceRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ServiceResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  deleteServiceProvider: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Service Provider ID */
+        service_provider_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description No Content */
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "text/plain": string;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+    };
+  };
+  getCancellationReason: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Cancellation reason ID */
+        cancellation_reason_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CancellationReasonResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+    };
+  };
+  deleteCancellationReason: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Cancellation reason ID */
+        cancellation_reason_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description No Content */
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "text/plain": string;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+    };
+  };
+  updateCancellationReason: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Cancellation reason ID */
+        cancellation_reason_id: string;
+      };
+      cookie?: never;
+    };
+    /** @description Cancellation reason params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UpdateCancellationReasonRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CancellationReasonResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  confirmAppointment: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Appointment ID */
+        appointment_id: string;
+      };
+      cookie?: never;
+    };
+    /** @description Confirm appointment params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ConfirmAppointmentRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AppointmentResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  createProviderSchedule: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    /** @description Provider schedule params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateProviderScheduleRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ProviderScheduleResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  listCancellationReasons: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CancellationReasonsResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  createCancellationReason: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    /** @description Cancellation reason params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateCancellationReasonRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CancellationReasonResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  listRoles: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["RolesResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  listClients: {
+    parameters: {
+      query?: {
+        /** @description Page number */
+        page?: number;
+        /** @description Number of items per page */
+        page_size?: number;
+        /** @description Only return clients that match the search query (name or email). */
+        search?: string;
+      };
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ClientsResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  createClient: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    /** @description Client params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateClientRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ClientResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  reschedulePublicAppointment: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        /** @description Appointment ID */
+        appointment_id: string;
+      };
+      cookie?: never;
+    };
+    /** @description Reschedule appointment params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ReschedulePublicAppointmentRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["PublicAppointmentResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  listProviders: {
+    parameters: {
+      query?: {
+        /** @description Page number */
+        page?: number;
+        /** @description Number of items per page */
+        page_size?: number;
+        /** @description Only return providers that match the search query (name or email). */
+        search?: string;
+      };
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ProvidersResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  createProvider: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    /** @description Provider params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateProviderRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ProviderResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  listPublicServiceSlots: {
     parameters: {
       query: {
         /**
@@ -20595,6 +20424,11 @@ export interface operations {
          * @example "America/New_York"
          */
         time_zone?: string;
+        /**
+         * @description Filter slots by specific provider ID
+         * @example prv_123456789012
+         */
+        provider_id?: string;
       };
       header?: {
         /**
@@ -20620,7 +20454,259 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "application/json": components["schemas"]["ServiceSlotResponse"];
+          "application/json": components["schemas"]["PublicServiceSlotsResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  listProviderSchedules: {
+    parameters: {
+      query?: {
+        /** @description Page number */
+        page?: number;
+        /** @description Number of items per page */
+        page_size?: number;
+        /** @description Only return provider schedules for the provider specified by this provider ID. */
+        provider?: string;
+        /** @description Only return provider schedules for the location specified by this location ID. */
+        location?: string;
+      };
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ProviderSchedulesResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  getCurrentAccount: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AccountResponse"];
+        };
+      };
+      /** @description GenericError */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["GenericErrorResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+    };
+  };
+  getProvider: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Provider ID */
+        provider_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ProviderResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+    };
+  };
+  deactivateProvider: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Provider ID */
+        provider_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description No Content */
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "text/plain": string;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+    };
+  };
+  updateProvider: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Provider ID */
+        provider_id: string;
+      };
+      cookie?: never;
+    };
+    /** @description Provider params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UpdateProviderRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ProviderResponse"];
         };
       };
       /** @description Unauthorized */
@@ -20686,6 +20772,121 @@ export interface operations {
         };
         content: {
           "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+    };
+  };
+  listAppointments: {
+    parameters: {
+      query?: {
+        /** @description Page number */
+        page?: number;
+        /** @description Number of items per page */
+        page_size?: number;
+        /** @description Whether to include sensitive fields (such as client name, email, and phone) */
+        include_sensitive?: boolean;
+        /**
+         * @description A JSON-encoded list of filters
+         * @example [{"field":"period","op":"==","value":"upcoming"}]
+         */
+        filters?: string[];
+        /**
+         * @description A field to order by
+         * @example ?order_by[]=start_at_utc
+         */
+        order_by?: string[];
+        /**
+         * @description The order direction for the order_by field
+         * @example ?order_directions[]=asc
+         */
+        order_directions?: ("asc" | "desc")[];
+      };
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AppointmentsResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  createAppointment: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    /** @description Create appointment params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateAppointmentRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AppointmentResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
         };
       };
     };
@@ -20761,6 +20962,488 @@ export interface operations {
         };
         content: {
           "application/json": components["schemas"]["AccountUserResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  getCurrentPlatform: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["PlatformResponse"];
+        };
+      };
+      /** @description GenericError */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["GenericErrorResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+    };
+  };
+  getBlock: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        /** @description Block ID */
+        block_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["BlockResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+    };
+  };
+  deleteBlock: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Block ID */
+        block_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description No Content */
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "text/plain": string;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+    };
+  };
+  updateBlock: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    /** @description Block params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UpdateBlockRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["BlockResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  listServiceSlots: {
+    parameters: {
+      query: {
+        /**
+         * @description Start of time range (ISO date format)
+         * @example "2025-04-01"
+         */
+        from: string;
+        /**
+         * @description End of time range (ISO date format)
+         * @example "2025-04-07"
+         */
+        until: string;
+        /**
+         * @description Time zone for the slots (IANA format)
+         * @example "America/New_York"
+         */
+        time_zone?: string;
+      };
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /**
+         * @description Service ID
+         * @example srv_123456789012
+         */
+        service_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ServiceSlotResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  rescheduleAppointment: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Appointment ID */
+        appointment_id: string;
+      };
+      cookie?: never;
+    };
+    /** @description Reschedule appointment params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RescheduleAppointmentRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AppointmentResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  cancelAppointment: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /** @description Appointment ID */
+        appointment_id: string;
+      };
+      cookie?: never;
+    };
+    /** @description Cancel appointment params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CancelAppointmentRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AppointmentResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  listBlocks: {
+    parameters: {
+      query?: {
+        /** @description Page number */
+        page?: number;
+        /** @description Number of items per page */
+        page_size?: number;
+        /** @description Only return blocks with the specified attachment type. */
+        attachment_type?:
+          | "provider"
+          | "service"
+          | "location"
+          | "service_provider";
+        /** @description Only return blocks for the provider specified by this provider ID. */
+        provider?: string;
+        /** @description Only return blocks for the service specified by this service ID. */
+        service?: string;
+        /** @description Only return blocks for the service provider specified by this service provider ID. */
+        service_provider?: string;
+        /** @description Only return blocks for the location specified by this location ID. */
+        location?: string;
+        /** @description Only return blocks that start on the specified date. */
+        start_date?: string;
+        /** @description Only return blocks that end on the specified date. */
+        end_date?: string;
+        /** @description Only return blocks that start on or after the specified date. */
+        start_date_min?: string;
+        /** @description Only return blocks that start on or before the specified date. */
+        start_date_max?: string;
+        /** @description Only return blocks that end on or after the specified date. */
+        end_date_min?: string;
+        /** @description Only return blocks that end on or before the specified date. */
+        end_date_max?: string;
+        /** @description If true, only return blocks that are recurring. */
+        recurring?: boolean;
+        /** @description If true, only return blocks that are all day. */
+        all_day?: boolean;
+      };
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["BlocksResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
+        };
+      };
+    };
+  };
+  createBlock: {
+    parameters: {
+      query?: never;
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    /** @description Block params */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateBlockRequest"];
+      };
+    };
+    responses: {
+      /** @description Success */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["BlockResponse"];
         };
       };
       /** @description Unauthorized */
