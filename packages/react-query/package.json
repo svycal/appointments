@@ -20,6 +20,7 @@
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
     "generate:query-hooks": "tsx scripts/generate-query-hooks.ts",
+    "generate:mutation-hooks": "tsx scripts/generate-mutation-hooks.ts",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [
