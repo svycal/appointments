@@ -21,6 +21,8 @@ export { useProvider } from "./query-hooks/use-provider";
 export { useProviders } from "./query-hooks/use-providers";
 export { useProviderSchedule } from "./query-hooks/use-provider-schedule";
 export { useProviderSchedules } from "./query-hooks/use-provider-schedules";
+export { usePublicAppointment } from "./query-hooks/use-public-appointment";
+export { usePublicCancellationReasons } from "./query-hooks/use-public-cancellation-reasons";
 export { usePublicServiceSlots } from "./query-hooks/use-public-service-slots";
 export { useRoles } from "./query-hooks/use-roles";
 export { useService } from "./query-hooks/use-service";
