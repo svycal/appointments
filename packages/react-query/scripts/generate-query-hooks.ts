@@ -133,7 +133,6 @@ function generateHookFile(op: OperationInfo): string {
     ` * Do not make direct changes to the file.`,
     ` */`,
     ``,
-    `import type { UseQueryResult } from '@tanstack/react-query';`,
     `import { paths } from '@savvycal/appointments-core';`,
     `import { useSavvyCalClient } from '../provider';`,
     `import type { Client } from '../client';`,
@@ -143,14 +142,6 @@ function generateHookFile(op: OperationInfo): string {
   // Generate the params type (export it for consumer use)
   lines.push(`export type ${paramsTypeName} =`);
   lines.push(`  paths['${op.path}']['${op.method}']['parameters'];`);
-  lines.push(``);
-
-  // Generate the response data type
-  const dataTypeName = `${op.hookName.charAt(3).toUpperCase()}${op.hookName.slice(4)}Data`;
-  lines.push(`type ${dataTypeName} =`);
-  lines.push(
-    `  paths['${op.path}']['${op.method}']['responses'][200]['content']['application/json'];`,
-  );
   lines.push(``);
 
   // Build Options interface
@@ -181,7 +172,7 @@ function generateHookFile(op: OperationInfo): string {
 
   lines.push(`export const ${op.hookName} = (`);
   lines.push(`  ${params.join(",\n  ")},`);
-  lines.push(`): UseQueryResult<${dataTypeName}, unknown> => {`);
+  lines.push(`) => {`);
   lines.push(`  const client = useSavvyCalClient(options?.client);`);
   lines.push(``);
 

@@ -3,24 +3,18 @@
  * Do not make direct changes to the file.
  */
 
-import type { UseQueryResult } from "@tanstack/react-query";
 import { paths } from "@savvycal/appointments-core";
 import { useSavvyCalClient } from "../provider";
 import type { Client } from "../client";
 
 export type CurrentPlatformParams = paths["/v1/platform"]["get"]["parameters"];
 
-type CurrentPlatformData =
-  paths["/v1/platform"]["get"]["responses"][200]["content"]["application/json"];
-
 interface Options {
   client?: Client;
   enabled?: boolean;
 }
 
-export const useCurrentPlatform = (
-  options?: Options,
-): UseQueryResult<CurrentPlatformData, unknown> => {
+export const useCurrentPlatform = (options?: Options) => {
   const client = useSavvyCalClient(options?.client);
 
   return client.useQuery(

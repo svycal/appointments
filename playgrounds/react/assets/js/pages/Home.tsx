@@ -1,7 +1,10 @@
 import React, { ReactNode, useState } from "react";
 import { DateTime } from "luxon";
 import { RootLayout } from "../layouts/root-layout";
-import { usePublicServiceSlots } from "@savvycal/appointments-react-query";
+import {
+  useCreatePublicAppointment,
+  usePublicServiceSlots,
+} from "@savvycal/appointments-react-query";
 
 const Home = () => {
   const [from, setFrom] = useState(DateTime.now().startOf("month"));
@@ -9,6 +12,24 @@ const Home = () => {
   const { data, isLoading } = usePublicServiceSlots("srv_28f3a4bd5986", {
     from: from.toISODate(),
     until: from.endOf("month").toISODate(),
+  });
+
+  const { mutate } = useCreatePublicAppointment();
+
+  mutate({
+    body: {
+      client_data: {
+        email: "derrick@savvycal.app",
+        first_name: "Derrick",
+        last_name: "Reimer",
+        locale: "en",
+        phone: "+15555555555",
+        time_zone: "America/New_York",
+      },
+      end_at: "2025-12-01T12:00:00Z",
+      start_at: "2025-12-01T12:00:00Z",
+      service_id: "srv_28f3a4bd5986",
+    },
   });
 
   return (

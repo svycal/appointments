@@ -48,7 +48,8 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@savvycal/appointments-core": "workspace:*"
+    "@savvycal/appointments-core": "workspace:*",
+    "openapi-typescript-helpers": "^0.0.15"
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.0.0",

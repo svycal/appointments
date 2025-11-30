@@ -45,6 +45,9 @@ importers:
       '@savvycal/appointments-core':
         specifier: workspace:*
         version: link:../core
+      openapi-typescript-helpers:
+        specifier: ^0.0.15
+        version: 0.0.15
     devDependencies:
       '@tanstack/react-query':
         specifier: ^5.90.11
