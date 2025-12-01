@@ -6,4 +6,6 @@
 @source "../js";
 @source "../../lib/demo_web";
 
+@import "react-day-picker/style.css" layer(components);
+
 /* This file is for your main application CSS */
