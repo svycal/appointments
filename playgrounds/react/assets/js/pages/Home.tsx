@@ -33,13 +33,19 @@ const Home = () => {
   const [selectedDay, setSelectedDay] = useState<Date>();
   const [selectedSlot, setSelectedSlot] = useState<Slot>();
 
-  const { data, isLoading } = usePublicServiceSlots(SERVICE_ID, {
+  const { data, isLoading, refetch } = usePublicServiceSlots(SERVICE_ID, {
     from: formatISO(month, { representation: "date" }),
     until: formatISO(endOfMonth(month), { representation: "date" }),
   });
 
   const { mutate: createPublicAppointment, isPending: isCreating } =
-    useCreatePublicAppointment();
+    useCreatePublicAppointment({
+      onSuccess: (resp) => {
+        console.log(resp);
+        setSelectedSlot(undefined);
+        refetch();
+      },
+    });
 
   const dateHasSlots = (date: Date) => {
     if (!data || !timeZone) return false;
@@ -106,7 +112,7 @@ const Home = () => {
       {selectedDay && slotsOnSelectedDay && timeZone && (
         <div className="grow">
           <form onSubmit={handleSubmit}>
-            <h2 className="text-center font-bold">
+            <h2 className="text-center font-semibold">
               {intlFormat(selectedDay, {
                 day: "numeric",
                 month: "long",
@@ -129,7 +135,7 @@ const Home = () => {
                   <RadioGroup.Item
                     key={slot.start_at}
                     value={slot.start_at}
-                    className="rounded-md ring-inset ring-1 ring-zinc-900/30 focus:ring-zinc-900/50 focus:outline-none hover:bg-zinc-900/5 data-[state=checked]:ring-zinc-900 data-[state=checked]:ring-2 focus-visible:ring-3 focus-visible:ring-zinc-900/25"
+                    className="rounded-md ring-inset ring-1 ring-zinc-900/30  focus:outline-none hover:bg-zinc-900/5 data-[state=checked]:ring-zinc-900 data-[state=checked]:ring-2 focus-visible:ring-3 focus-visible:ring-zinc-900/25"
                   >
                     <label className="flex px-6 py-3 cursor-pointer justify-center">
                       {intlFormat(slotStartAt, { timeStyle: "short" })}
