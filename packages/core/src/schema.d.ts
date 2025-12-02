@@ -2671,15 +2671,19 @@ export interface components {
      *           {
      *             "count": 1,
      *             "end_at": "2025-03-10T10:00:00Z",
+     *             "end_at_ts": 1736464800,
      *             "object": "aggregated_slot",
      *             "start_at": "2025-03-10T09:00:00Z",
+     *             "start_at_ts": 1736461200,
      *             "time_zone": "Etc/UTC"
      *           },
      *           {
      *             "count": 1,
      *             "end_at": "2025-03-10T12:00:00Z",
+     *             "end_at_ts": 1736468400,
      *             "object": "aggregated_slot",
      *             "start_at": "2025-03-10T11:00:00Z",
+     *             "start_at_ts": 1736464800,
      *             "time_zone": "Etc/UTC"
      *           }
      *         ],
@@ -2688,14 +2692,18 @@ export interface components {
      *             "open": [
      *               {
      *                 "end_at": "2025-03-10T10:00:00Z",
+     *                 "end_at_ts": 1736464800,
      *                 "object": "slot",
      *                 "start_at": "2025-03-10T09:00:00Z",
+     *                 "start_at_ts": 1736461200,
      *                 "time_zone": "Etc/UTC"
      *               },
      *               {
      *                 "end_at": "2025-03-10T12:00:00Z",
+     *                 "end_at_ts": 1736468400,
      *                 "object": "slot",
      *                 "start_at": "2025-03-10T11:00:00Z",
+     *                 "start_at_ts": 1736464800,
      *                 "time_zone": "Etc/UTC"
      *               }
      *             ],
@@ -2745,7 +2753,7 @@ export interface components {
             /** Format: date-time */
             end_at: string;
             /** @description Unix timestamp in seconds */
-            end_at_ts?: number;
+            end_at_ts: number;
             /**
              * @description String representing the object's type.
              * @enum {string}
@@ -2754,7 +2762,7 @@ export interface components {
             /** Format: date-time */
             start_at: string;
             /** @description Unix timestamp in seconds */
-            start_at_ts?: number;
+            start_at_ts: number;
             /** @description IANA time zone name */
             time_zone: string;
           }[];
@@ -3779,14 +3787,18 @@ export interface components {
      *       "data": [
      *         {
      *           "end_at": "2025-03-10T10:00:00Z",
+     *           "end_at_ts": 1736464800,
      *           "object": "slot",
      *           "start_at": "2025-03-10T09:00:00Z",
+     *           "start_at_ts": 1736461200,
      *           "time_zone": "Etc/UTC"
      *         },
      *         {
      *           "end_at": "2025-03-10T12:00:00Z",
+     *           "end_at_ts": 1736468400,
      *           "object": "slot",
      *           "start_at": "2025-03-10T11:00:00Z",
+     *           "start_at_ts": 1736464800,
      *           "time_zone": "Etc/UTC"
      *         }
      *       ]
@@ -3797,7 +3809,7 @@ export interface components {
         /** Format: date-time */
         end_at: string;
         /** @description Unix timestamp in seconds */
-        end_at_ts?: number;
+        end_at_ts: number;
         /**
          * @description String representing the object's type.
          * @enum {string}
@@ -3806,7 +3818,7 @@ export interface components {
         /** Format: date-time */
         start_at: string;
         /** @description Unix timestamp in seconds */
-        start_at_ts?: number;
+        start_at_ts: number;
         /** @description IANA time zone name */
         time_zone: string;
       }[];
@@ -5212,7 +5224,7 @@ export interface components {
       /** Format: date-time */
       end_at: string;
       /** @description Unix timestamp in seconds */
-      end_at_ts?: number;
+      end_at_ts: number;
       /**
        * @description String representing the object's type.
        * @enum {string}
@@ -5221,7 +5233,7 @@ export interface components {
       /** Format: date-time */
       start_at: string;
       /** @description Unix timestamp in seconds */
-      start_at_ts?: number;
+      start_at_ts: number;
       /** @description IANA time zone name */
       time_zone: string;
     };

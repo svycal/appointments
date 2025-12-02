@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useEffect } from "react";
+import React, { ReactNode, useState, useEffect, useMemo } from "react";
 import { RootLayout } from "../layouts/root-layout";
 import { usePublicServiceSlots } from "@savvycal/appointments-react-query";
 import { DayPicker } from "react-day-picker";
@@ -8,8 +8,10 @@ import {
   startOfMonth,
   fromUnixTime,
   isSameDay,
+  intlFormat,
 } from "date-fns";
 import { tz } from "@date-fns/tz";
+import { RadioGroup } from "radix-ui";
 
 const Home = () => {
   const [timeZone, setTimeZone] = useState<string>();
@@ -37,8 +39,18 @@ const Home = () => {
     });
   };
 
+  const slotsOnSelectedDay = useMemo(() => {
+    if (!data || !timeZone) return [];
+
+    return data.data.filter((slot) => {
+      const slotDate = fromUnixTime(slot.start_at_ts!);
+
+      return isSameDay(slotDate, selected!, { in: tz(timeZone) });
+    });
+  }, [data, selected, timeZone]);
+
   return (
-    <div>
+    <div className="flex gap-4">
       <DayPicker
         animate
         disabled={(date) => !dateHasSlots(date)}
@@ -48,9 +60,36 @@ const Home = () => {
         month={month}
         onMonthChange={setMonth}
       />
+      {selected && slotsOnSelectedDay && timeZone && (
+        <div>
+          <form>
+            <h2>
+              {intlFormat(selected, {
+                day: "numeric",
+                month: "long",
+                weekday: "long",
+              })}
+            </h2>
+            <RadioGroup.Root className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+              {slotsOnSelectedDay.map((slot) => {
+                const slotStartAt = fromUnixTime(slot.start_at_ts);
 
-      {isLoading && <p>Loading...</p>}
-      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+                return (
+                  <RadioGroup.Item
+                    key={slot.start_at_ts}
+                    value={slot.start_at}
+                    className="rounded-md border focus:border-black/50 hover:bg-black/5 data-[state=checked]:border-black focus:ring-3 focus:ring-black/25"
+                  >
+                    <label className="flex px-6 py-3 cursor-pointer justify-center">
+                      {intlFormat(slotStartAt, { timeStyle: "short" })}
+                    </label>
+                  </RadioGroup.Item>
+                );
+              })}
+            </RadioGroup.Root>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
