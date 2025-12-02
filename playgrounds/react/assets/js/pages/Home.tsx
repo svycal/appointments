@@ -1,5 +1,6 @@
 import React, { ReactNode, useState, useEffect, useMemo } from "react";
 import { RootLayout } from "../layouts/root-layout";
+import type { Slot } from "@savvycal/appointments-core";
 import {
   usePublicServiceSlots,
   useCreatePublicAppointment,
@@ -12,11 +13,13 @@ import {
   fromUnixTime,
   isSameDay,
   intlFormat,
+  format,
 } from "date-fns";
 import { tz } from "@date-fns/tz";
 import { RadioGroup } from "radix-ui";
 
 const SERVICE_ID = "srv_28f3a4bd5986";
+const NAIVE_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
 const Home = () => {
   const [timeZone, setTimeZone] = useState<string>();
@@ -28,14 +31,15 @@ const Home = () => {
 
   const [month, setMonth] = useState<Date>(startOfMonth(new Date()));
   const [selectedDay, setSelectedDay] = useState<Date>();
-  const [selectedSlot, setSelectedSlot] = useState<string>();
+  const [selectedSlot, setSelectedSlot] = useState<Slot>();
 
   const { data, isLoading } = usePublicServiceSlots(SERVICE_ID, {
     from: formatISO(month, { representation: "date" }),
     until: formatISO(endOfMonth(month), { representation: "date" }),
   });
 
-  const { mutate } = useCreatePublicAppointment();
+  const { mutate: createPublicAppointment, isPending: isCreating } =
+    useCreatePublicAppointment();
 
   const dateHasSlots = (date: Date) => {
     if (!data || !timeZone) return false;
@@ -61,17 +65,23 @@ const Home = () => {
     e.preventDefault();
     if (!selectedSlot || !timeZone) return;
 
-    console.log("submit", { selectedSlot });
-    mutate({
+    createPublicAppointment({
       body: {
-        start_at: selectedSlot,
+        start_at: format(selectedSlot.start_at, NAIVE_DATETIME_FORMAT, {
+          in: tz(timeZone),
+        }),
+        end_at: format(selectedSlot.end_at, NAIVE_DATETIME_FORMAT, {
+          in: tz(timeZone),
+        }),
         service_id: SERVICE_ID,
+        time_zone: timeZone,
         client_data: {
-          email: "",
-          first_name: "",
-          last_name: "",
+          email: "derrick@savvycal.com",
+          first_name: "Derrick",
+          last_name: "Reimer",
           locale: "en",
           phone: "",
+          reference_id: "derrick@savvycal.com",
           time_zone: timeZone,
         },
       },
@@ -79,7 +89,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-6 p-12">
       <DayPicker
         animate
         disabled={(date) => !dateHasSlots(date)}
@@ -87,7 +97,11 @@ const Home = () => {
         selected={selectedDay}
         onSelect={setSelectedDay}
         month={month}
-        onMonthChange={setMonth}
+        onMonthChange={(month) => {
+          setMonth(month);
+          setSelectedDay(undefined);
+          setSelectedSlot(undefined);
+        }}
       />
       {selectedDay && slotsOnSelectedDay && timeZone && (
         <div className="grow">
@@ -101,17 +115,21 @@ const Home = () => {
             </h2>
             <RadioGroup.Root
               className="mt-6 grid gap-2 sm:grid-cols-2 md:grid-cols-3"
-              value={selectedSlot}
-              onValueChange={setSelectedSlot}
+              value={selectedSlot?.start_at || null}
+              onValueChange={(value) =>
+                setSelectedSlot(
+                  slotsOnSelectedDay.find((slot) => slot.start_at === value),
+                )
+              }
             >
               {slotsOnSelectedDay.map((slot) => {
                 const slotStartAt = fromUnixTime(slot.start_at_ts);
 
                 return (
                   <RadioGroup.Item
-                    key={slot.start_at_ts}
+                    key={slot.start_at}
                     value={slot.start_at}
-                    className="rounded-md border border-black/30 focus:border-black/50 hover:bg-black/5 data-[state=checked]:border-black focus:ring-3 focus:ring-black/25"
+                    className="rounded-md ring-inset ring-1 ring-zinc-900/30 focus:ring-zinc-900/50 focus:outline-none hover:bg-zinc-900/5 data-[state=checked]:ring-zinc-900 data-[state=checked]:ring-2 focus-visible:ring-3 focus-visible:ring-zinc-900/25"
                   >
                     <label className="flex px-6 py-3 cursor-pointer justify-center">
                       {intlFormat(slotStartAt, { timeStyle: "short" })}
@@ -122,10 +140,11 @@ const Home = () => {
             </RadioGroup.Root>
             <div className="mt-6">
               <button
-                className="rounded-md w-full bg-black text-white px-6 py-3"
-                disabled={!selectedSlot}
+                type="submit"
+                className="rounded-md w-full bg-zinc-900 hover:bg-zinc-800 active:brightness-90 focus-visible:ring-3 focus-visible:ring-zinc-900/25 cursor-pointer text-white px-6 py-3 focus:outline-none"
+                disabled={!selectedSlot || isCreating}
               >
-                Book appointment
+                {isCreating ? "Submitting..." : "Book appointment"}
               </button>
             </div>
           </form>

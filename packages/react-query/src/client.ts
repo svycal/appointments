@@ -1,8 +1,16 @@
 import {
   createClient as createFetchClient,
   ClientOptions,
+  paths,
 } from "@savvycal/appointments-core";
 import createQueryClient from "openapi-react-query";
+import type { UseMutationOptions } from "@tanstack/react-query";
+import type { MaybeOptionalInit, FetchResponse } from "openapi-fetch";
+import type {
+  HttpMethod,
+  PathsWithMethod,
+  MediaType,
+} from "openapi-typescript-helpers";
 
 /**
  * Creates a client with TanStack Query helpers for the SavvyCal Appointments API.
@@ -15,3 +23,60 @@ export const createClient = (options?: ClientOptions) => {
 };
 
 export type Client = ReturnType<typeof createClient>;
+
+/**
+ * Helper type to extract the mutation options for a specific endpoint.
+ * This type reconstructs the exact shape of the options argument that client.useMutation expects
+ * for a given HTTP method and path combination, matching the implementation from openapi-react-query.
+ *
+ * @example
+ * ```typescript
+ * type CreateAppointmentOptions = MutationOptionsFor<"post", "/v1/public/appointments">;
+ *
+ * interface Options extends CreateAppointmentOptions {
+ *   client?: Client;
+ * }
+ * ```
+ */
+export type MutationOptionsFor<
+  Method extends HttpMethod,
+  Path extends PathsWithMethod<paths, Method>,
+  Media extends MediaType = MediaType
+> = Omit<
+  UseMutationOptions<
+    GetResponseData<Path, Method, Media>,
+    GetResponseError<Path, Method, Media>,
+    MaybeOptionalInit<paths[Path], Method>
+  >,
+  "mutationKey" | "mutationFn"
+>;
+
+// Helper type to safely extract response data
+type GetResponseData<
+  Path extends keyof paths,
+  Method extends HttpMethod,
+  Media extends MediaType
+> = Path extends keyof paths
+  ? Method extends keyof paths[Path]
+    ? paths[Path][Method] extends infer Operation
+      ? Operation extends Record<string, any>
+        ? Required<FetchResponse<Operation, MaybeOptionalInit<paths[Path], Method>, Media>>["data"]
+        : never
+      : never
+    : never
+  : never;
+
+// Helper type to safely extract response error
+type GetResponseError<
+  Path extends keyof paths,
+  Method extends HttpMethod,
+  Media extends MediaType
+> = Path extends keyof paths
+  ? Method extends keyof paths[Path]
+    ? paths[Path][Method] extends infer Operation
+      ? Operation extends Record<string, any>
+        ? Required<FetchResponse<Operation, MaybeOptionalInit<paths[Path], Method>, Media>>["error"]
+        : never
+      : never
+    : never
+  : never;

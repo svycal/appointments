@@ -14226,16 +14226,14 @@ export interface components {
         last_name?: string | null;
         /**
          * @description The locale of the client booking the appointment.
-         * @default en-US
          * @example en-US
          */
-        locale: string | null;
+        locale?: string | null;
         /**
          * @description The client's phone number (E.164 format).
-         * @default
          * @example +1234567890
          */
-        phone: string | null;
+        phone?: string | null;
         /** @description External reference identifier for the client. */
         reference_id?: string | null;
         /**
@@ -15719,16 +15717,14 @@ export interface components {
         last_name?: string | null;
         /**
          * @description The locale of the client booking the appointment.
-         * @default en-US
          * @example en-US
          */
-        locale: string | null;
+        locale?: string | null;
         /**
          * @description The client's phone number (E.164 format).
-         * @default
          * @example +1234567890
          */
-        phone: string | null;
+        phone?: string | null;
         /** @description External reference identifier for the client. */
         reference_id?: string | null;
         /**
