@@ -135,7 +135,7 @@ function generateHookFile(op: OperationInfo): string {
     ``,
     `import { paths } from '@savvycal/appointments-core';`,
     `import { useSavvyCalClient } from '../provider';`,
-    `import type { Client } from '../client';`,
+    `import type { Client, QueryOptionsFor } from '../client';`,
     ``,
   ];
 
@@ -144,10 +144,11 @@ function generateHookFile(op: OperationInfo): string {
   lines.push(`  paths['${op.path}']['${op.method}']['parameters'];`);
   lines.push(``);
 
-  // Build Options interface
-  lines.push(`interface Options {`);
+  // Build Options interface extending QueryOptionsFor
+  lines.push(
+    `interface Options extends QueryOptionsFor<'${op.method}', '${op.path}'> {`,
+  );
   lines.push(`  client?: Client;`);
-  lines.push(`  enabled?: boolean;`);
   lines.push(`}`);
   lines.push(``);
 
@@ -173,7 +174,10 @@ function generateHookFile(op: OperationInfo): string {
   lines.push(`export const ${op.hookName} = (`);
   lines.push(`  ${params.join(",\n  ")},`);
   lines.push(`) => {`);
-  lines.push(`  const client = useSavvyCalClient(options?.client);`);
+  lines.push(
+    `  const { client: overrideClient, ...queryOptions } = options ?? {};`,
+  );
+  lines.push(`  const client = useSavvyCalClient(overrideClient);`);
   lines.push(``);
 
   // Build the params object for the query
@@ -196,7 +200,7 @@ function generateHookFile(op: OperationInfo): string {
     lines.push(`    },`);
   }
 
-  lines.push(`  }, { enabled: options?.enabled });`);
+  lines.push(`  }, queryOptions);`);
   lines.push(`};`);
   lines.push(``);
 

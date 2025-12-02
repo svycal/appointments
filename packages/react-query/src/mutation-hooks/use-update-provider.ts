@@ -4,13 +4,20 @@
  */
 
 import { useSavvyCalClient } from "../provider";
-import type { Client } from "../client";
+import type { Client, MutationOptionsFor } from "../client";
 
-interface Options {
+interface Options
+  extends MutationOptionsFor<"patch", "/v1/providers/{provider_id}"> {
   client?: Client;
 }
 
 export const useUpdateProvider = (options?: Options) => {
-  const client = useSavvyCalClient(options?.client);
-  return client.useMutation("patch", "/v1/providers/{provider_id}");
+  const { client: overrideClient, ...mutationOptions } = options ?? {};
+  const client = useSavvyCalClient(overrideClient);
+
+  return client.useMutation(
+    "patch",
+    "/v1/providers/{provider_id}",
+    mutationOptions,
+  );
 };

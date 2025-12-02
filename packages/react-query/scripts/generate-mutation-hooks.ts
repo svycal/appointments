@@ -13,7 +13,10 @@ function operationToHookName(operationName: string): string {
   // For mutations, we want to preserve certain prefixes and convert others
 
   // Handle DELETE operations
-  if (operationName.startsWith("delete") || operationName.startsWith("deactivate")) {
+  if (
+    operationName.startsWith("delete") ||
+    operationName.startsWith("deactivate")
+  ) {
     return `use${operationName.charAt(0).toUpperCase()}${operationName.slice(1)}`;
   }
 
@@ -99,15 +102,17 @@ function generateHookFile(op: OperationInfo): string {
     ` */`,
     ``,
     `import { useSavvyCalClient } from '../provider';`,
-    `import type { Client } from '../client';`,
+    `import type { Client, MutationOptionsFor } from '../client';`,
     ``,
-    `interface Options {`,
+    `interface Options extends MutationOptionsFor<'${op.method}', '${op.path}'> {`,
     `  client?: Client;`,
     `}`,
     ``,
     `export const ${op.hookName} = (options?: Options) => {`,
-    `  const client = useSavvyCalClient(options?.client);`,
-    `  return client.useMutation('${op.method}', '${op.path}');`,
+    `  const { client: overrideClient, ...mutationOptions } = options ?? {};`,
+    `  const client = useSavvyCalClient(overrideClient);`,
+    ``,
+    `  return client.useMutation('${op.method}', '${op.path}', mutationOptions);`,
     `};`,
     ``,
   ];

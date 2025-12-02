@@ -5,21 +5,22 @@
 
 import { paths } from "@savvycal/appointments-core";
 import { useSavvyCalClient } from "../provider";
-import type { Client } from "../client";
+import type { Client, QueryOptionsFor } from "../client";
 
 export type ServiceProvidersParams =
   paths["/v1/services/{service_id}/providers"]["get"]["parameters"];
 
-interface Options {
+interface Options
+  extends QueryOptionsFor<"get", "/v1/services/{service_id}/providers"> {
   client?: Client;
-  enabled?: boolean;
 }
 
 export const useServiceProviders = (
   service_id: ServiceProvidersParams["path"]["service_id"],
   options?: Options,
 ) => {
-  const client = useSavvyCalClient(options?.client);
+  const { client: overrideClient, ...queryOptions } = options ?? {};
+  const client = useSavvyCalClient(overrideClient);
 
   return client.useQuery(
     "get",
@@ -29,6 +30,6 @@ export const useServiceProviders = (
         path: { service_id },
       },
     },
-    { enabled: options?.enabled },
+    queryOptions,
   );
 };

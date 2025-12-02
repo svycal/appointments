@@ -4,13 +4,15 @@
  */
 
 import { useSavvyCalClient } from "../provider";
-import type { Client } from "../client";
+import type { Client, MutationOptionsFor } from "../client";
 
-interface Options {
+interface Options extends MutationOptionsFor<"post", "/v1/blocks"> {
   client?: Client;
 }
 
 export const useCreateBlock = (options?: Options) => {
-  const client = useSavvyCalClient(options?.client);
-  return client.useMutation("post", "/v1/blocks");
+  const { client: overrideClient, ...mutationOptions } = options ?? {};
+  const client = useSavvyCalClient(overrideClient);
+
+  return client.useMutation("post", "/v1/blocks", mutationOptions);
 };

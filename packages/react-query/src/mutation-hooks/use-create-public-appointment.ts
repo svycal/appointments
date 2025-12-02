@@ -12,13 +12,8 @@ interface Options
 }
 
 export const useCreatePublicAppointment = (options?: Options) => {
-  const { client: overrideClient, ...mutationOptions } = options || {};
+  const { client: overrideClient, ...mutationOptions } = options ?? {};
   const client = useSavvyCalClient(overrideClient);
 
-  return client.useMutation("post", "/v1/public/appointments", {
-    onError: (error) => {
-      console.error(error);
-    },
-    ...mutationOptions,
-  });
+  return client.useMutation("post", "/v1/public/appointments", mutationOptions);
 };

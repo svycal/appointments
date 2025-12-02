@@ -5,21 +5,25 @@
 
 import { paths } from "@savvycal/appointments-core";
 import { useSavvyCalClient } from "../provider";
-import type { Client } from "../client";
+import type { Client, QueryOptionsFor } from "../client";
 
 export type PublicCancellationReasonsParams =
   paths["/v1/public/appointments/{appointment_id}/cancellation_reasons"]["get"]["parameters"];
 
-interface Options {
+interface Options
+  extends QueryOptionsFor<
+    "get",
+    "/v1/public/appointments/{appointment_id}/cancellation_reasons"
+  > {
   client?: Client;
-  enabled?: boolean;
 }
 
 export const usePublicCancellationReasons = (
   appointment_id: PublicCancellationReasonsParams["path"]["appointment_id"],
   options?: Options,
 ) => {
-  const client = useSavvyCalClient(options?.client);
+  const { client: overrideClient, ...queryOptions } = options ?? {};
+  const client = useSavvyCalClient(overrideClient);
 
   return client.useQuery(
     "get",
@@ -29,6 +33,6 @@ export const usePublicCancellationReasons = (
         path: { appointment_id },
       },
     },
-    { enabled: options?.enabled },
+    queryOptions,
   );
 };

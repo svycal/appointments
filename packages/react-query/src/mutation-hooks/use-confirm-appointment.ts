@@ -4,16 +4,23 @@
  */
 
 import { useSavvyCalClient } from "../provider";
-import type { Client } from "../client";
+import type { Client, MutationOptionsFor } from "../client";
 
-interface Options {
+interface Options
+  extends MutationOptionsFor<
+    "post",
+    "/v1/appointments/{appointment_id}/confirm"
+  > {
   client?: Client;
 }
 
 export const useConfirmAppointment = (options?: Options) => {
-  const client = useSavvyCalClient(options?.client);
+  const { client: overrideClient, ...mutationOptions } = options ?? {};
+  const client = useSavvyCalClient(overrideClient);
+
   return client.useMutation(
     "post",
     "/v1/appointments/{appointment_id}/confirm",
+    mutationOptions,
   );
 };

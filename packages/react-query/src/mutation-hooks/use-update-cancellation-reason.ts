@@ -4,16 +4,23 @@
  */
 
 import { useSavvyCalClient } from "../provider";
-import type { Client } from "../client";
+import type { Client, MutationOptionsFor } from "../client";
 
-interface Options {
+interface Options
+  extends MutationOptionsFor<
+    "patch",
+    "/v1/cancellation_reasons/{cancellation_reason_id}"
+  > {
   client?: Client;
 }
 
 export const useUpdateCancellationReason = (options?: Options) => {
-  const client = useSavvyCalClient(options?.client);
+  const { client: overrideClient, ...mutationOptions } = options ?? {};
+  const client = useSavvyCalClient(overrideClient);
+
   return client.useMutation(
     "patch",
     "/v1/cancellation_reasons/{cancellation_reason_id}",
+    mutationOptions,
   );
 };
