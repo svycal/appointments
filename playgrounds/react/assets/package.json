@@ -7,6 +7,7 @@
     "css:deploy": "tailwindcss -i ./css/app.css -o ../priv/static/assets/css/app.css --minify"
   },
   "dependencies": {
+    "@date-fns/tz": "^1.4.1",
     "@inertiajs/core": "^2.2.18",
     "@inertiajs/react": "^2.2.18",
     "@radix-ui/react-slot": "^1.2.4",
@@ -19,6 +20,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.555.0",
+    "radix-ui": "^1.4.3",
     "react": "^19.2.0",
     "react-day-picker": "^9.11.3",
     "react-dom": "^19.2.0",
