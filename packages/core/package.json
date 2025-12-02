@@ -17,7 +17,8 @@
     "dist"
   ],
   "scripts": {
-    "generate-schema": "openapi-typescript https://api.savvycal.app/v1/spec --output ./src/schema.d.ts && prettier --write ./src/schema.d.ts",
+    "generate:schema": "openapi-typescript https://api.savvycal.app/v1/spec --output ./src/schema.d.ts && prettier --write ./src/schema.d.ts",
+    "generate:schema-types": "tsx scripts/generate-schema-types.ts",
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
   },
@@ -34,7 +35,9 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^22.10.2",
     "openapi-typescript": "^7.10.1",
+    "tsx": "^4.19.2",
     "typescript": "^5.9.3"
   },
   "dependencies": {

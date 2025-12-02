@@ -4,6 +4,7 @@ import createFetchClient, {
 import type { paths } from "./schema";
 
 export type { paths };
+export * from "./schema-types";
 
 const DEFAULT_BASE_URL = "https://api.savvycal.app";
 
