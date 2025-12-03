@@ -17,6 +17,7 @@ export { useClients } from "./query-hooks/use-clients";
 export { useCurrentAccount } from "./query-hooks/use-current-account";
 export { useCurrentAccountUser } from "./query-hooks/use-current-account-user";
 export { useCurrentPlatform } from "./query-hooks/use-current-platform";
+export { useEarliestPublicServiceSlot } from "./query-hooks/use-earliest-public-service-slot";
 export { useProvider } from "./query-hooks/use-provider";
 export { useProviders } from "./query-hooks/use-providers";
 export { useProviderSchedule } from "./query-hooks/use-provider-schedule";

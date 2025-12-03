@@ -348,6 +348,26 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/v1/public/services/{service_id}/earliest_slot": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get earliest available slot
+     * @description Get the earliest available time slot for a service, useful for displaying next available appointment.
+     */
+    get: operations["getEarliestPublicServiceSlot"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/v1/cancellation_reasons/{cancellation_reason_id}": {
     parameters: {
       query?: never;
@@ -3531,6 +3551,40 @@ export interface components {
        * @description Time at which the object was last updated.
        */
       updated_at: string;
+    };
+    /**
+     * PublicServiceEarliestSlotResponse
+     * @description Response schema for the earliest available service slot via the public API
+     * @example {
+     *       "data": {
+     *         "end_at": "2025-03-10T10:00:00Z",
+     *         "end_at_ts": 1736464800,
+     *         "object": "slot",
+     *         "start_at": "2025-03-10T09:00:00Z",
+     *         "start_at_ts": 1736461200,
+     *         "time_zone": "Etc/UTC"
+     *       }
+     *     }
+     */
+    PublicServiceEarliestSlotResponse: {
+      /** @description The earliest available slot, or null if no slots are available */
+      data: {
+        /** Format: date-time */
+        end_at: string;
+        /** @description Unix timestamp in seconds */
+        end_at_ts: number;
+        /**
+         * @description String representing the object's type.
+         * @enum {string}
+         */
+        object: "slot";
+        /** Format: date-time */
+        start_at: string;
+        /** @description Unix timestamp in seconds */
+        start_at_ts: number;
+        /** @description IANA time zone name */
+        time_zone: string;
+      } | null;
     };
     /**
      * UpdateProviderRequest
@@ -14260,7 +14314,7 @@ export interface components {
        * @description The local time zone for the appointment (IANA format).
        * @example America/New_York
        */
-      time_zone?: string;
+      time_zone: string;
       /**
        * @description Whether to validate the slot availability for the appointment.
        * @default true
@@ -15751,7 +15805,7 @@ export interface components {
        * @description The local time zone for the appointment (IANA format).
        * @example America/New_York
        */
-      time_zone?: string;
+      time_zone: string;
     };
     /**
      * UpdateCancellationReasonRequest
@@ -19762,6 +19816,76 @@ export interface operations {
         };
         content: {
           "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+    };
+  };
+  getEarliestPublicServiceSlot: {
+    parameters: {
+      query?: {
+        /**
+         * @description Time zone for the slot (IANA format)
+         * @example "America/New_York"
+         */
+        time_zone?: string;
+        /**
+         * @description Filter slot by specific provider ID
+         * @example prv_123456789012
+         */
+        provider_id?: string;
+      };
+      header?: {
+        /**
+         * @description When authenticating with a platform token, specifies the account ID for the request
+         * @example acct_1234567890
+         */
+        "X-SavvyCal-Account"?: string;
+      };
+      path: {
+        /**
+         * @description Service ID
+         * @example srv_123456789012
+         */
+        service_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Success */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["PublicServiceEarliestSlotResponse"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["UnauthorizedResponse"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["NotFoundResponse"];
+        };
+      };
+      /** @description Unprocessable Entity */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["JsonErrorResponse"];
         };
       };
     };

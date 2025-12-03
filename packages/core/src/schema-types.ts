@@ -84,6 +84,8 @@ export type PublicAppointmentResponse = Schemas["PublicAppointmentResponse"];
 export type PublicCancellationReason = Schemas["PublicCancellationReason"];
 export type PublicCancellationReasonsResponse =
   Schemas["PublicCancellationReasonsResponse"];
+export type PublicServiceEarliestSlotResponse =
+  Schemas["PublicServiceEarliestSlotResponse"];
 export type PublicServiceSlotsResponse = Schemas["PublicServiceSlotsResponse"];
 export type RecurrenceRule = Schemas["RecurrenceRule"];
 export type RescheduleAppointmentRequest =
