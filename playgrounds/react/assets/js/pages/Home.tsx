@@ -4,6 +4,7 @@ import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  GlobeIcon,
 } from "lucide-react";
 import type { Slot } from "@savvycal/appointments-core";
 import {
@@ -20,7 +21,7 @@ import {
   intlFormat,
   format,
 } from "date-fns";
-import { tz } from "@date-fns/tz";
+import { tz, tzName } from "@date-fns/tz";
 import { RadioGroup } from "radix-ui";
 import clsx from "clsx";
 
@@ -102,91 +103,106 @@ const Home = () => {
   };
 
   return (
-    <div className="flex gap-8 p-12 [--nav-height:--spacing(11)]">
-      <DayPicker
-        animate
-        disabled={(date) => !dateHasSlots(date)}
-        mode="single"
-        selected={selectedDay}
-        onSelect={setSelectedDay}
-        month={month}
-        formatters={{
-          formatWeekdayName: (weekday) =>
-            weekday.toLocaleString("default", { weekday: "short" }),
-        }}
-        classNames={{
-          root: clsx(
-            defaultClassNames.root,
-            "[--rdp-nav-height:var(--nav-height)]",
-          ),
-          month_caption: clsx(
-            defaultClassNames.month_caption,
-            "flex items-center justify-center",
-          ),
-          caption_label: clsx(
-            defaultClassNames.caption_label,
-            "text-base font-semibold text-zinc-900",
-          ),
-          nav: clsx(defaultClassNames.nav, "w-full flex justify-between"),
-          button_next: clsx(
-            defaultClassNames.button_next,
-            "size-(--rdp-day_button-width)",
-          ),
-          button_previous: clsx(
-            defaultClassNames.button_previous,
-            "size-(--rdp-day_button-width)",
-          ),
-          chevron: clsx("text-zinc-900"),
-          today: clsx(defaultClassNames.today, "text-zinc-900"),
-          day: clsx(defaultClassNames.day, "group"),
-          month_grid: clsx(defaultClassNames.month_grid),
-          selected: "",
-          day_button: clsx(
-            defaultClassNames.day_button,
-            "rounded-md",
-            "group-[:not([data-disabled])]:bg-zinc-200 group-[:not([data-disabled])]:font-medium",
-            "group-[:not([data-selected])]:text-zinc-800",
-            "group-[[data-selected]]:bg-zinc-900 group-[[data-selected]]:text-white",
-          ),
-          disabled: clsx(
-            defaultClassNames.disabled,
-            "text-zinc-600 line-through",
-          ),
-        }}
-        components={{
-          Chevron: ({ className, orientation, ...props }) => {
-            if (orientation === "left") {
+    <div className="flex flex-wrap gap-8 p-12 [--nav-height:--spacing(11)]">
+      <div>
+        <DayPicker
+          animate
+          disabled={(date) => !dateHasSlots(date)}
+          mode="single"
+          selected={selectedDay}
+          onSelect={setSelectedDay}
+          month={month}
+          formatters={{
+            formatWeekdayName: (weekday) =>
+              weekday.toLocaleString("default", { weekday: "short" }),
+          }}
+          classNames={{
+            root: clsx(
+              defaultClassNames.root,
+              "[--rdp-nav-height:var(--nav-height)]",
+            ),
+            month_caption: clsx(
+              defaultClassNames.month_caption,
+              "flex items-center justify-center",
+            ),
+            caption_label: clsx(
+              defaultClassNames.caption_label,
+              "text-base font-semibold text-zinc-900",
+            ),
+            nav: clsx(defaultClassNames.nav, "w-full flex justify-between"),
+            button_next: clsx(
+              defaultClassNames.button_next,
+              "rounded-md hover:bg-zinc-100 active:bg-zinc-200",
+              "size-(--rdp-day_button-width)",
+            ),
+            button_previous: clsx(
+              defaultClassNames.button_previous,
+              "rounded-md hover:bg-zinc-100 active:bg-zinc-200",
+              "size-(--rdp-day_button-width)",
+            ),
+            chevron: clsx("text-zinc-900"),
+            today: clsx(defaultClassNames.today, "text-zinc-900"),
+            day: clsx(defaultClassNames.day, "group"),
+            month_grid: clsx(defaultClassNames.month_grid),
+            selected: "",
+            day_button: clsx(
+              defaultClassNames.day_button,
+              "rounded-md",
+              "group-[:not([data-disabled])]:bg-zinc-200 group-[:not([data-disabled])]:font-medium",
+              "group-[:not([data-selected])]:text-zinc-800",
+              "group-[[data-selected]]:bg-zinc-900 group-[[data-selected]]:text-white",
+            ),
+            disabled: clsx(
+              defaultClassNames.disabled,
+              "text-zinc-600 line-through",
+            ),
+            week: "grid grid-cols-7 gap-0.5",
+            weekdays: "grid grid-cols-7 gap-0.5",
+            weeks: "flex flex-col gap-0.5",
+          }}
+          components={{
+            Chevron: ({ className, orientation, ...props }) => {
+              if (orientation === "left") {
+                return (
+                  <ChevronLeftIcon
+                    className={clsx("size-5", className)}
+                    {...props}
+                  />
+                );
+              }
+
+              if (orientation === "right") {
+                return (
+                  <ChevronRightIcon
+                    className={clsx("size-5", className)}
+                    {...props}
+                  />
+                );
+              }
+
               return (
-                <ChevronLeftIcon
+                <ChevronDownIcon
                   className={clsx("size-5", className)}
                   {...props}
                 />
               );
-            }
-
-            if (orientation === "right") {
-              return (
-                <ChevronRightIcon
-                  className={clsx("size-5", className)}
-                  {...props}
-                />
-              );
-            }
-
-            return (
-              <ChevronDownIcon
-                className={clsx("size-5", className)}
-                {...props}
-              />
-            );
-          },
-        }}
-        onMonthChange={(month) => {
-          setMonth(month);
-          setSelectedDay(undefined);
-          setSelectedSlot(undefined);
-        }}
-      />
+            },
+          }}
+          onMonthChange={(month) => {
+            setMonth(month);
+            setSelectedDay(undefined);
+            setSelectedSlot(undefined);
+          }}
+        />
+        {timeZone && (
+          <div className="flex items-center justify-center gap-2 mt-6 text-sm">
+            <GlobeIcon className="size-4 text-zinc-500" />
+            <span className="text-zinc-500">
+              {tzName(timeZone, selectedDay ?? new Date(), "long")}
+            </span>
+          </div>
+        )}
+      </div>
       {selectedDay && slotsOnSelectedDay && timeZone && (
         <div className="grow">
           <form onSubmit={handleSubmit}>
@@ -227,7 +243,12 @@ const Home = () => {
             <div className="mt-6">
               <button
                 type="submit"
-                className="rounded-md w-full bg-zinc-900 hover:bg-zinc-800 active:brightness-90 focus-visible:ring-3 focus-visible:ring-zinc-900/25 cursor-pointer text-white px-6 py-3 focus:outline-none"
+                className={clsx(
+                  "rounded-md w-full cursor-pointer text-white px-6 py-3 bg-zinc-900",
+                  "hover:not-disabled:bg-zinc-800 active:not-disabled:brightness-90",
+                  "focus-visible:ring-3 focus-visible:ring-zinc-900/25 focus:outline-none",
+                  "disabled:opacity-50 disabled:cursor-not-allowed",
+                )}
                 disabled={!selectedSlot || isCreating}
               >
                 {isCreating ? "Submitting..." : "Book appointment"}
