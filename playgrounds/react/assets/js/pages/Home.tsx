@@ -147,7 +147,7 @@ const Home = () => {
             selected: "",
             day_button: clsx(
               defaultClassNames.day_button,
-              "rounded-md",
+              "rounded-md text-zinc-900",
               "group-[:not([data-disabled])]:bg-zinc-200 group-[:not([data-disabled])]:font-medium",
               "group-[:not([data-selected])]:text-zinc-800",
               "group-[[data-selected]]:bg-zinc-900 group-[[data-selected]]:text-white",
@@ -158,6 +158,7 @@ const Home = () => {
             ),
             week: "grid grid-cols-7 gap-0.5",
             weekdays: "grid grid-cols-7 gap-0.5",
+            weekday: clsx(defaultClassNames.weekday, "py-3 text-zinc-900"),
             weeks: "flex flex-col gap-0.5",
           }}
           components={{
