@@ -10,6 +10,7 @@ import type { Slot } from "@savvycal/appointments-core";
 import {
   usePublicServiceSlots,
   useCreatePublicAppointment,
+  useEarliestPublicServiceSlot,
 } from "@savvycal/appointments-react-query";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import {
@@ -37,14 +38,31 @@ const Home = () => {
     setTimeZone(new Intl.DateTimeFormat().resolvedOptions().timeZone);
   }, []);
 
-  const [month, setMonth] = useState<Date>(startOfMonth(new Date()));
+  const [month, setMonth] = useState<Date>();
   const [selectedDay, setSelectedDay] = useState<Date>();
   const [selectedSlot, setSelectedSlot] = useState<Slot>();
 
-  const { data, isLoading, refetch } = usePublicServiceSlots(SERVICE_ID, {
-    from: formatISO(month, { representation: "date" }),
-    until: formatISO(endOfMonth(month), { representation: "date" }),
-  });
+  const { data: earliestSlot } = useEarliestPublicServiceSlot(SERVICE_ID);
+
+  useEffect(() => {
+    if (earliestSlot?.data) {
+      if (!month && !selectedDay) {
+        setMonth(startOfMonth(earliestSlot.data.start_at));
+        setSelectedDay(fromUnixTime(earliestSlot.data.start_at_ts));
+      }
+    }
+  }, [earliestSlot?.data?.start_at_ts]);
+
+  const { data, isLoading, refetch } = usePublicServiceSlots(
+    SERVICE_ID,
+    {
+      from: month ? formatISO(month, { representation: "date" }) : "",
+      until: month
+        ? formatISO(endOfMonth(month), { representation: "date" })
+        : "",
+    },
+    { enabled: !!month },
+  );
 
   const { mutate: createPublicAppointment, isPending: isCreating } =
     useCreatePublicAppointment({
@@ -110,7 +128,13 @@ const Home = () => {
           disabled={(date) => !dateHasSlots(date)}
           mode="single"
           selected={selectedDay}
-          onSelect={setSelectedDay}
+          onSelect={(day) => {
+            setSelectedDay(day);
+
+            if (day && selectedSlot && !isSameDay(selectedSlot.start_at, day)) {
+              setSelectedSlot(undefined);
+            }
+          }}
           month={month}
           formatters={{
             formatWeekdayName: (weekday) =>
