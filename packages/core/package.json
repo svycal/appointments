@@ -20,7 +20,8 @@
     "generate:schema": "openapi-typescript https://api.savvycal.app/v1/spec --output ./src/schema.d.ts && prettier --write ./src/schema.d.ts",
     "generate:schema-types": "tsx scripts/generate-schema-types.ts",
     "build": "tsup src/index.ts --format esm,cjs --dts",
-    "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "savvycal",
