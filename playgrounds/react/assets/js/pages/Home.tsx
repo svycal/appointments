@@ -1,11 +1,16 @@
 import React, { ReactNode, useState, useEffect, useMemo } from "react";
 import { RootLayout } from "../layouts/root-layout";
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "lucide-react";
 import type { Slot } from "@savvycal/appointments-core";
 import {
   usePublicServiceSlots,
   useCreatePublicAppointment,
 } from "@savvycal/appointments-react-query";
-import { DayPicker } from "react-day-picker";
+import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import {
   formatISO,
   endOfMonth,
@@ -17,12 +22,14 @@ import {
 } from "date-fns";
 import { tz } from "@date-fns/tz";
 import { RadioGroup } from "radix-ui";
+import clsx from "clsx";
 
 const SERVICE_ID = "srv_28f3a4bd5986";
 const NAIVE_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
 const Home = () => {
   const [timeZone, setTimeZone] = useState<string>();
+  const defaultClassNames = getDefaultClassNames();
 
   // Infer the browser's time zone
   useEffect(() => {
@@ -95,7 +102,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex gap-6 p-12">
+    <div className="flex gap-8 p-12 [--nav-height:--spacing(11)]">
       <DayPicker
         animate
         disabled={(date) => !dateHasSlots(date)}
@@ -103,6 +110,77 @@ const Home = () => {
         selected={selectedDay}
         onSelect={setSelectedDay}
         month={month}
+        formatters={{
+          formatWeekdayName: (weekday) =>
+            weekday.toLocaleString("default", { weekday: "short" }),
+        }}
+        classNames={{
+          root: clsx(
+            defaultClassNames.root,
+            "[--rdp-nav-height:var(--nav-height)]",
+          ),
+          month_caption: clsx(
+            defaultClassNames.month_caption,
+            "flex items-center justify-center",
+          ),
+          caption_label: clsx(
+            defaultClassNames.caption_label,
+            "text-base font-semibold text-zinc-900",
+          ),
+          nav: clsx(defaultClassNames.nav, "w-full flex justify-between"),
+          button_next: clsx(
+            defaultClassNames.button_next,
+            "size-(--rdp-day_button-width)",
+          ),
+          button_previous: clsx(
+            defaultClassNames.button_previous,
+            "size-(--rdp-day_button-width)",
+          ),
+          chevron: clsx("text-zinc-900"),
+          today: clsx(defaultClassNames.today, "text-zinc-900"),
+          day: clsx(defaultClassNames.day, "group"),
+          month_grid: clsx(defaultClassNames.month_grid),
+          selected: "",
+          day_button: clsx(
+            defaultClassNames.day_button,
+            "rounded-md",
+            "group-[:not([data-disabled])]:bg-zinc-200 group-[:not([data-disabled])]:font-medium",
+            "group-[:not([data-selected])]:text-zinc-800",
+            "group-[[data-selected]]:bg-zinc-900 group-[[data-selected]]:text-white",
+          ),
+          disabled: clsx(
+            defaultClassNames.disabled,
+            "text-zinc-600 line-through",
+          ),
+        }}
+        components={{
+          Chevron: ({ className, orientation, ...props }) => {
+            if (orientation === "left") {
+              return (
+                <ChevronLeftIcon
+                  className={clsx("size-5", className)}
+                  {...props}
+                />
+              );
+            }
+
+            if (orientation === "right") {
+              return (
+                <ChevronRightIcon
+                  className={clsx("size-5", className)}
+                  {...props}
+                />
+              );
+            }
+
+            return (
+              <ChevronDownIcon
+                className={clsx("size-5", className)}
+                {...props}
+              />
+            );
+          },
+        }}
         onMonthChange={(month) => {
           setMonth(month);
           setSelectedDay(undefined);
@@ -112,15 +190,17 @@ const Home = () => {
       {selectedDay && slotsOnSelectedDay && timeZone && (
         <div className="grow">
           <form onSubmit={handleSubmit}>
-            <h2 className="text-center font-semibold">
-              {intlFormat(selectedDay, {
-                day: "numeric",
-                month: "long",
-                weekday: "long",
-              })}
-            </h2>
+            <div className="flex items-center justify-center h-(--nav-height)">
+              <h2 className="text-center font-semibold">
+                {intlFormat(selectedDay, {
+                  day: "numeric",
+                  month: "long",
+                  weekday: "long",
+                })}
+              </h2>
+            </div>
             <RadioGroup.Root
-              className="mt-6 grid gap-2 sm:grid-cols-2 md:grid-cols-3"
+              className="mt-3 grid gap-2 sm:grid-cols-2 md:grid-cols-3"
               value={selectedSlot?.start_at || null}
               onValueChange={(value) =>
                 setSelectedSlot(
@@ -137,7 +217,7 @@ const Home = () => {
                     value={slot.start_at}
                     className="rounded-md ring-inset ring-1 ring-zinc-900/30  focus:outline-none hover:bg-zinc-900/5 data-[state=checked]:ring-zinc-900 data-[state=checked]:ring-2 focus-visible:ring-3 focus-visible:ring-zinc-900/25"
                   >
-                    <label className="flex px-6 py-3 cursor-pointer justify-center">
+                    <label className="flex px-6 py-2 cursor-pointer justify-center text-base">
                       {intlFormat(slotStartAt, { timeStyle: "short" })}
                     </label>
                   </RadioGroup.Item>
