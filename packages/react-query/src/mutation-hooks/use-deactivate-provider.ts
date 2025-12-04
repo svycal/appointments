@@ -3,18 +3,18 @@
  * Do not make direct changes to the file.
  */
 
-import type { Client, MutationOptionsFor } from "../client";
+import type { MutationOptionsFor, QueryClient } from "../client";
 
-import { useSavvyCalClient } from "../provider";
+import { useSavvyCalQueryClient } from "../provider";
 
 interface Options
   extends MutationOptionsFor<"delete", "/v1/providers/{provider_id}"> {
-  client?: Client;
+  client?: QueryClient;
 }
 
 export const useDeactivateProvider = (options?: Options) => {
   const { client: overrideClient, ...mutationOptions } = options ?? {};
-  const client = useSavvyCalClient(overrideClient);
+  const client = useSavvyCalQueryClient(overrideClient);
 
   return client.useMutation(
     "delete",

@@ -1,11 +1,8 @@
 import { Head, usePage } from "@inertiajs/react";
-import {
-  createClient,
-  SavvyCalProvider,
-} from "@savvycal/appointments-react-query";
+import { SavvyCalProvider } from "@savvycal/appointments-react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import React, { ReactNode, useMemo, useState } from "react";
+import React, { ReactNode, useState } from "react";
 
 export const RootLayout = ({ children }: { children: ReactNode }) => {
   const page = usePage<{
@@ -15,22 +12,16 @@ export const RootLayout = ({ children }: { children: ReactNode }) => {
 
   const [queryClient] = useState(() => new QueryClient());
 
-  const client = useMemo(
-    () =>
-      createClient({
-        apiKey: page.props.savvycalToken,
-        baseUrl: "http://localhost:4002",
-      }),
-    [page.props.savvycalToken],
-  );
-
   return (
     <>
       <Head>
         <title>{page.props.pageTitle}</title>
       </Head>
       <QueryClientProvider client={queryClient}>
-        <SavvyCalProvider client={client}>
+        <SavvyCalProvider
+          apiKey={page.props.savvycalToken}
+          baseUrl="http://localhost:4002"
+        >
           {children}
           <ReactQueryDevtools />
         </SavvyCalProvider>

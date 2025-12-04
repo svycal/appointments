@@ -146,9 +146,9 @@ function generateHookFile(op: OperationInfo): string {
     ` * Do not make direct changes to the file.`,
     ` */`,
     ``,
-    `import { paths } from '@savvycal/appointments-core';`,
-    `import { useSavvyCalClient } from '../provider';`,
-    `import type { Client, QueryOptionsFor } from '../client';`,
+    `import type { paths } from '@savvycal/appointments-core';`,
+    `import { useSavvyCalQueryClient } from '../provider';`,
+    `import type { QueryClient, QueryOptionsFor } from '../client';`,
     ``,
   ];
 
@@ -161,7 +161,7 @@ function generateHookFile(op: OperationInfo): string {
   lines.push(
     `interface Options extends QueryOptionsFor<'${op.method}', '${op.path}'> {`,
   );
-  lines.push(`  client?: Client;`);
+  lines.push(`  client?: QueryClient;`);
   lines.push(`}`);
   lines.push(``);
 
@@ -190,7 +190,7 @@ function generateHookFile(op: OperationInfo): string {
   lines.push(
     `  const { client: overrideClient, ...queryOptions } = options ?? {};`,
   );
-  lines.push(`  const client = useSavvyCalClient(overrideClient);`);
+  lines.push(`  const client = useSavvyCalQueryClient(overrideClient);`);
   lines.push(``);
 
   // Build the params object for the query

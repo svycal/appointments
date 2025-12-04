@@ -1,26 +1,45 @@
-import React, { createContext, ReactNode, useContext } from "react";
+import {
+  createFetchClient,
+  type FetchClient,
+  type FetchClientOptions,
+} from "@savvycal/appointments-core";
+import React, { createContext, ReactNode, useContext, useMemo } from "react";
 
-import { Client } from "./client";
+import { createQueryClient, type QueryClient } from "./client";
 
-const SavvyCalContext = createContext<Client | undefined>(undefined);
+interface SavvyCalContextData {
+  fetchClient: FetchClient;
+  queryClient: QueryClient;
+}
+
+const SavvyCalContext = createContext<SavvyCalContextData | undefined>(
+  undefined,
+);
 SavvyCalContext.displayName = "SavvyCalContext";
 
-export interface SavvyCalProviderProps {
+export interface SavvyCalProviderProps extends FetchClientOptions {
   children: ReactNode;
-  client: Client;
 }
 
 /**
  * Provider component to make the SavvyCal client available to its children.
- * @param children - The child components that will have access to the client.
- * @param client - The SavvyCal client instance.
  */
 export const SavvyCalProvider = ({
   children,
-  client,
+  ...clientOptions
 }: SavvyCalProviderProps) => {
+  const fetchClient = useMemo(
+    () => createFetchClient(clientOptions),
+    [clientOptions],
+  );
+
+  const queryClient = useMemo(
+    () => createQueryClient(fetchClient),
+    [fetchClient],
+  );
+
   return (
-    <SavvyCalContext.Provider value={client}>
+    <SavvyCalContext.Provider value={{ fetchClient, queryClient }}>
       {children}
     </SavvyCalContext.Provider>
   );
@@ -29,17 +48,37 @@ export const SavvyCalProvider = ({
 SavvyCalProvider.displayName = "SavvyCalProvider";
 
 /**
- * Hook to access the SavvyCal client instance.
+ * Hook to access the SavvyCal query client instance.
  * @param overrideClient - Optional client to use instead of the one from context.
- * @returns The SavvyCal client instance.
+ * @returns The SavvyCal query client instance.
  * @throws Error if used outside of a `SavvyCalProvider` and no override client is provided.
  */
-export const useSavvyCalClient = (overrideClient?: Client) => {
+export const useSavvyCalQueryClient = (overrideClient?: QueryClient) => {
   const context = useContext(SavvyCalContext);
 
   if (context === undefined && !overrideClient) {
-    throw new Error("useSavvyCalClient must be used within a SavvyCalProvider");
+    throw new Error(
+      "useSavvyCalQueryClient must be used within a SavvyCalProvider",
+    );
   }
 
-  return overrideClient || context!;
+  return overrideClient || context!.queryClient;
+};
+
+/**
+ * Hook to access the SavvyCal fetch client instance.
+ * @param overrideClient - Optional client to use instead of the one from context.
+ * @returns The SavvyCal fetch client instance.
+ * @throws Error if used outside of a `SavvyCalProvider` and no override client is provided.
+ */
+export const useSavvyCalFetchClient = (overrideClient?: FetchClient) => {
+  const context = useContext(SavvyCalContext);
+
+  if (context === undefined && !overrideClient) {
+    throw new Error(
+      "useSavvyCalFetchClient must be used within a SavvyCalProvider",
+    );
+  }
+
+  return overrideClient || context!.fetchClient;
 };

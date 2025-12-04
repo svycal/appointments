@@ -3,18 +3,18 @@
  * Do not make direct changes to the file.
  */
 
-import { paths } from "@savvycal/appointments-core";
+import type { paths } from "@savvycal/appointments-core";
 
-import type { Client, QueryOptionsFor } from "../client";
+import type { QueryClient, QueryOptionsFor } from "../client";
 
-import { useSavvyCalClient } from "../provider";
+import { useSavvyCalQueryClient } from "../provider";
 
 export type PublicServiceSlotsParams =
   paths["/v1/public/services/{service_id}/slots"]["get"]["parameters"];
 
 interface Options
   extends QueryOptionsFor<"get", "/v1/public/services/{service_id}/slots"> {
-  client?: Client;
+  client?: QueryClient;
 }
 
 export const usePublicServiceSlots = (
@@ -23,7 +23,7 @@ export const usePublicServiceSlots = (
   options?: Options,
 ) => {
   const { client: overrideClient, ...queryOptions } = options ?? {};
-  const client = useSavvyCalClient(overrideClient);
+  const client = useSavvyCalQueryClient(overrideClient);
 
   return client.useQuery(
     "get",

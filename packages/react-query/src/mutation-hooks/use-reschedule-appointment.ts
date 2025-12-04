@@ -3,21 +3,21 @@
  * Do not make direct changes to the file.
  */
 
-import type { Client, MutationOptionsFor } from "../client";
+import type { MutationOptionsFor, QueryClient } from "../client";
 
-import { useSavvyCalClient } from "../provider";
+import { useSavvyCalQueryClient } from "../provider";
 
 interface Options
   extends MutationOptionsFor<
     "post",
     "/v1/appointments/{appointment_id}/reschedule"
   > {
-  client?: Client;
+  client?: QueryClient;
 }
 
 export const useRescheduleAppointment = (options?: Options) => {
   const { client: overrideClient, ...mutationOptions } = options ?? {};
-  const client = useSavvyCalClient(overrideClient);
+  const client = useSavvyCalQueryClient(overrideClient);
 
   return client.useMutation(
     "post",

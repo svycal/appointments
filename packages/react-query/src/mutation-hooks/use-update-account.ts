@@ -3,18 +3,18 @@
  * Do not make direct changes to the file.
  */
 
-import type { Client, MutationOptionsFor } from "../client";
+import type { MutationOptionsFor, QueryClient } from "../client";
 
-import { useSavvyCalClient } from "../provider";
+import { useSavvyCalQueryClient } from "../provider";
 
 interface Options
   extends MutationOptionsFor<"patch", "/v1/accounts/{account_id}"> {
-  client?: Client;
+  client?: QueryClient;
 }
 
 export const useUpdateAccount = (options?: Options) => {
   const { client: overrideClient, ...mutationOptions } = options ?? {};
-  const client = useSavvyCalClient(overrideClient);
+  const client = useSavvyCalQueryClient(overrideClient);
 
   return client.useMutation(
     "patch",

@@ -3,11 +3,11 @@
  * Do not make direct changes to the file.
  */
 
-import { paths } from "@savvycal/appointments-core";
+import type { paths } from "@savvycal/appointments-core";
 
-import type { Client, QueryOptionsFor } from "../client";
+import type { QueryClient, QueryOptionsFor } from "../client";
 
-import { useSavvyCalClient } from "../provider";
+import { useSavvyCalQueryClient } from "../provider";
 
 export type CancellationReasonParams =
   paths["/v1/cancellation_reasons/{cancellation_reason_id}"]["get"]["parameters"];
@@ -17,7 +17,7 @@ interface Options
     "get",
     "/v1/cancellation_reasons/{cancellation_reason_id}"
   > {
-  client?: Client;
+  client?: QueryClient;
 }
 
 export const useCancellationReason = (
@@ -25,7 +25,7 @@ export const useCancellationReason = (
   options?: Options,
 ) => {
   const { client: overrideClient, ...queryOptions } = options ?? {};
-  const client = useSavvyCalClient(overrideClient);
+  const client = useSavvyCalQueryClient(overrideClient);
 
   return client.useQuery(
     "get",

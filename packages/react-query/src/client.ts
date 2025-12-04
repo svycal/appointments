@@ -1,3 +1,4 @@
+import type { FetchClient, paths } from "@savvycal/appointments-core";
 import type {
   UseMutationOptions,
   UseQueryOptions,
@@ -9,12 +10,7 @@ import type {
   PathsWithMethod,
 } from "openapi-typescript-helpers";
 
-import {
-  ClientOptions,
-  createClient as createFetchClient,
-  paths,
-} from "@savvycal/appointments-core";
-import createQueryClient from "openapi-react-query";
+import createClient from "openapi-react-query";
 
 /**
  * Creates a client with TanStack Query helpers for the SavvyCal Appointments API.
@@ -22,11 +18,9 @@ import createQueryClient from "openapi-react-query";
  * @param options - Configuration options for the client (optional)
  * @returns A configured API client with TanStack Query helpers
  */
-export const createClient = (options?: ClientOptions) => {
-  return createQueryClient(createFetchClient(options));
+export const createQueryClient = (fetchClient: FetchClient) => {
+  return createClient(fetchClient);
 };
-
-export type Client = ReturnType<typeof createClient>;
 
 /**
  * Helper type to extract the mutation options for a specific endpoint.
@@ -54,6 +48,8 @@ export type MutationOptionsFor<
   >,
   "mutationFn" | "mutationKey"
 >;
+
+export type QueryClient = ReturnType<typeof createQueryClient>;
 
 /**
  * Helper type to extract the query options for a specific endpoint.

@@ -3,16 +3,16 @@
  * Do not make direct changes to the file.
  */
 
-import { paths } from "@savvycal/appointments-core";
+import type { paths } from "@savvycal/appointments-core";
 
-import type { Client, QueryOptionsFor } from "../client";
+import type { QueryClient, QueryOptionsFor } from "../client";
 
-import { useSavvyCalClient } from "../provider";
+import { useSavvyCalQueryClient } from "../provider";
 
 export type BlockParams = paths["/v1/blocks/{block_id}"]["get"]["parameters"];
 
 interface Options extends QueryOptionsFor<"get", "/v1/blocks/{block_id}"> {
-  client?: Client;
+  client?: QueryClient;
 }
 
 export const useBlock = (
@@ -20,7 +20,7 @@ export const useBlock = (
   options?: Options,
 ) => {
   const { client: overrideClient, ...queryOptions } = options ?? {};
-  const client = useSavvyCalClient(overrideClient);
+  const client = useSavvyCalQueryClient(overrideClient);
 
   return client.useQuery(
     "get",
