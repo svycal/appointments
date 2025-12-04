@@ -13,6 +13,7 @@ pnpm install
 Run the development server:
 
 ```bash
+cd components/react
 pnpm dev
 ```
 

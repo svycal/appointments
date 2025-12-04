@@ -59,6 +59,9 @@ importers:
       '@savvycal/appointments-react-query':
         specifier: workspace:*
         version: link:../../packages/react-query
+      '@savvycal/appointments-utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@tailwindcss/vite':
         specifier: ^4.1.17
         version: 4.1.17(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.20.6))
@@ -164,6 +167,21 @@ importers:
       react:
         specifier: ^19.2.0
         version: 19.2.0
+      tsx:
+        specifier: ^4.19.2
+        version: 4.20.6
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/utils:
+    devDependencies:
+      '@date-fns/tz':
+        specifier: ^1.4.1
+        version: 1.4.1
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       tsx:
         specifier: ^4.19.2
         version: 4.20.6
