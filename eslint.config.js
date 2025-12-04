@@ -3,7 +3,7 @@ import globals from "globals";
 import typescript from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
 import { defineConfig } from "eslint/config";
-// import perfectionist from "eslint-plugin-perfectionist";
+import perfectionist from "eslint-plugin-perfectionist";
 
 export default defineConfig([
   // Base ESLint recommended config
@@ -37,7 +37,6 @@ export default defineConfig([
     },
     plugins: {
       "@typescript-eslint": typescript,
-      // perfectionist,
     },
     rules: {
       // TypeScript ESLint recommended rules
@@ -50,4 +49,5 @@ export default defineConfig([
       // "@typescript-eslint/no-explicit-any": "warn",
     },
   },
+  perfectionist.configs["recommended-alphabetical"],
 ]);

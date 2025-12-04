@@ -3,8 +3,9 @@
  * Do not make direct changes to the file.
  */
 
-import { useSavvyCalClient } from "../provider";
 import type { Client, MutationOptionsFor } from "../client";
+
+import { useSavvyCalClient } from "../provider";
 
 interface Options extends MutationOptionsFor<"post", "/v1/dashboard_sessions"> {
   client?: Client;

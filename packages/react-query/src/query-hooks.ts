@@ -4,8 +4,8 @@
  */
 
 export { useAccountById } from "./query-hooks/use-account-by-id";
-export { useAccounts } from "./query-hooks/use-accounts";
 export { useAccountUsers } from "./query-hooks/use-account-users";
+export { useAccounts } from "./query-hooks/use-accounts";
 export { useAppointment } from "./query-hooks/use-appointment";
 export { useAppointments } from "./query-hooks/use-appointments";
 export { useBlock } from "./query-hooks/use-block";
@@ -19,14 +19,14 @@ export { useCurrentAccountUser } from "./query-hooks/use-current-account-user";
 export { useCurrentPlatform } from "./query-hooks/use-current-platform";
 export { useEarliestPublicServiceSlot } from "./query-hooks/use-earliest-public-service-slot";
 export { useProvider } from "./query-hooks/use-provider";
-export { useProviders } from "./query-hooks/use-providers";
 export { useProviderSchedule } from "./query-hooks/use-provider-schedule";
 export { useProviderSchedules } from "./query-hooks/use-provider-schedules";
+export { useProviders } from "./query-hooks/use-providers";
 export { usePublicAppointment } from "./query-hooks/use-public-appointment";
 export { usePublicCancellationReasons } from "./query-hooks/use-public-cancellation-reasons";
 export { usePublicServiceSlots } from "./query-hooks/use-public-service-slots";
 export { useRoles } from "./query-hooks/use-roles";
 export { useService } from "./query-hooks/use-service";
 export { useServiceProviders } from "./query-hooks/use-service-providers";
-export { useServices } from "./query-hooks/use-services";
 export { useServiceSlots } from "./query-hooks/use-service-slots";
+export { useServices } from "./query-hooks/use-services";

@@ -4,8 +4,10 @@
  */
 
 import { paths } from "@savvycal/appointments-core";
-import { useSavvyCalClient } from "../provider";
+
 import type { Client, QueryOptionsFor } from "../client";
+
+import { useSavvyCalClient } from "../provider";
 
 export type AppointmentParams =
   paths["/v1/appointments/{appointment_id}"]["get"]["parameters"];

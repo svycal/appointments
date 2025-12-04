@@ -1,4 +1,5 @@
-import React, { ReactNode, createContext, useContext } from "react";
+import React, { createContext, ReactNode, useContext } from "react";
+
 import { Client } from "./client";
 
 const SavvyCalContext = createContext<Client | undefined>(undefined);

@@ -1,19 +1,20 @@
-import {
-  createClient as createFetchClient,
-  ClientOptions,
-  paths,
-} from "@savvycal/appointments-core";
-import createQueryClient from "openapi-react-query";
 import type {
   UseMutationOptions,
   UseQueryOptions,
 } from "@tanstack/react-query";
-import type { MaybeOptionalInit, FetchResponse } from "openapi-fetch";
+import type { FetchResponse, MaybeOptionalInit } from "openapi-fetch";
 import type {
   HttpMethod,
-  PathsWithMethod,
   MediaType,
+  PathsWithMethod,
 } from "openapi-typescript-helpers";
+
+import {
+  ClientOptions,
+  createClient as createFetchClient,
+  paths,
+} from "@savvycal/appointments-core";
+import createQueryClient from "openapi-react-query";
 
 /**
  * Creates a client with TanStack Query helpers for the SavvyCal Appointments API.
@@ -51,7 +52,35 @@ export type MutationOptionsFor<
     GetResponseError<Path, Method, Media>,
     MaybeOptionalInit<paths[Path], Method>
   >,
-  "mutationKey" | "mutationFn"
+  "mutationFn" | "mutationKey"
+>;
+
+/**
+ * Helper type to extract the query options for a specific endpoint.
+ * This type reconstructs the exact shape of the options argument that client.useQuery expects
+ * for a given HTTP method and path combination.
+ *
+ * @example
+ * ```typescript
+ * type GetAppointmentOptions = QueryOptionsFor<"get", "/v1/appointments/{appointment_id}">;
+ *
+ * interface Options extends GetAppointmentOptions {
+ *   client?: Client;
+ * }
+ * ```
+ */
+export type QueryOptionsFor<
+  Method extends HttpMethod,
+  Path extends PathsWithMethod<paths, Method>,
+  Media extends MediaType = MediaType,
+> = Omit<
+  UseQueryOptions<
+    GetResponseData<Path, Method, Media>,
+    GetResponseError<Path, Method, Media>,
+    GetResponseData<Path, Method, Media>,
+    QueryKey<Path, Method>
+  >,
+  "queryFn" | "queryKey"
 >;
 
 // Helper type to safely extract response data
@@ -97,34 +126,6 @@ type GetResponseError<
       : never
     : never
   : never;
-
-/**
- * Helper type to extract the query options for a specific endpoint.
- * This type reconstructs the exact shape of the options argument that client.useQuery expects
- * for a given HTTP method and path combination.
- *
- * @example
- * ```typescript
- * type GetAppointmentOptions = QueryOptionsFor<"get", "/v1/appointments/{appointment_id}">;
- *
- * interface Options extends GetAppointmentOptions {
- *   client?: Client;
- * }
- * ```
- */
-export type QueryOptionsFor<
-  Method extends HttpMethod,
-  Path extends PathsWithMethod<paths, Method>,
-  Media extends MediaType = MediaType,
-> = Omit<
-  UseQueryOptions<
-    GetResponseData<Path, Method, Media>,
-    GetResponseError<Path, Method, Media>,
-    GetResponseData<Path, Method, Media>,
-    QueryKey<Path, Method>
-  >,
-  "queryKey" | "queryFn"
->;
 
 // Helper type for query keys
 type QueryKey<

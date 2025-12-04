@@ -5,15 +5,14 @@
 
 import { components } from "./schema";
 
-type Schemas = components["schemas"];
-
 export type Account = Schemas["Account"];
+
 export type AccountEvent = Schemas["AccountEvent"];
 export type AccountResponse = Schemas["AccountResponse"];
+export type AccountsResponse = Schemas["AccountsResponse"];
 export type AccountUser = Schemas["AccountUser"];
 export type AccountUserResponse = Schemas["AccountUserResponse"];
 export type AccountUsersResponse = Schemas["AccountUsersResponse"];
-export type AccountsResponse = Schemas["AccountsResponse"];
 export type AdvanceNoticePolicy = Schemas["AdvanceNoticePolicy"];
 export type AggregatedSlot = Schemas["AggregatedSlot"];
 export type Appointment = Schemas["Appointment"];
@@ -34,14 +33,14 @@ export type BlockResponse = Schemas["BlockResponse"];
 export type BlocksResponse = Schemas["BlocksResponse"];
 export type BookingPolicy = Schemas["BookingPolicy"];
 export type CancelAppointmentRequest = Schemas["CancelAppointmentRequest"];
-export type CancelPublicAppointmentRequest =
-  Schemas["CancelPublicAppointmentRequest"];
 export type CancellationEvent = Schemas["CancellationEvent"];
 export type CancellationPolicy = Schemas["CancellationPolicy"];
 export type CancellationReason = Schemas["CancellationReason"];
 export type CancellationReasonResponse = Schemas["CancellationReasonResponse"];
 export type CancellationReasonsResponse =
   Schemas["CancellationReasonsResponse"];
+export type CancelPublicAppointmentRequest =
+  Schemas["CancelPublicAppointmentRequest"];
 export type Client = Schemas["Client"];
 export type ClientResponse = Schemas["ClientResponse"];
 export type ClientsResponse = Schemas["ClientsResponse"];
@@ -118,3 +117,4 @@ export type UpdateServiceRequest = Schemas["UpdateServiceRequest"];
 export type User = Schemas["User"];
 export type WeeklyRule = Schemas["WeeklyRule"];
 export type ZonedDateTime = Schemas["ZonedDateTime"];
+type Schemas = components["schemas"];

@@ -4,8 +4,10 @@
  */
 
 import { paths } from "@savvycal/appointments-core";
-import { useSavvyCalClient } from "../provider";
+
 import type { Client, QueryOptionsFor } from "../client";
+
+import { useSavvyCalClient } from "../provider";
 
 export type CancellationReasonParams =
   paths["/v1/cancellation_reasons/{cancellation_reason_id}"]["get"]["parameters"];
