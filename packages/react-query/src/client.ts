@@ -4,7 +4,10 @@ import {
   paths,
 } from "@savvycal/appointments-core";
 import createQueryClient from "openapi-react-query";
-import type { UseMutationOptions, UseQueryOptions } from "@tanstack/react-query";
+import type {
+  UseMutationOptions,
+  UseQueryOptions,
+} from "@tanstack/react-query";
 import type { MaybeOptionalInit, FetchResponse } from "openapi-fetch";
 import type {
   HttpMethod,
@@ -41,7 +44,7 @@ export type Client = ReturnType<typeof createClient>;
 export type MutationOptionsFor<
   Method extends HttpMethod,
   Path extends PathsWithMethod<paths, Method>,
-  Media extends MediaType = MediaType
+  Media extends MediaType = MediaType,
 > = Omit<
   UseMutationOptions<
     GetResponseData<Path, Method, Media>,
@@ -55,12 +58,19 @@ export type MutationOptionsFor<
 type GetResponseData<
   Path extends keyof paths,
   Method extends HttpMethod,
-  Media extends MediaType
+  Media extends MediaType,
 > = Path extends keyof paths
   ? Method extends keyof paths[Path]
     ? paths[Path][Method] extends infer Operation
-      ? Operation extends Record<string, any>
-        ? Required<FetchResponse<Operation, MaybeOptionalInit<paths[Path], Method>, Media>>["data"]
+      ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        Operation extends Record<string, any>
+        ? Required<
+            FetchResponse<
+              Operation,
+              MaybeOptionalInit<paths[Path], Method>,
+              Media
+            >
+          >["data"]
         : never
       : never
     : never
@@ -70,12 +80,19 @@ type GetResponseData<
 type GetResponseError<
   Path extends keyof paths,
   Method extends HttpMethod,
-  Media extends MediaType
+  Media extends MediaType,
 > = Path extends keyof paths
   ? Method extends keyof paths[Path]
     ? paths[Path][Method] extends infer Operation
-      ? Operation extends Record<string, any>
-        ? Required<FetchResponse<Operation, MaybeOptionalInit<paths[Path], Method>, Media>>["error"]
+      ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        Operation extends Record<string, any>
+        ? Required<
+            FetchResponse<
+              Operation,
+              MaybeOptionalInit<paths[Path], Method>,
+              Media
+            >
+          >["error"]
         : never
       : never
     : never
@@ -98,7 +115,7 @@ type GetResponseError<
 export type QueryOptionsFor<
   Method extends HttpMethod,
   Path extends PathsWithMethod<paths, Method>,
-  Media extends MediaType = MediaType
+  Media extends MediaType = MediaType,
 > = Omit<
   UseQueryOptions<
     GetResponseData<Path, Method, Media>,
@@ -113,7 +130,7 @@ export type QueryOptionsFor<
 type QueryKey<
   Path extends keyof paths,
   Method extends HttpMethod,
-  Init = MaybeOptionalInit<paths[Path], Method>
+  Init = MaybeOptionalInit<paths[Path], Method>,
 > = Init extends undefined
   ? readonly [Method, Path]
   : readonly [Method, Path, Init];

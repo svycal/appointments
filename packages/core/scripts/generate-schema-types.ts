@@ -13,7 +13,7 @@ function extractSchemaNames(): string[] {
 
   // Find the components.schemas interface
   const schemasBlockRegex =
-    /export interface components \{[\s\S]*?schemas: \{([\s\S]*?)\n  \};/;
+    /export interface components \{[\s\S]*?schemas: \{([\s\S]*?)\n {2}\};/;
   const schemasMatch = schemaContent.match(schemasBlockRegex);
 
   if (!schemasMatch) {

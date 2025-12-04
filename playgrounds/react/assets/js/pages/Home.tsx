@@ -256,9 +256,14 @@ const Home = () => {
                   <RadioGroup.Item
                     key={slot.start_at}
                     value={slot.start_at}
-                    className="rounded-md ring-inset ring-1 ring-zinc-900/30  focus:outline-none hover:bg-zinc-900/5 data-[state=checked]:ring-zinc-900 data-[state=checked]:ring-2 focus-visible:ring-3 focus-visible:ring-zinc-900/25"
+                    className={clsx(
+                      "rounded-md ring-inset ring-1 text-zinc-900 ring-zinc-900/20 hover:bg-zinc-900/5",
+                      "data-[state=checked]:ring-zinc-900 data-[state=checked]:ring-2",
+                      "focus:outline-none focus-visible:ring-3 focus-visible:ring-zinc-900/25",
+                      "group",
+                    )}
                   >
-                    <label className="flex px-6 py-2 cursor-pointer justify-center text-base">
+                    <label className="flex px-6 py-2.5 cursor-pointer justify-center text-base">
                       {intlFormat(slotStartAt, { timeStyle: "short" })}
                     </label>
                   </RadioGroup.Item>
