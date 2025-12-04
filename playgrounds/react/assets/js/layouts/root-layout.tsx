@@ -1,11 +1,11 @@
 import { Head, usePage } from "@inertiajs/react";
-import React, { ReactNode, useMemo, useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   createClient,
   SavvyCalProvider,
 } from "@savvycal/appointments-react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import React, { ReactNode, useMemo, useState } from "react";
 
 export const RootLayout = ({ children }: { children: ReactNode }) => {
   const page = usePage<{

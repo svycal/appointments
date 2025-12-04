@@ -1,30 +1,32 @@
-import React, { ReactNode, useState, useEffect, useMemo } from "react";
-import { RootLayout } from "../layouts/root-layout";
+import type { Slot } from "@savvycal/appointments-core";
+
+import { tz, tzName } from "@date-fns/tz";
+import {
+  useCreatePublicAppointment,
+  useEarliestPublicServiceSlot,
+  usePublicServiceSlots,
+} from "@savvycal/appointments-react-query";
+import clsx from "clsx";
+import {
+  endOfMonth,
+  format,
+  formatISO,
+  fromUnixTime,
+  intlFormat,
+  isSameDay,
+  startOfMonth,
+} from "date-fns";
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   GlobeIcon,
 } from "lucide-react";
-import type { Slot } from "@savvycal/appointments-core";
-import {
-  usePublicServiceSlots,
-  useCreatePublicAppointment,
-  useEarliestPublicServiceSlot,
-} from "@savvycal/appointments-react-query";
-import { DayPicker, getDefaultClassNames } from "react-day-picker";
-import {
-  formatISO,
-  endOfMonth,
-  startOfMonth,
-  fromUnixTime,
-  isSameDay,
-  intlFormat,
-  format,
-} from "date-fns";
-import { tz, tzName } from "@date-fns/tz";
 import { RadioGroup } from "radix-ui";
-import clsx from "clsx";
+import React, { ReactNode, useEffect, useMemo, useState } from "react";
+import { DayPicker, getDefaultClassNames } from "react-day-picker";
+
+import { RootLayout } from "../layouts/root-layout";
 
 const SERVICE_ID = "srv_28f3a4bd5986";
 const NAIVE_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
@@ -53,7 +55,7 @@ const Home = () => {
     }
   }, [earliestSlot?.data?.start_at_ts]);
 
-  const { data, isLoading, refetch } = usePublicServiceSlots(
+  const { data, refetch } = usePublicServiceSlots(
     SERVICE_ID,
     {
       from: month ? formatISO(month, { representation: "date" }) : "",
@@ -64,7 +66,7 @@ const Home = () => {
     { enabled: !!month },
   );
 
-  const { mutate: createPublicAppointment, isPending: isCreating } =
+  const { isPending: isCreating, mutate: createPublicAppointment } =
     useCreatePublicAppointment({
       onSuccess: (resp) => {
         console.log(resp);
@@ -99,14 +101,6 @@ const Home = () => {
 
     createPublicAppointment({
       body: {
-        start_at: format(selectedSlot.start_at, NAIVE_DATETIME_FORMAT, {
-          in: tz(timeZone),
-        }),
-        end_at: format(selectedSlot.end_at, NAIVE_DATETIME_FORMAT, {
-          in: tz(timeZone),
-        }),
-        service_id: SERVICE_ID,
-        time_zone: timeZone,
         client_data: {
           email: "derrick@savvycal.com",
           first_name: "Derrick",
@@ -116,6 +110,14 @@ const Home = () => {
           reference_id: "derrick@savvycal.com",
           time_zone: timeZone,
         },
+        end_at: format(selectedSlot.end_at, NAIVE_DATETIME_FORMAT, {
+          in: tz(timeZone),
+        }),
+        service_id: SERVICE_ID,
+        start_at: format(selectedSlot.start_at, NAIVE_DATETIME_FORMAT, {
+          in: tz(timeZone),
+        }),
+        time_zone: timeZone,
       },
     });
   };
@@ -125,35 +127,7 @@ const Home = () => {
       <div>
         <DayPicker
           animate
-          disabled={(date) => !dateHasSlots(date)}
-          mode="single"
-          selected={selectedDay}
-          onSelect={(day) => {
-            setSelectedDay(day);
-
-            if (day && selectedSlot && !isSameDay(selectedSlot.start_at, day)) {
-              setSelectedSlot(undefined);
-            }
-          }}
-          month={month}
-          formatters={{
-            formatWeekdayName: (weekday) =>
-              weekday.toLocaleString("default", { weekday: "short" }),
-          }}
           classNames={{
-            root: clsx(
-              defaultClassNames.root,
-              "[--rdp-nav-height:var(--nav-height)]",
-            ),
-            month_caption: clsx(
-              defaultClassNames.month_caption,
-              "flex items-center justify-center",
-            ),
-            caption_label: clsx(
-              defaultClassNames.caption_label,
-              "text-base font-semibold text-zinc-900",
-            ),
-            nav: clsx(defaultClassNames.nav, "w-full flex justify-between"),
             button_next: clsx(
               defaultClassNames.button_next,
               "rounded-md hover:bg-zinc-100 active:bg-zinc-200",
@@ -164,11 +138,12 @@ const Home = () => {
               "rounded-md hover:bg-zinc-100 active:bg-zinc-200",
               "size-(--rdp-day_button-width)",
             ),
+            caption_label: clsx(
+              defaultClassNames.caption_label,
+              "text-base font-semibold text-zinc-900",
+            ),
             chevron: clsx("text-zinc-900"),
-            today: clsx(defaultClassNames.today, "text-zinc-900"),
             day: clsx(defaultClassNames.day, "group"),
-            month_grid: clsx(defaultClassNames.month_grid),
-            selected: "",
             day_button: clsx(
               defaultClassNames.day_button,
               "rounded-md text-zinc-900",
@@ -180,9 +155,21 @@ const Home = () => {
               defaultClassNames.disabled,
               "text-zinc-600 line-through",
             ),
+            month_caption: clsx(
+              defaultClassNames.month_caption,
+              "flex items-center justify-center",
+            ),
+            month_grid: clsx(defaultClassNames.month_grid),
+            nav: clsx(defaultClassNames.nav, "w-full flex justify-between"),
+            root: clsx(
+              defaultClassNames.root,
+              "[--rdp-nav-height:var(--nav-height)]",
+            ),
+            selected: "",
+            today: clsx(defaultClassNames.today, "text-zinc-900"),
             week: "grid grid-cols-7 gap-0.5",
-            weekdays: "grid grid-cols-7 gap-0.5",
             weekday: clsx(defaultClassNames.weekday, "py-3 text-zinc-900"),
+            weekdays: "grid grid-cols-7 gap-0.5",
             weeks: "flex flex-col gap-0.5",
           }}
           components={{
@@ -213,11 +200,26 @@ const Home = () => {
               );
             },
           }}
+          disabled={(date) => !dateHasSlots(date)}
+          formatters={{
+            formatWeekdayName: (weekday) =>
+              weekday.toLocaleString("default", { weekday: "short" }),
+          }}
+          mode="single"
+          month={month}
           onMonthChange={(month) => {
             setMonth(month);
             setSelectedDay(undefined);
             setSelectedSlot(undefined);
           }}
+          onSelect={(day) => {
+            setSelectedDay(day);
+
+            if (day && selectedSlot && !isSameDay(selectedSlot.start_at, day)) {
+              setSelectedSlot(undefined);
+            }
+          }}
+          selected={selectedDay}
         />
         {timeZone && (
           <div className="flex items-center justify-center gap-2 mt-6 text-sm">
@@ -242,26 +244,26 @@ const Home = () => {
             </div>
             <RadioGroup.Root
               className="mt-3 grid gap-2 sm:grid-cols-2 md:grid-cols-3"
-              value={selectedSlot?.start_at || null}
               onValueChange={(value) =>
                 setSelectedSlot(
                   slotsOnSelectedDay.find((slot) => slot.start_at === value),
                 )
               }
+              value={selectedSlot?.start_at || null}
             >
               {slotsOnSelectedDay.map((slot) => {
                 const slotStartAt = fromUnixTime(slot.start_at_ts);
 
                 return (
                   <RadioGroup.Item
-                    key={slot.start_at}
-                    value={slot.start_at}
                     className={clsx(
                       "rounded-md ring-inset ring-1 text-zinc-900 ring-zinc-900/20 hover:bg-zinc-900/5",
                       "data-[state=checked]:ring-zinc-900 data-[state=checked]:ring-2",
                       "focus:outline-none focus-visible:ring-3 focus-visible:ring-zinc-900/25",
                       "group",
                     )}
+                    key={slot.start_at}
+                    value={slot.start_at}
                   >
                     <label className="flex px-6 py-2.5 cursor-pointer justify-center text-base">
                       {intlFormat(slotStartAt, { timeStyle: "short" })}
@@ -272,7 +274,6 @@ const Home = () => {
             </RadioGroup.Root>
             <div className="mt-6">
               <button
-                type="submit"
                 className={clsx(
                   "rounded-md w-full cursor-pointer text-white px-6 py-3 bg-zinc-900",
                   "hover:not-disabled:bg-zinc-800 active:not-disabled:brightness-90",
@@ -280,6 +281,7 @@ const Home = () => {
                   "disabled:opacity-50 disabled:cursor-not-allowed",
                 )}
                 disabled={!selectedSlot || isCreating}
+                type="submit"
               >
                 {isCreating ? "Submitting..." : "Book appointment"}
               </button>

@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
-import axios from "axios";
-
 import { createInertiaApp } from "@inertiajs/react";
+import axios from "axios";
+import React, { ReactNode } from "react";
 import { createRoot } from "react-dom/client";
+
 import { RootLayout } from "./layouts/root-layout";
 
 axios.defaults.xsrfHeaderName = "x-csrf-token";

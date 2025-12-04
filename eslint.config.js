@@ -1,40 +1,39 @@
 import js from "@eslint/js";
-import globals from "globals";
 import typescript from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
-import { defineConfig } from "eslint/config";
+import prettierConfig from "eslint-config-prettier";
 import perfectionist from "eslint-plugin-perfectionist";
 import prettier from "eslint-plugin-prettier";
-import prettierConfig from "eslint-config-prettier";
+import { defineConfig, globalIgnores } from "eslint/config";
+import globals from "globals";
 
 export default defineConfig([
   // Base ESLint recommended config
   js.configs.recommended,
 
   // Global ignores
-  {
-    ignores: [
-      "dist/**",
-      "packages/*/dist/**",
-      "playgrounds/*/vendor/**",
-      "playgrounds/*/deps/**",
-      "playgrounds/*/assets/node_modules/**",
-    ],
-  },
+  globalIgnores([
+    "**/dist/",
+    "**/vendor/",
+    "**/deps/",
+    "**/priv/",
+    "**/.elixir_ls",
+    "**/_build",
+  ]),
 
   // Configuration for all JavaScript/TypeScript files
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
       parser: typescriptParser,
       parserOptions: {
         ecmaVersion: 2020,
         sourceType: "module",
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
       },
     },
     plugins: {

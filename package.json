@@ -5,8 +5,8 @@
   "scripts": {
     "build": "pnpm -r build",
     "dev": "pnpm -r --parallel dev",
-    "lint": "eslint packages",
-    "lint:fix": "eslint --fix packages",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "playground:react": "cd playgrounds/react && mix setup && mix phx.server",
     "typecheck": "pnpm -r typecheck"
   },
