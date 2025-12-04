@@ -95,7 +95,7 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
-  playgrounds/react/assets:
+  playground/assets:
     dependencies:
       '@date-fns/tz':
         specifier: ^1.4.1
@@ -109,9 +109,12 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.4
         version: 1.2.4(@types/react@19.2.7)(react@19.2.0)
+      '@savvycal/appointments-core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@savvycal/appointments-react-query':
         specifier: workspace:*
-        version: link:../../../packages/react-query
+        version: link:../../packages/react-query
       '@tailwindcss/cli':
         specifier: ^4.1.17
         version: 4.1.17

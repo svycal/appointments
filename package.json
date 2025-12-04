@@ -7,7 +7,7 @@
     "dev": "pnpm -r --parallel dev",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "playground:react": "cd playgrounds/react && mix setup && mix phx.server",
+    "playground": "cd playground && mix setup && mix phx.server",
     "typecheck": "pnpm -r typecheck"
   },
   "devDependencies": {
