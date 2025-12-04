@@ -72,9 +72,9 @@ async function main() {
   writeFileSync(outputPath, content, "utf-8");
   console.log("  ✓ schema-types.ts");
 
-  // Format generated file with prettier
-  console.log("\n🎨 Formatting generated file with prettier...");
-  execSync('pnpm prettier --write "src/schema-types.ts"', {
+  // Format generated file with eslint
+  console.log("\n🎨 Formatting generated file with eslint...");
+  execSync('pnpm eslint --fix "src/schema-types.ts"', {
     cwd: join(__dirname, ".."),
     stdio: "inherit",
   });

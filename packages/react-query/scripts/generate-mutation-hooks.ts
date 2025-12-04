@@ -149,10 +149,10 @@ async function main() {
   writeFileSync(barrelPath, barrelContent, "utf-8");
   console.log(`  ✓ mutation-hooks.ts`);
 
-  // Format generated files with prettier
-  console.log("\n🎨 Formatting generated files with prettier...");
+  // Format generated files with eslint
+  console.log("\n🎨 Formatting generated files with eslint...");
   execSync(
-    'pnpm prettier --write "src/mutation-hooks/**/*.ts" "src/mutation-hooks.ts"',
+    'pnpm eslint --fix "src/mutation-hooks/**/*.ts" "src/mutation-hooks.ts"',
     {
       cwd: join(__dirname, ".."),
       stdio: "inherit",

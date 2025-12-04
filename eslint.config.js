@@ -4,6 +4,8 @@ import typescript from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
 import { defineConfig } from "eslint/config";
 import perfectionist from "eslint-plugin-perfectionist";
+import prettier from "eslint-plugin-prettier";
+import prettierConfig from "eslint-config-prettier";
 
 export default defineConfig([
   // Base ESLint recommended config
@@ -37,10 +39,14 @@ export default defineConfig([
     },
     plugins: {
       "@typescript-eslint": typescript,
+      prettier,
     },
     rules: {
       // TypeScript ESLint recommended rules
       ...typescript.configs.recommended.rules,
+
+      // Prettier rules (run Prettier as an ESLint rule)
+      "prettier/prettier": "error",
 
       // Add any custom rules here
       // You can uncomment and customize these as needed:
@@ -50,4 +56,6 @@ export default defineConfig([
     },
   },
   perfectionist.configs["recommended-alphabetical"],
+  // Prettier config should be last to override other formatting rules
+  prettierConfig,
 ]);

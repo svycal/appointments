@@ -247,15 +247,12 @@ async function main() {
   writeFileSync(barrelPath, barrelContent, "utf-8");
   console.log(`  ✓ query-hooks.ts`);
 
-  // Format generated files with prettier
-  console.log("\n🎨 Formatting generated files with prettier...");
-  execSync(
-    'pnpm prettier --write "src/query-hooks/**/*.ts" "src/query-hooks.ts"',
-    {
-      cwd: join(__dirname, ".."),
-      stdio: "inherit",
-    },
-  );
+  // Format generated files with eslint
+  console.log("\n🎨 Formatting generated files with eslint...");
+  execSync('pnpm eslint --fix "src/query-hooks/**/*.ts" "src/query-hooks.ts"', {
+    cwd: join(__dirname, ".."),
+    stdio: "inherit",
+  });
 
   console.log(`\n✅ Successfully generated ${operations.length} hooks!`);
 }
