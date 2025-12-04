@@ -124,7 +124,7 @@ const Home = () => {
 
   return (
     <div className="@container [--nav-height:--spacing(11)]">
-      <div className="flex flex-col items-center @xl:flex-row @xl:items-start gap-8">
+      <div className="flex flex-col items-center gap-8 @xl:flex-row @xl:items-start">
         <div>
           <DayPicker
             animate
@@ -227,7 +227,7 @@ const Home = () => {
             selected={selectedDay}
           />
           {timeZone && (
-            <div className="flex items-center justify-center gap-2 mt-6 text-sm">
+            <div className="mt-6 flex items-center justify-center gap-2 text-sm">
               <GlobeIcon className="size-4 text-zinc-500" />
               <span className="text-zinc-500">
                 {tzName(timeZone, selectedDay ?? new Date(), "long")}
@@ -236,9 +236,9 @@ const Home = () => {
           )}
         </div>
         {selectedDay && slotsOnSelectedDay && timeZone && (
-          <div className="grow w-full max-w-sm @xl:max-w-none @xl:w-auto">
+          <div className="w-full max-w-sm grow @xl:w-auto @xl:max-w-none">
             <form onSubmit={handleSubmit}>
-              <div className="flex items-center justify-center h-(--nav-height)">
+              <div className="flex h-(--nav-height) items-center justify-center">
                 <h2 className="text-center font-semibold">
                   {intlFormat(selectedDay, {
                     day: "numeric",
@@ -262,15 +262,15 @@ const Home = () => {
                   return (
                     <RadioGroup.Item
                       className={clsx(
-                        "rounded-md ring-inset ring-1 text-zinc-900 ring-zinc-900/20 hover:bg-zinc-900/5",
-                        "data-[state=checked]:ring-zinc-900 data-[state=checked]:ring-2",
+                        "rounded-md text-zinc-900 ring-1 ring-zinc-900/20 ring-inset hover:bg-zinc-900/5",
+                        "data-[state=checked]:ring-2 data-[state=checked]:ring-zinc-900",
                         "focus:outline-none focus-visible:ring-3 focus-visible:ring-zinc-900/25",
                         "group",
                       )}
                       key={slot.start_at}
                       value={slot.start_at}
                     >
-                      <label className="flex px-6 py-2.5 cursor-pointer justify-center text-base">
+                      <label className="flex cursor-pointer justify-center px-6 py-2.5 text-base">
                         {intlFormat(slotStartAt, { timeStyle: "short" })}
                       </label>
                     </RadioGroup.Item>
@@ -280,10 +280,10 @@ const Home = () => {
               <div className="mt-6">
                 <button
                   className={clsx(
-                    "rounded-md w-full cursor-pointer text-white px-6 py-3 bg-zinc-900",
+                    "w-full cursor-pointer rounded-md bg-zinc-900 px-6 py-3 text-white",
                     "hover:not-disabled:bg-zinc-800 active:not-disabled:brightness-90",
-                    "focus-visible:ring-3 focus-visible:ring-zinc-900/25 focus:outline-none",
-                    "disabled:opacity-50 disabled:cursor-not-allowed",
+                    "focus:outline-none focus-visible:ring-3 focus-visible:ring-zinc-900/25",
+                    "disabled:cursor-not-allowed disabled:opacity-50",
                   )}
                   disabled={!selectedSlot || isCreating}
                   type="submit"
