@@ -4,6 +4,8 @@ import typescriptParser from "@typescript-eslint/parser";
 import prettierConfig from "eslint-config-prettier";
 import perfectionist from "eslint-plugin-perfectionist";
 import prettier from "eslint-plugin-prettier";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 
@@ -54,6 +56,48 @@ export default defineConfig([
       // "@typescript-eslint/no-explicit-any": "warn",
     },
   },
+
+  // React-specific configuration for components/react
+  {
+    files: ["components/react/**/*.{ts,tsx}"],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: {
+        ...globals.browser,
+      },
+      parser: typescriptParser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+        ecmaVersion: 2020,
+        sourceType: "module",
+      },
+    },
+    plugins: {
+      "@typescript-eslint": typescript,
+      prettier,
+      "react-hooks": reactHooks,
+      "react-refresh": reactRefresh,
+    },
+    rules: {
+      // TypeScript ESLint recommended rules
+      ...typescript.configs.recommended.rules,
+
+      // React Hooks rules
+      ...reactHooks.configs.recommended.rules,
+
+      // Prettier rules
+      "prettier/prettier": "error",
+
+      // React Refresh rules (for HMR)
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+    },
+  },
+
   perfectionist.configs["recommended-alphabetical"],
   // Prettier config should be last to override other formatting rules
   prettierConfig,
