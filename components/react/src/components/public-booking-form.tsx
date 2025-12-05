@@ -29,9 +29,7 @@ import { RadioGroup } from "radix-ui";
 import React, { useEffect, useMemo, useState } from "react";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 
-const SERVICE_ID = "srv_28f3a4bd5986";
-
-const PublicBookingForm = () => {
+const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
   const [timeZone] = useState<string>(getBrowserTimeZone());
   const client = useSavvyCalFetchClient();
 
@@ -44,7 +42,7 @@ const PublicBookingForm = () => {
       const { data } = await client.GET(
         "/v1/public/services/{service_id}/earliest_slot",
         {
-          params: { path: { service_id: SERVICE_ID } },
+          params: { path: { service_id: serviceId } },
         },
       );
 
@@ -57,7 +55,7 @@ const PublicBookingForm = () => {
     if (!month && !selectedDay) {
       jumpToEarliestDate();
     }
-  }, [client, month, selectedDay]);
+  }, [client, month, selectedDay, serviceId]);
 
   const visibleRange = useMemo(() => {
     if (!month) return { from: "", until: "" };
@@ -68,7 +66,7 @@ const PublicBookingForm = () => {
     };
   }, [month]);
 
-  const { data, refetch } = usePublicServiceSlots(SERVICE_ID, visibleRange, {
+  const { data, refetch } = usePublicServiceSlots(serviceId, visibleRange, {
     enabled: !!month,
   });
 
@@ -116,7 +114,7 @@ const PublicBookingForm = () => {
           time_zone: timeZone,
         },
         end_at: toISONaiveDateTime(selectedSlot.end_at, timeZone),
-        service_id: SERVICE_ID,
+        service_id: serviceId,
         start_at: toISONaiveDateTime(selectedSlot.start_at, timeZone),
         time_zone: timeZone,
       },

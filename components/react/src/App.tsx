@@ -12,7 +12,7 @@ const App = () => {
     <>
       <QueryClientProvider client={queryClient}>
         <SavvyCalProvider baseUrl="http://localhost:4002">
-          <PublicBookingForm />
+          <PublicBookingForm serviceId="srv_28f3a4bd5986" />
           <ReactQueryDevtools />
         </SavvyCalProvider>
       </QueryClientProvider>
