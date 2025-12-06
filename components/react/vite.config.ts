@@ -8,6 +8,8 @@ export default defineConfig({
   plugins: [
     tanstackRouter({
       autoCodeSplitting: true,
+      quoteStyle: "double",
+      semicolons: true,
       target: "react",
     }),
     react(),
