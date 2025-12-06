@@ -82,8 +82,10 @@ export type PathParams<
   Path extends keyof paths,
   Method extends HttpMethod,
 > = Method extends keyof paths[Path]
-  ? paths[Path][Method] extends { parameters: { path: infer P } }
-    ? P
+  ? paths[Path][Method] extends { parameters: infer P }
+    ? P extends { path?: infer PathType }
+      ? PathType
+      : never
     : never
   : never;
 
@@ -100,8 +102,10 @@ export type QueryParams<
   Path extends keyof paths,
   Method extends HttpMethod,
 > = Method extends keyof paths[Path]
-  ? paths[Path][Method] extends { parameters: { query: infer Q } }
-    ? Q
+  ? paths[Path][Method] extends { parameters: infer P }
+    ? P extends { query?: infer Q }
+      ? Q
+      : never
     : never
   : never;
 
