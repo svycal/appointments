@@ -17,9 +17,9 @@ const SavvyCalContext = createContext<SavvyCalContextData | undefined>(
 );
 SavvyCalContext.displayName = "SavvyCalContext";
 
-export interface SavvyCalProviderProps extends FetchClientOptions {
+export type SavvyCalProviderProps = {
   children: ReactNode;
-}
+} & FetchClientOptions;
 
 /**
  * Provider component to make the SavvyCal client available to its children.
