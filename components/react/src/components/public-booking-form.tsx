@@ -1,6 +1,8 @@
-import type { Slot } from "@savvycal/appointments-core";
-
 import { tz, tzName } from "@date-fns/tz";
+import {
+  getEarliestPublicServiceSlot,
+  type Slot,
+} from "@savvycal/appointments-core";
 import {
   useCreatePublicAppointment,
   usePublicServiceSlots,
@@ -39,12 +41,9 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
 
   useEffect(() => {
     async function jumpToEarliestDate() {
-      const { data } = await client.GET(
-        "/v1/public/services/{service_id}/earliest_slot",
-        {
-          params: { path: { service_id: serviceId } },
-        },
-      );
+      const { data } = await getEarliestPublicServiceSlot(client, {
+        service_id: serviceId,
+      });
 
       if (data?.data) {
         setMonth(startOfMonth(data.data.start_at));
