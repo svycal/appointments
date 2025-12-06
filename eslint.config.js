@@ -21,6 +21,7 @@ export default defineConfig([
     "**/priv/",
     "**/.elixir_ls",
     "**/_build",
+    "components/react/src/routeTree.gen.ts",
   ]),
 
   // Configuration for all JavaScript/TypeScript files
