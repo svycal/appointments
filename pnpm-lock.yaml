@@ -129,6 +129,9 @@ importers:
       openapi-fetch:
         specifier: ^0.15.0
         version: 0.15.0
+      openapi-typescript-helpers:
+        specifier: ^0.0.15
+        version: 0.0.15
     devDependencies:
       '@types/node':
         specifier: ^22.10.2

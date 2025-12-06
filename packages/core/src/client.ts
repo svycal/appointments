@@ -1,3 +1,8 @@
+import type {
+  HttpMethod,
+  OperationRequestBodyContent,
+} from "openapi-typescript-helpers";
+
 import createClient, { ClientOptions } from "openapi-fetch";
 
 import type { paths } from "./schema";
@@ -63,3 +68,38 @@ export const createFetchClient = (options: FetchClientOptions = {}) => {
 };
 
 export type FetchClient = ReturnType<typeof createFetchClient>;
+
+/**
+ * Extract the path parameters type for a given path and HTTP method.
+ *
+ * @example
+ * ```typescript
+ * type EarliestSlotPath = PathParams<"/v1/public/services/{service_id}/earliest_slot", "get">;
+ * // => { service_id: string }
+ * ```
+ */
+export type PathParams<
+  Path extends keyof paths,
+  Method extends HttpMethod,
+> = Method extends keyof paths[Path]
+  ? paths[Path][Method] extends { parameters: { path: infer P } }
+    ? P
+    : never
+  : never;
+
+/**
+ * Extract the request body type for a given path and HTTP method.
+ * Returns the JSON body type that the client expects.
+ *
+ * @example
+ * ```typescript
+ * type CreateAppointmentBody = RequestBody<"/v1/appointments", "post">;
+ * // => { service_id: string; start_time: string; ... }
+ * ```
+ */
+export type RequestBody<
+  Path extends keyof paths,
+  Method extends HttpMethod,
+> = Method extends keyof paths[Path]
+  ? OperationRequestBodyContent<paths[Path][Method]>
+  : never;
