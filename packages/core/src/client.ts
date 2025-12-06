@@ -88,6 +88,24 @@ export type PathParams<
   : never;
 
 /**
+ * Extract the query parameters type for a given path and HTTP method.
+ *
+ * @example
+ * ```typescript
+ * type SlotsQuery = QueryParams<"/v1/public/services/{service_id}/slots", "get">;
+ * // => { from: string; until: string; time_zone?: string; ... }
+ * ```
+ */
+export type QueryParams<
+  Path extends keyof paths,
+  Method extends HttpMethod,
+> = Method extends keyof paths[Path]
+  ? paths[Path][Method] extends { parameters: { query: infer Q } }
+    ? Q
+    : never
+  : never;
+
+/**
  * Extract the request body type for a given path and HTTP method.
  * Returns the JSON body type that the client expects.
  *
