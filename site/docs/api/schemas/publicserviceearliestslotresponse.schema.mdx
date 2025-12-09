@@ -1,0 +1,33 @@
+---
+id: publicserviceearliestslotresponse
+title: "PublicServiceEarliestSlotResponse"
+description: "Response schema for the earliest available service slot via the public API"
+sidebar_label: "PublicServiceEarliestSlotResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"data":{"end_at":"2025-03-10T10:00:00Z","end_at_ts":1736464800,"object":"slot","start_at":"2025-03-10T09:00:00Z","start_at_ts":1736461200,"time_zone":"Etc/UTC"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"PublicServiceEarliestSlotResponse"}
+>
+</Heading>
+
+
+
+Response schema for the earliest available service slot via the public API
+
+<Schema
+  schema={{"description":"Response schema for the earliest available service slot via the public API","example":{"data":{"end_at":"2025-03-10T10:00:00Z","end_at_ts":1736464800,"object":"slot","start_at":"2025-03-10T09:00:00Z","start_at_ts":1736461200,"time_zone":"Etc/UTC"}},"properties":{"data":{"allOf":[{"description":"A time slot with start and end times","example":{"end_at":"2025-03-10T10:00:00-04:00","end_at_ts":1736464800,"object":"slot","start_at":"2025-03-10T09:00:00-04:00","start_at_ts":1736461200,"time_zone":"America/New_York"},"properties":{"end_at":{"format":"date-time","type":"string"},"end_at_ts":{"description":"Unix timestamp in seconds","type":"integer"},"object":{"description":"String representing the object's type.","enum":["slot"],"type":"string"},"start_at":{"format":"date-time","type":"string"},"start_at_ts":{"description":"Unix timestamp in seconds","type":"integer"},"time_zone":{"description":"IANA time zone name","type":"string"}},"required":["object","start_at","start_at_ts","end_at","end_at_ts","time_zone"],"title":"Slot","type":"object"}],"description":"The earliest available slot, or null if no slots are available","nullable":true}},"required":["data"],"title":"PublicServiceEarliestSlotResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

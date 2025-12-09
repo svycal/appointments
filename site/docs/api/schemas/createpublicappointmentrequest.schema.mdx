@@ -1,0 +1,33 @@
+---
+id: createpublicappointmentrequest
+title: "CreatePublicAppointmentRequest"
+description: "Request schema for creating an appointment via a public interface."
+sidebar_label: "CreatePublicAppointmentRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"client_data":{"email":"john.doe@example.com","first_name":"John","last_name":"Doe","locale":"en-US","phone":"+15551234567","reference_id":"1234567890","time_zone":"America/New_York"},"end_at":"2025-03-01T11:00:00","service_id":"srv_1234567890","start_at":"2025-03-01T10:00:00","time_zone":"America/New_York"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CreatePublicAppointmentRequest"}
+>
+</Heading>
+
+
+
+Request schema for creating an appointment via a public interface.
+
+<Schema
+  schema={{"description":"Request schema for creating an appointment via a public interface.","example":{"client_data":{"email":"john.doe@example.com","first_name":"John","last_name":"Doe","locale":"en-US","phone":"+15551234567","reference_id":"1234567890","time_zone":"America/New_York"},"end_at":"2025-03-01T11:00:00","service_id":"srv_1234567890","start_at":"2025-03-01T10:00:00","time_zone":"America/New_York"},"properties":{"client_data":{"description":"Information about the client booking the appointment. You can either provide an `id` or `reference_id` for an existing client,\nor provide a new client's details.\n","properties":{"email":{"description":"The client's email address. Required if no existing client is provided.","format":"email","nullable":true,"type":"string"},"first_name":{"description":"The client's first name. Required if no existing client is provided.","nullable":true,"type":"string"},"id":{"description":"The ID of an existing client to attach to the appointment. If not provided, a new client will be created\nif the `reference_id` does not correspond to an existing client. If there does exist a client with\nthe `reference_id` provided, the existing client will be attached to the appointment.\n","nullable":true,"type":"string"},"last_name":{"description":"The client's last name. Required if no existing client is provided.","nullable":true,"type":"string"},"locale":{"description":"The locale of the client booking the appointment.","example":"en-US","nullable":true,"type":"string"},"phone":{"description":"The client's phone number (E.164 format).","example":"+1234567890","nullable":true,"type":"string"},"reference_id":{"description":"External reference identifier for the client.","nullable":true,"type":"string"},"time_zone":{"description":"The client's time zone (IANA format). This field will be used to represent the appointment time slot in the client's local time zone (in the event that it differs from the appointment's local time zone).","example":"America/New_York","type":"string"}},"required":["time_zone"],"type":"object"},"end_at":{"description":"The end time of the appointment in local time (in naive ISO-8601 format, without time zone information). The time zone for the appointment is specified in the `time_zone` field.","example":"2025-03-01T11:00:00","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$","type":"string"},"provider_id":{"description":"The ID of the provider to assign to the appointment. If not provided, an available provider will be randomly assigned.","nullable":true,"type":"string"},"service_id":{"description":"The ID of the service for this appointment.","type":"string"},"start_at":{"description":"The start time of the appointment in local time (in naive ISO-8601 format, without time zone information). The time zone for the appointment is specified in the `time_zone` field.","example":"2025-03-01T10:00:00","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$","type":"string"},"time_zone":{"description":"The local time zone for the appointment (IANA format).","example":"America/New_York","type":"string"}},"required":["service_id","start_at","end_at","time_zone","client_data"],"title":"CreatePublicAppointmentRequest","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

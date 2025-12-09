@@ -1,0 +1,72 @@
+---
+id: get-account-by-id
+title: "Get account by ID"
+description: "Get the account by ID."
+sidebar_label: "Get account by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVttu20YQ/ZXFoEBagJZExU4RvrlNmvqhQRArL1FUY0SOxE3I5Xp3KFsV+O/FLknxIvViwAX6JGo5lzNnzg7nADFm2RrjbxaiQxVAQjY2UrMsFETwjlhwSgLjuCgVi/Ve3LyZQACFJoPO6CaBCLbE17XFT/ubBALQaDAnJmMhWh5GQRtTcfMGApDuRCOnEIDCnCCCJtmddJEM3ZfSUAIRm5ICsHFKOUJ0AN5rZ23ZSLWFqlo5Y6sLZcnVAvPZzP3EhWJS7B5R60zGHvb0q3VYDr14Q5Afm1CiNhCbwggUVqptdqQDAqBHzHVG3h/Zx4kNIVNyhwwRzGfhjxez1xfhfBHOo5eX0dXVZ1d1UtfJd8lsfoWvX2E8i191FCxIJWTEb5TIGDPH9/orxdyRAwGUOjmT5+UinEVhGIXzz1BVAWjjWsWy5qTFOKx1kUorpBWoRJ1HGNKGLCmWauuO2/5LVctB68mw+P9R0eOa+9BOKpc5CWTxkMo49aU1BDygFY2jq3RTmNyndNkvWOYEwViAdYHjDJ+UvC9JyMSRuZFkvJK6TBN/W5jJOOvfPT1fvjwcwnn13bkcNVenHTyK8oUVzmZyzrkldOx+6y2GXe8gvrDCRfIdV2UO0fLYkNWZJP0WPYnvDC2Lxvvfkl71J8SyLTDoN933pSFugM6Bl+z0246kLv4x0OMF49ZNsdbGwsplHXm24+IkQlWdDNXbMo7JWsfV5Sx85hlVKiw5LYz8gxLhqCHLdnhXyZjiOJgZZeZl2rlBAJaRSwuRB1itTu5UG+IAkin3D6NB0wQeQ37rHEVO1uL27B1qM48df10sPoj6pYiL5Kxv05PzOeuX/ySgBvfqpI3HAzQG9yd+DSE9SfUZfYo6Bp3wErl8ZomogsWmKNVT9PG+YPGL8xmK4/I/FUc7bbrk5+bNExTTBnTAT0ONWtrEDZ5RE+8L9nU8RQ9d8X7snAyjAHLitGjWsPprkkIE0104bca0nR66napyHSSza3ez0rj+pszaRtMpajmxuNvtY8wmqDUEsEMjcZ351vkty1JcGsl7796KFWu4y1Xf4taJru75yK5RrCt9TWjIdFQ4KL5WqTaFX/Qa9m4drp8xE9daF1JxToqtuP5w40CSsTVf4WTmd4DCco4+U7NeuF12sMfCiOreJfvrxbcByfTIU52hVP6TZ7yaa+aXsAshaD+RTkBRb6NdBZAWlp3Z4bBGS59MVlXu+L4k4zhddZTXd1Ba95xAtMHM0t+A/v5jo74fxGDHPou5la7a+x5npfsHAXyj/XAH9zc8JUzIeDy1wXUck+ae68lUqvrSfPd2AVX1J3mcOXo=
+sidebar_class_name: "get api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get account by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/accounts/{account_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get the account by ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"Account ID","in":"path","name":"account_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for a single account","example":{"data":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"}},"properties":{"data":{"description":"This is an object representing an account in the app.","example":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^acct_\\w{12}$","type":"string"},"name":{"description":"The account's name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["account"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","name","updated_at"],"title":"Account","type":"object","x-tags":["Accounts"]}},"title":"AccountResponse","type":"object"}}},"description":"Success"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

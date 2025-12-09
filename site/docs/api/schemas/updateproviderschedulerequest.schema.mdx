@@ -1,0 +1,33 @@
+---
+id: updateproviderschedulerequest
+title: "UpdateProviderScheduleRequest"
+description: "Request schema for updating a provider schedule."
+sidebar_label: "UpdateProviderScheduleRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"effective_from":"2025-01-01","effective_to":"2025-12-31","public_bookings":{"enabled":true},"weekly_rules":[{"day":"mo","end_time":"17:00","start_time":"09:00"}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"UpdateProviderScheduleRequest"}
+>
+</Heading>
+
+
+
+Request schema for updating a provider schedule.
+
+<Schema
+  schema={{"description":"Request schema for updating a provider schedule.","example":{"effective_from":"2025-01-01","effective_to":"2025-12-31","public_bookings":{"enabled":true},"weekly_rules":[{"day":"mo","end_time":"17:00","start_time":"09:00"}]},"properties":{"effective_from":{"description":"The effective date of the provider schedule.","format":"date_time","type":"string"},"effective_to":{"description":"The effective end date of the provider schedule.","format":"date_time","nullable":true,"type":"string"},"public_bookings":{"description":"Public booking settings for the schedule.","example":{"enabled":true},"properties":{"enabled":{"default":true,"description":"Whether public bookings are enabled for the schedule.","type":"boolean"}},"required":["enabled"],"type":"object"},"weekly_rules":{"description":"Weekly rules for the schedule.","items":{"description":"Weekly rule for a provider schedule.","example":{"day":"mo","end_time":"17:00","start_time":"09:00"},"properties":{"day":{"description":"The day of the week.","enum":["mo","tu","we","th","fr","sa","su"],"type":"string"},"end_time":{"description":"The end time of the rule.","pattern":"^(?:[01]\\d|2[0-3]):[0-5]\\d$","type":"string"},"start_time":{"description":"The start time of the rule.","pattern":"^(?:[01]\\d|2[0-3]):[0-5]\\d$","type":"string"}},"required":["day","start_time","end_time"],"title":"WeeklyRule","type":"object"},"type":"array"}},"title":"UpdateProviderScheduleRequest","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

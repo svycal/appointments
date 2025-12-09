@@ -1,0 +1,72 @@
+---
+id: update-account
+title: "Update account"
+description: "Update an existing account."
+sidebar_label: "Update account"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNV9tu20YQ/ZXFoEBagLYucVKEb26aIi6QwIiVlzhqsCLH5ibkktkdylYF/nsxu0vxIjWOWheongRyruecneVsIZF5vpLJFwvxtokgRZsYVZEqNcTwvkoloZBa4L2ypPStkElS1ppOIYKyQiPZ8iKFGGpne+5fQwSVNLJAQmMhvt6OAgczcfErRKD4SSUpgwi0LBBiCFk+qRQiMPi1VgZTiMnUGIFNMiwkxFugTcXWlozSt9A0S2+Mln4p0w1bJKUm1MR/ZVXlKnEFTz5bLmPbCzWs752PIvx7cVMa4fpzCOgWBIgA72VR5cgRQulvNqIFoYmgMowSKbSdyTjZIsM2omALxnbcWQSkiPMETkKKUGfnUK4+Y0LQNHtctpA7XuwA1huZW2z4ia1KbX2t8+n0XwHoQ/URlMIqfZvjYfhSSS5OYlASpp8kQQzz6eznk+mLk9l8MZvHT8/iZ88+sGJSrxH6lE7nz+SL5zKZJs87+SxQp2jEG0xVInOWqodlJyyIgl7HeZ4uZtN4Notn8w8O9SF/bY1j/pQVyrIwfB5hsDJoUY/0IpQWxGRX1emw+f9R0+Oe+6Xtda4KFJLEXaaSzLUWALiTVgRH7vSmNIVLydlPSBW4L3Hf4DjDe62+1ihUymDeKDROSV2mUzdpiNCw9R8Ono8f77azefPDoRwPnsAn9u/OYAfo2P3KWQxZ70p8YgVHcozruoD4ekfI8kCSPkVH4Z1LSyJ4fy/oTX8MXLcNRn3SHS8BuEF1y24mdVN/OIYiuD8hecs3QGtjYdmfZrs55sfF9wyyqzpJ0FrG6mw6e+QZVWtZU1Ya9SemItwldnhW0Zhyd6mRVLmTaecGEViSVFuIXYHNcu9MtSG2oAgL92c0aELgccmv2FEUaK28PXiG2sxjx9eLxaXwL0VSpgd9AyeHc/qXDwko1L3co3H3QBojN3t+AZCepPqIHqOOARNOImePLBFdkrgpa32MPt6WJH5jn6E4zv5TcbTTpkt+aN4coZg2IBe+H2pEaYgbPaIm3pbk+jhGD13zLIb5/Cgx/GNidnIAXee5WMu8RnGXoUHh4RJ4X2FCblrsU1LWJsH9+FWpNKEZJpjwR8lEEhm1qgntpEJ6K79j2LfRDhLTjoIuz4Vey1ylvpcHg7fjIrTymCr43ZbaSf24sVCZkq8NucpRvNKkyOfav54iKJCyMvVLSZL5L4yMoV7PJuHqtpNtt6M03Ciadbvr1IbPfEZU2XgykZU6tXK93iQyP5VVBRGspVFciFu6eGuxmNSGS2L3doBJX/v1sm9xxeL0chjZBeEyDiuUBk2HC5fiumWJv+s2pFcPbC9K35RuzwrQX3EbL2UuziunngI1WXF+ecE9obEe69np1H1GlpYKqXvB23Vy97Uw4Kh3Lh9YPENXhPc0qXKptPtuMu7keaquYT2DqP3O4ikU91bKZQRZaYnNttuVtPje5E3Dj7/WaJiEZceRH+TKCafdlb5R+Y/vgnh/EoMl92DNrfL1xomCD1YMEMEX3AyXYHdNZChTPv3X22Dw0mc9WXCYLsDeTGui1uM8SbCib9r29X95vnj5GiJYhW264HsgBiPveH+Ud77a0sHgJOmebSGX+rbmSygGH5R/fwGM16Iw
+sidebar_class_name: "patch api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update account"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/v1/accounts/{account_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update an existing account.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"Account ID","in":"path","name":"account_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"description":"Request schema for updating an account","example":{"name":"My Account"},"properties":{"name":{"description":"The account name.","type":"string"}},"title":"UpdateAccountRequest","type":"object"}}},"description":"Account params","required":false}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for a single account","example":{"data":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"}},"properties":{"data":{"description":"This is an object representing an account in the app.","example":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^acct_\\w{12}$","type":"string"},"name":{"description":"The account's name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["account"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","name","updated_at"],"title":"Account","type":"object","x-tags":["Accounts"]}},"title":"AccountResponse","type":"object"}}},"description":"Success"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"},"422":{"content":{"application/json":{"schema":{"properties":{"errors":{"items":{"properties":{"detail":{"example":"null value where string expected","type":"string"},"source":{"properties":{"pointer":{"example":"/data/attributes/petName","type":"string"}},"required":["pointer"],"type":"object"},"title":{"example":"Invalid value","type":"string"}},"required":["title","source","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"JsonErrorResponse","type":"object"}}},"description":"Unprocessable Entity"}}}
+>
+  
+</StatusCodes>
+
+
+      

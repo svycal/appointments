@@ -1,0 +1,33 @@
+---
+id: publicappointmentresponse
+title: "PublicAppointmentResponse"
+description: "Response schema for a single appointment created via a public interface."
+sidebar_label: "PublicAppointmentResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"data":{"cancellation":{"allowed":true,"disabled_message":null},"confirmed_at":"2025-03-10T15:30:00Z","end_at":{"local":"2025-03-01T11:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736464800,"utc":"2025-03-01T04:00:00Z"},"id":"appt_a1b2c3d4e5f6","object":"public_appointment","rescheduling":{"allowed":false,"disabled_message":"Rescheduling is not available within 24 hours of your appointment"},"start_at":{"local":"2025-03-01T10:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2025-03-01T03:00:00Z"},"status":"scheduled"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"PublicAppointmentResponse"}
+>
+</Heading>
+
+
+
+Response schema for a single appointment created via a public interface.
+
+<Schema
+  schema={{"description":"Response schema for a single appointment created via a public interface.","example":{"data":{"cancellation":{"allowed":true,"disabled_message":null},"confirmed_at":"2025-03-10T15:30:00Z","end_at":{"local":"2025-03-01T11:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736464800,"utc":"2025-03-01T04:00:00Z"},"id":"appt_a1b2c3d4e5f6","object":"public_appointment","rescheduling":{"allowed":false,"disabled_message":"Rescheduling is not available within 24 hours of your appointment"},"start_at":{"local":"2025-03-01T10:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2025-03-01T03:00:00Z"},"status":"scheduled"}},"properties":{"data":{"description":"A public appointment represents a booking that a client has made with a provider for a service.\n","example":{"cancellation":{"allowed":true,"disabled_message":null},"confirmed_at":"2025-03-10T15:30:00Z","end_at":{"local":"2025-03-01T11:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736464800,"utc":"2025-03-01T04:00:00Z"},"id":"appt_a1b2c3d4e5f6","object":"public_appointment","rescheduling":{"allowed":false,"disabled_message":"Rescheduling is not available within 24 hours of your appointment"},"start_at":{"local":"2025-03-01T10:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2025-03-01T03:00:00Z"},"status":"scheduled"},"properties":{"cancellation":{"description":"Information about whether the appointment can be canceled by the client.","properties":{"allowed":{"description":"Whether the appointment can be canceled by the client.","type":"boolean"},"disabled_message":{"description":"A message explaining why cancellation is disabled, if applicable. Only present when allowed is false.","nullable":true,"type":"string"}},"required":["allowed","disabled_message"],"type":"object"},"confirmed_at":{"description":"Time at which the object was confirmed.","format":"date-time","nullable":true,"type":"string"},"end_at":{"description":"An object describing a date/time in local time (naive) and in UTC.","example":{"local":"2025-03-01T10:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2025-03-01T03:00:00Z"},"properties":{"local":{"description":"The local date/time in ISO-8601 format (without time zone information).","example":"2025-03-01T10:00:00","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$","type":"string"},"object":{"description":"String representing the object's type.","enum":["zoned_date_time"],"type":"string"},"time_zone":{"description":"The time zone of the local time (IANA format).","example":"America/New_York","type":"string"},"unix_ts":{"description":"The UTC date/time in Unix timestamp format (seconds).","example":1736461200,"type":"integer"},"utc":{"description":"The UTC date/time in ISO-8601 format (with time zone information).","example":"2025-03-01T03:00:00Z","format":"date-time","type":"string"}},"required":["object","local","utc","time_zone","unix_ts"],"title":"ZonedDateTime","type":"object"},"id":{"description":"Unique identifier for the object.","pattern":"^appt_\\w{12}$","type":"string"},"object":{"description":"String representing the object's type.","enum":["public_appointment"],"type":"string"},"rescheduling":{"description":"Information about whether the appointment can be rescheduled by the client.","properties":{"allowed":{"description":"Whether the appointment can be rescheduled by the client.","type":"boolean"},"disabled_message":{"description":"A message explaining why rescheduling is disabled, if applicable. Only present when allowed is false.","nullable":true,"type":"string"}},"required":["allowed","disabled_message"],"type":"object"},"start_at":{"description":"An object describing a date/time in local time (naive) and in UTC.","example":{"local":"2025-03-01T10:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2025-03-01T03:00:00Z"},"properties":{"local":{"description":"The local date/time in ISO-8601 format (without time zone information).","example":"2025-03-01T10:00:00","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$","type":"string"},"object":{"description":"String representing the object's type.","enum":["zoned_date_time"],"type":"string"},"time_zone":{"description":"The time zone of the local time (IANA format).","example":"America/New_York","type":"string"},"unix_ts":{"description":"The UTC date/time in Unix timestamp format (seconds).","example":1736461200,"type":"integer"},"utc":{"description":"The UTC date/time in ISO-8601 format (with time zone information).","example":"2025-03-01T03:00:00Z","format":"date-time","type":"string"}},"required":["object","local","utc","time_zone","unix_ts"],"title":"ZonedDateTime","type":"object"},"status":{"description":"The status of the appointment.","enum":["scheduled","canceled"],"type":"string"}},"required":["object","status","confirmed_at","id","start_at","end_at","cancellation","rescheduling"],"title":"PublicAppointment","type":"object","x-tags":["Public Booking"]}},"required":["data"],"title":"PublicAppointmentResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

@@ -1,0 +1,72 @@
+---
+id: deactivate-provider
+title: "Deactivate provider"
+description: "Deactivates an existing provider."
+sidebar_label: "Deactivate provider"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vm1v2zYQ/ivEfdoANo677E3fgibDAgxB0KbYgMAozvQ5YiORLHny4gr67wMp0ZZlr1jQ9ZME8l6eu+chjy0orKolqqcARdtJWFFQXjvW1kABV4SK9QaZgkAj6FkH1uZROG83ekX+DCRYRx6j/c0KCljtPO4GG5Dg0GNNTD5A8dBOcvxZkhHYcEmGtcIU/2/NpUDhKuS19bVg+0RGiuBI6bWmILgkgUrZxrC4uRJr69OSp08NBQYJ9Iy1qwgKQKX4w/z1Dxc//vTzL7+egwQd05aEPTiDdTT769U73Gy2b7B6ddkHBgkxnva0gmKNVSAJQZVUIxQt8NZFt8Bem0foOjmtK9cvbq5yTodc7jPmJn7Qq4NU7JsvZlpE4+CsCRRJg9fnF/GjrGEynDzomWeuwpi0HUU6BHhdO96KHKrvubEixxn3ECSw5vSbvN4OTnF9gu5IQ7dWvBlCdhIuzucTsOhclXi3ZvYx2C9CznlFb5B4b0wUj/X6M62yAMIYfQvkvd1pj1FXUMD7kRtICIzcBCgSwG7RyUiPI8+6b3IO0YJmqtPPoUEOfNTl6ChqCgEfT/Rrn3nq+Pv9/Z3oN4Wyq5O+Aymnc/abxwyNtfaQcS92dnb5kVTialhA73F75Dc0ZLFXxrijxwLJYY8FcsBEkshUz18rEWNZrG1jXqKPW8vit+hzKI6LbyoOMk0dm7tPvvg6xeSAEfhxqAmlQ1z5P2ri1nKq4yV62Bcf9xgfIzO76zSFr4lL24+bipjSiOESCpht5rN8r4ZZO7piu8gj+U0eQo2PLJfMLhSzGTp9FuL9r7A6Q+dAwga9xmWVCEyXbiDVeM3b5J4liz3oh8XY4l2UXs/8xG7QbWzAktCnATQ0JEJJFWuztukWH3qY55K4dM5qwzUZDuLy7iaCJB/6rs3PziM/zgauMWUaxsx+hu/GNkxaPjps/2nkD4hHY6aTfUPbgYgH2MxB7kZcFFUxnncLCaUNHA3bdomB3vuq6+Lyp4Z8bPFiz0B/MHWI//tR/K8VfPd2kOT34nAGn4SdBW22ifOqGebdE20nMzod/OHZ8DJE3+aJc7KcHvbJx8yuuPhW6e0ulSI33hsHG5+zq+s/ru+voev+AfxTiYA=
+sidebar_class_name: "delete api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Deactivate provider"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/v1/providers/{provider_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Deactivates an existing provider.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"When authenticating with a platform token, specifies the account ID for the request","example":"acct_1234567890","in":"header","name":"X-SavvyCal-Account","required":false,"schema":{"type":"string"}},{"description":"Provider ID","in":"path","name":"provider_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"content":{"text/plain":{"schema":{"description":"Empty response with no content","example":"","title":"EmptyResponse","type":"string"}}},"description":"No Content"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

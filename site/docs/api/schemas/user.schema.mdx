@@ -1,0 +1,33 @@
+---
+id: user
+title: "User"
+description: "This is an object representing a user of the app."
+sidebar_label: "User"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"created_at":"2025-03-15T13:01:08Z","email":"avery@tendermedical.com","first_name":"Avery","id":"user_d025a96ac0c6","last_name":"Evans","object":"user","updated_at":"2025-03-15T13:01:08Z"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"User"}
+>
+</Heading>
+
+
+
+This is an object representing a user of the app.
+
+<Schema
+  schema={{"description":"This is an object representing a user of the app.","example":{"created_at":"2025-03-15T13:01:08Z","email":"avery@tendermedical.com","first_name":"Avery","id":"user_d025a96ac0c6","last_name":"Evans","object":"user","updated_at":"2025-03-15T13:01:08Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"email":{"description":"The user's email address.","format":"email","type":"string"},"first_name":{"description":"The user's first name.","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^user_\\w{12}$","type":"string"},"last_name":{"description":"The user's last name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["user"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","first_name","last_name","email","id","updated_at"],"title":"User","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

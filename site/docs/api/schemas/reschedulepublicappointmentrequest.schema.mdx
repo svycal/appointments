@@ -1,0 +1,33 @@
+---
+id: reschedulepublicappointmentrequest
+title: "ReschedulePublicAppointmentRequest"
+description: "Request schema for rescheduling a public appointment"
+sidebar_label: "ReschedulePublicAppointmentRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"end_at":"2025-03-01T11:00:00","provider_id":"prv_1234567890","start_at":"2025-03-01T10:00:00","time_zone":"America/New_York"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ReschedulePublicAppointmentRequest"}
+>
+</Heading>
+
+
+
+Request schema for rescheduling a public appointment
+
+<Schema
+  schema={{"description":"Request schema for rescheduling a public appointment","example":{"end_at":"2025-03-01T11:00:00","provider_id":"prv_1234567890","start_at":"2025-03-01T10:00:00","time_zone":"America/New_York"},"properties":{"end_at":{"description":"The new end time of the appointment in local time (in naive ISO-8601 format, without time zone information). The time zone for the appointment is specified in the `time_zone` field.","example":"2025-03-01T11:00:00","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$","type":"string"},"provider_id":{"description":"The ID of the provider to assign to the appointment. If not provided, the provider assigned to the original appointment will be used.","nullable":true,"type":"string"},"start_at":{"description":"The new start time of the appointment in local time (in naive ISO-8601 format, without time zone information). The time zone for the appointment is specified in the `time_zone` field.","example":"2025-03-01T10:00:00","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$","type":"string"},"time_zone":{"description":"The local time zone for the appointment (IANA format).","example":"America/New_York","type":"string"}},"required":["start_at","end_at","time_zone"],"title":"ReschedulePublicAppointmentRequest","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

@@ -1,0 +1,33 @@
+---
+id: platform
+title: "Platform"
+description: "This is an object representing a platform in the app."
+sidebar_label: "Platform"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"created_at":"2017-09-12T12:34:55Z","id":"plat_d025a96ac0c6","name":"Tender Medical","object":"platform","updated_at":"2017-09-13T10:11:12Z"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Platform"}
+>
+</Heading>
+
+
+
+This is an object representing a platform in the app.
+
+<Schema
+  schema={{"description":"This is an object representing a platform in the app.","example":{"created_at":"2017-09-12T12:34:55Z","id":"plat_d025a96ac0c6","name":"Tender Medical","object":"platform","updated_at":"2017-09-13T10:11:12Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^plat_\\w{12}$","type":"string"},"name":{"description":"The platform's name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["platform"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","name","updated_at"],"title":"Platform","type":"object","x-tags":["Platforms"]}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

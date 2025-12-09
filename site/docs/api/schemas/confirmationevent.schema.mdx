@@ -1,0 +1,33 @@
+---
+id: confirmationevent
+title: "ConfirmationEvent"
+description: "This is an object representing when an appointment was confirmed."
+sidebar_label: "ConfirmationEvent"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"actor":null,"end_at":{"local":"2023-01-01T01:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736464800,"utc":"2023-01-01T04:00:00Z"},"initiated_by":"client","object":"confirmation_event","occurred_at":"2023-01-01T03:00:00Z","source":"client_ui","start_at":{"local":"2023-01-01T00:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2023-01-01T03:00:00Z"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ConfirmationEvent"}
+>
+</Heading>
+
+
+
+This is an object representing when an appointment was confirmed.
+
+<Schema
+  schema={{"description":"This is an object representing when an appointment was confirmed.","example":{"actor":null,"end_at":{"local":"2023-01-01T01:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736464800,"utc":"2023-01-01T04:00:00Z"},"initiated_by":"client","object":"confirmation_event","occurred_at":"2023-01-01T03:00:00Z","source":"client_ui","start_at":{"local":"2023-01-01T00:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2023-01-01T03:00:00Z"}},"properties":{"actor":{"description":"The actor that initiated the confirmation (user ID or bearer token ID).","nullable":true,"type":"string"},"end_at":{"description":"An object describing a date/time in local time (naive) and in UTC.","example":{"local":"2025-03-01T10:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2025-03-01T03:00:00Z"},"properties":{"local":{"description":"The local date/time in ISO-8601 format (without time zone information).","example":"2025-03-01T10:00:00","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$","type":"string"},"object":{"description":"String representing the object's type.","enum":["zoned_date_time"],"type":"string"},"time_zone":{"description":"The time zone of the local time (IANA format).","example":"America/New_York","type":"string"},"unix_ts":{"description":"The UTC date/time in Unix timestamp format (seconds).","example":1736461200,"type":"integer"},"utc":{"description":"The UTC date/time in ISO-8601 format (with time zone information).","example":"2025-03-01T03:00:00Z","format":"date-time","type":"string"}},"required":["object","local","utc","time_zone","unix_ts"],"title":"ZonedDateTime","type":"object"},"initiated_by":{"description":"The entity that initiated the confirmation.","enum":["user","client"],"type":"string"},"object":{"enum":["confirmation_event"],"type":"string"},"occurred_at":{"description":"The time at which the confirmation occurred (ISO-8601 format).","format":"datetime","type":"string"},"source":{"description":"The source of the confirmation event.","enum":["client_ui","dashboard","api"],"type":"string"},"start_at":{"description":"An object describing a date/time in local time (naive) and in UTC.","example":{"local":"2025-03-01T10:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2025-03-01T03:00:00Z"},"properties":{"local":{"description":"The local date/time in ISO-8601 format (without time zone information).","example":"2025-03-01T10:00:00","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$","type":"string"},"object":{"description":"String representing the object's type.","enum":["zoned_date_time"],"type":"string"},"time_zone":{"description":"The time zone of the local time (IANA format).","example":"America/New_York","type":"string"},"unix_ts":{"description":"The UTC date/time in Unix timestamp format (seconds).","example":1736461200,"type":"integer"},"utc":{"description":"The UTC date/time in ISO-8601 format (with time zone information).","example":"2025-03-01T03:00:00Z","format":"date-time","type":"string"}},"required":["object","local","utc","time_zone","unix_ts"],"title":"ZonedDateTime","type":"object"}},"required":["object","source","initiated_by","actor","start_at","end_at","occurred_at"],"title":"ConfirmationEvent","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

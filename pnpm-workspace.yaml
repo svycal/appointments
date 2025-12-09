@@ -1,4 +1,8 @@
+publicHoistPattern:
+  - "@mdx-js/react"
+  - url-loader
 packages:
+  - "site"
   - "packages/*"
   - "components/*"
   - "playground/assets"

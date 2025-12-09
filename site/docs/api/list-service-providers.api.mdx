@@ -1,0 +1,72 @@
+---
+id: list-service-providers
+title: "List service providers"
+description: "List all providers associated with a service"
+sidebar_label: "List service providers"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWFtv2zYU/isEMaANIF/kXLroLVi7LcNQBI2LDXW84ISiI7aSyJKUE8/Qfx8OJVnXuPWQPAzYUxzx3Ph9H4+OuKUM4vgO2BdDg23u0ZAbpoWyQqY0oL8LYwnEMVFarkXItSFgjGQCLA/Jg7ARAWK4XgvGqUel4hrQ9TKkAY2FsdfF2lXlTj2qQEPCLf4TLLadhH9EPCWQ2YinVjCwIr2v0qgY7ErqhFj5haceMYozsRLcEBtxAozJLLXk8i1ZSe0eaf4148ZSj/JHSFTMaUCBMXvrz45PTs/e/Hg+pR4VmDbiEHJNPZpCgmZ/jq5hvd78BPHooghMPYrxhOYhDVYQG+5RwyKeAA221G4UuhmrRXpP89zr7qvEgVy+rVIqsFGdsMTwVoStRFZne/Ms0dgomRqO/NHZdIp/mEwtTy3+BKViB6RMJ58N1rJtxGsX+aEMRQoDByQQpJHIVUVzLYUmsFsaggVHKNMc1XELlgZ0Np2djqazkX8+998Ex2fB8dknRAD1YdRtOJ2dwvkZsCk7Q/3cfebMNuCocqFsqp9BL4X/ZjQ9H/mzuT8Ljk+C01NMEQqjYtjclgD/JqOUXCfCgb4S2tjmSlUSJukWFUNtWwXYFdooMFPhQFHHc38a+H7gzz7R3GvyHFCje8k6QQbAy5e5A0NxbUXBegH9lgrLE9On9aJHXZu5/wl7WcK6dDXBGOx/2Ly6lJEHMKT0HCMiUicuJ6YfWZFg/+20hwKjp1pR1ZOLnqTAWq5x/S+jbm9uHrb+LP9hKGYFZS+usyCaK80Ntu/03u2ksH9lCEbC0nmaJTRY9DWzHMjWVFFX1jtsdjkNvo4srFYk4ckdohZJwiCtTMmiTGqWryNrlQkmk5CveYz8mLHBps8gHoNSE1BiUjRCMym9jm5SK8mCxQJzHRaicDoa36R7T99/6Gh8v6rnIuEELHmIBIsaovh3om6j0csV1YfmlSGlMUHj8VC0Jn7fiOVMn440dNg+puJrxokI8UCsBNe76aRAYNw+eo6zfYevQeA3ikXLp2t9tkO89/A2ZXSQJlzxpff3CiNvDk6LaodeU5iOoxblTUQ7ymqVj7sT1o2QV/UxKSvYpXocWbjHsZbWA++y8xLZOxk2u7Der4R92O5/izwnuA7P1vDa6CIt5IfB7Hwf9DDNdw9Aa9j0CnGjz9PxTDXS9gPnvY+d64wxbgzmPJn6zzxHZyl+1Ugt/uZh9WXSmaC51nL3UWRBxK5/1G6ItAWbGRq4AgcmwSpEYxbsjIpl4G7J79CRJNwYuB9sulXmruOv8/kVKRYJk+Ggb0nOcM5i8VuCK+teHqqPEpCGQpqIHqKOFhNOIifPLJFUWrKSWXqIPt5LS35Gn7Y4Tl5UHFXvr5MPNf8DFFMFxML7oTqUlnG9Z9TEe2ndPg7RQ715XKv6ftl/XPSE20jiJHbPbdHbIxrQydqvxkkz2datM580P6zxeXVDkmlkupo1QYnWkEk9ugYt4C52JLo7AcNZpoXdOPdKtlAUvlg2La5RfgX7HbtSuwjCHQfd7M1Yitu1SFfSXUtU3be8NCEXSkmR2sSN5BdXl1gk16ZAzh9P3fgojU3AZSonUnfbNHTN0EK+ceYOvZ8q67f80U5UDCJ1L1LtJF/Qs6Brv36jYe5g8O3mCI6kseiy3d6B4R91nOf4+GvGNUK/rJkpDq0w+Lu+P3pyW68/lHI9Iq3xYLD+SuvpxkkhzvA/6tEvfNO+WHItobzpOqyel7mVG9xNUfXg/dtub3i9VthdMMZVc63Xg/PmQfzl3Zzm+T830CPz
+sidebar_class_name: "get api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List service providers"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/services/{service_id}/providers"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+List all providers associated with a service
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"When authenticating with a platform token, specifies the account ID for the request","example":"acct_1234567890","in":"header","name":"X-SavvyCal-Account","required":false,"schema":{"type":"string"}},{"description":"Service ID","in":"path","name":"service_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for a list of service providers","example":{"data":[{"created_at":"2025-02-19T17:36:36Z","id":"sp_d025a96ac0c6","object":"service_provider","provider":{"created_at":"2017-09-12T12:34:55Z","display_name":"John Smith","first_name":"John","id":"prov_d025a96ac0c6","last_name":"Smith","object":"provider","updated_at":"2017-09-13T10:11:12Z"},"service_id":"srv_d025a96ac0c6","updated_at":"2025-02-19T17:36:36Z"}]},"properties":{"data":{"items":{"description":"A service provider","example":{"created_at":"2025-02-19T17:36:36Z","id":"sp_d025a96ac0c6","object":"service_provider","provider":{"created_at":"2017-09-12T12:34:55Z","display_name":"John Smith","first_name":"John","id":"prov_d025a96ac0c6","last_name":"Smith","object":"provider","updated_at":"2017-09-13T10:11:12Z"},"service_id":"srv_d025a96ac0c6","updated_at":"2025-02-19T17:36:36Z"},"properties":{"created_at":{"description":"When the service provider was created.","format":"date-time","type":"string"},"id":{"description":"Service Provider ID","pattern":"^sp_\\w{12}$","type":"string"},"object":{"description":"String representing the object's type.","enum":["service_provider"],"type":"string"},"provider":{"description":"A provider represents a staff member who can provide [services](https://developers.savvycal.app/api/schemas/service)\nto [clients](https://developers.savvycal.app/api/schemas/client).\n","example":{"created_at":"2017-09-12T12:34:55Z","display_name":"John Smith","first_name":"John","id":"prov_d025a96ac0c6","last_name":"Smith","object":"provider","updated_at":"2017-09-13T10:11:12Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"display_name":{"description":"The provider's display name.","type":"string"},"first_name":{"description":"The provider's first name.","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^prov_\\w{12}$","type":"string"},"last_name":{"description":"The provider's last name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["provider"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","first_name","last_name","display_name","updated_at"],"title":"Provider","type":"object","x-tags":["Providers"]},"service_id":{"description":"Service ID","pattern":"^srv_\\w{12}$","type":"string"},"updated_at":{"description":"When the service provider was last updated.","format":"date-time","type":"string"}},"required":["object","id","service_id","provider","created_at","updated_at"],"title":"ServiceProvider","type":"object"},"type":"array"}},"required":["data"],"title":"ServiceProvidersResponse","type":"object"}}},"description":"Success"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,72 @@
+---
+id: create-account
+title: "Create account"
+description: "Create a new account (requires a platform token)."
+sidebar_label: "Create account"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWNtuGzcQ/RViUCAJsLYuuRTZNzUIWhdIasTyQ+OowYg7lpjskgzJlawI+vdgyF1rdWliJ3noQ/203uXczjkzJLUGiWU5RfnRQ77eZFCQl07ZoIyGHF44wkAChaalQClNrYN46OhTrRx5gcKWGK6Nq0QwH0k/OoUMjCWHbH9WQA4yehglU8jAosOKAjkP+dUkA/ZFPvxmihXka5BGB9KBH9HaUsnoqffBczpr8HJOFfLTbp5vkheRvotr40QMrPRMoG4zhwzoBitbEnvQWBHk8GolttkFVdH7z0bzh1FFTknsvZgriTMDmwys4+KCIr91sJ/KeE63SPEKhiSsLHv0wSk9Y0edOF+z52WCl4mHZ6PXI66rwvDoiMtNQlI5KiC/Sql1w0z4n8CFN5w2NTfAbR2a6QeSATabAy00FiIy6KEb8BpLTzEFb432CZ5hf/BDjCZXXUpReKVnJR3ns8AQ/STFFe8xQM5J/HrSf34yGI4Hw/zxk/zp07eQgWJpopThfdEfPsXnz1D25TPIWlGMSRfkxCsqlMSSRZ1giUZN6NoWR+I8Hg/6+WCQD4ZvIyu7kmlz3KdceaE8KzXFEY6sI096T8BCaRFYH9ae7hb/Hyp6v+ZuageVs8AxiOVcyXksrQFgiV40hlxpEj7kDCCdsKyPdRUXuB/hUqtPNQlVMJjXilxU0jbSaZxJIZDj1f9EeN69W64Hw80vx2J8s+kf+H9v+xbQffOLuGKX9W2KD7xgT5FxXVfc3y0hkyNBuhTdC+8SfRCN9V1B35s7TYFZl/TIS9aOpE52nZnUmcA7YyiDm5OAM94r2jUeJpvNgWU7Lu4yyC5qKcl7xupJv/+TZ9SMNG8bgpwzTlTkPc7I7zZr/MY1scOAqoQc/ja1qGomwFOn40+8NJaKtL2KYPg9eS8CjwzShTVKRw37gKH2kMeStvCc6QWWqhALLGuCzeSgO9tc1qACVfFhb2Q1Ge4X/7Jb4DGxtxntG/4xHp+L9FFIUxy1bdI/HjN9/JYUm7wnB4K4fYHO4erArgGkI87fE6Ux+H101rVLYvvZG2KtsQ5z49RnKkRzkrqD1i47ZrvSGfwvke+SSBfR+0hkhwmWyHB4L4l8N1G3CgFdl2UaD2I5J0cigSXoxpIMUSCHvJnaSTr0H6cRud0APT709DAEp6Z1IN+zFF7jHTaT1ttRflr2t3F2R923nLcKaUrJfqIY/vRG33tYXGrrDI92nJYkXuqgQop1uP1lUFGYGz7NWePTpSrMGenFoIftsgw8uQU1vV87bvx5CNbnvR5adepxsVhJLE/RWshggU5x6HgN3EzYWtaOk2DzVqWYsr2adFdcsByTAPbWNVLlyqeEjtwWCU4l1seifrO9BL78oQua0teGTVsqLrjIF1iKkY1qqkgHL0bnZ1wxOZ+wH5z247HV+FCh7oRur7+34Xc46/Tpd12UGyQC3YSeLVHpeHpzsT8To1ewGEAG2KF+zoznV7BeT9HTpSs3G379qSa3SjfqlslIUwZzwoJb8moNH2nFqaakT8Ycnpdzu+SHg2aTtRYjKcmGr67tivL8r4sxZDBtrvQVD/AcHC75zohLyCH+SsDWUTTx3RpK1LOaN4ockk/++wI9aLhl
+sidebar_class_name: "post api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create account"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/accounts"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Create a new account (requires a platform token).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"description":"Request schema for creating an account","example":{"name":"My Account","time_zone":"America/Chicago"},"properties":{"name":{"description":"The account name.","type":"string"},"time_zone":{"description":"The account time zone (IANA format).","type":"string"}},"required":["name","time_zone"],"title":"CreateAccountRequest","type":"object"}}},"description":"Account params","required":false}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"content":{"application/json":{"schema":{"description":"Response schema for a single account","example":{"data":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"}},"properties":{"data":{"description":"This is an object representing an account in the app.","example":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^acct_\\w{12}$","type":"string"},"name":{"description":"The account's name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["account"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","name","updated_at"],"title":"Account","type":"object","x-tags":["Accounts"]}},"title":"AccountResponse","type":"object"}}},"description":"Success"},"400":{"content":{"application/json":{"schema":{"description":"Response schema for generic error messages","example":{"errors":[{"detail":"You must use an account-scoped token to access this endpoint.","status":"400","title":"Invalid value"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"GenericErrorResponse","type":"object"}}},"description":"GenericError"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"422":{"content":{"application/json":{"schema":{"properties":{"errors":{"items":{"properties":{"detail":{"example":"null value where string expected","type":"string"},"source":{"properties":{"pointer":{"example":"/data/attributes/petName","type":"string"}},"required":["pointer"],"type":"object"},"title":{"example":"Invalid value","type":"string"}},"required":["title","source","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"JsonErrorResponse","type":"object"}}},"description":"Unprocessable Entity"}}}
+>
+  
+</StatusCodes>
+
+
+      

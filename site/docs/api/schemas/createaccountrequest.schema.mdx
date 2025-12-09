@@ -1,0 +1,33 @@
+---
+id: createaccountrequest
+title: "CreateAccountRequest"
+description: "Request schema for creating an account"
+sidebar_label: "CreateAccountRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"name":"My Account","time_zone":"America/Chicago"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CreateAccountRequest"}
+>
+</Heading>
+
+
+
+Request schema for creating an account
+
+<Schema
+  schema={{"description":"Request schema for creating an account","example":{"name":"My Account","time_zone":"America/Chicago"},"properties":{"name":{"description":"The account name.","type":"string"},"time_zone":{"description":"The account time zone (IANA format).","type":"string"}},"required":["name","time_zone"],"title":"CreateAccountRequest","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

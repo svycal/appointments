@@ -1,0 +1,36 @@
+---
+id: recurrencerule
+title: "RecurrenceRule"
+description: "A recurrence rule describes a repeating pattern of times. Recurrences rules in SavvyCal are modeled"
+sidebar_label: "RecurrenceRule"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"byday":["mo","we","fr"],"freq":"weekly"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"RecurrenceRule"}
+>
+</Heading>
+
+
+
+A recurrence rule describes a repeating pattern of times. Recurrences rules in SavvyCal are modeled
+after the conventions of [iCalendar](https://en.wikipedia.org/wiki/ICalendar) recurrence rules (RRULE),
+but are a subset of the full specification.
+
+
+<Schema
+  schema={{"description":"A recurrence rule describes a repeating pattern of times. Recurrences rules in SavvyCal are modeled\nafter the conventions of [iCalendar](https://en.wikipedia.org/wiki/ICalendar) recurrence rules (RRULE),\nbut are a subset of the full specification.\n","example":{"byday":["mo","we","fr"],"freq":"weekly"},"properties":{"byday":{"description":"The days of the week on which the recurrence occurs.","example":["mo","we","fr"],"items":{"pattern":"(mo|tu|we|th|fr|sa|su)$","type":"string"},"type":"array","uniqueItems":true},"count":{"description":"Number of occurrences at which to end the recurrence.","minimum":1,"nullable":true,"type":"integer"},"freq":{"description":"The frequency of the recurrence.","enum":["daily","weekly"],"type":"string"},"interval":{"description":"How often the recurrence rule repeats.","example":2,"minimum":1,"type":"integer"},"until":{"description":"Date at which to end the recurrence (in ISO-8601 format).","example":"2024-01-02","nullable":true,"type":"date"}},"required":["freq"],"title":"RecurrenceRule","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

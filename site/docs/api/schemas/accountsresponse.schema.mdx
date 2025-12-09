@@ -1,0 +1,33 @@
+---
+id: accountsresponse
+title: "AccountsResponse"
+description: "Response schema for a list of accounts"
+sidebar_label: "AccountsResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"data":[{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"}],"meta":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"AccountsResponse"}
+>
+</Heading>
+
+
+
+Response schema for a list of accounts
+
+<Schema
+  schema={{"description":"Response schema for a list of accounts","example":{"data":[{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"}],"meta":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5}},"properties":{"data":{"description":"List of accounts","items":{"description":"This is an object representing an account in the app.","example":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^acct_\\w{12}$","type":"string"},"name":{"description":"The account's name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["account"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","name","updated_at"],"title":"Account","type":"object","x-tags":["Accounts"]},"type":"array"},"meta":{"description":"Metadata for paginated responses","example":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5},"properties":{"current_page":{"description":"Current page number","type":"integer"},"page_size":{"description":"Number of records per page","type":"integer"},"total_count":{"description":"Total number of records","type":"integer"},"total_pages":{"description":"Total number of pages","type":"integer"}},"required":["total_count","total_pages","current_page","page_size"],"title":"PaginationMeta","type":"object"}},"required":["data","meta"],"title":"AccountsResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

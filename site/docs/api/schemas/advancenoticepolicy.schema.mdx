@@ -1,0 +1,34 @@
+---
+id: advancenoticepolicy
+title: "AdvanceNoticePolicy"
+description: "A policy for requiring minimum advance notice."
+sidebar_label: "AdvanceNoticePolicy"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"enabled":true,"minimum_duration":"PT1H"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"AdvanceNoticePolicy"}
+>
+</Heading>
+
+
+
+A policy for requiring minimum advance notice.
+
+
+<Schema
+  schema={{"description":"A policy for requiring minimum advance notice.\n","example":{"enabled":true,"minimum_duration":"PT1H"},"properties":{"enabled":{"description":"Whether advance notice is enabled.","type":"boolean"},"minimum_duration":{"description":"The minimum duration of advance notice.","nullable":true,"pattern":"^PT(?:(\\d+)H)?(?:(\\d+)M)?$","type":"string"}},"required":["enabled","minimum_duration"],"title":"AdvanceNoticePolicy","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

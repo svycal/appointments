@@ -1,0 +1,72 @@
+---
+id: get-client
+title: "Get client"
+description: "Get a single client by ID."
+sidebar_label: "Get client"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWG1v2zYQ/ivEYUBbTH5L7G7VpwVt12UfiqJJsGGp59DU2WIrUSpJOXEN/ffhKMrWi5suWNtP+2RZOt7Lc88dj9yB4Emy5OKDgXBXBhChEVrmVmYKQniFlnFmpFonyEQiUVm23LLzF0MIIMtRcxI8jyCENdrnTgACyLnmKVrUBsLrXUfnHzEqxgsbo7JScCvVmt1KGzPO8oTbVaZTZrMPqAJmchRyJdEwGyPjQmSFsuz8BVtl2r3S+LFAQybxjqd5ghACF8IuJien09nTn35+NoYAJJmNkUeoIQDFUxL7c3DBN5vtc54MzirFEADpkxojCFc8MRiAETGmHMId2G1Oy4zVUq2hLINuXFX07PxFbTHnNj7Yq9BbyKhlxuriXitzEjZ5pgxSguBkPKYfkSlLUIc74HmeOBgzNXpvyJNdQ1/bxbdeFasEHIyd9Dah3EHErVMjNHKL0YJbCOFkfDIbjCeDyexyMg1Px+F4/BctS7lMIIT3XOHQpNLGv3hNQ5GlEMBKamMXHo7fuUICKnLQKLvgk+WJOI2mOFs9hQASfpC9IGX0LhPcpRjV4OqCGLh8j8LuwSXmxZkiiR8ns9nMk8ABvkKNSuDCGcQ7zxAIwMoUF5+qVWcpain46HksBV9nEECRR93ATweT8eX4WTiducDLMoBcUy1YWeWoBq2N/WUsDZOGccUqt5nGXKOhKlBrxj3+w3YC/gf+88B3cW9i1UNfpsi4ZbexFLFrHT4Jt9wwv5Cgp+7jTJL1AblInraLco94P8V1FT0yzMkwHkUajRkyl/6VxCQiEmQq2TKpRFJEGDG5Yjf+z8KgMtLKDd6Q3A31h5uWY5XtAFSRJHxJWal6SM/JZtbv9dQJMhL8725+0SuiQdebKyU/FshkRLWwkqj3/b1K0tBtKdaiJum/HWvfvbvdTU7KH46lp0HhewMnue8Vd11CxxyqvrFs5WI+0gf2dddTWxdiV+2Fk2i3mAOgjwwjTc6GKlIIr+tCnh+x4Uv7XiidDFNFukTNHr8cTp5OWUXZJ98B3HaX6Tr68o6YwxO2FztGtQPsXzTX6Fz3gkJyjOTY4/Oz12d7QFqp7be+nr1mL3xQY3ME96v/bXcrm+PJNbh5xbOsA3QTiD3Bg2YbbrlO1JLWxbwfFL3tvf67geVrGhq9iIF51yG3u/Z01ZNNT2dZ9obai0IINIaQnY4nX3mcKhSNtpmWnzCqx1PT3tNR62w/Gdtq775qLIMAjOW2MBA6B8t5b6urVexAWkzdQ2cG8Yp7tUALWYrG8PXRra223F342+XlG1Z9ZCKLjq71KTlus/r4Jbp5v+e9NO5fcK35trfOA9LgRRPRh7CjlQlHkelXpojKLFtlhXoIP15nlv1Ka9rkmH5TctR7w8H4se3hAYypFZLjfVWdlHq9wVfkxOvMujgewodD8PSt154CSNHGmT8BV4NKDCGMNpNRtRGY0W5/9ispfag39cm40JTc2NrchKMRz+XQ0KFU8GTI8xwC2HAtaS9yp3M6DRoUhZZ265bXTOWVr9fzpsQFMa5KeEfO05XiXiLX7lTscSBXXKBSrTJ3IPXQ1YdldpbnmVQ2pcjY2ZtzchK1qcCaDMduYsiMTbmz5E8SdJGwPyu0AG6U1v3XDd5Di3d2lCdcKrc1asfjCvRr2ExoA/K5CSA8HLrnAcSZsSS02y25wSudlCW9/ligJjjnB7Sr2pOGng93AZ91+/Fbz7onrHkJcNThmrFq67KbFPQPAviA29Ylgatrf2fxMG++zf3K0WAqp4/epOxDo4uSSu5MCMyb33qNtGyW06uXl1CW/wBbTlnt
+sidebar_class_name: "get api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get client"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/clients/{client_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get a single client by ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"When authenticating with a platform token, specifies the account ID for the request","example":"acct_1234567890","in":"header","name":"X-SavvyCal-Account","required":false,"schema":{"type":"string"}},{"description":"Client ID","in":"path","name":"client_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for a single client","example":{"data":{"created_at":"2025-01-15T14:30:00Z","email":"jane.smith@example.com","first_name":"Jane","id":"clnt_a1b2c3d4e5f6","last_name":"Smith","locale":"en-US","object":"client","phone":"+15551234567","reference_id":"ext_12345","time_zone":"America/Chicago","updated_at":"2025-03-10T09:45:00Z"}},"properties":{"data":{"description":"This is an object representing a client.","example":{"created_at":"2025-01-15T14:30:00Z","email":"jane.smith@example.com","first_name":"Jane","id":"clnt_a1b2c3d4e5f6","last_name":"Smith","locale":"en-US","object":"client","phone":"+15551234567","reference_id":"ext_12345","time_zone":"America/Chicago","updated_at":"2025-03-10T09:45:00Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"email":{"description":"The client's email address. This field is only included if `include_sensitive` is `true`.","format":"email","nullable":true,"type":"string"},"first_name":{"description":"The client's first name. This field is only included if `include_sensitive` is `true`.","nullable":true,"type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^clnt_\\w{12}$","type":"string"},"last_name":{"description":"The client's last name. This field is only included if `include_sensitive` is `true`.","nullable":true,"type":"string"},"locale":{"description":"The locale of the client.","example":"en-US","type":"string"},"object":{"description":"String representing the object's type.","enum":["client"],"type":"string"},"phone":{"description":"The client's phone number (E.164 format). This field is only included if `include_sensitive` is `true`.","nullable":true,"type":"string"},"reference_id":{"description":"External reference identifier for the client.","nullable":true,"type":"string"},"time_zone":{"description":"The client's time zone (IANA format).","example":"America/Chicago","type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["id","object","reference_id","time_zone","locale","created_at","updated_at"],"title":"Client","type":"object","x-tags":["Clients"]}},"required":["data"],"title":"ClientResponse","type":"object"}}},"description":"Success"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

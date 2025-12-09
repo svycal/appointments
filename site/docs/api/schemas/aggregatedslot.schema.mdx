@@ -1,0 +1,33 @@
+---
+id: aggregatedslot
+title: "AggregatedSlot"
+description: "An aggregated time slot with start, end times and count"
+sidebar_label: "AggregatedSlot"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"count":3,"end_at":"2025-03-10T10:00:00-04:00","end_at_ts":1736464800,"object":"aggregated_slot","start_at":"2025-03-10T09:00:00-04:00","start_at_ts":1736461200,"time_zone":"America/New_York"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"AggregatedSlot"}
+>
+</Heading>
+
+
+
+An aggregated time slot with start, end times and count
+
+<Schema
+  schema={{"description":"An aggregated time slot with start, end times and count","example":{"count":3,"end_at":"2025-03-10T10:00:00-04:00","end_at_ts":1736464800,"object":"aggregated_slot","start_at":"2025-03-10T09:00:00-04:00","start_at_ts":1736461200,"time_zone":"America/New_York"},"properties":{"count":{"type":"integer"},"end_at":{"format":"date-time","type":"string"},"end_at_ts":{"description":"Unix timestamp in seconds","type":"integer"},"object":{"description":"String representing the object's type.","enum":["aggregated_slot"],"type":"string"},"start_at":{"format":"date-time","type":"string"},"start_at_ts":{"description":"Unix timestamp in seconds","type":"integer"},"time_zone":{"description":"IANA time zone name","type":"string"}},"required":["object","start_at","end_at","count","time_zone"],"title":"AggregatedSlot","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

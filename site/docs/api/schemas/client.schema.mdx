@@ -1,0 +1,33 @@
+---
+id: client
+title: "Client"
+description: "This is an object representing a client."
+sidebar_label: "Client"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"created_at":"2025-01-15T14:30:00Z","email":"jane.smith@example.com","first_name":"Jane","id":"clnt_a1b2c3d4e5f6","last_name":"Smith","locale":"en-US","object":"client","phone":"+15551234567","reference_id":"ext_12345","time_zone":"America/Chicago","updated_at":"2025-03-10T09:45:00Z"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Client"}
+>
+</Heading>
+
+
+
+This is an object representing a client.
+
+<Schema
+  schema={{"description":"This is an object representing a client.","example":{"created_at":"2025-01-15T14:30:00Z","email":"jane.smith@example.com","first_name":"Jane","id":"clnt_a1b2c3d4e5f6","last_name":"Smith","locale":"en-US","object":"client","phone":"+15551234567","reference_id":"ext_12345","time_zone":"America/Chicago","updated_at":"2025-03-10T09:45:00Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"email":{"description":"The client's email address. This field is only included if `include_sensitive` is `true`.","format":"email","nullable":true,"type":"string"},"first_name":{"description":"The client's first name. This field is only included if `include_sensitive` is `true`.","nullable":true,"type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^clnt_\\w{12}$","type":"string"},"last_name":{"description":"The client's last name. This field is only included if `include_sensitive` is `true`.","nullable":true,"type":"string"},"locale":{"description":"The locale of the client.","example":"en-US","type":"string"},"object":{"description":"String representing the object's type.","enum":["client"],"type":"string"},"phone":{"description":"The client's phone number (E.164 format). This field is only included if `include_sensitive` is `true`.","nullable":true,"type":"string"},"reference_id":{"description":"External reference identifier for the client.","nullable":true,"type":"string"},"time_zone":{"description":"The client's time zone (IANA format).","example":"America/Chicago","type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["id","object","reference_id","time_zone","locale","created_at","updated_at"],"title":"Client","type":"object","x-tags":["Clients"]}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

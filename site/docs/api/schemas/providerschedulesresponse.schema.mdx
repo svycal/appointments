@@ -1,0 +1,33 @@
+---
+id: providerschedulesresponse
+title: "ProviderSchedulesResponse"
+description: "Response schema for a list of provider schedules"
+sidebar_label: "ProviderSchedulesResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"data":[{"created_at":"2025-02-17T17:49:19Z","effective_from":"2025-01-01","effective_to":"2025-12-31","id":"psch_d025a96ac0c6","object":"provider_schedule","public_bookings":{"enabled":true},"updated_at":"2025-02-17T17:49:19Z","weekly_rules":[{"day":"mo","end_time":"17:00","start_time":"09:00"}]}],"meta":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ProviderSchedulesResponse"}
+>
+</Heading>
+
+
+
+Response schema for a list of provider schedules
+
+<Schema
+  schema={{"description":"Response schema for a list of provider schedules","example":{"data":[{"created_at":"2025-02-17T17:49:19Z","effective_from":"2025-01-01","effective_to":"2025-12-31","id":"psch_d025a96ac0c6","object":"provider_schedule","public_bookings":{"enabled":true},"updated_at":"2025-02-17T17:49:19Z","weekly_rules":[{"day":"mo","end_time":"17:00","start_time":"09:00"}]}],"meta":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5}},"properties":{"data":{"description":"List of provider schedules","items":{"description":"A provider schedule represents a schedule for a provider at a location.\n","example":{"created_at":"2025-02-17T17:49:19Z","effective_from":"2025-01-01","effective_to":"2025-12-31","id":"psch_d025a96ac0c6","object":"provider_schedule","public_bookings":{"enabled":true},"updated_at":"2025-02-17T17:49:19Z","weekly_rules":[{"day":"mo","end_time":"17:00","start_time":"09:00"}]},"properties":{"created_at":{"description":"When the service was created.","format":"datetime","type":"string"},"effective_from":{"description":"The start date of the schedule.","format":"date","type":"string"},"effective_to":{"description":"The end date of the schedule.","format":"date","nullable":true,"type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^psch_\\w{12}$","type":"string"},"object":{"description":"String representing the object's type.","enum":["provider_schedule"],"type":"string"},"public_bookings":{"description":"Public booking settings for the schedule.","example":{"enabled":true},"properties":{"enabled":{"description":"Whether public bookings are enabled for the schedule.","type":"boolean"}},"required":["enabled"],"type":"object"},"updated_at":{"description":"When the schedule was last updated.","format":"datetime","type":"string"},"weekly_rules":{"description":"Weekly rules for the schedule.","items":{"description":"Weekly rule for a provider schedule.","example":{"day":"mo","end_time":"17:00","start_time":"09:00"},"properties":{"day":{"description":"The day of the week.","enum":["mo","tu","we","th","fr","sa","su"],"type":"string"},"end_time":{"description":"The end time of the rule.","pattern":"^(?:[01]\\d|2[0-3]):[0-5]\\d$","type":"string"},"start_time":{"description":"The start time of the rule.","pattern":"^(?:[01]\\d|2[0-3]):[0-5]\\d$","type":"string"}},"required":["day","start_time","end_time"],"title":"WeeklyRule","type":"object"},"type":"array"}},"required":["object","effective_from","effective_to","created_at","id","public_bookings","weekly_rules","updated_at"],"title":"ProviderSchedule","type":"object","x-tags":["Provider Schedules"]},"type":"array"},"meta":{"description":"Metadata for paginated responses","example":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5},"properties":{"current_page":{"description":"Current page number","type":"integer"},"page_size":{"description":"Number of records per page","type":"integer"},"total_count":{"description":"Total number of records","type":"integer"},"total_pages":{"description":"Total number of pages","type":"integer"}},"required":["total_count","total_pages","current_page","page_size"],"title":"PaginationMeta","type":"object"}},"required":["data","meta"],"title":"ProviderSchedulesResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

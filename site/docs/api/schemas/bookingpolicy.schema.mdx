@@ -1,0 +1,34 @@
+---
+id: bookingpolicy
+title: "BookingPolicy"
+description: "A booking policy defines the rules for booking a service from public booking interfaces."
+sidebar_label: "BookingPolicy"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"advance_notice":{"enabled":true,"minimum_duration":"PT1H"},"allow_booking":true,"disabled_message":"Booking is disabled for this service.","maximize_utilization":{"enabled":true}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"BookingPolicy"}
+>
+</Heading>
+
+
+
+A booking policy defines the rules for booking a service from public booking interfaces.
+
+
+<Schema
+  schema={{"description":"A booking policy defines the rules for booking a service from public booking interfaces.\n","example":{"advance_notice":{"enabled":true,"minimum_duration":"PT1H"},"allow_booking":true,"disabled_message":"Booking is disabled for this service.","maximize_utilization":{"enabled":true}},"properties":{"advance_notice":{"description":"A policy for requiring minimum advance notice.\n","example":{"enabled":true,"minimum_duration":"PT1H"},"properties":{"enabled":{"description":"Whether advance notice is enabled.","type":"boolean"},"minimum_duration":{"description":"The minimum duration of advance notice.","nullable":true,"pattern":"^PT(?:(\\d+)H)?(?:(\\d+)M)?$","type":"string"}},"required":["enabled","minimum_duration"],"title":"AdvanceNoticePolicy","type":"object"},"allow_booking":{"description":"Whether public booking is allowed for the service.","type":"boolean"},"disabled_message":{"description":"The message to display when public booking is disabled.","nullable":true,"type":"string"},"maximize_utilization":{"description":"Avoid presenting overlapping time slots for service providers to eliminate gaps in the schedule.\n","example":{"enabled":true},"properties":{"enabled":{"description":"Whether maximize utilization is enabled for the service.","type":"boolean"}},"required":["enabled"],"title":"MaximizeUtilizationPolicy","type":"object"}},"required":["allow_booking","advance_notice","maximize_utilization","disabled_message"],"title":"BookingPolicy","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

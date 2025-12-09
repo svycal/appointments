@@ -1,0 +1,33 @@
+---
+id: accountresponse
+title: "AccountResponse"
+description: "Response schema for a single account"
+sidebar_label: "AccountResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"data":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"AccountResponse"}
+>
+</Heading>
+
+
+
+Response schema for a single account
+
+<Schema
+  schema={{"description":"Response schema for a single account","example":{"data":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"}},"properties":{"data":{"description":"This is an object representing an account in the app.","example":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^acct_\\w{12}$","type":"string"},"name":{"description":"The account's name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["account"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","name","updated_at"],"title":"Account","type":"object","x-tags":["Accounts"]}},"title":"AccountResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

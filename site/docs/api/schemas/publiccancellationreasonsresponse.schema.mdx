@@ -1,0 +1,33 @@
+---
+id: publiccancellationreasonsresponse
+title: "PublicCancellationReasonsResponse"
+description: "Response schema for listing public cancellation reasons"
+sidebar_label: "PublicCancellationReasonsResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"data":[{"id":"cr_d025a96ac0c6","name":"Schedule conflict","object":"public_cancellation_reason","sort_order":0},{"id":"cr_e136b07bd1d7","name":"Found another provider","object":"public_cancellation_reason","sort_order":1}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"PublicCancellationReasonsResponse"}
+>
+</Heading>
+
+
+
+Response schema for listing public cancellation reasons
+
+<Schema
+  schema={{"description":"Response schema for listing public cancellation reasons","example":{"data":[{"id":"cr_d025a96ac0c6","name":"Schedule conflict","object":"public_cancellation_reason","sort_order":0},{"id":"cr_e136b07bd1d7","name":"Found another provider","object":"public_cancellation_reason","sort_order":1}]},"properties":{"data":{"items":{"description":"A cancellation reason that can be used when canceling an appointment.","example":{"id":"cr_d025a96ac0c6","name":"Schedule conflict","object":"public_cancellation_reason","sort_order":0},"properties":{"id":{"description":"Unique identifier for the object.","pattern":"^cr_\\w{12}$","type":"string"},"name":{"description":"The name of the cancellation reason.","type":"string"},"object":{"description":"String representing the object's type.","enum":["public_cancellation_reason"],"type":"string"},"sort_order":{"description":"The sort order of the cancellation reason.","type":"integer"}},"required":["object","id","name","sort_order"],"title":"PublicCancellationReason","type":"object"},"type":"array"}},"required":["data"],"title":"PublicCancellationReasonsResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

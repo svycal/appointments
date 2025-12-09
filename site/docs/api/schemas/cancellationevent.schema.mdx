@@ -1,0 +1,33 @@
+---
+id: cancellationevent
+title: "CancellationEvent"
+description: "This is an object representing when an appointment was canceled."
+sidebar_label: "CancellationEvent"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"actor":null,"cancellation_reason":{"id":"cr_a1b2c3d4e5f6","name":"Distance too far","object":"cancellation_reason","sort_order":1},"custom_reason_text":"I'm sick","initiated_by":"client","object":"cancellation_event","occurred_at":"2023-01-01T03:00:00Z","source":"client_ui"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CancellationEvent"}
+>
+</Heading>
+
+
+
+This is an object representing when an appointment was canceled.
+
+<Schema
+  schema={{"description":"This is an object representing when an appointment was canceled.","example":{"actor":null,"cancellation_reason":{"id":"cr_a1b2c3d4e5f6","name":"Distance too far","object":"cancellation_reason","sort_order":1},"custom_reason_text":"I'm sick","initiated_by":"client","object":"cancellation_event","occurred_at":"2023-01-01T03:00:00Z","source":"client_ui"},"properties":{"actor":{"description":"The actor that initiated the cancellation (user ID or bearer token ID).","nullable":true,"type":"string"},"cancellation_reason":{"description":"This is an object representing a cancellation reason.","example":{"id":"cr_a1b2c3d4e5f6","name":"Distance too far","object":"cancellation_reason","sort_order":1},"nullable":true,"properties":{"id":{"description":"Unique identifier for the object.","pattern":"^cr_\\w{12}$","type":"string"},"name":{"description":"The name of the cancellation reason.","type":"string"},"object":{"description":"String representing the object's type.","enum":["cancellation_reason"],"type":"string"},"sort_order":{"description":"The sort order of the cancellation reason.","type":"integer"}},"required":["object","id","name","sort_order"],"title":"CancellationReason","type":"object","x-tags":["Cancellation Reasons"]},"custom_reason_text":{"description":"Custom reason text for the cancellation.","nullable":true,"type":"string"},"initiated_by":{"description":"The entity that initiated the cancellation.","enum":["user","client"],"type":"string"},"object":{"enum":["cancellation_event"],"type":"string"},"occurred_at":{"description":"The time at which the cancellation occurred (ISO-8601 format).","format":"datetime","type":"string"},"source":{"description":"The source of the cancellation event.","enum":["client_ui","dashboard","api"],"type":"string"}},"required":["object","source","initiated_by","actor","cancellation_reason","custom_reason_text","occurred_at"],"title":"CancellationEvent","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

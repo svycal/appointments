@@ -1,0 +1,72 @@
+---
+id: update-cancellation-reason
+title: "Update cancellation reason"
+description: "Update an existing cancellation reason."
+sidebar_label: "Update cancellation reason"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1WG1v20YM/isHYkA3QInjLO02fcvSDs0+FEVesAGpF5wl2rpWvlPvKCeZoP8+8E6KLEvO4i3Np0Di68OHpOgKEpnnc5l8cRBXdQQpusSqgpTREMN1kUpCIbXAe+VI6aVIpE4wzyVLCIvSGX0IEZgCrX92nkIMpdc72xC98JIQQSGtXCGhdRDfVFv+/shQC1lShppUIr3DO0WZkKLIJS2MXQkyX1BHwhWYqIVCJyhDIZPElJrE+VuxMNY/svi1REcQAd7LVZEjxCCThG6nxz+evH7z08+/HEEEit1mKFO0EIGWKxb78+BSrtcPZzI/OA2GIQK2pyymEC9k7jACl2S4khBXQA8FqzmySi+hrqPtvM6GoInzt637QlLWOd8E+DbI3qq0FwDZ8kn/syCMjn416QNLJEYTauJ/ZVHkHlujJ5+5JnG1Yaof90WwIsJ7D60vLddFjlFhE+2qzej81UpoI3Kjl2iF0oQWHWEKdQSFZeaQQtcpbEdxleGYr1dOsDyzb1AAIEW+4tc7mHjxyI5G18w/Y0JQ14MmGCueZ7EbsqLmJ64w2oWEjo+O/hf8wdQm/lI4pZf5KCJ99FNJ3qbijkzsrZzOj5Mf0xN8vXjT0e2tcsSWBBkjFpK7oIFilIoQgTOWbo3ljomn9aCGrdtn1VCkSFLljKQiXLkxReWEcjyDQlzCYmHR8YTYxcLDPhDfFoAIdJnncs6+QmP28WDv20lda/W1RKFSzmKh0D5OreD60A9KIrQs/Vdibz99uqumx/V3Q7JHT3QNvxFm4S3vwGlgrU1+296ll+ij30X8ygm25JHX5Qrim1HwZiMON+EcS4LfC//+eanwgFmi9WOga8+bNrEI/DT1oPWcz7qpMbq5+oMigvsDkkveYv0JEeQdzOrhbOkH5DvlSa/tAHjOmLoskwSdY0RPjqYvPHVKzVvZWPU3pu1mdf0uQ2vN41LnpvY879QYbJJUOoh9gPVsMDpaE1U3DLZmS2N4O+R3rChW6Jxc4hipW8/biu+vrj6K8FIkJh3Vbcoz7jO8HNtAvUqHuGeDMj4+kNbKh4FeA8gGRzYR3YcdvUp4ipy8MEW0IbEwpd6HHx8Mid9Yp0+Ok29KjnY+dc5Hp9LzGdMa5MCHprZK2tiNXpATHwz5PPbhQ5c8k+H4eC8y/OfCdF/ivDPFWuYlirsMLYoAl8D7AhPy02JkUZQ2waH9wvhvyr6DCU/XiSSyal4SukmB9CHM/KcL1FobLUw7Cjo/53otc5WGXP7VeDsumlRekgW/O6M91fcbC4U1vDb4+0W806Qo+Hp6tUWwQspMGo6XJAufKxnDvp5ORha/m1Tjd03NYKBdt/dgaXkuZESFiycTWahDx6dYIvNDWRQQwVpaxcH6e5UvHYdJaTlsVm+HnAz53cw2JS6ZwIEyW3INuRmrOUrrb8EGOw7FI/K5uxr4qnq315mj9ML4S60pVntfitPC822Fmpw4/XjOGaJ1oTrTwyN/IxlHK6k3XDV3+fgJ0KvwRlfvcc03uRPe06TIpdIchi9N1RT6BtZTiMa+8Xi2xTuO2FkEmXHE6lU1lw6vbV7X/PhriZZLOOsqHFaF8tTsru6d2X1/0bTHD2LnuT2aV9tn+sHTi9s4BojgCz7sPsf9gmp+N9gvzm/zG8doZiGD0V8zHvPkHyuC3FkI8eCKTXUSg1XQaZwmCRb0pOzmqPh4enX2HiKYNz9KrHh9xmDlHR/S8i7Abjxmvkv9swpyqZcl7+4YglH++wc2rYzT
+sidebar_class_name: "patch api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update cancellation reason"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/v1/cancellation_reasons/{cancellation_reason_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update an existing cancellation reason.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"When authenticating with a platform token, specifies the account ID for the request","example":"acct_1234567890","in":"header","name":"X-SavvyCal-Account","required":false,"schema":{"type":"string"}},{"description":"Cancellation reason ID","in":"path","name":"cancellation_reason_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"description":"Request schema for updating a cancellation reason","example":{"name":"I'm no longer interested"},"properties":{"name":{"description":"The cancellation reason's name.","type":"string"}},"title":"UpdateCancellationReasonRequest","type":"object"}}},"description":"Cancellation reason params","required":false}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for a single cancellation reason","example":{"data":{"id":"cr_a1b2c3d4e5f6","name":"Distance too far","object":"cancellation_reason","sort_order":1}},"properties":{"data":{"description":"The cancellation reason details","items":{"description":"This is an object representing a cancellation reason.","example":{"id":"cr_a1b2c3d4e5f6","name":"Distance too far","object":"cancellation_reason","sort_order":1},"nullable":true,"properties":{"id":{"description":"Unique identifier for the object.","pattern":"^cr_\\w{12}$","type":"string"},"name":{"description":"The name of the cancellation reason.","type":"string"},"object":{"description":"String representing the object's type.","enum":["cancellation_reason"],"type":"string"},"sort_order":{"description":"The sort order of the cancellation reason.","type":"integer"}},"required":["object","id","name","sort_order"],"title":"CancellationReason","type":"object","x-tags":["Cancellation Reasons"]},"type":"object"}},"required":["data"],"title":"CancellationReasonResponse","type":"object"}}},"description":"Success"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"},"422":{"content":{"application/json":{"schema":{"properties":{"errors":{"items":{"properties":{"detail":{"example":"null value where string expected","type":"string"},"source":{"properties":{"pointer":{"example":"/data/attributes/petName","type":"string"}},"required":["pointer"],"type":"object"},"title":{"example":"Invalid value","type":"string"}},"required":["title","source","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"JsonErrorResponse","type":"object"}}},"description":"Unprocessable Entity"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,72 @@
+---
+id: delete-cancellation-reason
+title: "Delete cancellation reason"
+description: "Delete an existing cancellation reason."
+sidebar_label: "Delete cancellation reason"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vl1r3DgU/SviPu2Cmsm06W7rt5Bk2UAJJU3ZhTCEO5o7sRpbUqXraabG/32RbGc8HqcQun2yke73OdJRDQqLYonqIUBWNxJWFJTXjrU1kME5FcQk0Ah61IG1uRcKjaKiwGghPGGw5ggkWEc+rV2uIINV8jsbmF4nS5Dg0GNJTD5AdluP8v2TkxFYcU6GtcKU8JvmXKBwBfLa+lKwfSAjRXCk9FpTEJyTQKVsZVhcnou19WnJ09eKAoMEesTSFQQZoFJ8N3/95uTtH3++e38MEnRMmxOuyIMEg2U0+/fVJ9xstmdYvDptA4OEGE97WkG2xiKQhKByKhGyGnjroltgr809NI0c93V2ODRxed6nd8j5LvlwwHet7Z1e7RXAvvph/kU0Ds6aQBFWeH18Ej/KGibDyYMeeeYKjPnrQaT9si9Kx1vRh2qRMFb0cYaTBQmsOf0mr+vOKa6Pqjtg2ZUVZ13IRsLJ8XxULDpXJDZYM/sSWfSDkvu8ojVIbKhMpJT1+jutelqEYfU1kPf2iZGMuoAMPg/cQEJg5CpAlgpsFo0E5yPrWbdD7kPUoJnK9LNv0Ac+mHJ0FCWFgPcT89plHjv+fXPzUbSbQtnVpG8HynTOdvMQoSHXbvu6F092dvmFVMKqW0DvcXvg1w1ksWPGcKKHBOnDHhJkD4lEkTGff5YixrJY28q8hB9XlsVf0WefHCe/lBxkqjIOd5d88XOM6QPGwg9DjSDt4sr/kRNXllMfL+HDrvm4x3gfkdm/ZFu9SZlK4tzuVClpEOeQwWwzn03ctmFWT9/BTQSa/KbXrspHGuTMLmSzGTp9FKJsKCyO0DmQsEGvcVkkhNOtHEhVXvM2ufecxrar28XQ4lPkZkuNkV1H7DihJaFPutVNLJaSRqLN2qZrvhtyL2fi1DmrDZdkOIjTj5exSPKhHev86DgC6GzgElOmTpK6Z8CE9MMImsGhfMHjoSt/IEqNbKdbd1jdwmYOckobIxuzZzRzISG3gaN7XS8x0GdfNE1c/lqRjygsdiC1h1uH+L8T+We7++26o/Xv4ll1n+yrPx9mmxhSVJ18PtD2efVPV0r3THlZnb/mSTXZWdvB5OPpqc/4NmrtTpUiN9wbBhse2/OLDxc3F9A0/wGN97k6
+sidebar_class_name: "delete api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete cancellation reason"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/v1/cancellation_reasons/{cancellation_reason_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Delete an existing cancellation reason.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"When authenticating with a platform token, specifies the account ID for the request","example":"acct_1234567890","in":"header","name":"X-SavvyCal-Account","required":false,"schema":{"type":"string"}},{"description":"Cancellation reason ID","in":"path","name":"cancellation_reason_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"content":{"text/plain":{"schema":{"description":"Empty response with no content","example":"","title":"EmptyResponse","type":"string"}}},"description":"No Content"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

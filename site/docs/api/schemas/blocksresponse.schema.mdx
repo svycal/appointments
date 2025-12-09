@@ -1,0 +1,33 @@
+---
+id: blocksresponse
+title: "BlocksResponse"
+description: "Response schema for a list of blocks"
+sidebar_label: "BlocksResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"data":[{"all_day":false,"attachment_type":"provider","attachments":["prov_d025a96ac0c6"],"created_at":"2017-09-12T12:34:55Z","end_date":"2025-10-27","end_time":"17:00","exception_dates":["2025-10-27T09:00:00"],"id":"blk_d025a96ac0c6","object":"block","recurrence_rule":{"byday":["mo","we","fr"],"freq":"weekly"},"service_id":null,"start_date":"2025-10-27","start_time":"09:00","time_zone":"America/New_York","title":"Team Meeting","updated_at":"2017-09-13T10:11:12Z"}],"meta":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"BlocksResponse"}
+>
+</Heading>
+
+
+
+Response schema for a list of blocks
+
+<Schema
+  schema={{"description":"Response schema for a list of blocks","example":{"data":[{"all_day":false,"attachment_type":"provider","attachments":["prov_d025a96ac0c6"],"created_at":"2017-09-12T12:34:55Z","end_date":"2025-10-27","end_time":"17:00","exception_dates":["2025-10-27T09:00:00"],"id":"blk_d025a96ac0c6","object":"block","recurrence_rule":{"byday":["mo","we","fr"],"freq":"weekly"},"service_id":null,"start_date":"2025-10-27","start_time":"09:00","time_zone":"America/New_York","title":"Team Meeting","updated_at":"2017-09-13T10:11:12Z"}],"meta":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5}},"properties":{"data":{"description":"List of blocks","items":{"description":"This is an object representing a range of blocked time for a provider, service, service provider, or location.","example":{"all_day":false,"attachment_type":"provider","attachments":["prov_d025a96ac0c6"],"created_at":"2017-09-12T12:34:55Z","end_date":"2025-10-27","end_time":"17:00","exception_dates":["2025-10-27T09:00:00"],"id":"blk_d025a96ac0c6","object":"block","recurrence_rule":{"byday":["mo","we","fr"],"freq":"weekly"},"service_id":null,"start_date":"2025-10-27","start_time":"09:00","time_zone":"America/New_York","title":"Team Meeting","updated_at":"2017-09-13T10:11:12Z"},"properties":{"all_day":{"description":"Whether the block is all day.","type":"boolean"},"attachment_type":{"description":"The type of attachment for the block.","enum":["location","service","provider","service_provider"],"type":"string"},"attachments":{"description":"The resources to which this block is attached. These can be service IDs (to block availabilty for all providers on a service), provider IDs (to block availability for a specific provider), or location IDs (to block availability for a specific location).","items":{"type":"string"},"type":"array"},"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"end_date":{"description":"The end date of the block.","format":"date","type":"string"},"end_time":{"description":"The end time of the block.","nullable":true,"pattern":"^(?:[01]\\d|2[0-3]):[0-5]\\d$","type":"string"},"exception_dates":{"description":"The exception dates for the block.","items":{"example":"2025-03-01T00:00:00","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$","type":"string"},"type":"array"},"id":{"description":"Unique identifier for the object.","pattern":"^blk_\\w{12}$","type":"string"},"object":{"description":"String representing the object's type.","enum":["block"],"type":"string"},"recurrence_rule":{"allOf":[{"description":"A recurrence rule describes a repeating pattern of times. Recurrences rules in SavvyCal are modeled\nafter the conventions of [iCalendar](https://en.wikipedia.org/wiki/ICalendar) recurrence rules (RRULE),\nbut are a subset of the full specification.\n","example":{"byday":["mo","we","fr"],"freq":"weekly"},"properties":{"byday":{"description":"The days of the week on which the recurrence occurs.","example":["mo","we","fr"],"items":{"pattern":"(mo|tu|we|th|fr|sa|su)$","type":"string"},"type":"array","uniqueItems":true},"count":{"description":"Number of occurrences at which to end the recurrence.","minimum":1,"nullable":true,"type":"integer"},"freq":{"description":"The frequency of the recurrence.","enum":["daily","weekly"],"type":"string"},"interval":{"description":"How often the recurrence rule repeats.","example":2,"minimum":1,"type":"integer"},"until":{"description":"Date at which to end the recurrence (in ISO-8601 format).","example":"2024-01-02","nullable":true,"type":"date"}},"required":["freq"],"title":"RecurrenceRule","type":"object"}],"description":"The recurrence rule for the block (or null if there is no recurrence).","nullable":true,"type":"object"},"service_id":{"description":"The ID of the service for the block. Required when `attachment_type` is `service_provider`.","nullable":true,"type":"string"},"start_date":{"description":"The start date of the block.","format":"date","type":"string"},"start_time":{"description":"The start time of the block.","nullable":true,"pattern":"^(?:[01]\\d|2[0-3]):[0-5]\\d$","type":"string"},"time_zone":{"description":"The time zone of the block.","nullable":true,"type":"string"},"title":{"description":"The title of the block.","nullable":true,"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","updated_at","title","attachment_type","attachments","start_date","start_time","end_date","end_time","time_zone","all_day","recurrence_rule","exception_dates","service_id"],"title":"Block","type":"object","x-tags":["Blocks"]},"type":"array"},"meta":{"description":"Metadata for paginated responses","example":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5},"properties":{"current_page":{"description":"Current page number","type":"integer"},"page_size":{"description":"Number of records per page","type":"integer"},"total_count":{"description":"Total number of records","type":"integer"},"total_pages":{"description":"Total number of pages","type":"integer"}},"required":["total_count","total_pages","current_page","page_size"],"title":"PaginationMeta","type":"object"}},"required":["data","meta"],"title":"BlocksResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

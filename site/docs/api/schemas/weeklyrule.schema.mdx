@@ -1,0 +1,33 @@
+---
+id: weeklyrule
+title: "WeeklyRule"
+description: "Weekly rule for a provider schedule."
+sidebar_label: "WeeklyRule"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"day":"mo","end_time":"17:00","start_time":"09:00"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"WeeklyRule"}
+>
+</Heading>
+
+
+
+Weekly rule for a provider schedule.
+
+<Schema
+  schema={{"description":"Weekly rule for a provider schedule.","example":{"day":"mo","end_time":"17:00","start_time":"09:00"},"properties":{"day":{"description":"The day of the week.","enum":["mo","tu","we","th","fr","sa","su"],"type":"string"},"end_time":{"description":"The end time of the rule.","pattern":"^(?:[01]\\d|2[0-3]):[0-5]\\d$","type":"string"},"start_time":{"description":"The start time of the rule.","pattern":"^(?:[01]\\d|2[0-3]):[0-5]\\d$","type":"string"}},"required":["day","start_time","end_time"],"title":"WeeklyRule","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

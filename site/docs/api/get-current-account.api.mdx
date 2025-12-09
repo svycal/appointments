@@ -1,0 +1,78 @@
+---
+id: get-current-account
+title: "Get current account"
+description: "Get the account that owns the current token."
+sidebar_label: "Get current account"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV21v2zYQ/ivEYUC/yC9yXrroW9AWWT4MKBYH3Zp47YU6W2wkiiEpJ5mh/z4cJdnyS7Fm6IAN2Ccb1B3vnuceHo8rkJjndyjvHSSrOoKUnLTKeFVqSOCCvPAZCZSyrDT/Ry/KR+3CqqysJV4t70kPb/WtnmbKCdKpKZX2wtJDpSy5hD8NxLne7MMekShtWBcmRz8vbdGsi0flM4Eb68u3wpEXS4Uh7OdfB1e4XD6/wXxw3ph8FhlhSnZ4qyGC0pBFRnCZQgIL8m+aRFtjiMCgxYI8WQfJzWoH9IeMtMDKZ6S9kuiVXrQp7SQaCWdIqrkit8XS5VsxL21YYgrIcUh6wsLkBAmglP5TPDk6Pjl9/ePZGCJQHLZBABFoLNhsHyVE0FKaQjLH3FEETmZUICQr8M+G3Zy3Si+grmds7UypHXFtYTIe848stSft+S8akweApR59cYx91dtvm5Rf2q1EYxAAonBKL/I18D7KFaTowz7SEnpKP6GHBCbj+PVgfDaIJ9N4khwdJycnH5mAtOMlHU9O8OwU5ViebriYkk7Jip8pVRJzLvHdF5K+cWpDVyY9EOdoGo+TOE7iyUeo6wiMZXV41XDS5biNNahYOZZgE0dYMpYc60Ev+spUuim8McNt8P8i0LuY+6ntIVcFCfTiMVMyC9BaAh7RidaRkfIZCCE5+sCrgiDaFWADcDfCtVYPFQmVMplzRXZ9VJpIw3A6vSfL1r8Hem5vH1fxpP7hUIyGq/0KrkX5ygm2GR5y7gjddb8KFttV36T4ygneKVRcVwUkN+uCzA4E6ZfoRXzn6Lxovb+V9LrfIm46gFG/6KEuLXFb2XHyyocWtWk47f7rjZ4GHhfcNTsbBzOOuuPZtYu9Hep675K5qqQk55ir4+/eoxakySopyNrSioKcwwW57cMavnU3gUeVQwK/lZUoKi6Ao96JHzhZGkrbi8qXvE6O23/v4uNiOY++cpAESBt6LvUSc5WKJeYVQT3bO51dLitQnorwZ6dltRnugn/XB3hI7F1Gu44/TafvRfNRyDI96Numfzhm8/GvpNjmPdsTxHoBrcXnPb+WkJ44L5qShuAv0VnfrxFb/J3FVmkeG0qr/qC0u/q/QWvXPbdt6cT/S+RvSaTP6EskslWJ0Nb2ml0EBfmsbCfL5rbKIIHRMh5t7mVHdtlNl5XlImfeG5eMRmjU0PFgJzEfojEQwRKtwrs8FC/MbY5kZZV/Du5dRtjkeDPrW1yx+Jqq79i1ymW8d4Q2TJYtfk4loFN6XobRsaWtGzjFuQmNrCDtnTh/f8lJknUNSfFwHKaK0vkCQ6R2YOHXQvcm2FCxxXDvuP1HHxcth56e/MjkqHS44204bo0UbmAZQ9SfCbLSeV5fre7Q0bXN65qXHyqyXOPZRgKhvlH3FghdQjn+sJn4v8rnP/NuOYj3np6/9kJpbrYEoI5Wrd25lGT63/b6bN0/VhfvplDXfwIJXQX4
+sidebar_class_name: "get api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get current account"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/account"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get the account that owns the current token.
+
+This endpoint requires:
+
+- An account token, or
+- A platform token with an account ID set via the `X-SavvyCal-Account` header.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"When authenticating with a platform token, specifies the account ID for the request","example":"acct_1234567890","in":"header","name":"X-SavvyCal-Account","required":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for a single account","example":{"data":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"}},"properties":{"data":{"description":"This is an object representing an account in the app.","example":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^acct_\\w{12}$","type":"string"},"name":{"description":"The account's name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["account"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","name","updated_at"],"title":"Account","type":"object","x-tags":["Accounts"]}},"title":"AccountResponse","type":"object"}}},"description":"Success"},"400":{"content":{"application/json":{"schema":{"description":"Response schema for generic error messages","example":{"errors":[{"detail":"You must use an account-scoped token to access this endpoint.","status":"400","title":"Invalid value"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"GenericErrorResponse","type":"object"}}},"description":"GenericError"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"}}}
+>
+  
+</StatusCodes>
+
+
+      

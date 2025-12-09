@@ -1,0 +1,33 @@
+---
+id: paginationmeta
+title: "PaginationMeta"
+description: "Metadata for paginated responses"
+sidebar_label: "PaginationMeta"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"current_page":1,"page_size":10,"total_count":50,"total_pages":5}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"PaginationMeta"}
+>
+</Heading>
+
+
+
+Metadata for paginated responses
+
+<Schema
+  schema={{"description":"Metadata for paginated responses","example":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5},"properties":{"current_page":{"description":"Current page number","type":"integer"},"page_size":{"description":"Number of records per page","type":"integer"},"total_count":{"description":"Total number of records","type":"integer"},"total_pages":{"description":"Total number of pages","type":"integer"}},"required":["total_count","total_pages","current_page","page_size"],"title":"PaginationMeta","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

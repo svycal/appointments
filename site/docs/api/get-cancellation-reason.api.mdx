@@ -1,0 +1,72 @@
+---
+id: get-cancellation-reason
+title: "Get cancellation reason"
+description: "Get a single cancellation reason by ID."
+sidebar_label: "Get cancellation reason"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1V21v2zYQ/ivEYcA2QLHjNO02fQuSrsuXokhSbEDqGTR1ttjIpEqe3HiC/vtwlBRLshI0QPLJsnivzz13PJWgZJYtpbrzEJdVBAl65XRO2hqI4QOSkMJrs85QKGkUZpnkM+FQemvEcicuLyYQgc3RhZPLBGJYI513pK+CMESQSyc3SOg8xLflwNnfKRohC0rRkFaStFmL75pSIUWeSVpZtxFk79BEwueo9EqjF5SikErZwpC4vBAr68Irh98K9AQR4L3c5BlCDFIpWsxO3py+fffb738cQwSa3aYoE3QQgZEbFvvn6Fput7tzmR2d1YYhAranHSYQr2TmMQKvUtxIiEugXc5qnpw2a6iqaJjX+Qhulxet+1xSunfexXhRyy500guAXPGk/zkL+9waj1xTODk+5h9lDaEhfpR5ngWArZl+5cLEZcdeP/irxpSoBQLATzGii3gJiaRgUzMplFvI2fJEvUlO8e3q3T7pC+2JLQmyVqwk18Iuv6KicUAgAm8dLazjusWzqoogd0xA0nXKrdt+KjfpOIcTJKkzzwUh3PgxRe2F9kIaUcclHOYOPfPUrIUcszrpA/G6AERgiiyTS/ZV06OPB3sfJvXZ6G8FCp1wFiuN7qF3ateT0K5E6Fj6X+UWX758L2cn1U8QDTnXJjKGOJ8IuwqWH8HpwFqb/NDedZDoo7+P+Gcv2FJA3hQbiG9HwZuPOOzCOZYEn4tw/mOpaEO4RsfToNO5t21iEYSeDqD1nHNsmsK0Gp2fjfkHM/dHJNc8S/tDppb3MK+GKsOAQqc86bUdAAfeq+rgurgulELvGdHT49kLT53C8N1gnf4Pk3a++36XoXP24Wrhpg4836sx2CSp8BCHAKv5wehoTZT7YTCYLY3hYcjvWVFs0Hu5xjFSt56Hin/d3HwS9aFQNhnVbcoz7rM+PNAaVrqOe35QxocX0jm5O9BrAOlwpIvoc9jRq0SgyOkLU8RYEitbmOfw46Ml8Sfr9Mlx+qrkaOfT3vnoVPpxxrQGOfBDU4OSNnajF+TER0shj+fwYZ88nz09yCLYIKW22S3rqymFGKbb2XRkyPtpOb5JVVxldNt2Ay0ccyAlyn08ncpcTzwvf0pmE5nnEMFWOs0Xa1iPebfyqAqnaRfUW0LLOqXbeVfimolZ82Ig17Ca4VmidGH7bODiUAIe2qxsWO8ahNulVJzludWGNmjIi7NPlxwkOl9jOpscc/Vy62kjg6dmxeBNfnxd6xWl047PWP6b2AnvaZpnUhuOIUBbNoW6he0MorH7mHkYP7L2ziNIrSdWL8ul9PjZZVXFr78V6LgE832F6rbWnp/3e/qj2f1y1RD6V/Hogj6aV9sZZhfokRX8DyK4w93jC3wYJs2XxvPifJ2votHM6gxGv38e8uTPm1ruTCnMu2cH07vqtu2H9zdQVf8DDd0Huw==
+sidebar_class_name: "get api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get cancellation reason"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/cancellation_reasons/{cancellation_reason_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get a single cancellation reason by ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"When authenticating with a platform token, specifies the account ID for the request","example":"acct_1234567890","in":"header","name":"X-SavvyCal-Account","required":false,"schema":{"type":"string"}},{"description":"Cancellation reason ID","in":"path","name":"cancellation_reason_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for a single cancellation reason","example":{"data":{"id":"cr_a1b2c3d4e5f6","name":"Distance too far","object":"cancellation_reason","sort_order":1}},"properties":{"data":{"description":"The cancellation reason details","items":{"description":"This is an object representing a cancellation reason.","example":{"id":"cr_a1b2c3d4e5f6","name":"Distance too far","object":"cancellation_reason","sort_order":1},"nullable":true,"properties":{"id":{"description":"Unique identifier for the object.","pattern":"^cr_\\w{12}$","type":"string"},"name":{"description":"The name of the cancellation reason.","type":"string"},"object":{"description":"String representing the object's type.","enum":["cancellation_reason"],"type":"string"},"sort_order":{"description":"The sort order of the cancellation reason.","type":"integer"}},"required":["object","id","name","sort_order"],"title":"CancellationReason","type":"object","x-tags":["Cancellation Reasons"]},"type":"object"}},"required":["data"],"title":"CancellationReasonResponse","type":"object"}}},"description":"Success"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

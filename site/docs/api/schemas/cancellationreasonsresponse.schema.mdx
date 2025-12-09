@@ -1,0 +1,33 @@
+---
+id: cancellationreasonsresponse
+title: "CancellationReasonsResponse"
+description: "Response schema for multiple cancellation reasons"
+sidebar_label: "CancellationReasonsResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"data":[{"id":"cr_a1b2c3d4e5f6","name":"Distance too far","object":"cancellation_reason","sort_order":1}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CancellationReasonsResponse"}
+>
+</Heading>
+
+
+
+Response schema for multiple cancellation reasons
+
+<Schema
+  schema={{"description":"Response schema for multiple cancellation reasons","example":{"data":[{"id":"cr_a1b2c3d4e5f6","name":"Distance too far","object":"cancellation_reason","sort_order":1}]},"properties":{"data":{"description":"The cancellation reasons details","items":{"description":"This is an object representing a cancellation reason.","example":{"id":"cr_a1b2c3d4e5f6","name":"Distance too far","object":"cancellation_reason","sort_order":1},"nullable":true,"properties":{"id":{"description":"Unique identifier for the object.","pattern":"^cr_\\w{12}$","type":"string"},"name":{"description":"The name of the cancellation reason.","type":"string"},"object":{"description":"String representing the object's type.","enum":["cancellation_reason"],"type":"string"},"sort_order":{"description":"The sort order of the cancellation reason.","type":"integer"}},"required":["object","id","name","sort_order"],"title":"CancellationReason","type":"object","x-tags":["Cancellation Reasons"]},"type":"array"}},"required":["data"],"title":"CancellationReasonsResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@layer components {
+  .theme-api-markdown ul,
+  .markdown > ul {
+    list-style-type: disc;
+  }
+
+  .theme-api-markdown ol,
+  .markdown > ol {
+    list-style-type: decimal;
+  }
+
+  .navbar__logo img {
+    @apply rounded-md;
+  }
+}
+
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: var(--color-green-600);
+  --ifm-color-primary-dark: var(--color-green-700);
+  --ifm-color-primary-darker: var(--color-green-800);
+  --ifm-color-primary-darkest: var(--color-green-900);
+  --ifm-color-primary-light: var(--color-green-500);
+  --ifm-color-primary-lighter: var(--color-green-400);
+  --ifm-color-primary-lightest: var(--color-green-300);
+
+  --ifm-h1-font-size: var(--text-4xl);
+  --ifm-h2-font-size: var(--text-2xl);
+  --ifm-h3-font-size: var(--text-xl);
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-link-color: var(--color-green-600);
+  --ifm-menu-color-active: var(--color-green-600);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+html[data-theme='dark'] {
+  --ifm-color-primary: var(--color-green-500);
+  --ifm-color-primary-dark: var(--color-green-600);
+  --ifm-color-primary-darker: var(--color-green-700);
+  --ifm-color-primary-darkest: var(--color-green-800);
+  --ifm-color-primary-light: var(--color-green-500);
+  --ifm-color-primary-lighter: var(--color-green-400);
+  --ifm-color-primary-lightest: var(--color-green-300);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --ifm-link-color: var(--color-green-500);
+  --ifm-menu-color-active: var(--color-green-500);
+  --ifm-background-color: var(--color-zinc-900);
+}
+
+/* Reverse a few styles that Tailwind applies by default, but break the default theme */
+svg {
+  display: inline;
+  vertical-align: baseline;
+}
+
+code {
+  @apply bg-gray-100 dark:bg-gray-800 px-1.5 rounded-md inline align-baseline text-sm mx-0.5;
+}
+
+.container {
+  @apply md:px-8;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: var(--color-zinc-950);
+}
+
+.markdown h1:first-child {
+  --ifm-h1-font-size: var(--text-4xl);
+}
+
+.markdown > h2 {
+  --ifm-h2-font-size: var(--text-2xl);
+}
+
+.markdown > h3 {
+  --ifm-h3-font-size: var(--text-xl);
+}
+
+.table-of-contents {
+  @apply text-[15px];
+}
+
+.markdown table td > code {
+  @apply whitespace-nowrap;
+}
+
+.card {
+  @apply shadow-none!;
+}
+
+/* This is set to match the padding on .openapi-schema__list-item */
+.openapi-params__list-item {
+  padding: 5px 0 5px 1rem;
+}
+
+/* This is set to match the top on .openapi-schema__list-item::before */
+.openapi-params__list-item::before {
+  top: 10px !important;
+}

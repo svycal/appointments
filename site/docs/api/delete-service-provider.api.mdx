@@ -1,0 +1,72 @@
+---
+id: delete-service-provider
+title: "Remove service provider"
+description: "Remove a provider from a service"
+sidebar_label: "Remove service provider"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vttu3DYQ/RVinlqA8XpT96Y3I3ZRA4Vh2A5awFgYs9pZi7FEMuRIzVbQvxekKK9WqwQ10jyJIOd6zhGHLeRYlmvMnz1kbSdhQz53yrIyGjK4pco0JFBYZxq1ISe2zlQChSfXqJxAgrHkMJhfbSCDDZXEdNef3iQnkGDRYUVMzkP20E6y/FmQFlhzQZpVjqz0k/hbcRHylshb4yrB5pm0FN5SrraKvOCCBOa5qTWLqwuxNS5uOfpYk2eQQJ+wsiVBBpjn/Lh8+8PZjz/9/MuvpyBBhbQFYV+cxiqY/fXmDptm9w7LN+d9YJAQ4ilHG8i2WHqS4POCKoSsBd7Z4ObZKf0EXSenfSUYxICDuLoYclvkYp85ofk4oPyoNgep2dVfzLwKxt4a7SnQCG9Pz8InN5pJc/SgT7ywJYbk7SjSYcGXleWdGEL1HGgjhjhjTEECK47L6HWbnML+pLojVV0b8S6F7CScnS4nxaK1ZdSB0YsP3nyx5CGv6A2iDmodxGSc+oc2gyD8uPoWyDnzokVGVUIG70duIMEzcu0hiwV2q06CdUHsrHqQhxAtKKYqLg4NhsBHKAdHUZH3+DSD1z7z1PH3+/sb0R+K3GxmfRMp8zn7w2OGxlp7GOpevdiZ9QfKI1dpA53D3ZFfAmS1V8YY0WOBDGGPBXLARJTIVM9fKxFtWGxNrV+jj2vD4rfgcyiOs28qDtJ1FcDdJ199nWKGgKHw41ATSlNc+T9q4tpw7OM1etg3H84YnwIzw/Uao1fEhdkPoDhxuIAMFs1yMb1e/aKduXG7QCu5ZphRtQukF8zWZ4sFWnXiw3jIsTxBa0FCg07huox8xjvYU147xbvoPigY+x4eVmOLu6DEXggTuyTjgMea0MX5lPAJpUQAlN6aeKknSIexJc6tNUpzRZq9OL+5CkWS8z2Iy5PTQJc1niuMmdL0SUM+QfIy6mHCwuj/+y/vglT0aPB0sse0Tdw8QLNMmB+wAxKyuYm4klAYz8Gxbdfo6b0ruy5sf6zJBdRXe1L6X1f5sN4P78829N1tEu33Yn5qz7YzSF/vohzKOk3GZ9p9ZqrHqyI9PF5X4bd5JM221Zc/+xx6aTK8dnq78zwnOz4bBxv/mheXf1zeX0LX/Qvl6qP3
+sidebar_class_name: "delete api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Remove service provider"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/v1/service_providers/{service_provider_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Remove a provider from a service
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"When authenticating with a platform token, specifies the account ID for the request","example":"acct_1234567890","in":"header","name":"X-SavvyCal-Account","required":false,"schema":{"type":"string"}},{"description":"Service Provider ID","in":"path","name":"service_provider_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"content":{"text/plain":{"schema":{"description":"Empty response with no content","example":"","title":"EmptyResponse","type":"string"}}},"description":"No Content"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

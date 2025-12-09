@@ -1,0 +1,34 @@
+---
+id: cancellationpolicy
+title: "CancellationPolicy"
+description: "A cancellation policy defines the rules for canceling a service from public booking interfaces."
+sidebar_label: "CancellationPolicy"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"advance_notice":{"enabled":true,"minimum_duration":"PT1H"},"allow_cancellation":true,"disabled_message":"Cancellation is disabled for this service."}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CancellationPolicy"}
+>
+</Heading>
+
+
+
+A cancellation policy defines the rules for canceling a service from public booking interfaces.
+
+
+<Schema
+  schema={{"description":"A cancellation policy defines the rules for canceling a service from public booking interfaces.\n","example":{"advance_notice":{"enabled":true,"minimum_duration":"PT1H"},"allow_cancellation":true,"disabled_message":"Cancellation is disabled for this service."},"properties":{"advance_notice":{"description":"A policy for requiring minimum advance notice.\n","example":{"enabled":true,"minimum_duration":"PT1H"},"properties":{"enabled":{"description":"Whether advance notice is enabled.","type":"boolean"},"minimum_duration":{"description":"The minimum duration of advance notice.","nullable":true,"pattern":"^PT(?:(\\d+)H)?(?:(\\d+)M)?$","type":"string"}},"required":["enabled","minimum_duration"],"title":"AdvanceNoticePolicy","type":"object"},"allow_cancellation":{"description":"Whether public cancellation is allowed for the service.","type":"boolean"},"disabled_message":{"description":"The message to display when public cancellation is disabled.","nullable":true,"type":"string"}},"required":["allow_cancellation","advance_notice","disabled_message"],"title":"CancellationPolicy","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

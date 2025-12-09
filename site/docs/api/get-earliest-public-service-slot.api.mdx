@@ -1,0 +1,72 @@
+---
+id: get-earliest-public-service-slot
+title: "Get earliest available slot"
+description: "Get the earliest available time slot for a service, useful for displaying next available appointment."
+sidebar_label: "Get earliest available slot"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9WNtu2zgQ/RWCL9sCSiy76U1v3jbtZh/Sokmxl9QwaGkcs6FIlhy5cQ3/+2IoKbrYuXg3XSBADImcOXNmeIajNU+FUjORXnmerDcRz8CnTlqURvOEvwdkuAAGwikJHplYCqnETAFDmQPzyiCbG8cE8+CWMoWIFR7mhQpPM+mtEiupL5mG6/ZuYa2RGnPQeMgjbiw4QT5PMp7wS8DjyuHHYqZkelbaPlMGecStcCIHBOd5crHuIf5jAZqJAhegUaYCyfd3iQsmmFUC58blDM0V6Ih5C6mcS/AhRJGmptDITt4G6PTIwbcCPLmEa5FbBTzhIk1xOhw9O3r+4uWr1zGPuCS3CxAZOB5xLXJa9ufBmVguV2+EOhiXhnnEyZ50kPFkLpSHiPt0AbngyZrjytI2j07qS77ZRP24KgrYydsOHO+WLTTDUY3HClw0aKrcTGXWQYGu2A/EOeX8h9FwQ1EogCcn49MxPcoFPu3A+8LHOTiZisEpfJ/+ZdzVF15D/FaAWzUYqZ6mZPtuojKYi0IhT/gxpoPP5294dD/ud1IhuBLsbFUnPmXWmaXMwPVZtbew2oNcb+/zem92J7TaW6M90LHjozimf6nRCBrpp7BWhfI1evDVUxDrDgnt6D5Vpli54CY3Ow5tVQglE0spwjobzhgbfzxpk7DmmcDgDXQ2FcT4KB49P4ifHQzj82GcxPT3N20J76foeTJ8+ezF0YujV3EccTP7Cilt8+Wx9SgcbhmKXzeG6hUtU8MRmWpqo0n7ZhNRAiw4lCWLNV6h1If5DmkYtzQrSELwx4TOGOgsvPRdBu6K/CA+SuL4scK/sfYgDvqHim9xUSNf8/JY8oTogQOysn1iOkH0afus5XVJDorcMqmZh9TozDd2pEa4BEeG6rC39Cu4Yg6sA0/arC9D8ZXrf/GMTB0GOoucJxclbZMdUBsiHxpch9P/Fl4rC31DQQTxRiGDRuzQppZOXNRstYLqoq0T0ymzNgoiSGIQrao7Vg4ryyQ1PQ2/RRmUwYgZx3ShFJNzpk145plw0Kwj8StU+TP0j35E4RC2UHUaeN3VCWqtWtuQN1vXkLMiTcF7SsBRPHxkqSw0XReMkz8gq1t+XwecMze3DRRShbpptpVZw8LzJADcTLYPZGVizSVCHn701Ksy3Id8TBtZDt6Ly9uqO3jub/zt/PwjK1+y1GQ791ZZ2u2zfHlfCVe4J1tpvHkgnBOrrX0VIa1SaTO6T3V0MhFK5OiRS0SHW26h96mPU4PsHe3pFsfRTy2OWjwb57co6EMrpjZIwLdN9VJa2Y0esSZODYY49qmHJngqhtFor2L414lpbo9BQZdCFcC+L8ABK+licG0hxaAW2ykxhUth236YksB1HQxIZAcC0clZgeAHFvD0Ie2mtrYzMbUUNH5O9FIomZWx3Gu8losqlMesgt+90aHU95MF6wy1jdDfjjVKLH2huKSzWrUm9qsxVxTPJOI54MJUE2gYNHFBdC+Hg/KOPKjuz36wbkaqzaBup9P6qgduWU+nhSMxWCBanwwGwspDT4NhKtShsJZHfCmcJIRh/qZ27SEtHGGl7bWyiTKoi0l7xRlVbVknvXVVRRNBMxAuTKYVYQQl0CD13IThpL4/VAMrGzezua+mAgqnZHV4GIfbpvGYi+CpGoboU8Et9wreS03rOP5vXxiq6BGucWCVkJqiCMlZV3m+4MshJT1kusoi5ZpHPOkM0N10TyK+MB5p/3o9Ex4+O7XZ0ONyWgxNQYYibEbDW+l44IS9M5orWPXm6PLgJpyHkfjBIB42Lt+BoTsYNygmTbnvycuTT5VAPGWdLyE7QdTqoldt7zW4Vi5DK64+3eyH5+d8ZrqD0p0flDr5LdeN0xRs+91Wu9u0he798TnfbP4BNXjd+g==
+sidebar_class_name: "get api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get earliest available slot"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/public/services/{service_id}/earliest_slot"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get the earliest available time slot for a service, useful for displaying next available appointment.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"When authenticating with a platform token, specifies the account ID for the request","example":"acct_1234567890","in":"header","name":"X-SavvyCal-Account","required":false,"schema":{"type":"string"}},{"description":"Service ID","example":"srv_123456789012","in":"path","name":"service_id","required":true,"schema":{"type":"string"}},{"description":"Time zone for the slot (IANA format)","example":"\"America/New_York\"","in":"query","name":"time_zone","required":false,"schema":{"default":"Etc/UTC","type":"string"}},{"description":"Filter slot by specific provider ID","example":"prv_123456789012","in":"query","name":"provider_id","required":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for the earliest available service slot via the public API","example":{"data":{"end_at":"2025-03-10T10:00:00Z","end_at_ts":1736464800,"object":"slot","start_at":"2025-03-10T09:00:00Z","start_at_ts":1736461200,"time_zone":"Etc/UTC"}},"properties":{"data":{"allOf":[{"description":"A time slot with start and end times","example":{"end_at":"2025-03-10T10:00:00-04:00","end_at_ts":1736464800,"object":"slot","start_at":"2025-03-10T09:00:00-04:00","start_at_ts":1736461200,"time_zone":"America/New_York"},"properties":{"end_at":{"format":"date-time","type":"string"},"end_at_ts":{"description":"Unix timestamp in seconds","type":"integer"},"object":{"description":"String representing the object's type.","enum":["slot"],"type":"string"},"start_at":{"format":"date-time","type":"string"},"start_at_ts":{"description":"Unix timestamp in seconds","type":"integer"},"time_zone":{"description":"IANA time zone name","type":"string"}},"required":["object","start_at","start_at_ts","end_at","end_at_ts","time_zone"],"title":"Slot","type":"object"}],"description":"The earliest available slot, or null if no slots are available","nullable":true}},"required":["data"],"title":"PublicServiceEarliestSlotResponse","type":"object"}}},"description":"Success"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"},"422":{"content":{"application/json":{"schema":{"properties":{"errors":{"items":{"properties":{"detail":{"example":"null value where string expected","type":"string"},"source":{"properties":{"pointer":{"example":"/data/attributes/petName","type":"string"}},"required":["pointer"],"type":"object"},"title":{"example":"Invalid value","type":"string"}},"required":["title","source","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"JsonErrorResponse","type":"object"}}},"description":"Unprocessable Entity"}}}
+>
+  
+</StatusCodes>
+
+
+      

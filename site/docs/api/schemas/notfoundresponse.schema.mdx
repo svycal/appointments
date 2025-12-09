@@ -1,0 +1,33 @@
+---
+id: notfoundresponse
+title: "NotFoundResponse"
+description: "Response schema for not found requests"
+sidebar_label: "NotFoundResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"errors":[{"detail":"Not Found","status":"404"}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"NotFoundResponse"}
+>
+</Heading>
+
+
+
+Response schema for not found requests
+
+<Schema
+  schema={{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

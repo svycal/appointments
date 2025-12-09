@@ -1,0 +1,33 @@
+---
+id: createproviderrequest
+title: "CreateProviderRequest"
+description: "Request schema for creating a provider"
+sidebar_label: "CreateProviderRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"add_user":true,"display_name":"John Smith","email":"john.smith@tendermedical.com","first_name":"John","last_name":"Smith","notify":false,"role_ids":["role_123456789012"]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CreateProviderRequest"}
+>
+</Heading>
+
+
+
+Request schema for creating a provider
+
+<Schema
+  schema={{"description":"Request schema for creating a provider","example":{"add_user":true,"display_name":"John Smith","email":"john.smith@tendermedical.com","first_name":"John","last_name":"Smith","notify":false,"role_ids":["role_123456789012"]},"properties":{"add_user":{"default":false,"description":"Whether to grant the provider access to the dashboard.","type":"boolean"},"display_name":{"description":"The provider's display name.","type":"string"},"email":{"description":"The provider's email address.","type":"string"},"first_name":{"description":"The provider's first name.","type":"string"},"last_name":{"description":"The provider's last name.","type":"string"},"notify":{"default":false,"description":"Whether to send an email notification to the user (if `add_user` is true). If they don't already have an account, they will receive an email with instructions to set their password when this property is true.","type":"boolean"},"role_ids":{"description":"List of role IDs to assign to the user (if `add_user` is true).","items":{"description":"A role ID","pattern":"^role_\\w{12}$","type":"string"},"type":"array"}},"required":["display_name","first_name","last_name","email"],"title":"CreateProviderRequest","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

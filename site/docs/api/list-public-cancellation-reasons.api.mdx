@@ -1,0 +1,72 @@
+---
+id: list-public-cancellation-reasons
+title: "List cancellation reasons"
+description: "List all active cancellation reasons that can be used when canceling the specified appointment."
+sidebar_label: "List cancellation reasons"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9Vt9v2zYQ/leIw4BugGDZWZdiesu6bMgwDEXSPLmeQVPniA1NMuTJTSbofx+OkmvZVtMfD32yIR7vu/vuu+M1oKQxK6nuIxRNm0GJUQXtSTsLBfytIwlpjJCK9BaFklahMZKPRUAZnY2CKkl8IlYo6oil+FCh7U21vRNUoYgelV5rLIX03mlLG7Q0gQycx5DcXZVQgNGR3tQro9XrAdJ1BwQZeBnkBglDhGLeHAV7sfcsrn6HDDR/9ZIqyMDKDUIBA/SlLiGDgA+1DlhCQaHGDKKqcCOhaICePN+IFLS9g7ZdsHH0zkZkruBsOuUf5SyhJf4rvTdapZDz95Fjagb+DoO97l2JzkCsXRCcPRPmEwOjZEMG+Cg33mByKUkmIjSTp8KynJ79In89l2qqzvdJ36gKy9qgUM6ujVbEvK/eoyLmJ4Eth2DLDgwyiC7Q0oUSAxTTNtsD4ezn89X01aqcla/2QH+42pZCWkcVBuGD22q++i1os3bRZuAD64N0x3iXbgOacBNPKb0YY+yz6pT2WJIDgr8Tr0d5MupxcrdWP9QodImWuJFCUgy3Voc4Sd1BhIGt/1Vh+e7dh2Z21v4A2bGUdwkcY7ytUPCJcOvkeYTOyZi3Xc7H/m6ShQjoA0aOux8Gnf2LKNhTYtzWGyjmz3G2GMEdsjiWC5+LdP5lGWlLeIcB2nY4F+a7/DJIEyNxdwDOsWlixcCnhtcepHfWfvwgQ5BPJ5hJ61/gOO4GySlCezLOb2qlMEYGfzl9+VXT61ChGIIL8aAXj1oVSWqTTHfdBLY2RmylqZF7MKDoKinw0aMiLMekFV0dFJ76Tw3b1X0PkDNpuSQKelUTxtwj/dNV63iYH5K987YYq1JXgCHOld1Ko8sul8867xx8TCXbcTMK9pwketIHovgrOnvJX79GBLfWB8cykCuD4tKSpg6L5B0/q73UxG/O3XM+iww2SJXjUXiH1M2ZiunezvKuY/PBBI15c/jItvlIP/NDFjFsdy95HQwUUBH5WOS59HoS5Xb7pKSZSO8hg60MmgNOawq/xRFVHTh0vi5rqlzQ/8kux/liaMFjetPJ5siuFzjztUIZ0lPV88ehJFa0Xbu0DvSc33Bcr6URg3Ujios3VxwkhtiRPJtMuZ7eRdrIhNS/GWmj+sTLflCnQW9+hzWsz5rwkXJvpLYcfSpK05d7DtsZ1z4VHLLhJsWxFyeb1WjVFxlULhK7a5qVjHgbTNvy54caAxdzsa91t+PpJNQSirU0EZ9h6cfrvll+Eier4Gh+u26zT0lg3MwFQAb3+HS6KqZ9pEKZXpt50xtdKIWeBtdPpmg77J8/L99C2/4Pu7IFyA==
+sidebar_class_name: "get api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List cancellation reasons"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/public/appointments/{appointment_id}/cancellation_reasons"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+List all active cancellation reasons that can be used when canceling the specified appointment.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"Appointment ID","in":"path","name":"appointment_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for listing public cancellation reasons","example":{"data":[{"id":"cr_d025a96ac0c6","name":"Schedule conflict","object":"public_cancellation_reason","sort_order":0},{"id":"cr_e136b07bd1d7","name":"Found another provider","object":"public_cancellation_reason","sort_order":1}]},"properties":{"data":{"items":{"description":"A cancellation reason that can be used when canceling an appointment.","example":{"id":"cr_d025a96ac0c6","name":"Schedule conflict","object":"public_cancellation_reason","sort_order":0},"properties":{"id":{"description":"Unique identifier for the object.","pattern":"^cr_\\w{12}$","type":"string"},"name":{"description":"The name of the cancellation reason.","type":"string"},"object":{"description":"String representing the object's type.","enum":["public_cancellation_reason"],"type":"string"},"sort_order":{"description":"The sort order of the cancellation reason.","type":"integer"}},"required":["object","id","name","sort_order"],"title":"PublicCancellationReason","type":"object"},"type":"array"}},"required":["data"],"title":"PublicCancellationReasonsResponse","type":"object"}}},"description":"Success"},"404":{"content":{"application/json":{"schema":{"properties":{"errors":{"items":{"properties":{"detail":{"example":"null value where string expected","type":"string"},"source":{"properties":{"pointer":{"example":"/data/attributes/petName","type":"string"}},"required":["pointer"],"type":"object"},"title":{"example":"Invalid value","type":"string"}},"required":["title","source","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"JsonErrorResponse","type":"object"}}},"description":"Unprocessable Entity"}}}
+>
+  
+</StatusCodes>
+
+
+      

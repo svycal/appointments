@@ -1,0 +1,33 @@
+---
+id: dashboardsession
+title: "DashboardSession"
+description: "This is an object representing a dashboard session in the app."
+sidebar_label: "DashboardSession"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"created_at":"2017-09-12T12:34:55Z","id":"ds_d025a96ac0c6","object":"dashboard_session","return_url":"https://example.com/dashboard","url":"https://savvycal.app/d/session/ds_d025a96ac0c6/XXXXXXX","user_id":"user_d025a96ac0c6"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"DashboardSession"}
+>
+</Heading>
+
+
+
+This is an object representing a dashboard session in the app.
+
+<Schema
+  schema={{"description":"This is an object representing a dashboard session in the app.","example":{"created_at":"2017-09-12T12:34:55Z","id":"ds_d025a96ac0c6","object":"dashboard_session","return_url":"https://example.com/dashboard","url":"https://savvycal.app/d/session/ds_d025a96ac0c6/XXXXXXX","user_id":"user_d025a96ac0c6"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^ds_\\w{12}$","type":"string"},"object":{"description":"String representing the object's type.","enum":["dashboard_session"],"type":"string"},"return_url":{"description":"The URL to redirect to when the user signs out of the session.","format":"uri","nullable":true,"type":"string"},"url":{"description":"The short-lived URL of the dashboard session. When the user visits this URL, their browser will be logged in to the account.","format":"uri","type":"string"},"user_id":{"description":"The ID of the user associated with the dashboard session.","pattern":"^user_\\w{12}$","type":"string"}},"required":["object","created_at","id","user_id","url","return_url"],"title":"DashboardSession","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

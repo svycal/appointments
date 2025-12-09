@@ -1,0 +1,33 @@
+---
+id: zoneddatetime
+title: "ZonedDateTime"
+description: "An object describing a date/time in local time (naive) and in UTC."
+sidebar_label: "ZonedDateTime"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"local":"2025-03-01T10:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2025-03-01T03:00:00Z"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ZonedDateTime"}
+>
+</Heading>
+
+
+
+An object describing a date/time in local time (naive) and in UTC.
+
+<Schema
+  schema={{"description":"An object describing a date/time in local time (naive) and in UTC.","example":{"local":"2025-03-01T10:00:00","object":"zoned_date_time","time_zone":"America/New_York","unix_ts":1736461200,"utc":"2025-03-01T03:00:00Z"},"properties":{"local":{"description":"The local date/time in ISO-8601 format (without time zone information).","example":"2025-03-01T10:00:00","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$","type":"string"},"object":{"description":"String representing the object's type.","enum":["zoned_date_time"],"type":"string"},"time_zone":{"description":"The time zone of the local time (IANA format).","example":"America/New_York","type":"string"},"unix_ts":{"description":"The UTC date/time in Unix timestamp format (seconds).","example":1736461200,"type":"integer"},"utc":{"description":"The UTC date/time in ISO-8601 format (with time zone information).","example":"2025-03-01T03:00:00Z","format":"date-time","type":"string"}},"required":["object","local","utc","time_zone","unix_ts"],"title":"ZonedDateTime","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

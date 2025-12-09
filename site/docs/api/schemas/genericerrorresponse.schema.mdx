@@ -1,0 +1,33 @@
+---
+id: genericerrorresponse
+title: "GenericErrorResponse"
+description: "Response schema for generic error messages"
+sidebar_label: "GenericErrorResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"errors":[{"detail":"You must use an account-scoped token to access this endpoint.","status":"400","title":"Invalid value"}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"GenericErrorResponse"}
+>
+</Heading>
+
+
+
+Response schema for generic error messages
+
+<Schema
+  schema={{"description":"Response schema for generic error messages","example":{"errors":[{"detail":"You must use an account-scoped token to access this endpoint.","status":"400","title":"Invalid value"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"GenericErrorResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

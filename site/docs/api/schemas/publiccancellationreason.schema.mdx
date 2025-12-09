@@ -1,0 +1,33 @@
+---
+id: publiccancellationreason
+title: "PublicCancellationReason"
+description: "A cancellation reason that can be used when canceling an appointment."
+sidebar_label: "PublicCancellationReason"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"id":"cr_d025a96ac0c6","name":"Schedule conflict","object":"public_cancellation_reason","sort_order":0}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"PublicCancellationReason"}
+>
+</Heading>
+
+
+
+A cancellation reason that can be used when canceling an appointment.
+
+<Schema
+  schema={{"description":"A cancellation reason that can be used when canceling an appointment.","example":{"id":"cr_d025a96ac0c6","name":"Schedule conflict","object":"public_cancellation_reason","sort_order":0},"properties":{"id":{"description":"Unique identifier for the object.","pattern":"^cr_\\w{12}$","type":"string"},"name":{"description":"The name of the cancellation reason.","type":"string"},"object":{"description":"String representing the object's type.","enum":["public_cancellation_reason"],"type":"string"},"sort_order":{"description":"The sort order of the cancellation reason.","type":"integer"}},"required":["object","id","name","sort_order"],"title":"PublicCancellationReason","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

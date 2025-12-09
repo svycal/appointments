@@ -1,0 +1,33 @@
+---
+id: unauthorizedresponse
+title: "UnauthorizedResponse"
+description: "Response schema for unauthorized requests"
+sidebar_label: "UnauthorizedResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"errors":[{"detail":"Unauthorized","status":"401"}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"UnauthorizedResponse"}
+>
+</Heading>
+
+
+
+Response schema for unauthorized requests
+
+<Schema
+  schema={{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

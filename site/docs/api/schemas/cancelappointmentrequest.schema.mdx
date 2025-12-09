@@ -1,0 +1,33 @@
+---
+id: cancelappointmentrequest
+title: "CancelAppointmentRequest"
+description: "Request schema for canceling an appointment"
+sidebar_label: "CancelAppointmentRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"cancellation_reason_id":"cr_d025a96ac0c6","custom_reason_text":"I'm sick"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CancelAppointmentRequest"}
+>
+</Heading>
+
+
+
+Request schema for canceling an appointment
+
+<Schema
+  schema={{"description":"Request schema for canceling an appointment","example":{"cancellation_reason_id":"cr_d025a96ac0c6","custom_reason_text":"I'm sick"},"properties":{"cancellation_reason_id":{"description":"ID of the cancellation reason.","pattern":"^cr_\\w{12}$","type":"string"},"custom_reason_text":{"description":"Custom reason text for the cancellation.","type":"string"},"initiated_by":{"default":"client","description":"The entity that initiated the cancellation.","enum":["user","client"],"type":"string"}},"title":"CancelAppointmentRequest","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

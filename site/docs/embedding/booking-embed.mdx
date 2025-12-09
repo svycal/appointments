@@ -1,0 +1,103 @@
+---
+title: Booking Embed
+---
+
+<head>
+  <script src="https://js.savvycal.app/v1/booking-embed.js"></script>
+</head>
+
+# Booking Embed
+
+The booking embed component allows you to display the appointment booking UI seamlessly on your website. Under the covers, the booking embed uses a custom web component that is defined by a small, SavvyCal-hosted JavaScript library.
+
+## Live Demo
+
+<div className="my-6 p-6 rounded-xl border border-zinc-300 dark:border-none bg-white">
+  <savvycal-booking-embed
+    id="booking-embed"
+    service="srv_2cd153f28244"
+    theme="light"
+    locale="auto"
+    client-email="demo@savvycal.com"
+    client-first-name="Demo"
+    client-last-name="User"
+  ></savvycal-booking-embed>
+</div>
+
+## Installation
+
+Before adding the component to your website, add your domain to your _Allowed Origins_ list on the [Settings &rarr; Allowed origins](https://savvycal.app/allowed_origins) page (just the hostname, e.g. `myapp.com` or `subdomain.myapp.com`). If you're using `localhost`, be sure to include the port if it differs from port 80 (e.g. `localhost:3000`).
+
+To add the booking embed component to your website, you'll need to include the `booking-embed.js` script on your page and add the `<savvycal-booking-embed>` element where you want to show the component.
+
+```html
+<script src="https://js.savvycal.app/v1/booking-embed.js"></script>
+
+<savvycal-booking-embed
+  service="srv_{REPLACE_WITH_SERVICE_ID}"
+  client-first-name="{REPLACE_WITH_CLIENT_FIRST_NAME}"
+  client-last-name="{REPLACE_WITH_CLIENT_LAST_NAME}"
+  client-email="{REPLACE_WITH_CLIENT_EMAIL}"
+></savvycal-booking-embed>
+```
+
+## Attributes
+
+The `<savvycal-booking-embed>` element accepts various attributes to customize the behavior of the component.
+
+We strongly recommend setting the `client-reference-id` attribute to a unique identifier for the person booking the appointment, to ensure that the appointment is associated with the correct client in your system.
+
+| Attribute             | Type                  | Description                                                                                                                                                                                                                                           |
+| --------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `service` *            | string (Required)     | The ID of the service you want to embed.                                                                                                                                                                                                              |
+| `client-first-name` *   | string (Required)     | The first name of the person booking the appointment.                                                                                                                                                                                                 |
+| `client-last-name` *    | string (Required)     | The last name of the person booking the appointment.                                                                                                                                                                                                  |
+| `client-email` *        | string (Required)               | The email address of the person booking the appointment.                                                                                                                                                                                              |
+| `client-reference-id` | string                | A unique identifier for the person booking the appointment (strongly recommended).                                                                                                                                                                                           |
+| `client-phone`        | string                | The phone number of the person booking the appointment (in [E.164 format](https://www.twilio.com/docs/glossary/what-e164), e.g. `+12125551212`).                                                                                                                                                                                               |
+| `client-time-zone`    | string                | The time zone of the person booking the appointment (defaults to the browser's time zone).                                                                                                                                                                                                  |
+| `theme`               | `"light"` or `"dark"` | The theme to use for the booking embed (defaults to `"light"`).                                                                                                                                                                                       |
+| `locale`              | string                | The locale to use for the booking embed, one of `"auto"`, `"en"` (English), `"es"` (Spanish). Defaults to `"auto"`.                           |
+| `show-confirmation`   | boolean               | Whether to show a confirmation page after the appointment is booked (defaults to `true`). If set to `false`, the booking interface will stay in a "submitting" state, so you can perform the next action via the `appointment-created` event handler. |
+
+## Styling
+
+The component comes with a transparent background and zero padding, so that you can easily position it. You'll want to set the `theme` attribute to `"dark"` if you are placing the embed over a dark background, so that the text will be legible.
+
+You can also customize the color of the buttons, border radius, and other attributes by using CSS variables. The component will look for the following variables and forward them to the embedded component:
+
+| Variable                | Description                                 |
+| ----------------------- | ------------------------------------------- |
+| `--sc-btn-primary-bg`   | The background color of the primary button. |
+| `--sc-btn-primary-text` | The text color of the primary button.       |
+| `--sc-btn-radius`       | The border radius of the buttons.           |
+
+### Example
+
+```css
+:root {
+  --sc-btn-primary-bg: #00c65a;
+  --sc-btn-primary-text: #ffffff;
+  --sc-btn-radius: 8px;
+}
+```
+
+## Events
+
+The component emits the following events:
+
+| Event                 | Description                              |
+| --------------------- | ---------------------------------------- |
+| `appointment-created` | Emitted when the appointment is created. |
+
+### Example
+
+```javascript
+// Listen for appointment created events
+window.addEventListener("appointment-created", (e) => {
+  const { appointmentId } = e.detail;
+
+  // Example: Redirect to a thank you page
+  // window.location.href = "/thank-you?appointment=" + appointmentId;
+});
+```

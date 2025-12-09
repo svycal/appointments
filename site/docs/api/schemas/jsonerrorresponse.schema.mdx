@@ -1,0 +1,33 @@
+---
+id: jsonerrorresponse
+title: "JsonErrorResponse"
+description: ""
+sidebar_label: "JsonErrorResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"errors":[{"detail":"null value where string expected","source":{"pointer":"/data/attributes/petName"},"title":"Invalid value"}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"JsonErrorResponse"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"properties":{"errors":{"items":{"properties":{"detail":{"example":"null value where string expected","type":"string"},"source":{"properties":{"pointer":{"example":"/data/attributes/petName","type":"string"}},"required":["pointer"],"type":"object"},"title":{"example":"Invalid value","type":"string"}},"required":["title","source","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"JsonErrorResponse","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

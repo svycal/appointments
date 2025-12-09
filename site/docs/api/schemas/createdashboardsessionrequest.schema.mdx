@@ -1,0 +1,33 @@
+---
+id: createdashboardsessionrequest
+title: "CreateDashboardSessionRequest"
+description: "Request schema for creating a dashboard session"
+sidebar_label: "CreateDashboardSessionRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"return_url":"https://example.com/home","user_id":"user_d025a96ac0c6"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CreateDashboardSessionRequest"}
+>
+</Heading>
+
+
+
+Request schema for creating a dashboard session
+
+<Schema
+  schema={{"description":"Request schema for creating a dashboard session","example":{"return_url":"https://example.com/home","user_id":"user_d025a96ac0c6"},"properties":{"return_url":{"description":"The URL to redirect to when the user signs out of the session.","format":"uri","nullable":true,"type":"string"},"user_id":{"description":"The ID of the user to create the session for.","pattern":"^user_\\w{12}$","type":"string"}},"required":["user_id"],"title":"CreateDashboardSessionRequest","type":"object"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

@@ -1,0 +1,72 @@
+---
+id: list-accounts
+title: "List accounts"
+description: "List all accounts associated with the current platform (requires a platform token)."
+sidebar_label: "List accounts"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN9v2zYQ/lcIYkA3QLEtt+lQvQVF0XVoi6BxHtbUC87UxWYrkQxJOUkN/e/DUZL1y22atgP2sCcbEu++u+8+3lHccQFZtgLxyfFkV0Y8RSesNF5qxRP+WjrPIMsYCKEL5R0D57SQ4DFlN9JvmN8gE4W1qDwzGfgrbXP2q8XrQlp0DNqHXn9C9duER1wbtEAIr1Ke8Ew6f1K75xE3YCFHj9bx5GI3iOcU1shUka/Q8ohLenRdoL3jEVeQI0+4gTXyiNcBpDy5gsxhxJ3YYA482fFcKpkXOU/iiPs7Q0ZSeVyj5WUZDRHfBjCmr5j0mDtm0LIa40vwl05+/pEYlmTqjFYOqSh8PpvRj9DKo/L0F4zJpAgUTj86inPXcd5P4F3tilUL2JW2DBiRTklBSzzeQm4yDB7AQ2BfWKRSX4LnCZ/P4t+PZs+O4vkiniePnyTHx++JBioiCOEv09n8GJ49BTETT1tKFqhStOwNplJARuVffUThKyMC5xEvTHoA5/EiniVxnMTz95xYydGHBGu9XYY6EIUt60k8i7jXHrLLyndyvH9AqxxPjssy4saSCL2sGK7yHTL3esxR0MB45WIjHZOOgWJVcsyisehQeanW9Lj2waQKOwaMmfQp/w8xPWSnG9ooc5kjA89uNlJUzaAm4AYcqw0pU+oAAZLQj7zMaYPUynfeSrUmXEpwiHCu5HWBTKZE5pVEGxTcIk1Cz/AeLa3+O9Dz4cPNLp6XvxzCqLgaVxCbGj1yjNZMDhk3hA7Nz8KKftXbEB85Rp5CxRXt+ot9QZYHQLolehDfGTjPautvJb3s9qmLJsGoW/RQl5q4XnQUvPSkX36yF1jtf+/o9sjDmno53zf5ZblfBtbCHSXd7O1+um/QA23OUHMDa6nC5GnbY38P/WBfGAm/528Y2/Nm6vVm0rCb94L48nCxKLRNe+Nl7KkX/0gZ9LKOo+PxK47qvO9zVC07NCt7yukG10eI+kR2Geko6LSqrtSKij4S0hAutOxaNmMdumbqHfAzOuScFUKgc0TMk58+ateo0ErB0FptWY7O1Zx0dBveNccdDzLjCf9LFywvaD877AyQIye0wbQ6TDGv6Tk6xzxNIFSp0VKFlug8+MLxJKTU8vNKbSGTKdtCViAvlyPNN7Hs2lk3mJV1hMPkX3QTPNQ7m4iGhn8sFqesesmETg/a1uEfxqxe3tfZ6riXI0EMe9HAriako7GXVUkD+EN01rWrxBb/ZLEVCgq/0VZ+Dk3yukA3PNod0tp5x6wvnfh/iXyXRLqMPkQivUqQRObzB0nkuwu1VwhXRZZV7YHdbNAiq8hieGtQ+CCQcd10YQWO/YduhLYPMKXWPQXvrVwVHt3UoH8L33A2abwdrE9T/Ran3+ruc94opE4l+oli+NNp9eBmca6M1dTaYZUhe6G89BXW+DQVpuBG08fBGn11HN4Q0dt42vl2cWi3zVd1YWnfb7w3LplOwciJg+32TkA2AWN4xLdgJSGHWwH69nIoCksxkHkjUqiCvVh2V5yRGqv6D9bVSqXEVwi2e16iUEJ6Ul1pWtmQd0ZxPYeMnZhQ/xzpFuLk9BUFidZVbMWTWThqaedzCEj1J1F1gdGS0CO5s7H+pZuOOjuPt35qMpAqnO9t2HJVlS74NuYRh041N9p5erHbrcDhuc3Kkh5XNw2hccugivZi4YtZnR46m/aj+YR37bVJtVcSzsNFyDfDfOWS5B7M5q6kBV624gvKivgGIaUmcrGrDU+EQOM7VqOmWHY3xcsXC16W/wBazIS4
+sidebar_class_name: "get api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List accounts"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/accounts"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+List all accounts associated with the current platform (requires a platform token).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"Page number","in":"query","name":"page","required":false,"schema":{"minimum":1,"type":"integer"}},{"description":"Number of items per page","in":"query","name":"page_size","required":false,"schema":{"minimum":1,"type":"integer"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for a list of accounts","example":{"data":[{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"}],"meta":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5}},"properties":{"data":{"description":"List of accounts","items":{"description":"This is an object representing an account in the app.","example":{"created_at":"2017-09-12T12:34:55Z","id":"acct_d025a96ac0c6","name":"Tender Medical","object":"account","updated_at":"2017-09-13T10:11:12Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^acct_\\w{12}$","type":"string"},"name":{"description":"The account's name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["account"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","name","updated_at"],"title":"Account","type":"object","x-tags":["Accounts"]},"type":"array"},"meta":{"description":"Metadata for paginated responses","example":{"current_page":1,"page_size":10,"total_count":50,"total_pages":5},"properties":{"current_page":{"description":"Current page number","type":"integer"},"page_size":{"description":"Number of records per page","type":"integer"},"total_count":{"description":"Total number of records","type":"integer"},"total_pages":{"description":"Total number of pages","type":"integer"}},"required":["total_count","total_pages","current_page","page_size"],"title":"PaginationMeta","type":"object"}},"required":["data","meta"],"title":"AccountsResponse","type":"object"}}},"description":"Success"},"400":{"content":{"application/json":{"schema":{"description":"Response schema for generic error messages","example":{"errors":[{"detail":"You must use an account-scoped token to access this endpoint.","status":"400","title":"Invalid value"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"GenericErrorResponse","type":"object"}}},"description":"GenericError"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"422":{"content":{"application/json":{"schema":{"properties":{"errors":{"items":{"properties":{"detail":{"example":"null value where string expected","type":"string"},"source":{"properties":{"pointer":{"example":"/data/attributes/petName","type":"string"}},"required":["pointer"],"type":"object"},"title":{"example":"Invalid value","type":"string"}},"required":["title","source","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"JsonErrorResponse","type":"object"}}},"description":"Unprocessable Entity"}}}
+>
+  
+</StatusCodes>
+
+
+      

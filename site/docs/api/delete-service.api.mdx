@@ -1,0 +1,72 @@
+---
+id: delete-service
+title: "Delete service"
+description: "Delete an existing service."
+sidebar_label: "Delete service"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vttu3DYQ/RVinlqA8XpTt2n1ZsQOYqAwgthBCxiLYJY7azGWSIYcbb0R9O8BKcrSXprCSPMkgZzrOYcctqCwqpaoHgIUbSdhRUF57VhbAwVcUEVMAo2gRx1Ym3sRyG+0ohOQYB15jJZXKyhglWxv+m2Q4NBjTUw+QHHX7gX+qyQjsOGSDGuFKfI/mkuBwlXIa+trwfaBjBTBkdJrTUFwSQKVso1hcXUh1tanJU+fGwoMEugRa1cRFIBK8cf5y1/Ofv3t1e9/nIIEHdOWhCvyIMFgHc3+fnGDm832NVYvzvvAICHG055WUKyxCiQhqJJqhKIF3rroFthrcw9dJ/f7yu2Lq4shpUMux4QZvY96tZOIffPNPItoHJw1gSJP8PL0LH6UNUyGkwc98sxVGHO2k0i75V3WjrdiCNUjbqwY4kwRBAmsOf0mr/fZKa7vVXcgm2srXueQnYSz0/lesehclVi3ZvYp2G+WPOQVvUFivTFROtbrL7Qa6A/T6lsg7+2T8hh1BQV8mLiBhMDITYAiFdgtOgnOR0mz7kEeQrSgmer0s2swBD5AOTqKmkLA+yN4jZn3Hd/e3r4T/aZQdnXUN5NyPGe/ecjQVGt3Q92LJzu7/EQqcZUX0HvcHvhlQBajMqaIHgpkCHsokB0mkkT29fy9EjGWxdo25jn6uLYs3kSfXXGc/VBxkGnqCO6YfPF9ihkCxsIPQ+1RmuPK/1ET15ZTH8/Rw9h83GO8j8wMl2mKXhOXdhwzab5wCQXMNvNZvlXDrB3v1y6SSH4zzJ/GR4pLZheK2QydPgnx6ldYnaBzIGGDXuOySuylGzeQarzmbXIf9Ip9xXeLqcVN1F1P+55dFm3sfkno0+zJaMRSUrvarG26wjOAw0gS585Zbbgmw0Gcv7uKRZIPPWTzk9NIjrOBa0yZ8ojJMzs8DeIdqCeH7D+mey5zMlg62aPYZuzvYDPPKCeaJBST+baQUNrA0axtlxjog6+6Li5/bshHVBcj6P1B1CH+j4P3Xyv/6X2W4M9iZ+IerXnQr9kmlqsmj7cH2u5O5HTM8xPhefX8mOfM0W76qo8+XJ56i++S3u5cKXLTvWmw6bG6uPzz8vYSuu4r0lJ7zA==
+sidebar_class_name: "delete api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete service"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/v1/services/{service_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Delete an existing service.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"description":"When authenticating with a platform token, specifies the account ID for the request","example":"acct_1234567890","in":"header","name":"X-SavvyCal-Account","required":false,"schema":{"type":"string"}},{"description":"Service ID","in":"path","name":"service_id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"content":{"text/plain":{"schema":{"description":"Empty response with no content","example":"","title":"EmptyResponse","type":"string"}}},"description":"No Content"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"},"404":{"content":{"application/json":{"schema":{"description":"Response schema for not found requests","example":{"errors":[{"detail":"Not Found","status":"404"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","enum":["Not Found"],"type":"string"},"status":{"description":"HTTP status code","enum":["404"],"type":"string"}},"required":["status","detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"NotFoundResponse","type":"object"}}},"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,73 @@
+---
+id: get-current-platform
+title: "Get current platform"
+description: "Get the platform that owns the current token (requires a platform token)."
+sidebar_label: "Get current platform"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVktv3DYQ/ivEoEBaQF6vNnGK6GYEgetDAaNeHxp7G4yp8YqxRNHkaO3NQv+9GErr1T6AxIEPPfQkQeQ8vgdHXIHGsrxFfR8gW7UJ5BS0N45NbSGDM2LFBSlXIt/VvlJcIKv60Yb4WTfek2XF9T1Z9aunh8Z4CgoHAbL02+jGQgK1I4+S+TyHDObEH7v4i34zJODQY0VMPkB2PUvAU3C1DSTdwWQ8loeuLZNleUXnSqNjzuOvQVpeQdAFVShv21j+6lOpboO6q71CFYydlxuAkAA9YeVKigmQYyLtCZnyL8iQwWSc/n40/nCUTqbpJHv7Ljs5+QwJGMEkab7k48kJfniPeqzfQwIWK4IMpmRz8upPyo3GUti4/Uqa+6C+duPyA4XeTtNxlqZZOvkMbZuA88Ikm46VdZPbaKeFCcoEhVZ1hZQn5ymQZWPnQ4WMjVqic6Nt9P8l1Lugh73tQTcVKWT1WBhdRGw9A48YVB8oUKV6LCnVj9hUBAnw0knfgb2xc6krCHcrXFnz0JAyubB5Z8hHM20qjaKTmcnL7n8iPzc3j6t00v5yqEZH1r6EG1++CUo2jQ5Fryndjb+MO7Z13/T4JijJFDW3TQXZ9UaS2YEqQ5FexHiJgVUf/aO0t3Ly4zDJpbEeYTKUPSrTU7fVnTRvWCwMg8HSF3jO9HTEOJch87wpwEzq7saux8ZejrbdG5eXjdYUgtD17tVn1ZwseaMVeV97VVEIOKewfWTjmqCShIymhAz+rhtVNaJBIBkHqHXdWD4KunaU97Oba/lOQea6CYps7mpjo5EDIzcBsghpw8+5XWBpcrXAsiFoZ3tHdN3LCgxTFV92Blff4S74T0OAhwy/7mg38I/p9EJ1i0rX+cHYvv3DNbvF77mx73u2Z4jnD+g9LvfiekIG/jzrJI3FX+KzYVxntvSVzdZYbLiovflGuRIQFPgHvHY1CNu2Tvq/RX7KIkNGX2KRLSXiXNsfdwlUxEXdX8a6f1YBGRwv0uPB7zmQX1CvdONF5oLZhez4GJ0ZBVwslhrLEToHCSzQG7wto3xtO5No3XjDyxi+7gm7Lq9nwx2XYr9O9519vXcF8S2hJ79hQFqJ+Iy9q2XnmrhL6esjlurUxVFWkeWgTi/OpUnyoaMpHY3j5aIOXGGs1F9c5Oa7vt4OuNgieXDiXvmm3INjemJRwtj4B/bxJHQiXcMiFcUGv+yiDiwLq9UtBrryZdvK54eG/LK7Ta/FicwnUBDm5KMw97SEDE61JsdRRRnq2f4YaYemOfs0hbb9F1L0Nnk=
+sidebar_class_name: "get api-method"
+info_path: api/savvycal-appointments-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get current platform"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/platform"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get the platform that owns the current token (requires a platform token).
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"content":{"application/json":{"schema":{"description":"Response schema for a single platform","example":{"data":{"created_at":"2017-09-12T12:34:55Z","id":"plat_d025a96ac0c6","name":"Tender Medical","object":"platform","updated_at":"2017-09-13T10:11:12Z"}},"properties":{"data":{"description":"This is an object representing a platform in the app.","example":{"created_at":"2017-09-12T12:34:55Z","id":"plat_d025a96ac0c6","name":"Tender Medical","object":"platform","updated_at":"2017-09-13T10:11:12Z"},"properties":{"created_at":{"description":"Time at which the object was created.","format":"date-time","type":"string"},"id":{"description":"Unique identifier for the object.","pattern":"^plat_\\w{12}$","type":"string"},"name":{"description":"The platform's name.","type":"string"},"object":{"description":"String representing the object's type.","enum":["platform"],"type":"string"},"updated_at":{"description":"Time at which the object was last updated.","format":"date-time","type":"string"}},"required":["object","created_at","id","name","updated_at"],"title":"Platform","type":"object","x-tags":["Platforms"]}},"title":"PlatformResponse","type":"object"}}},"description":"Success"},"400":{"content":{"application/json":{"schema":{"description":"Response schema for generic error messages","example":{"errors":[{"detail":"You must use an account-scoped token to access this endpoint.","status":"400","title":"Invalid value"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"GenericErrorResponse","type":"object"}}},"description":"GenericError"},"401":{"content":{"application/json":{"schema":{"description":"Response schema for unauthorized requests","example":{"errors":[{"detail":"Unauthorized","status":"401"}]},"properties":{"errors":{"items":{"properties":{"detail":{"description":"Error message","type":"string"},"status":{"description":"HTTP status code","type":"string"},"title":{"description":"Error title","type":"string"}},"required":["detail"],"type":"object"},"type":"array"}},"required":["errors"],"title":"UnauthorizedResponse","type":"object"}}},"description":"Unauthorized"}}}
+>
+  
+</StatusCodes>
+
+
+      
