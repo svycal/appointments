@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "concurrently \"npm run start:css\" \"docusaurus start\"",
+    "start": "concurrently \"pnpm run start:css\" \"docusaurus start\"",
     "build": "pnpm run build:css && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
