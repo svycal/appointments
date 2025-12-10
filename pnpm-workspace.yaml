@@ -1,8 +1,15 @@
-publicHoistPattern:
-  - "@mdx-js/react"
-  - url-loader
 packages:
-  - "site"
-  - "packages/*"
-  - "components/*"
-  - "playground/assets"
+  - site
+  - packages/*
+  - components/*
+  - playground/assets
+
+onlyBuiltDependencies:
+  - "@parcel/watcher"
+  - core-js
+  - core-js-pure
+  - esbuild
+  - postman-code-generators
+
+# This is here because Docusaurus relies on hoisted dependencies
+shamefullyHoist: true
