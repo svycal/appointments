@@ -1,5 +1,5 @@
 {
-  "name": "@savvycal/appointments-js",
+  "name": "@savvycal/appointments",
   "private": true,
   "type": "module",
   "scripts": {
