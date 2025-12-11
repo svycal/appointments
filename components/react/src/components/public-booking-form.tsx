@@ -29,23 +29,60 @@ import { RadioGroup } from "radix-ui";
 import React, { useEffect, useMemo, useState } from "react";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 
-const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
+/** Data about the client booking the appointment. */
+interface ClientData {
+  /** The client's email address. */
+  email: string;
+  /** The client's first name. */
+  first_name: string;
+  /** The client's last name. */
+  last_name: string;
+  /** The client's locale (e.g., "en"). Defaults to "en". */
+  locale?: string;
+  /** The client's phone number. */
+  phone?: string;
+  /** A unique reference ID for the client in your system. Defaults to the email. */
+  reference_id?: string;
+}
+
+interface PublicBookingFormProps {
+  /** Data about the client booking the appointment. */
+  clientData: ClientData;
+  /** The ID of the service to book. */
+  serviceId: string;
+}
+
+const PublicBookingForm = ({
+  clientData,
+  serviceId,
+}: PublicBookingFormProps) => {
   const [timeZone] = useState<string>(getBrowserTimeZone());
   const client = useSavvyCalFetchClient();
 
   const [month, setMonth] = useState<Date>();
   const [selectedDay, setSelectedDay] = useState<Date>();
   const [selectedSlot, setSelectedSlot] = useState<Slot>();
+  const [initError, setInitError] = useState<string>();
 
   useEffect(() => {
     async function jumpToEarliestDate() {
-      const { data } = await getEarliestPublicServiceSlot(client, {
-        service_id: serviceId,
-      });
+      try {
+        const { data } = await getEarliestPublicServiceSlot(client, {
+          service_id: serviceId,
+        });
 
-      if (data?.data) {
-        setMonth(startOfMonth(data.data.start_at));
-        setSelectedDay(fromUnixTime(data.data.start_at_ts));
+        setInitError(undefined);
+
+        if (data?.data) {
+          setMonth(startOfMonth(data.data.start_at));
+          setSelectedDay(fromUnixTime(data.data.start_at_ts));
+        } else {
+          // No available slots, default to current month
+          setMonth(startOfMonth(new Date()));
+        }
+      } catch {
+        setInitError("Failed to load available times. Please try again.");
+        setMonth(startOfMonth(new Date()));
       }
     }
 
@@ -63,20 +100,30 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
     };
   }, [month]);
 
-  const { data, refetch } = usePublicServiceSlots(serviceId, visibleRange, {
+  const {
+    data,
+    error: slotsError,
+    refetch,
+  } = usePublicServiceSlots(serviceId, visibleRange, {
     enabled: !!month,
   });
 
+  const [submitError, setSubmitError] = useState<string>();
+
   const { isPending: isCreating, mutate: createPublicAppointment } =
     useCreatePublicAppointment({
+      onError: () => {
+        setSubmitError("Failed to book appointment. Please try again.");
+      },
       onSuccess: () => {
         setSelectedSlot(undefined);
+        setSubmitError(undefined);
         refetch();
       },
     });
 
   const dateHasSlots = (date: Date) => {
-    if (!data || !timeZone) return false;
+    if (!data) return false;
 
     return data.data.some((slot) => {
       const slotDate = fromUnixTime(slot.start_at_ts);
@@ -86,28 +133,27 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
   };
 
   const slotsOnSelectedDay = useMemo(() => {
-    if (!data || !timeZone || !selectedDay) return [];
+    if (!data || !selectedDay) return [];
 
     return data.data.filter((slot) => {
-      const slotDate = fromUnixTime(slot.start_at_ts!);
-
+      const slotDate = fromUnixTime(slot.start_at_ts);
       return isSameDay(slotDate, selectedDay, timeZone);
     });
   }, [data, selectedDay, timeZone]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedSlot || !timeZone) return;
+    if (!selectedSlot) return;
 
     createPublicAppointment({
       body: {
         client_data: {
-          email: "derrick@savvycal.com",
-          first_name: "Derrick",
-          last_name: "Reimer",
-          locale: "en",
-          phone: "",
-          reference_id: "derrick@savvycal.com",
+          email: clientData.email,
+          first_name: clientData.first_name,
+          last_name: clientData.last_name,
+          locale: clientData.locale ?? "en",
+          phone: clientData.phone ?? "",
+          reference_id: clientData.reference_id ?? clientData.email,
           time_zone: timeZone,
         },
         end_at: toISONaiveDateTime(selectedSlot.end_at, timeZone),
@@ -118,8 +164,16 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
     });
   };
 
+  const error =
+    initError || (slotsError ? "Failed to load available times." : undefined);
+
   return (
     <div className="@container [--nav-height:--spacing(11)]">
+      {error && (
+        <div className="mb-6 rounded-md bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
       <div className="flex flex-col items-center gap-8 @xl:flex-row @xl:items-start">
         <div>
           <Calendar
@@ -143,16 +197,14 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
             }}
             selectedDay={selectedDay}
           />
-          {timeZone && (
-            <div className="mt-6 flex items-center justify-center gap-2 text-sm">
-              <GlobeIcon className="size-4 text-zinc-500" />
-              <span className="text-zinc-500">
-                {getTimeZoneDisplayName(timeZone)}
-              </span>
-            </div>
-          )}
+          <div className="mt-6 flex items-center justify-center gap-2 text-sm">
+            <GlobeIcon className="size-4 text-zinc-500" />
+            <span className="text-zinc-500">
+              {getTimeZoneDisplayName(timeZone)}
+            </span>
+          </div>
         </div>
-        {selectedDay && slotsOnSelectedDay && timeZone && (
+        {selectedDay && slotsOnSelectedDay && (
           <div className="w-full max-w-sm grow @xl:w-auto @xl:max-w-none">
             <form onSubmit={handleSubmit}>
               <div className="flex h-(--nav-height) items-center justify-center">
@@ -207,6 +259,11 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
                 >
                   {isCreating ? "Submitting..." : "Book appointment"}
                 </button>
+                {submitError && (
+                  <p className="mt-2 text-center text-sm text-red-600">
+                    {submitError}
+                  </p>
+                )}
               </div>
             </form>
           </div>
