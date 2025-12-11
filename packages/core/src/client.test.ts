@@ -13,6 +13,9 @@ describe("createFetchClient", () => {
       ),
     );
 
+  const getRequest = (mockFetch: ReturnType<typeof createMockFetch>): Request =>
+    mockFetch.mock.calls[0]![0] as Request;
+
   describe("client creation", () => {
     it("creates a client with default base URL", async () => {
       const mockFetch = createMockFetch();
@@ -23,8 +26,9 @@ describe("createFetchClient", () => {
 
       await client.GET("/v1/account");
 
-      const request = mockFetch.mock.calls[0][0] as Request;
-      expect(request.url).toBe("https://api.savvycal.app/v1/account");
+      expect(getRequest(mockFetch).url).toBe(
+        "https://api.savvycal.app/v1/account",
+      );
     });
 
     it("creates a client with custom base URL", async () => {
@@ -37,8 +41,9 @@ describe("createFetchClient", () => {
 
       await client.GET("/v1/account");
 
-      const request = mockFetch.mock.calls[0][0] as Request;
-      expect(request.url).toBe("https://custom.api.com/v1/account");
+      expect(getRequest(mockFetch).url).toBe(
+        "https://custom.api.com/v1/account",
+      );
     });
   });
 
@@ -60,8 +65,7 @@ describe("createFetchClient", () => {
         });
 
         expect(fetchAccessToken).not.toHaveBeenCalled();
-        const request = mockFetch.mock.calls[0][0] as Request;
-        expect(request.headers.get("Authorization")).toBeNull();
+        expect(getRequest(mockFetch).headers.get("Authorization")).toBeNull();
       });
     });
 
@@ -75,8 +79,7 @@ describe("createFetchClient", () => {
 
         await client.GET("/v1/account");
 
-        const request = mockFetch.mock.calls[0][0] as Request;
-        expect(request.headers.get("Authorization")).toBe(
+        expect(getRequest(mockFetch).headers.get("Authorization")).toBe(
           "Demo demo-token-123",
         );
       });
@@ -94,8 +97,7 @@ describe("createFetchClient", () => {
         await client.GET("/v1/account");
 
         expect(fetchAccessToken).toHaveBeenCalledTimes(1);
-        const request = mockFetch.mock.calls[0][0] as Request;
-        expect(request.headers.get("Authorization")).toBe(
+        expect(getRequest(mockFetch).headers.get("Authorization")).toBe(
           "Bearer bearer-token-456",
         );
       });
@@ -165,8 +167,9 @@ describe("createFetchClient", () => {
 
       await client.GET("/v1/account");
 
-      const request = mockFetch.mock.calls[0][0] as Request;
-      expect(request.headers.get("X-SavvyCal-Account")).toBe("account-123");
+      expect(getRequest(mockFetch).headers.get("X-SavvyCal-Account")).toBe(
+        "account-123",
+      );
     });
 
     it("does not set X-SavvyCal-Account header when account is not provided", async () => {
@@ -178,8 +181,9 @@ describe("createFetchClient", () => {
 
       await client.GET("/v1/account");
 
-      const request = mockFetch.mock.calls[0][0] as Request;
-      expect(request.headers.get("X-SavvyCal-Account")).toBeNull();
+      expect(
+        getRequest(mockFetch).headers.get("X-SavvyCal-Account"),
+      ).toBeNull();
     });
   });
 });
