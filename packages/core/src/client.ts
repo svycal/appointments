@@ -14,6 +14,23 @@ const DEFAULT_BASE_URL = "https://api.savvycal.app";
 const UNPROTECTED_PATHS = ["/v1/public"];
 
 /**
+ * Validates that a token is a properly formatted JWT.
+ * A valid JWT has 3 base64-encoded parts separated by dots.
+ */
+const isValidJwt = (token: string): boolean => {
+  const parts = token.split(".");
+  if (parts.length !== 3) return false;
+
+  try {
+    // Verify the payload can be decoded and parsed as JSON
+    JSON.parse(atob(parts[1]!));
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+/**
  * Checks if a JWT is expired by decoding the payload and reading the `exp` claim.
  * Returns true if expired or if the token cannot be decoded.
  */
@@ -85,6 +102,10 @@ export const createFetchClient = (options: FetchClientOptions = {}) => {
 
         if (!authRes) {
           throw new Error("No access token");
+        }
+
+        if (!isValidJwt(authRes)) {
+          throw new Error("Invalid access token: expected a JWT");
         }
 
         accessToken = authRes;

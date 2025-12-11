@@ -27,12 +27,15 @@ describe("createFetchClient", () => {
     return `${header}.${payload}.${signature}`;
   };
 
+  // A valid JWT that expires in 1 hour (for tests that don't care about expiration)
+  const validToken = () => createMockJwt(Math.floor(Date.now() / 1000) + 3600);
+
   describe("client creation", () => {
     it("creates a client with default base URL", async () => {
       const mockFetch = createMockFetch();
       const client = createFetchClient({
         fetch: mockFetch,
-        fetchAccessToken: () => "test-token",
+        fetchAccessToken: () => validToken(),
       });
 
       await client.GET("/v1/account");
@@ -47,7 +50,7 @@ describe("createFetchClient", () => {
       const client = createFetchClient({
         baseUrl: "https://custom.api.com",
         fetch: mockFetch,
-        fetchAccessToken: () => "test-token",
+        fetchAccessToken: () => validToken(),
       });
 
       await client.GET("/v1/account");
@@ -99,7 +102,8 @@ describe("createFetchClient", () => {
     describe("bearer token mode", () => {
       it("calls fetchAccessToken and sets Bearer header", async () => {
         const mockFetch = createMockFetch();
-        const fetchAccessToken = vi.fn().mockResolvedValue("bearer-token-456");
+        const token = validToken();
+        const fetchAccessToken = vi.fn().mockResolvedValue(token);
         const client = createFetchClient({
           fetch: mockFetch,
           fetchAccessToken,
@@ -109,7 +113,7 @@ describe("createFetchClient", () => {
 
         expect(fetchAccessToken).toHaveBeenCalledTimes(1);
         expect(getRequest(mockFetch).headers.get("Authorization")).toBe(
-          "Bearer bearer-token-456",
+          `Bearer ${token}`,
         );
       });
 
@@ -153,22 +157,33 @@ describe("createFetchClient", () => {
         expect(fetchAccessToken).toHaveBeenCalledTimes(2);
       });
 
-      it("refreshes token when malformed", async () => {
+      it("throws error if fetchAccessToken returns invalid JWT", async () => {
         const mockFetch = createMockFetch();
-        const freshToken = createMockJwt(Math.floor(Date.now() / 1000) + 3600);
-        const fetchAccessToken = vi
-          .fn()
-          .mockResolvedValueOnce("not-a-valid-jwt")
-          .mockResolvedValueOnce(freshToken);
+        const fetchAccessToken = vi.fn().mockResolvedValue("not-a-valid-jwt");
         const client = createFetchClient({
           fetch: mockFetch,
           fetchAccessToken,
         });
 
-        await client.GET("/v1/account");
-        await client.GET("/v1/account");
+        await expect(client.GET("/v1/account")).rejects.toThrow(
+          "Invalid access token: expected a JWT",
+        );
+      });
 
-        expect(fetchAccessToken).toHaveBeenCalledTimes(2);
+      it("throws error if fetchAccessToken returns JWT with invalid payload", async () => {
+        const mockFetch = createMockFetch();
+        // Token with non-JSON payload
+        const fetchAccessToken = vi
+          .fn()
+          .mockResolvedValue("header.not-valid-base64!.signature");
+        const client = createFetchClient({
+          fetch: mockFetch,
+          fetchAccessToken,
+        });
+
+        await expect(client.GET("/v1/account")).rejects.toThrow(
+          "Invalid access token: expected a JWT",
+        );
       });
 
       it("throws error if no fetchAccessToken provided", async () => {
@@ -216,7 +231,7 @@ describe("createFetchClient", () => {
       const client = createFetchClient({
         account: "account-123",
         fetch: mockFetch,
-        fetchAccessToken: () => "test-token",
+        fetchAccessToken: () => validToken(),
       });
 
       await client.GET("/v1/account");
@@ -230,7 +245,7 @@ describe("createFetchClient", () => {
       const mockFetch = createMockFetch();
       const client = createFetchClient({
         fetch: mockFetch,
-        fetchAccessToken: () => "test-token",
+        fetchAccessToken: () => validToken(),
       });
 
       await client.GET("/v1/account");
