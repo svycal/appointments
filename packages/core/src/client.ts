@@ -47,8 +47,8 @@ export const createFetchClient = (options: FetchClientOptions = {}) => {
   let accessToken: string | undefined;
 
   const authMiddleware: Middleware = {
-    async onRequest({ request }) {
-      if (UNPROTECTED_PATHS.some((path) => request.url.startsWith(path))) {
+    async onRequest({ request, schemaPath }) {
+      if (UNPROTECTED_PATHS.some((path) => schemaPath.startsWith(path))) {
         return undefined;
       }
 
