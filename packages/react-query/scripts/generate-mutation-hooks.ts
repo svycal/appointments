@@ -32,7 +32,7 @@ function extractMutationOperations(): OperationInfo[] {
 
   // Extract each path block and its mutation operations
   // Split by path definitions and process each one
-  const pathBlockRegex = /"([^"]+\/[^"]*)":\s*\{([\s\S]*?)(?=\n {2}"\/|$)/g;
+  const pathBlockRegex = /"([^"]+\/[^"]*)":\s*\{([\s\S]*?)(?=\n\s*"\/|$)/g;
   let pathMatch;
 
   while ((pathMatch = pathBlockRegex.exec(schemaContent)) !== null) {

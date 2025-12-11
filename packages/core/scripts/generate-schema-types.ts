@@ -12,8 +12,8 @@ function extractSchemaNames(): string[] {
   const schemaContent = readFileSync(schemaPath, "utf-8");
 
   // Find the components.schemas interface
-  const schemasBlockRegex =
-    /export interface components \{[\s\S]*?schemas: \{([\s\S]*?)\n {2}\};/;
+  // Match from "schemas: {" until "responses:" (which follows schemas in the interface)
+  const schemasBlockRegex = /schemas:\s*\{([\s\S]*?)\n\s*\};\n\s*responses:/;
   const schemasMatch = schemaContent.match(schemasBlockRegex);
 
   if (!schemasMatch) {
@@ -23,8 +23,8 @@ function extractSchemaNames(): string[] {
   const schemasBlock = schemasMatch[1];
 
   // Extract all schema names (they appear as property names followed by a colon)
-  // Pattern: whitespace, schema name (word chars), colon, whitespace, opening brace
-  const schemaNameRegex = /^\s{4}(\w+):\s*\{/gm;
+  // Top-level schema names have exactly 8 spaces of indentation in the raw output
+  const schemaNameRegex = /^ {8}(\w+):\s*\{/gm;
   const schemaNames: string[] = [];
   let match;
 

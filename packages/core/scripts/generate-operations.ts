@@ -106,7 +106,7 @@ function extractOperations(): OperationInfo[] {
   const schemaContent = readFileSync(schemaPath, "utf-8");
 
   // Extract each path block and its operations
-  const pathBlockRegex = /"([^"]+\/[^"]*)":\s*\{([\s\S]*?)(?=\n {2}"\/|$)/g;
+  const pathBlockRegex = /"([^"]+\/[^"]*)":\s*\{([\s\S]*?)(?=\n\s*"\/|$)/g;
   let pathMatch;
 
   while ((pathMatch = pathBlockRegex.exec(schemaContent)) !== null) {
