@@ -13,6 +13,25 @@ export * from "./schema-types";
 const DEFAULT_BASE_URL = "https://api.savvycal.app";
 const UNPROTECTED_PATHS = ["/v1/public"];
 
+/**
+ * Checks if a JWT is expired by decoding the payload and reading the `exp` claim.
+ * Returns true if expired or if the token cannot be decoded.
+ */
+const isTokenExpired = (token: string): boolean => {
+  try {
+    const payload = token.split(".")[1];
+    if (!payload) return true;
+
+    const decoded = JSON.parse(atob(payload));
+    if (!decoded.exp) return false; // No expiration claim, assume valid
+
+    // exp is in seconds, Date.now() is in milliseconds
+    return decoded.exp * 1000 < Date.now();
+  } catch {
+    return true; // If we can't decode, treat as expired to force refresh
+  }
+};
+
 export type FetchClientOptions = {
   /**
    * ID for the SavvyCal account.
@@ -61,7 +80,7 @@ export const createFetchClient = (options: FetchClientOptions = {}) => {
         throw new Error("No fetchAccessToken provided");
       }
 
-      if (!accessToken) {
+      if (!accessToken || isTokenExpired(accessToken)) {
         const authRes = await options.fetchAccessToken();
 
         if (!authRes) {
@@ -70,8 +89,6 @@ export const createFetchClient = (options: FetchClientOptions = {}) => {
 
         accessToken = authRes;
       }
-
-      // TODO: add logic here to refresh token when it expires
 
       request.headers.set("Authorization", `Bearer ${accessToken}`);
       return request;

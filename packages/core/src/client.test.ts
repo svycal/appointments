@@ -16,6 +16,17 @@ describe("createFetchClient", () => {
   const getRequest = (mockFetch: ReturnType<typeof createMockFetch>): Request =>
     mockFetch.mock.calls[0]![0] as Request;
 
+  /**
+   * Creates a mock JWT with the given expiration time.
+   * The JWT format is: header.payload.signature (all base64 encoded)
+   */
+  const createMockJwt = (exp: number): string => {
+    const header = btoa(JSON.stringify({ alg: "HS256", typ: "JWT" }));
+    const payload = btoa(JSON.stringify({ exp, sub: "user-123" }));
+    const signature = "mock-signature";
+    return `${header}.${payload}.${signature}`;
+  };
+
   describe("client creation", () => {
     it("creates a client with default base URL", async () => {
       const mockFetch = createMockFetch();
@@ -102,9 +113,11 @@ describe("createFetchClient", () => {
         );
       });
 
-      it("caches token for subsequent requests", async () => {
+      it("caches token for subsequent requests when not expired", async () => {
         const mockFetch = createMockFetch();
-        const fetchAccessToken = vi.fn().mockResolvedValue("cached-token");
+        // Token that expires in 1 hour
+        const validToken = createMockJwt(Math.floor(Date.now() / 1000) + 3600);
+        const fetchAccessToken = vi.fn().mockResolvedValue(validToken);
         const client = createFetchClient({
           fetch: mockFetch,
           fetchAccessToken,
@@ -115,6 +128,47 @@ describe("createFetchClient", () => {
         await client.GET("/v1/account");
 
         expect(fetchAccessToken).toHaveBeenCalledTimes(1);
+      });
+
+      it("refreshes token when expired", async () => {
+        const mockFetch = createMockFetch();
+        // Token that expired 1 hour ago
+        const expiredToken = createMockJwt(
+          Math.floor(Date.now() / 1000) - 3600,
+        );
+        // Token that expires in 1 hour
+        const freshToken = createMockJwt(Math.floor(Date.now() / 1000) + 3600);
+        const fetchAccessToken = vi
+          .fn()
+          .mockResolvedValueOnce(expiredToken)
+          .mockResolvedValueOnce(freshToken);
+        const client = createFetchClient({
+          fetch: mockFetch,
+          fetchAccessToken,
+        });
+
+        await client.GET("/v1/account");
+        await client.GET("/v1/account");
+
+        expect(fetchAccessToken).toHaveBeenCalledTimes(2);
+      });
+
+      it("refreshes token when malformed", async () => {
+        const mockFetch = createMockFetch();
+        const freshToken = createMockJwt(Math.floor(Date.now() / 1000) + 3600);
+        const fetchAccessToken = vi
+          .fn()
+          .mockResolvedValueOnce("not-a-valid-jwt")
+          .mockResolvedValueOnce(freshToken);
+        const client = createFetchClient({
+          fetch: mockFetch,
+          fetchAccessToken,
+        });
+
+        await client.GET("/v1/account");
+        await client.GET("/v1/account");
+
+        expect(fetchAccessToken).toHaveBeenCalledTimes(2);
       });
 
       it("throws error if no fetchAccessToken provided", async () => {
