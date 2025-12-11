@@ -24,10 +24,7 @@ export type FetchClientOptions = {
    * Defaults to 'https://api.savvycal.app'
    */
   baseUrl?: string;
-} & (
-  | { apiKey?: never; demoAlias?: string }
-  | { apiKey?: string; demoAlias?: never }
-) &
+} & ({ apiKey?: never; demo?: string } | { apiKey?: string; demo?: never }) &
   Omit<ClientOptions, "baseUrl">;
 
 /**
@@ -50,10 +47,10 @@ export const createFetchClient = (options: FetchClientOptions = {}) => {
     };
   }
 
-  if (options.demoAlias) {
+  if (options.demo) {
     clientOptions.headers = {
       ...clientOptions.headers,
-      Authorization: `Demo ${options.demoAlias}`,
+      Authorization: `Demo ${options.demo}`,
     };
   }
 

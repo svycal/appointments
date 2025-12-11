@@ -21,6 +21,7 @@ export default defineConfig([
     "**/priv/",
     "**/.elixir_ls",
     "**/_build",
+    "site/docs/api/**",
     "components/react/src/routeTree.gen.ts",
     "packages/core/src/schema.d.ts",
   ]),

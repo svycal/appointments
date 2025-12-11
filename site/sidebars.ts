@@ -5,6 +5,8 @@ import {
   SidebarItemLink,
 } from "@docusaurus/plugin-content-docs/src/sidebars/types.js";
 
+import apisidebar from "./docs/api/sidebar";
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /**
@@ -23,6 +25,17 @@ const sidebars: SidebarsConfig = {
     "data-model",
     "authentication",
     {
+      collapsed: false,
+      items: ["components/public-booking-form"],
+      label: "Components",
+      link: {
+        id: "components/index",
+        type: "doc",
+      },
+      type: "category",
+    },
+    {
+      collapsed: false,
       items: ["embedding/booking-embed"],
       label: "Embedding",
       type: "category",
@@ -32,8 +45,9 @@ const sidebars: SidebarsConfig = {
   openApiSidebar: [
     {
       items: sortSchemas(
-        require("./docs/api/sidebar.ts").filter(
-          (item) => item.id !== "api/savvycal-appointments-api",
+        apisidebar.filter(
+          (item: { id: string } & SidebarItem) =>
+            item.id !== "api/savvycal-appointments-api",
         ),
       ),
       label: "REST API",
