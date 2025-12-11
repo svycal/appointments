@@ -5,13 +5,13 @@ This website is built using [Docusaurus](https://docusaurus.io/).
 ### Installation
 
 ```
-$ npm install
+$ pnpm install
 ```
 
 ### Local Development
 
 ```
-$ npm run start
+$ pnpm run start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
@@ -19,7 +19,7 @@ This command starts a local development server and opens up a browser window. Mo
 ### Regenerating API docs
 
 ```
-$ npm run regen-api-docs
+$ pnpm run regen-api-docs
 ```
 
 This command cleans up old API docs and regenerates them by querying the Open API spec (from the production API server).
@@ -27,7 +27,7 @@ This command cleans up old API docs and regenerates them by querying the Open AP
 ### Build
 
 ```
-$ npm run build
+$ pnpm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
