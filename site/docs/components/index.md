@@ -15,17 +15,19 @@ We've build the components to require minimal external dependencies.
 
 ## Preparing your app
 
-If you haven't already, you'll need to prepare your app for data fetching.
+Before using the components, you'll need to prepare your frontend for data fetching.
 
 ### Install dependencies
+
+Add the following dependencies to your project:
 
 ```bash
 npm install @tanstack/react-query @savvycal/appointments-react-query
 ```
 
-### Add providers to your root component
+### Set up your app root
 
-Add the following code to your app's root component:
+Ensure the `<QueryClientProvider>` and `<SavvyCalProvider>` components are present in your app's root component.
 
 ```tsx
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
