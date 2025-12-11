@@ -50,9 +50,6 @@ importers:
 
   components/react:
     dependencies:
-      '@date-fns/tz':
-        specifier: ^1.4.1
-        version: 1.4.1
       '@savvycal/appointments-core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -80,9 +77,6 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      date-fns:
-        specifier: ^4.1.0
-        version: 4.1.0
       lucide-react:
         specifier: ^0.555.0
         version: 0.555.0(react@19.2.0)
@@ -193,13 +187,11 @@ importers:
         version: 5.9.3
 
   packages/utils:
+    dependencies:
+      temporal-polyfill:
+        specifier: ^0.2.5
+        version: 0.2.5
     devDependencies:
-      '@date-fns/tz':
-        specifier: ^1.4.1
-        version: 1.4.1
-      date-fns:
-        specifier: ^4.1.0
-        version: 4.1.0
       tsx:
         specifier: ^4.19.2
         version: 4.20.6
@@ -7832,6 +7824,12 @@ packages:
   tapable@2.3.0:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
     engines: {node: '>=6'}
+
+  temporal-polyfill@0.2.5:
+    resolution: {integrity: sha512-ye47xp8Cb0nDguAhrrDS1JT1SzwEV9e26sSsrWzVu+yPZ7LzceEcH0i2gci9jWfOfSCCgM3Qv5nOYShVUUFUXA==}
+
+  temporal-spec@0.2.4:
+    resolution: {integrity: sha512-lDMFv4nKQrSjlkHKAlHVqKrBG4DyFfa9F74cmBZ3Iy3ed8yvWnlWSIdi4IKfSqwmazAohBNwiN64qGx4y5Q3IQ==}
 
   terser-webpack-plugin@5.3.15:
     resolution: {integrity: sha512-PGkOdpRFK+rb1TzVz+msVhw4YMRT9txLF4kRqvJhGhCM324xuR3REBSHALN+l+sAhKUmz0aotnjp5D+P83mLhQ==}
@@ -17653,6 +17651,12 @@ snapshots:
   tailwindcss@4.1.17: {}
 
   tapable@2.3.0: {}
+
+  temporal-polyfill@0.2.5:
+    dependencies:
+      temporal-spec: 0.2.4
+
+  temporal-spec@0.2.4: {}
 
   terser-webpack-plugin@5.3.15(esbuild@0.27.0)(webpack@5.103.0(esbuild@0.27.0)):
     dependencies:

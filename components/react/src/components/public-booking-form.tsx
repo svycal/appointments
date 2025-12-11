@@ -1,4 +1,3 @@
-import { tz, tzName } from "@date-fns/tz";
 import {
   getEarliestPublicServiceSlot,
   type Slot,
@@ -9,18 +8,17 @@ import {
 } from "@savvycal/appointments-react-query";
 import { useSavvyCalFetchClient } from "@savvycal/appointments-react-query";
 import {
+  endOfMonth,
+  formatDate,
+  fromUnixTime,
   getBrowserTimeZone,
+  getTimeZoneDisplayName,
+  isSameDay,
+  startOfMonth,
   toISODate,
   toISONaiveDateTime,
 } from "@savvycal/appointments-utils";
 import clsx from "clsx";
-import {
-  endOfMonth,
-  fromUnixTime,
-  intlFormat,
-  isSameDay,
-  startOfMonth,
-} from "date-fns";
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
@@ -83,7 +81,7 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
     return data.data.some((slot) => {
       const slotDate = fromUnixTime(slot.start_at_ts);
 
-      return isSameDay(slotDate, date, { in: tz(timeZone) });
+      return isSameDay(slotDate, date, timeZone);
     });
   };
 
@@ -93,7 +91,7 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
     return data.data.filter((slot) => {
       const slotDate = fromUnixTime(slot.start_at_ts!);
 
-      return isSameDay(slotDate, selectedDay, { in: tz(timeZone) });
+      return isSameDay(slotDate, selectedDay, timeZone);
     });
   }, [data, selectedDay, timeZone]);
 
@@ -138,7 +136,7 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
               if (
                 day &&
                 selectedSlot &&
-                !isSameDay(selectedSlot.start_at, day)
+                !isSameDay(new Date(selectedSlot.start_at), day, timeZone)
               ) {
                 setSelectedSlot(undefined);
               }
@@ -149,7 +147,7 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
             <div className="mt-6 flex items-center justify-center gap-2 text-sm">
               <GlobeIcon className="size-4 text-zinc-500" />
               <span className="text-zinc-500">
-                {tzName(timeZone, selectedDay ?? new Date(), "long")}
+                {getTimeZoneDisplayName(timeZone)}
               </span>
             </div>
           )}
@@ -159,7 +157,7 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
             <form onSubmit={handleSubmit}>
               <div className="flex h-(--nav-height) items-center justify-center">
                 <h2 className="text-center font-semibold">
-                  {intlFormat(selectedDay, {
+                  {formatDate(selectedDay, {
                     day: "numeric",
                     month: "long",
                     weekday: "long",
@@ -190,7 +188,7 @@ const PublicBookingForm = ({ serviceId }: { serviceId: string }) => {
                       value={slot.start_at}
                     >
                       <label className="flex cursor-pointer justify-center px-6 py-2.5 text-base">
-                        {intlFormat(slotStartAt, { timeStyle: "short" })}
+                        {formatDate(slotStartAt, { timeStyle: "short" })}
                       </label>
                     </RadioGroup.Item>
                   );

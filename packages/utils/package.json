@@ -32,14 +32,11 @@
     "directory": "packages/utils"
   },
   "license": "MIT",
+  "dependencies": {
+    "temporal-polyfill": "^0.2.5"
+  },
   "devDependencies": {
     "tsx": "^4.19.2",
-    "typescript": "^5.9.3",
-    "@date-fns/tz": "^1.4.1",
-    "date-fns": "^4.1.0"
-  },
-  "peerDependencies": {
-    "date-fns": "^4.0",
-    "@date-fns/tz": "^1.0"
+    "typescript": "^5.9.3"
   }
 }
