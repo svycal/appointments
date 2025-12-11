@@ -30,6 +30,7 @@ npm install @tanstack/react-query @savvycal/appointments-react-query
 Ensure the `<QueryClientProvider>` and `<SavvyCalProvider>` components are present in your app's root component.
 
 ```tsx
+import { useMemo, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SavvyCalProvider } from "@savvycal/appointments-react-query";
 
@@ -37,10 +38,29 @@ import { SavvyCalProvider } from "@savvycal/appointments-react-query";
 const queryClient = new QueryClient();
 
 function App() {
+  // State to store any errors that occur
+  const [tokenError, setTokenError] = useState<string | null>(null);
+
+  const fetchAccessToken = useMemo(async () => {
+    // Fetch an access token from your backend for the SavvyCal account
+    const response = await fetch("/access_token");
+
+    if (!response.ok) {
+      const { error } = await response.json();
+      console.error("An error occurred: ", error);
+      setTokenError(error);
+      return undefined;
+    } else {
+      const { accessToken } = await response.json();
+      return accessToken;
+    }
+  }, [setTokenError]);
+
   return (
-    // Provide the client to your App
     <QueryClientProvider client={queryClient}>
-      <SavvyCalProvider>{/* Your app */}</SavvyCalProvider>
+      <SavvyCalProvider fetchAccessToken={fetchAccessToken}>
+        {/* ... */}
+      </SavvyCalProvider>
     </QueryClientProvider>
   );
 }
