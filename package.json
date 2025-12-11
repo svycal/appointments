@@ -9,7 +9,8 @@
     "lint:fix": "eslint --fix",
     "playground": "cd playground && mix setup && mix phx.server",
     "typecheck": "pnpm -r --parallel typecheck",
-    "generate": "pnpm -r --parallel generate"
+    "generate": "pnpm -r --parallel generate",
+    "test": "pnpm -r --parallel test"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.47.0",
