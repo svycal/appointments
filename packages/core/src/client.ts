@@ -3,7 +3,7 @@ import type {
   OperationRequestBodyContent,
 } from "openapi-typescript-helpers";
 
-import createClient, { ClientOptions } from "openapi-fetch";
+import createClient, { ClientOptions, Middleware } from "openapi-fetch";
 
 import type { paths } from "./schema";
 
@@ -11,6 +11,7 @@ export type { paths };
 export * from "./schema-types";
 
 const DEFAULT_BASE_URL = "https://api.savvycal.app";
+const UNPROTECTED_PATHS = ["/v1/public"];
 
 export type FetchClientOptions = {
   /**
@@ -24,7 +25,16 @@ export type FetchClientOptions = {
    * Defaults to 'https://api.savvycal.app'
    */
   baseUrl?: string;
-} & ({ apiKey?: never; demo?: string } | { apiKey?: string; demo?: never }) &
+} & (
+  | {
+      demo?: never;
+      fetchAccessToken?: () => Promise<string> | string;
+    }
+  | {
+      demo?: string;
+      fetchAccessToken?: never;
+    }
+) &
   Omit<ClientOptions, "baseUrl">;
 
 /**
@@ -34,18 +44,45 @@ export type FetchClientOptions = {
  * @returns A configured API client.
  */
 export const createFetchClient = (options: FetchClientOptions = {}) => {
+  let accessToken: string | undefined;
+
+  const authMiddleware: Middleware = {
+    async onRequest({ request }) {
+      if (UNPROTECTED_PATHS.some((path) => request.url.startsWith(path))) {
+        return undefined;
+      }
+
+      if (options.demo) {
+        request.headers.set("Authorization", `Demo ${options.demo}`);
+        return request;
+      }
+
+      if (!options.fetchAccessToken) {
+        throw new Error("No fetchAccessToken provided");
+      }
+
+      if (!accessToken) {
+        const authRes = await options.fetchAccessToken();
+
+        if (!authRes) {
+          throw new Error("No access token");
+        }
+
+        accessToken = authRes;
+      }
+
+      // TODO: add logic here to refresh token when it expires
+
+      request.headers.set("Authorization", `Bearer ${accessToken}`);
+      return request;
+    },
+  };
+
   const clientOptions = {
     baseUrl: options.baseUrl ?? DEFAULT_BASE_URL,
     headers: {},
     ...options,
   };
-
-  if (options.apiKey) {
-    clientOptions.headers = {
-      ...clientOptions.headers,
-      Authorization: `Bearer ${options.apiKey}`,
-    };
-  }
 
   if (options.demo) {
     clientOptions.headers = {
@@ -61,7 +98,10 @@ export const createFetchClient = (options: FetchClientOptions = {}) => {
     };
   }
 
-  return createClient<paths>(clientOptions);
+  const client = createClient<paths>(clientOptions);
+  client.use(authMiddleware);
+
+  return client;
 };
 
 export type FetchClient = ReturnType<typeof createFetchClient>;
