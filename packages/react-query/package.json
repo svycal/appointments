@@ -19,6 +19,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "generate": "concurrently \"pnpm run generate:query-hooks\" \"pnpm run generate:mutation-hooks\"",
     "generate:query-hooks": "tsx scripts/generate-query-hooks.ts",
     "generate:mutation-hooks": "tsx scripts/generate-mutation-hooks.ts",
     "typecheck": "tsc --noEmit"
@@ -40,6 +41,7 @@
     "@types/node": "^22.10.2",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "concurrently": "^9.2.1",
     "openapi-fetch": "^0.15.0",
     "openapi-react-query": "^0.5.1",
     "openapi-typescript": "^7.10.1",

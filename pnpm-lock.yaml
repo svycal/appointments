@@ -136,6 +136,9 @@ importers:
       '@types/node':
         specifier: ^22.10.2
         version: 22.19.1
+      concurrently:
+        specifier: ^9.2.1
+        version: 9.2.1
       openapi-typescript:
         specifier: ^7.10.1
         version: 7.10.1(typescript@5.9.3)
@@ -167,6 +170,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.7)
+      concurrently:
+        specifier: ^9.2.1
+        version: 9.2.1
       openapi-fetch:
         specifier: ^0.15.0
         version: 0.15.0

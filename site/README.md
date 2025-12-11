@@ -19,7 +19,7 @@ This command starts a local development server and opens up a browser window. Mo
 ### Regenerating API docs
 
 ```
-$ pnpm run regen-api-docs
+$ pnpm run generate
 ```
 
 This command cleans up old API docs and regenerates them by querying the Open API spec (from the production API server).

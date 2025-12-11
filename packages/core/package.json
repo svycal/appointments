@@ -17,6 +17,7 @@
     "dist"
   ],
   "scripts": {
+    "generate": "pnpm run generate:schema && concurrently \"pnpm run generate:schema-types\" \"pnpm run generate:operations\"",
     "generate:schema": "openapi-typescript https://api.savvycal.app/v1/spec --output ./src/schema.d.ts && eslint --fix ./src/schema.d.ts",
     "generate:schema-types": "tsx scripts/generate-schema-types.ts",
     "generate:operations": "tsx scripts/generate-operations.ts",
@@ -38,6 +39,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "concurrently": "^9.2.1",
     "openapi-typescript": "^7.10.1",
     "tsx": "^4.19.2",
     "typescript": "^5.9.3"
