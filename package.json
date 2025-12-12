@@ -10,9 +10,14 @@
     "playground": "cd playground && mix setup && mix phx.server",
     "typecheck": "pnpm -r --parallel typecheck",
     "generate": "pnpm -r --parallel generate",
-    "test": "pnpm -r --parallel test"
+    "test": "pnpm -r --parallel test",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
     "@typescript-eslint/eslint-plugin": "^8.47.0",
     "@typescript-eslint/parser": "^8.47.0",
     "eslint": "^9.39.1",
