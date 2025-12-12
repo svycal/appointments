@@ -1,7 +1,4 @@
-import {
-  getEarliestPublicServiceSlot,
-  type Slot,
-} from "@savvycal/appointments-core";
+import { getEarliestPublicServiceSlot } from "@savvycal/appointments-core";
 import {
   useCreatePublicAppointment,
   usePublicServiceSlots,
@@ -29,39 +26,14 @@ import { RadioGroup } from "radix-ui";
 import React, { useEffect, useMemo, useState } from "react";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 
-interface ClientData {
-  /** The client's email address. */
-  email: string;
-  /** The client's first name. */
-  first_name: string;
-  /** The client's last name. */
-  last_name: string;
-  /** The client's locale (e.g., "en"). Defaults to "en". */
-  locale?: string;
-  /** The client's phone number. */
-  phone?: string;
-  /** A unique reference ID for the client in your system. Defaults to the email. */
-  reference_id?: string;
-}
-
-interface PublicBookingFormProps {
-  /** Data about the client booking the appointment. */
-  clientData: ClientData;
-  /** The ID of the service to book. */
-  serviceId: string;
-}
-
-const PublicBookingForm = ({
-  clientData,
-  serviceId,
-}: PublicBookingFormProps) => {
-  const [timeZone] = useState<string>(getBrowserTimeZone());
+const PublicBookingForm = ({ clientData, serviceId }) => {
+  const [timeZone] = useState(getBrowserTimeZone());
   const client = useSavvyCalFetchClient();
 
-  const [month, setMonth] = useState<Date>();
-  const [selectedDay, setSelectedDay] = useState<Date>();
-  const [selectedSlot, setSelectedSlot] = useState<Slot>();
-  const [initError, setInitError] = useState<string>();
+  const [month, setMonth] = useState();
+  const [selectedDay, setSelectedDay] = useState();
+  const [selectedSlot, setSelectedSlot] = useState();
+  const [initError, setInitError] = useState();
 
   useEffect(() => {
     async function jumpToEarliestDate() {
@@ -107,7 +79,7 @@ const PublicBookingForm = ({
     enabled: !!month,
   });
 
-  const [submitError, setSubmitError] = useState<string>();
+  const [submitError, setSubmitError] = useState();
 
   const { isPending: isCreating, mutate: createPublicAppointment } =
     useCreatePublicAppointment({
@@ -121,7 +93,7 @@ const PublicBookingForm = ({
       },
     });
 
-  const dateHasSlots = (date: Date) => {
+  const dateHasSlots = (date) => {
     if (!data) return false;
 
     return data.data.some((slot) => {
@@ -140,7 +112,7 @@ const PublicBookingForm = ({
     });
   }, [data, selectedDay, timeZone]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!selectedSlot) return;
 
@@ -278,12 +250,6 @@ const Calendar = ({
   onMonthChange,
   onSelect,
   selectedDay,
-}: {
-  disabled: (date: Date) => boolean;
-  month: Date | undefined;
-  onMonthChange: (month: Date) => void;
-  onSelect: (day: Date | undefined) => void;
-  selectedDay: Date | undefined;
 }) => {
   const defaultClassNames = getDefaultClassNames();
 

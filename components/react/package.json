@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite --open",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate": "pnpm run generate:js",
+    "generate:js": "tsx scripts/generate-js.ts && eslint js --fix"
   },
   "dependencies": {
     "@savvycal/appointments-core": "workspace:*",
@@ -31,6 +33,7 @@
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "ts-blank-space": "^0.6.2",
     "typescript": "~5.9.3",
     "vite": "^7.2.4"
   }
