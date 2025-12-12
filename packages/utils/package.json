@@ -1,6 +1,6 @@
 {
   "name": "@savvycal/appointments-utils",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
   "description": "JavaScript/TypeScript utilities for the SavvyCal Appointments components",
   "main": "./dist/index.cjs",
