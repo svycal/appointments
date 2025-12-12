@@ -37,6 +37,7 @@
     "@docusaurus/types": "^3.9.2",
     "@types/react": "^18.3.27",
     "concurrently": "^9.1.2",
+    "raw-loader": "^4.0.2",
     "typescript": "~5.6.2"
   },
   "browserslist": {
