@@ -1,0 +1,6 @@
+{
+  "installCommand": "cd ../.. && pnpm install",
+  "buildCommand": "cd ../.. && pnpm --filter react-components build",
+  "outputDirectory": "dist",
+  "framework": "vite"
+}
