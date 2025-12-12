@@ -4,8 +4,11 @@ title: "Public Booking Form"
 ---
 
 import CodeBlock from "@theme/CodeBlock";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import { ComponentDemo } from "@site/src/components/ComponentDemo";
-import PublicBookingFormSource from "!!raw-loader!@site/../components/react/src/components/public-booking-form.tsx";
+import PublicBookingFormSourceTS from "!!raw-loader!@site/../components/react/src/components/public-booking-form.tsx";
+import PublicBookingFormSourceJS from "!!raw-loader!@site/../components/react/js/public-booking-form.jsx";
 
 # Public Booking Form
 
@@ -15,7 +18,7 @@ A basic public booking form component.
 
 <ComponentDemo route="public-booking-form" />
 
-## Prerequisites
+## Installation
 
 Follow the instructions to [prepare your app](/components#prerequisites). This component requires a few additional dependencies:
 
@@ -35,12 +38,17 @@ Add the base styles for React Day Picker to your app styles:
 @import "react-day-picker/style.css" layer(components);
 ```
 
-## Authentication
-
 Since this component only uses public API endpoints, the `fetchAccessToken` prop is not required on `SavvyCalProvider`.
 
-## Code
+<Tabs groupId="language">
+  <TabItem value="typescript" label="TypeScript" default>
+    Create a new file called `public-booking-form.tsx` in your app's components directory:
 
-Create a new file called `public-booking-form.tsx` in your app's components directory:
+    <CodeBlock language="tsx">{PublicBookingFormSourceTS}</CodeBlock>
+  </TabItem>
+  <TabItem value="javascript" label="JavaScript">
+    Create a new file called `public-booking-form.jsx` in your app's components directory:
 
-<CodeBlock language="tsx">{PublicBookingFormSource}</CodeBlock>
+    <CodeBlock language="jsx">{PublicBookingFormSourceJS}</CodeBlock>
+  </TabItem>
+</Tabs>
