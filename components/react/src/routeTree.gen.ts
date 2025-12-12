@@ -10,42 +10,32 @@
 
 import { Route as rootRouteImport } from "./routes/__root";
 import { Route as PublicBookingFormRouteImport } from "./routes/public-booking-form";
-import { Route as IndexRouteImport } from "./routes/index";
 
 const PublicBookingFormRoute = PublicBookingFormRouteImport.update({
   id: "/public-booking-form",
   path: "/public-booking-form",
   getParentRoute: () => rootRouteImport,
 } as any);
-const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
-  getParentRoute: () => rootRouteImport,
-} as any);
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
   "/public-booking-form": typeof PublicBookingFormRoute;
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
   "/public-booking-form": typeof PublicBookingFormRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
-  "/": typeof IndexRoute;
   "/public-booking-form": typeof PublicBookingFormRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "/public-booking-form";
+  fullPaths: "/public-booking-form";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/public-booking-form";
-  id: "__root__" | "/" | "/public-booking-form";
+  to: "/public-booking-form";
+  id: "__root__" | "/public-booking-form";
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
   PublicBookingFormRoute: typeof PublicBookingFormRoute;
 }
 
@@ -58,18 +48,10 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof PublicBookingFormRouteImport;
       parentRoute: typeof rootRouteImport;
     };
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   PublicBookingFormRoute: PublicBookingFormRoute,
 };
 export const routeTree = rootRouteImport
