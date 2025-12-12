@@ -64,7 +64,7 @@ export type FetchClientOptions = {
 } & (
   | {
       demo?: never;
-      fetchAccessToken?: () => Promise<string> | string;
+      fetchAccessToken?: () => Promise<string | undefined> | string | undefined;
     }
   | {
       demo?: string;
