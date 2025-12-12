@@ -20,7 +20,7 @@ const RootLayout = () => {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <SavvyCalProvider baseUrl="http://localhost:4002" demo="docs">
+        <SavvyCalProvider demo="docs">
           <FrameResizer>
             <Outlet />
           </FrameResizer>

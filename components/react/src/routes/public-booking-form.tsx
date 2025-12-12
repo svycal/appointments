@@ -15,7 +15,7 @@ function PublicBookingFormDemo() {
           first_name: "Harrison",
           last_name: "Fitch",
         }}
-        serviceId="srv_28f3a4bd5986"
+        serviceId="srv_2cb118675126"
       />
     </div>
   );
