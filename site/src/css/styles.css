@@ -64,16 +64,6 @@ html[data-theme="dark"] {
   --ifm-background-color: var(--color-zinc-900);
 }
 
-/* Reverse a few styles that Tailwind applies by default, but break the default theme */
-svg {
-  display: inline;
-  vertical-align: baseline;
-}
-
-code {
-  @apply mx-0.5 inline rounded-md bg-zinc-100 px-1.5 align-baseline text-sm dark:bg-zinc-800;
-}
-
 .container {
   @apply md:px-8;
 }
