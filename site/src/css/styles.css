@@ -1,4 +1,7 @@
-@import "tailwindcss";
+/* Import Tailwind without preflight to avoid conflicts with Docusaurus Infima styles */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
@@ -68,7 +71,7 @@ svg {
 }
 
 code {
-  @apply mx-0.5 inline rounded-md bg-gray-100 px-1.5 align-baseline text-sm dark:bg-gray-800;
+  @apply mx-0.5 inline rounded-md bg-zinc-100 px-1.5 align-baseline text-sm dark:bg-zinc-800;
 }
 
 .container {
