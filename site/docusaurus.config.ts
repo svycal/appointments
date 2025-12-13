@@ -11,6 +11,13 @@ const config: Config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
   favicon: "img/favicon.ico",
+
+  // Enable faster builds
+  future: {
+    experimental_faster: true,
+    v4: true,
+  },
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
