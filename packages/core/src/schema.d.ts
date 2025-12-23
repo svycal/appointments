@@ -3421,6 +3421,8 @@ export interface components {
          * CreateAccountUserRequest
          * @description Request schema for creating a user in an account
          * @example {
+         *       "add_provider": false,
+         *       "display_name": "Dr. John Doe",
          *       "email": "john.doe@example.com",
          *       "first_name": "John",
          *       "last_name": "Doe",
@@ -3432,6 +3434,13 @@ export interface components {
          *     }
          */
         CreateAccountUserRequest: {
+            /**
+             * @description Whether to create a staff member (provider) for this user. If a provider with the same email already exists, it will be affiliated with this user instead of creating a new one.
+             * @default false
+             */
+            add_provider: boolean;
+            /** @description The display name for the staff member. Only used when `add_provider` is true. Defaults to 'FirstName LastName' if not provided. */
+            display_name?: string;
             /**
              * Format: email
              * @description The user's email address.

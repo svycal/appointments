@@ -6,7 +6,7 @@ sidebar_label: "CreateAccountUserRequest"
 hide_title: true
 hide_table_of_contents: true
 schema: true
-sample: {"email":"john.doe@example.com","first_name":"John","last_name":"Doe","notify":false,"role_ids":["role_123456789012"],"time_zone":"America/Chicago"}
+sample: {"add_provider":false,"display_name":"Dr. John Doe","email":"john.doe@example.com","first_name":"John","last_name":"Doe","notify":false,"role_ids":["role_123456789012"],"time_zone":"America/Chicago"}
 custom_edit_url: null
 ---
 
@@ -25,7 +25,7 @@ import Heading from "@theme/Heading";
 Request schema for creating a user in an account
 
 <Schema
-  schema={{"description":"Request schema for creating a user in an account","example":{"email":"john.doe@example.com","first_name":"John","last_name":"Doe","notify":false,"role_ids":["role_123456789012"],"time_zone":"America/Chicago"},"properties":{"email":{"description":"The user's email address.","format":"email","type":"string"},"first_name":{"description":"The user's first name.","type":"string"},"last_name":{"description":"The user's last name.","type":"string"},"notify":{"default":false,"description":"Whether to send an email notification to the user. If they don't already have an account, they will receive an email with instructions to set their password when this property is true.","type":"boolean"},"role_ids":{"description":"List of role IDs to assign to the user.","items":{"description":"A role ID","pattern":"^role_\\w{12}$","type":"string"},"type":"array"},"time_zone":{"description":"The user's time zone.","type":"string"}},"required":["email","first_name","last_name"],"title":"CreateAccountUserRequest","type":"object"}}
+  schema={{"description":"Request schema for creating a user in an account","example":{"add_provider":false,"display_name":"Dr. John Doe","email":"john.doe@example.com","first_name":"John","last_name":"Doe","notify":false,"role_ids":["role_123456789012"],"time_zone":"America/Chicago"},"properties":{"add_provider":{"default":false,"description":"Whether to create a staff member (provider) for this user. If a provider with the same email already exists, it will be affiliated with this user instead of creating a new one.","type":"boolean"},"display_name":{"description":"The display name for the staff member. Only used when `add_provider` is true. Defaults to 'FirstName LastName' if not provided.","type":"string"},"email":{"description":"The user's email address.","format":"email","type":"string"},"first_name":{"description":"The user's first name.","type":"string"},"last_name":{"description":"The user's last name.","type":"string"},"notify":{"default":false,"description":"Whether to send an email notification to the user. If they don't already have an account, they will receive an email with instructions to set their password when this property is true.","type":"boolean"},"role_ids":{"description":"List of role IDs to assign to the user.","items":{"description":"A role ID","pattern":"^role_\\w{12}$","type":"string"},"type":"array"},"time_zone":{"description":"The user's time zone.","type":"string"}},"required":["email","first_name","last_name"],"title":"CreateAccountUserRequest","type":"object"}}
   schemaType={"response"}
 >
   
