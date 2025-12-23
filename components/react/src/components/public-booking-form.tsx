@@ -1,3 +1,5 @@
+import { Radio } from "@base-ui/react/radio";
+import { RadioGroup } from "@base-ui/react/radio-group";
 import {
   getEarliestPublicServiceSlot,
   type Slot,
@@ -25,7 +27,6 @@ import {
   ChevronRightIcon,
   GlobeIcon,
 } from "lucide-react";
-import { RadioGroup } from "radix-ui";
 import React, { useEffect, useMemo, useState } from "react";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 
@@ -215,36 +216,38 @@ const PublicBookingForm = ({
                   })}
                 </h2>
               </div>
-              <RadioGroup.Root
+              <RadioGroup
                 className="mt-3 grid gap-2 @2xl:grid-cols-2 @3xl:grid-cols-3"
                 onValueChange={(value) =>
                   setSelectedSlot(
-                    slotsOnSelectedDay.find((slot) => slot.start_at === value),
+                    slotsOnSelectedDay.find(
+                      (slot) => slot.start_at === String(value),
+                    ),
                   )
                 }
-                value={selectedSlot?.start_at || null}
+                value={selectedSlot?.start_at}
               >
                 {slotsOnSelectedDay.map((slot) => {
                   const slotStartAt = fromUnixTime(slot.start_at_ts);
 
                   return (
-                    <RadioGroup.Item
+                    <label
                       className={clsx(
-                        "rounded-md text-zinc-900 ring-1 ring-zinc-900/20 ring-inset hover:bg-zinc-900/5",
-                        "data-[state=checked]:ring-2 data-[state=checked]:ring-zinc-900",
-                        "focus:outline-none focus-visible:ring-3 focus-visible:ring-zinc-900/25",
-                        "group",
+                        "flex cursor-pointer justify-center rounded-md px-6 py-2.5 text-base text-zinc-900",
+                        "ring-1 ring-zinc-900/20 ring-inset hover:bg-zinc-900/5",
+                        "has-data-checked:ring-2 has-data-checked:ring-zinc-900",
+                        "has-focus-visible:ring-3 has-focus-visible:ring-zinc-900/25",
                       )}
                       key={slot.start_at}
-                      value={slot.start_at}
                     >
-                      <label className="flex cursor-pointer justify-center px-6 py-2.5 text-base">
-                        {formatDate(slotStartAt, { timeStyle: "short" })}
-                      </label>
-                    </RadioGroup.Item>
+                      <Radio.Root className="sr-only" value={slot.start_at}>
+                        <Radio.Indicator />
+                      </Radio.Root>
+                      {formatDate(slotStartAt, { timeStyle: "short" })}
+                    </label>
                   );
                 })}
-              </RadioGroup.Root>
+              </RadioGroup>
               <div className="mt-6">
                 <button
                   className={clsx(
