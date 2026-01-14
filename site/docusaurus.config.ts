@@ -38,6 +38,30 @@ const config: Config = {
   organizationName: "svycal", // Usually your GitHub org/user name.
   plugins: [
     [
+      "@signalwire/docusaurus-plugin-llms-txt",
+      {
+        markdown: {
+          excludeRoutes: ["/api/**", "/category/rest-api"]
+        },
+        llmsTxt: {
+          optionalLinks: [{
+            title: "API Specification",
+            url: "https://api.savvycal.app/v1/spec",
+            description: "Complete OpenAPI spec for the SavvyCal Appointments REST API",
+          }]
+        },
+        ui: {
+          copyPageContent: {
+            buttonLabel: 'Copy Page',
+            display: {
+              docs: true,
+              excludeRoutes: ["/api/**", "/category/rest-api"],
+            },
+          },
+        },
+      },
+    ],
+    [
       "docusaurus-plugin-openapi-docs",
       {
         config: {
@@ -142,7 +166,7 @@ const config: Config = {
     },
   } satisfies Preset.ThemeConfig,
 
-  themes: ["docusaurus-theme-openapi-docs"],
+  themes: ["docusaurus-theme-openapi-docs", "@signalwire/docusaurus-theme-llms-txt"],
 
   title: "SavvyCal Appointments",
   trailingSlash: false,
