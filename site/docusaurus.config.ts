@@ -105,6 +105,9 @@ const config: Config = {
   tagline: "Developer documentation for the SavvyCal Appointments API",
 
   themeConfig: {
+    metadata: [
+      { name: "llms", content: "https://developers.savvycal.app/llms.txt" },
+    ],
     footer: {
       copyright: `Copyright © ${new Date().getFullYear()} SavvyCal, Inc.`,
       links: [
@@ -131,6 +134,10 @@ const config: Config = {
             {
               href: "https://github.com/svycal",
               label: "GitHub",
+            },
+            {
+              href: "https://developers.savvycal.app/llms.txt",
+              label: "LLM Docs",
             },
           ],
           title: "More",

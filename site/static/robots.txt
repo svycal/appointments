@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://developers.savvycal.app/sitemap.xml
+LLMs: https://developers.savvycal.app/llms.txt
